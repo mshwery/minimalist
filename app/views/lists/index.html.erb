@@ -2,8 +2,12 @@
 
 <ul>
   <% @lists.each do |list| %>
-    <li><%= link_to list.name, list %></li>
+    <li>
+      <p><%= link_to "#{list.name}", list_url(list) %> - <%= link_to "Edit", edit_list_url(list) %> | <%= link_to "Delete", list_url(list), :method => :delete %></p>
+    </li>
   <% end %>
 </ul>
 
-<%= link_to 'New List', new_list_path %>
+<hr />
+
+<%= link_to "Make a list", new_list_url %>

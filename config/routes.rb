@@ -1,5 +1,10 @@
 Lists::Application.routes.draw do
-  resources :lists
+  
+  resources :lists do
+    resources :tasks
+  end
+
+  match 'lists/:list_id/tasks/:id/complete' => 'tasks#complete', :as => :complete_task
 
   root :to => 'lists#index'
 
