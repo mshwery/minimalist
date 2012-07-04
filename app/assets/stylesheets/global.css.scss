@@ -1,0 +1,43 @@
+@mixin box-shadow($params){
+  box-shadow: $params;
+  -webkit-box-shadow: $params;
+  -moz-box-shadow: $params;
+}
+
+@mixin inline-block {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+}
+
+@mixin basicField {
+  padding: 8px 5px;
+  border: 1px solid #ddd;
+  background: #fff;
+  -webkit-appearance: none;
+  font-size: 13px;
+  line-height: 18px;
+  height: 18px;
+  @include box-shadow(inset 0px 1px 2px rgba(0,0,0,0.12));
+  vertical-align: middle;
+}
+
+body {
+  font-family: 'Lucida Grande', tahoma, verdana, arial, sans-serif;
+}
+
+form {
+  input[type=text],
+  textarea {
+    @include basicField;
+  }
+
+  label {
+    min-width: 100px;
+    @include inline-block;
+  }
+
+  & > div {
+    margin: 20px 0;
+  }
+}

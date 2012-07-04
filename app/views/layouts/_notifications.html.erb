@@ -1,0 +1,7 @@
+<div id="notifications">
+
+  <% [:notice, :error, :alert].each do |type| %>
+    <%= content_tag(:div, flash[type], :class => type) %>
+  <% end %>
+
+</div>

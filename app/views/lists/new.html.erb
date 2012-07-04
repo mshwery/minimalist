@@ -1,0 +1,15 @@
+<h1>Make a list</h1>
+
+<%= form_for @list do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
