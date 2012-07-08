@@ -1,25 +1,10 @@
-<h2><%= @list.name %></h2>
+<div id="lists-app" class="list">
+  <h2><%= @list.name %></h2>
 
-<ul>
-  <% @list.tasks.incomplete.each do |task| %>
-  <li><%= task.description %> - <%= button_to "Complete", complete_task_path(@list.id,task.id) %></li>
-  <% end %>
-</ul>
+  <ul id="todo-list" class="tasks"></ul>
 
-<h3>Completed</h3>
-<ul id="completed">
-  <% @list.tasks.completed.each do |task| %>
-  <li><%= task.description %></li>
-  <% end %>
-</ul>
+</div>
 
-<hr />
-
-<ul>
-  <%= form_for [@list, @task] do |form| %>
-    <li><%= form.text_field :description %> <%= form.submit %></li>
-  <% end %>
-</ul>
-
-<hr />
 <%= link_to "Back to all lists", lists_url %>
+
+<%= render "taskView" %>

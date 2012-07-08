@@ -1,3 +1,48 @@
-// Place all the styles related to the lists controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.list {
+  $radius: 4px;
+  border: 1px solid #aaa;
+  @include box-shadow(0px 2px 5px rgba(0,0,0,0.2));
+  margin: 20px auto;
+  width: 500px;
+  background: #fff;
+  @include border-radius($radius);
+
+  h2 {
+    @include border-radius($radius $radius 0 0);
+    font-size: 18px;
+    padding: 10px;
+    margin: 0px 0px 2px;
+    color: #fff;
+    text-shadow: 0px 1px 2px rgba(0,0,0,0.5);
+    background: #775436;
+    @include gradient(0.2);
+    @include box-shadow((inset 0px 1px 3px rgba(255,255,255,0.2), 0px 0px 0px 1px rgba(0,0,0,0.75), 0px 2px 3px rgba(0,0,0,0.5)));
+  }  
+  .tasks {
+    text-align: left;
+    li {
+      padding: 0px 20px;
+      font-size: 13px;
+      border-bottom: 1px solid #5290bf; // #487eaa;
+      label {
+        border-left: 1px solid #e2c3c3;
+        margin-left: 15px;
+        padding: 12px 10px; 
+        @include inline-block;       
+      }
+      .edit { display: none; }
+      &.editing {
+        .edit { display: block; }
+        .view { display: none; }
+      }
+
+      &.completed {
+        label {
+          text-decoration: line-through;
+          color: #aaa;
+          font-style: italic;
+        }
+      }
+    }
+  }
+}

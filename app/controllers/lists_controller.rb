@@ -1,7 +1,5 @@
 class ListsController < ApplicationController
 
-  respond_to :html, :xml, :js
-
   def index
     @lists = List.all
   end
@@ -24,6 +22,11 @@ class ListsController < ApplicationController
   def show
     @list = List.find(params[:id])
     @task = @list.tasks.new
+
+    respond_to do |format|
+      format.json { render :json => @list.tasks }
+      format.html { render }
+    end
   end
 
   def edit

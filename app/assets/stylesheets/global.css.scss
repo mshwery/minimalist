@@ -10,6 +10,30 @@
   zoom: 1;
 }
 
+@mixin border-radius ($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin opacity ($op:100) {
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=$op);
+  filter:alpha(opacity=$op);
+  -moz-opacity:$op/100;
+  -khtml-opacity:$op/100;
+  opacity:$op/100;
+}
+
+/* https://gist.github.com/2170024 */
+@mixin gradient ($percent) {
+  background-image: -moz-linear-gradient(top, rgba(255,255,255,($percent)) 0%, rgba(0,0,0, $percent) 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,($percent))), color-stop(100%,rgba(0,0,0, $percent)));
+  background-image: -webkit-linear-gradient(top, rgba(255,255,255,($percent)) 0%,rgba(0,0,0, $percent) 100%);
+  background-image: -o-linear-gradient(top, rgba(255,255,255,($percent)) 0%,rgba(0,0,0, $percent) 100%);
+  background-image: -ms-linear-gradient(top, rgba(255,255,255,($percent)) 0%,rgba(0,0,0, $percent) 100%);
+  background-image: linear-gradient(top, rgba(255,255,255,($percent)) 0%,rgba(0,0,0, $percent) 100%);
+}
+
 @mixin basicField {
   padding: 8px 5px;
   border: 1px solid #ddd;
@@ -24,6 +48,8 @@
 
 body {
   font-family: 'Lucida Grande', tahoma, verdana, arial, sans-serif;
+  background: #eee;
+  text-align: center;
 }
 
 form {
@@ -35,9 +61,5 @@ form {
   label {
     min-width: 100px;
     @include inline-block;
-  }
-
-  & > div {
-    margin: 20px 0;
   }
 }
