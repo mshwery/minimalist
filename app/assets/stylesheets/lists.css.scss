@@ -47,27 +47,35 @@ $dark: #3d434d;
       }
       label {
         color: $dark;//$blue;
-        cursor: text;
+        //cursor: text;
       }
-      .destroy {
+      .destroy, .edit {
         display: none;
         position: absolute;
-        right: 10px;
-        top: 8px;
-        height: 18px;
-        line-height: 18px;
+        height: 16px;
+        line-height: 16px;
         cursor: pointer;
         width: 11px;
         overflow: hidden;
-        background-image: url(list_icons.png);
-        background-position: center top;
         background-repeat: no-repeat;
         text-indent: -999px;
+        top: 8px;
+        background-image: url(list_icons.png);
+        opacity: .6;
+        &:hover { opacity: 1; }
       }
-      .edit { display: none; }
+      .destroy {
+        background-position: center top;
+        right: 10px;
+      }
+      .edit {
+        right: 30px;
+        background-position: center bottom;
+      }
+      .editInput { display: none; }
       &.editing {
         background-color: $yellow;
-        .edit { display: inline-block; }
+        .editInput { display: inline-block; }
         label { display: none; }
       }
 
@@ -78,7 +86,7 @@ $dark: #3d434d;
       }
 
       &:hover, &.editing {
-        .destroy { display: block; }
+        .destroy, .edit { display: block; }
       }
     }
     &#add-item {
@@ -88,6 +96,9 @@ $dark: #3d434d;
         input[type=text] {
           width: 90%;
           padding: 10px 5%;
+          background-image: url(enter.png);
+          background-repeat: no-repeat;
+          background-position: 95% center;
           &:focus {
             margin: -1px;
             border: 1px solid $blue;
