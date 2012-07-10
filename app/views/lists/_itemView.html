@@ -1,0 +1,8 @@
+<script type="text/template" id="item-template">
+  <input class="toggle" type="checkbox" {{= completed ? 'checked="checked"' : '' }} />
+  <div class="view">
+    <label>{{= description }}</label>
+    <input class="edit" type="text" value="{{= description }}" />
+  </div>
+  <a class="destroy" title="delete">Delete</a>
+</script>

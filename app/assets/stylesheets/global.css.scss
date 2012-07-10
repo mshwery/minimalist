@@ -39,27 +39,34 @@
   border: 1px solid #ddd;
   background: #fff;
   -webkit-appearance: none;
-  font-size: 13px;
-  line-height: 18px;
-  height: 18px;
+  font-size: 14px;
+  line-height: 20px;
+  height: 20px;
+  font-family: 'Open Sans', 'Lucida Grande', tahoma, verdana, arial, sans-serif;
+  font-weight: 400;
   @include box-shadow(inset 0px 1px 2px rgba(0,0,0,0.12));
   vertical-align: middle;
 }
 
+@mixin transition($ms) {
+  -webkit-transition: all $ms ease-out; 
+  -moz-transition: all $ms ease-out; 
+  -o-transition: all $ms ease-out; 
+  transition: all $ms ease-out;
+}
+
 body {
-  font-family: 'Lucida Grande', tahoma, verdana, arial, sans-serif;
-  background: #eee;
+  font-family: 'Open Sans', 'Lucida Grande', tahoma, verdana, arial, sans-serif;
+  background: #e6eaf0;
   text-align: center;
 }
 
-form {
-  input[type=text],
-  textarea {
-    @include basicField;
-  }
+input[type=text],
+textarea {
+  @include basicField;
+}
 
-  label {
-    min-width: 100px;
-    @include inline-block;
-  }
+label {
+  @include inline-block;
+  vertical-align: middle;
 }

@@ -229,7 +229,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 
 /* Contain floats: nicolasgallagher.com/micro-clearfix-hack/ */
 /* older version
-.clearfix:after {
+.cf:after {
 	content: ".";
 	display: block;
 	clear: both;
@@ -238,28 +238,28 @@ table { border-collapse: collapse; border-spacing: 0; }
 	height: 0;
 }
 
-html[xmlns] .clearfix {
+html[xmlns] .cf {
 	display: block;
 }
 
-* html .clearfix {
+* html .cf {
 	height: 1%;
 }
 */
 
 
-.clearfix:before,
-.clearfix:after {
+.cf:before,
+.cf:after {
     content:"";
     display:table;
 }
 
-.clearfix:after {
+.cf:after {
     clear:both;
 }
 
 /* For IE 6/7 (trigger hasLayout) */
-.clearfix {
+.cf {
     zoom:1;
 }
 

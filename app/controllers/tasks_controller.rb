@@ -22,9 +22,15 @@ class TasksController < ApplicationController
   end
 
   def update
-   @task = @list.tasks.find(params[:id])
-   @task.update_attributes! params[:task]
-   render :json => @task
+    @task = @list.tasks.find(params[:id])
+    @task.update_attributes! params[:task]
+    render :json => @task
+  end
+
+  def destroy
+    @task = @list.tasks.find(params[:id])
+    @task.destroy
+    render :json => @task
   end
   
   private

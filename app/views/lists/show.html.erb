@@ -1,10 +1,14 @@
 <div id="lists-app" class="list">
   <h2><%= @list.name %></h2>
 
-  <ul id="todo-list" class="tasks"></ul>
+  <ul id="item-list" class="items"></ul>
+
+  <ul id="add-item" class="items">
+    <li><input id="new-item" placeholder="Add to your list..." type="text" /></li>
+  </ul>
 
 </div>
 
 <%= link_to "Back to all lists", lists_url %>
 
-<%= render "taskView" %>
+<%= render "itemView" %>

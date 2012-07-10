@@ -6,19 +6,22 @@ _.templateSettings = {
   evaluate: /\{\{(.+?)\}\}/g
 }
 
+$.fn.highlight = ->
+  $(this).animt
+
 $ ->
   console.log 'ready...'
 
   console.log "looking up list: " + window.location.pathname
 
   ## task model
-  class Task extends Backbone.Model
+  class Item extends Backbone.Model
     defaults: 
-      description: "empty task..."
+      description: "empty item..."
       completed: false
 
     initialize: ->
-      console.log 'initializing Task'
+      console.log 'initializing Item'
       if !@get("description")
         @set({ "description": @defaults.description })
 
@@ -27,12 +30,13 @@ $ ->
 
     clear: ->
       @destroy()
+      @view.remove()
 
 
   ## collection of tasks
-  class TaskList extends Backbone.Collection
-    model: Task
-    url: window.location.pathname + 'tasks'
+  class ItemList extends Backbone.Collection
+    model: Item
+    url: window.location.pathname + '/tasks'
 
     completed: ->
       return @filter (task) ->
@@ -43,14 +47,15 @@ $ ->
 
 
   ## setup the task item view
-  class TaskView extends Backbone.View
+  class ItemView extends Backbone.View
     tagName: "li"
+    className: 'cf'
 
-    template: _.template( $("#task-template").html() )
+    template: _.template( $("#item-template").html() )
 
     events:
       "click .toggle": "togglecompleted"
-      "dblclick .view": "edit"
+      "dblclick label": "edit"
       "click a.destroy": "clear"
       "keypress .edit": "updateOnEnter"
       "blur .edit": "close"
@@ -58,7 +63,6 @@ $ ->
     initialize: ->
       @model.bind('change', this.render)
       @model.view = this
-      #@model.bind('destroy', this.remove)
 
     render: =>
       $(@el).html( @template(@model.toJSON()) )
@@ -71,13 +75,13 @@ $ ->
 
     edit: =>
       $(@el).addClass("editing")
-      @input.focus()
+      @input.focus().val(@input.val())
 
     close: =>
       value = @input.val()
       @clear()  unless value
       @model.save({ description: value })
-      $(@el).removeClass("editing")
+      $(@el).removeClass("editing").highlight()
 
     updateOnEnter: (e) =>
       @close()  if e.keyCode is 13
@@ -89,22 +93,37 @@ $ ->
     el_tag = '#lists-app'
     el: $(el_tag)
 
+    events:
+      "keypress #new-item"  : "createOnEnter"
+
     initialize: =>
-      console.log 'initializing TaskListView'
-      Tasks.bind("add", @addOne)
-      Tasks.bind("reset", @addAll)
-      Tasks.bind("all", @render)
+      console.log 'initializing AppView'
+      @input = this.$("#new-item")
 
-      Tasks.fetch()
-      console.log "fetched..."
+      Items.bind("add", @addOne)
+      Items.bind("reset", @addAll)
+      Items.bind("all", @render)
 
-    addOne: (task) =>
-      view = new TaskView({ model: task })
-      this.$("#todo-list").append( view.render().el )
+      Items.fetch()
+
+    addOne: (item) =>
+      view = new ItemView({ model: item })
+      this.$("#item-list").append( view.render().el )
 
     addAll: =>
-      console.log 'adding tasks...'
-      Tasks.each( @addOne )
+      console.log 'adding items...'
+      Items.each( @addOne )
 
-  Tasks = new TaskList
+    newAttributes: ->
+      return {
+        description: @input.val()
+        done:    false
+      }
+
+    createOnEnter: (e) ->
+      return if (e.keyCode != 13)
+      Items.create( @newAttributes() )
+      @input.val('')
+
+  Items = new ItemList
   App = new AppView()
