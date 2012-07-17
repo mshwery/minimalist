@@ -1,7 +1,8 @@
 class TasksController < ApplicationController
 
   before_filter :find_list
-
+  respond_to :html, :xml, :json
+  
   def index
     render :json => @list.tasks
   end
@@ -36,7 +37,7 @@ class TasksController < ApplicationController
   private
   
   def find_list
-    @list = List.find(params[:list_id])
+    @list = List.find_by_slug(params[:list_id])
   end
 
 end

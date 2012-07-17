@@ -6,8 +6,6 @@ _.templateSettings = {
   evaluate: /\{\{(.+?)\}\}/g
 }
 
-$.fn.highlight = ->
-  $(this).animt
 
 $ ->
   console.log 'ready...'
@@ -81,7 +79,7 @@ $ ->
       value = @input.val()
       @clear()  unless value
       @model.save({ description: value })
-      $(@el).removeClass("editing").highlight()
+      $(@el).removeClass("editing")
 
     updateOnEnter: (e) =>
       @close()  if e.keyCode is 13

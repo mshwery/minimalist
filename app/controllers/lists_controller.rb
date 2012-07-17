@@ -1,5 +1,7 @@
 class ListsController < ApplicationController
 
+  respond_to :html, :xml, :json
+
   def index
     @lists = List.all
   end
@@ -20,7 +22,7 @@ class ListsController < ApplicationController
   end
 
   def show
-    @list = List.find(params[:id])
+    @list = List.find_by_slug(params[:id]) #find(params[:id])#
     @task = @list.tasks.new
 
     respond_to do |format|
@@ -30,11 +32,11 @@ class ListsController < ApplicationController
   end
 
   def edit
-    @list = List.find(params[:id])
+    @list = List.find_by_slug(params[:id])
   end
   
   def update
-    @list = List.find(params[:id])
+    @list = List.find_by_slug(params[:id])
     if @list.update_attributes(params[:list])
       flash[:notice] = "List updated."
       respond_with(@list, :location => list_url(@list))
@@ -45,7 +47,7 @@ class ListsController < ApplicationController
   end
   
   def destroy
-    @list = List.find(params[:id])
+    @list = List.find_by_slug(params[:id])
     if @list.destroy
       flash[:notice] = "List deleted"
       redirect_to lists_url
