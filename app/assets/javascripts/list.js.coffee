@@ -91,8 +91,11 @@ $ ->
     el_tag = '#lists-app'
     el: $(el_tag)
 
+    statsTemplate: _.template( $("#stats-template").html() )
+
     events:
       "keypress #new-item"  : "createOnEnter"
+      "click #clear-completed": "clearCompleted"
 
     initialize: =>
       console.log 'initializing AppView'
@@ -104,13 +107,23 @@ $ ->
 
       Items.fetch()
 
+    render: =>
+      this.$('#todo-stats').html(@statsTemplate({
+        total:      Items.length,
+        done:       Items.completed().length,
+        remaining:  Items.remaining().length
+      }))
+
     addOne: (item) =>
       view = new ItemView({ model: item })
       this.$("#item-list").append( view.render().el )
 
     addAll: =>
       console.log 'adding items...'
-      Items.each( @addOne )
+      _.each(Items.remaining(), (item)=>
+        @addOne(item)
+      )
+      #Items.each( @addOne )
 
     newAttributes: ->
       return {
@@ -122,6 +135,12 @@ $ ->
       return if (e.keyCode != 13)
       Items.create( @newAttributes() )
       @input.val('')
+
+    clearCompleted: ->
+      _.each(Items.completed(), (item) ->
+        item.clear()
+      )
+      return false
 
   Items = new ItemList
   App = new AppView()

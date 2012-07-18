@@ -8,6 +8,7 @@ $dark: #3d434d;
   width: 320px;
   background: #fff;
   text-align: left;
+  position: relative;
 
   h2 {
     font-size: 18px;
@@ -16,6 +17,12 @@ $dark: #3d434d;
     color: $dark;
     font-weight: normal;
   }  
+  #todo-stats {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    color: #aaa;
+  }
   .items {
     li {
       position: relative;
