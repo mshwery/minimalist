@@ -49,7 +49,7 @@ $dark: #3d434d;
         color: $dark;//$blue;
         //cursor: text;
       }
-      .destroy, .edit {
+      .destroy {
         display: none;
         position: absolute;
         height: 16px;
@@ -68,14 +68,10 @@ $dark: #3d434d;
         background-position: center top;
         right: 10px;
       }
-      .edit {
-        right: 30px;
-        background-position: center bottom;
-      }
-      .editInput { display: none; }
+      .edit { display: none; }
       &.editing {
         background-color: $yellow;
-        .editInput { display: inline-block; }
+        .edit { display: inline-block; }
         label { display: none; }
       }
 
@@ -86,7 +82,7 @@ $dark: #3d434d;
       }
 
       &:hover, &.editing {
-        .destroy, .edit { display: block; }
+        .destroy { display: block; }
       }
     }
     &#add-item {

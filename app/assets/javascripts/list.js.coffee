@@ -53,10 +53,10 @@ $ ->
 
     events:
       "click .toggle": "togglecompleted"
-      "click .edit": "edit"
+      "click .view": "edit"
       "click a.destroy": "clear"
-      "keypress .editInput": "updateOnEnter"
-      "blur .editInput": "close"
+      "keypress .edit": "updateOnEnter"
+      "blur .edit": "close"
 
     initialize: ->
       @model.bind('change', this.render)
@@ -65,7 +65,7 @@ $ ->
     render: =>
       $(@el).html( @template(@model.toJSON()) )
       $(@el).toggleClass "completed", @model.get("completed")
-      @input = @$(".editInput")
+      @input = @$(".edit")
       return this
 
     togglecompleted: ->
