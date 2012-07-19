@@ -1,0 +1,13 @@
+<h1>My Lists</h1>
+
+<ul>
+  <% @lists.each do |list| %>
+    <li>
+      <p><%= link_to "#{list.name}", stack_list_url(@stack, list) %> - <%= link_to "Edit", edit_stack_list_url(list) %> | <%= link_to "Delete", stack_list_url(list), :method => :delete %></p>
+    </li>
+  <% end %>
+</ul>
+
+<hr />
+
+<%= link_to "Make a list", new_stack_list_url(@stack) %>

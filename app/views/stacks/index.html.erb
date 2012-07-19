@@ -1,0 +1,11 @@
+<h1>Stacks</h1>
+
+<ul>
+  <% @stacks.each do |stack| %>
+    <li>
+      <p><%= link_to "#{stack.token}", stack_url(stack) %> - <%= link_to "Edit", edit_stack_url(stack) %> | <%= link_to "Delete", stack_url(stack), :method => :delete %></p>
+    </li>
+  <% end %>
+</ul>
+
+<hr />
