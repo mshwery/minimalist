@@ -3,7 +3,7 @@
 <ul>
   <% @lists.each do |list| %>
     <li>
-      <p><%= link_to "#{list.name}", stack_list_url(@stack, list) %> - <%= link_to "Edit", edit_stack_list_url(list) %> | <%= link_to "Delete", stack_list_url(list), :method => :delete %></p>
+      <p><%= link_to "#{list.name}", stack_list_url(@stack, list) %> - <%= link_to "Edit", edit_stack_list_url(@stack, list) %> | <%= link_to "Delete", stack_list_url(@stack, list), :method => :delete %></p>
     </li>
   <% end %>
 </ul>

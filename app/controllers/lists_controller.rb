@@ -3,10 +3,6 @@ class ListsController < ApplicationController
   respond_to :html, :xml, :json
   before_filter :find_stack
 
-  def index
-    @lists = @stack.lists
-  end
-
   def new
   	@list = @stack.lists.new
   end
@@ -48,13 +44,13 @@ class ListsController < ApplicationController
   end
   
   def destroy
-    @list = @stack.list.find_by_slug(params[:id])
+    @list = @stack.lists.find_by_slug(params[:id])
     if @list.destroy
       flash[:notice] = "List deleted"
-      redirect_to stack_lists_url
+      redirect_to stack_url(@stack)
     else
       flash[:error] = "Could not delete list. Have you done everything?"
-      redirect_to stack_lists_url
+      redirect_to stack_url(@stack)
     end
   end
 
