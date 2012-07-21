@@ -1,10 +1,17 @@
 Lists::Application.routes.draw do
   
-  resources :stacks do
-    resources :lists do
+  #resources :stacks do
+  resources :s, :controller => :stacks, :as => :stacks do
+    resources :lists, :path => '', :except => [:index] do
       resources :tasks
     end
+    #resources :lists
+    #resources :tasks
   end
+
+  resources :lists, :only => [:new, :create] 
+
+  #match "s/:stack_id/:id", :to => "lists#show"
 
   #match '/:token', :to => 'stacks#show', :as => :stack
 

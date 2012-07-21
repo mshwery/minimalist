@@ -23,6 +23,11 @@ class StacksController < ApplicationController
 
   def show
     @stack = Stack.find_by_token(params[:id])
-    @lists = @stack.lists
+    if @stack
+      @lists = @stack.lists
+    else
+      redirect_to root_url
+    end
   end
+  
 end

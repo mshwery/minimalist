@@ -14,6 +14,7 @@ class List < ActiveRecord::Base
   end
 
   private
+
   def generate_slug
     if self.slug.blank?
       slug = self.name.mb_chars.downcase.normalize(:kd).to_s.gsub(/-/, " ").squeeze(" ")
