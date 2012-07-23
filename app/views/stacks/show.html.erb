@@ -3,8 +3,10 @@
   <ul id="my-lists" class="items">
     <% @lists.each do |list| %>
       <li>
-        <%= link_to "#{list.name}", stack_list_url(@stack, list) %>
-        <%= content_tag(:span, list.remaining.length, :class => "remaining") %>
+        <%= link_to stack_list_url(@stack, list) do %>
+          <%= list.name %> 
+          <%= content_tag(:i, list.remaining.length) %>
+        <% end %>
         <%#= link_to "Edit", edit_stack_list_url(@stack, list), :class => 'edit-list' %>
         <%#= link_to "Delete", stack_list_url(@stack, list), :method => :delete %>
       </li>
