@@ -110,7 +110,7 @@ $ ->
     render: =>
       this.$('#todo-stats').html(@statsTemplate({
         total:      Items.length,
-        done:       Items.completed().length,
+        #done:       Items.completed().length,
         remaining:  Items.remaining().length
       }))
 

@@ -8,5 +8,8 @@
 </script>
 
 <script type="text/template" id="stats-template">
-  <span class="done">{{= done }}</span> / <span class="total">{{= total }}</span>
+  <h2><%= @list.name %></h2>
+  <div class="stats">
+    <span class="total">{{= remaining }}</span>
+  </div>
 </script>

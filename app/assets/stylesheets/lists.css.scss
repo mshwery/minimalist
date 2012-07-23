@@ -1,39 +1,66 @@
-$blue: #2a7dbd;//#417cd6; // #1f7cbf;
+$blue: #2a7dbd; //#417cd6; // #1f7cbf;
 $yellow: #fffeca; //#fefaee;
-$dark: #3d434d;
-.list {
-  border: 1px solid #bbb;
-  @include box-shadow(0px 1px 5px rgba(0,0,0,0.12));
-  margin: 20px auto;
+$dark: #545862; //#3d434d;
+
+#lists-app {
   width: 320px;
-  background: #fff;
+  margin: 0px auto;
+}
+
+#my-lists {
+  li {
+    padding: 0px;
+    a {
+      @include inline-block;
+      padding: 15px;
+    }
+  }
+}
+
+h2 {
+  font-size: 18px;
+  padding: 15px 0px;
+  margin: 0px;
+  color: $dark;
+  font-weight: 400;
+}  
+
+#todo-stats {
+  position: relative;
+  .stats {
+    position: absolute;
+    bottom: 0px;
+    right: 5px;
+    color: #aaa;
+    line-height: 18px;
+  }
+}
+
+#item-list li:last-child {
+  //border-bottom: none;
+}
+.list {
+  @include box-shadow(0 1px 2px rgba(0, 0, 0, .2));
+  //background: #fff;
   text-align: left;
   position: relative;
 
-  h2 {
-    font-size: 18px;
-    padding: 15px 20px;
-    margin: 0px;
-    color: $dark;
-    font-weight: normal;
-  }  
-  #todo-stats {
-    position: absolute;
-    top: 6px;
-    right: 10px;
-    color: #aaa;
-  }
   .items {
     li {
       position: relative;
       background-color: #fff;
-      padding: 0px 20px;
-      font-size: 14px;
-      border-top: 1px solid desaturate(lighten(#5290bf, 35%), 10%); // #487eaa;
+      padding: 0px 15px;
+      font-size: 16px;
+      margin: 1px 0px;
+      font-weight: 300;
+      //border-bottom: 1px solid desaturate(lighten(#5290bf, 35%), 10%); // #487eaa;
       @include transition(0.1s);
+      &:hover {
+        background-color: rgba(255,255,255,0.75);
+      }
       .toggle {
         float: left;
-        margin: 10px 0px;
+        margin: 13px 0px;
         height: 14px;
         width: 14px;
       }
@@ -47,10 +74,10 @@ $dark: #3d434d;
       }
       label, input[type=text] {
         width: 100%;
-        padding: 7px 0px; 
+        padding: 10px 0px; 
         line-height: 144%;
-        font-size: 14px; 
-        font-weight: 400;
+        font-size: 16px; 
+        font-weight: 300;
       }
       label {
         color: $dark;//$blue;
@@ -59,21 +86,19 @@ $dark: #3d434d;
       .destroy {
         display: none;
         position: absolute;
-        height: 16px;
-        line-height: 16px;
+        height: 40px;
+        line-height: 40px;
         cursor: pointer;
-        width: 11px;
+        width: 30px;
         overflow: hidden;
         background-repeat: no-repeat;
         text-indent: -999px;
-        top: 8px;
-        background-image: url(list_icons.png);
-        opacity: .6;
+        top: 0px;
+        right: 0px;
+        background-image: url(close.png);
+        background-position: center;
+        opacity: .5;
         &:hover { opacity: 1; }
-      }
-      .destroy {
-        background-position: center top;
-        right: 10px;
       }
       .edit { display: none; }
       &.editing {
@@ -95,18 +120,14 @@ $dark: #3d434d;
     &#add-item {
       li {
         padding: 0px;
-        border-top-style: dashed;
+        //border-bottom-style: dashed;
         input[type=text] {
           width: 90%;
           padding: 10px 5%;
           background-image: url(enter.png);
           background-repeat: no-repeat;
           background-position: 95% center;
-          &:focus {
-            margin: -1px;
-            border: 1px solid $blue;
-            @include box-shadow((0 0 4px rgba($blue, 0.5), 0 1px 3px rgba(0, 0, 0, 0.1) inset)); //0px 0px 5px #5290bf);
-          }
+          border: 1px solid transparent;
         }
       }
     }

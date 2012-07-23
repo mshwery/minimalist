@@ -13,6 +13,10 @@ class List < ActiveRecord::Base
     slug
   end
 
+  def remaining
+    return self.tasks.where(:completed => false)
+  end
+
   private
 
   def generate_slug
@@ -33,6 +37,5 @@ class List < ActiveRecord::Base
       end
     end
   end
-
 
 end
