@@ -15,4 +15,6 @@
 //= require lib/json2
 //= require lib/underscore-min
 //= require lib/backbone-min
+//= require lib/jquery.event.move
+//= require lib/jquery.event.swipe
 //= require_tree .

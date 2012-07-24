@@ -6,9 +6,13 @@ _.templateSettings = {
   evaluate: /\{\{(.+?)\}\}/g
 }
 
+isMobile = -> 
+  return Modernizr.touch
 
 $ ->
+
   console.log 'ready...'
+  console.log isMobile()
 
   console.log "looking up list: " + window.location.pathname
 
@@ -52,11 +56,16 @@ $ ->
     template: _.template( $("#item-template").html() )
 
     events:
-      "click .toggle": "togglecompleted"
-      "click .view": "edit"
-      "click a.destroy": "clear"
-      "keypress .edit": "updateOnEnter"
-      "blur .edit": "close"
+      "movestart"       : "checkDirection"
+      "move"            : "startMoveItem"
+      "moveend"         : "stopMoveItem"
+      "swiperight"      : "markCompleted"
+      "swipeleft"       : "markIncompleted"
+      "click .toggle"   : "togglecompleted"
+      "click .view"     : "edit"
+      "click a.destroy" : "clear"
+      "keypress .edit"  : "updateOnEnter"
+      "blur .edit"      : "close"
 
     initialize: ->
       @model.bind('change', this.render)
@@ -70,6 +79,27 @@ $ ->
 
     togglecompleted: ->
       @model.toggle()
+
+    checkDirection: (e) ->
+      if (e.distX > e.distY && e.distX < -e.distY) or (e.distX < e.distY && e.distX > -e.distY)
+        console.log 'updown'
+        e.preventDefault()
+        return
+
+    startMoveItem: (e) ->
+      # Moves item with the finger
+      if e.distX > 0
+        $(@el).css('left', e.distX)
+
+    stopMoveItem: (e) ->
+      # stops moving item with the finger
+      $(@el).animate({'left': ''}, 300).trigger('swiperight')
+
+    markIncompleted: ->
+      @model.toggle() if @model.get("completed")
+
+    markCompleted: ->
+      @model.toggle() if !@model.get("completed")
 
     edit: =>
       $(@el).addClass("editing")
@@ -116,7 +146,7 @@ $ ->
 
     addOne: (item) =>
       view = new ItemView({ model: item })
-      this.$("#item-list").append( view.render().el )
+      this.$("#item-list").prepend( view.render().el )
 
     addAll: =>
       console.log 'adding items...'

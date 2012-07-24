@@ -4,6 +4,7 @@ $dark: #545862; //#3d434d;
 
 #lists-app {
   width: 480px;
+  position: relative;
   max-width: 100%;
   margin: 0px auto;
 }
@@ -14,6 +15,7 @@ i {
   font-style: normal;
   font-size: 12px;
   line-height: inherit;
+  padding: 0 10px;
 }
 
 #my-lists {
@@ -28,7 +30,7 @@ i {
 
 h2 {
   font-size: 18px;
-  padding: 15px 0px;
+  padding: 12px 0px;
   margin: 0px;
   color: $dark;
   font-weight: 400;
@@ -39,27 +41,37 @@ h2 {
   @include box-shadow(0 1px 2px rgba(0, 0, 0, .2));
   text-align: left;
   position: relative;
+  @media only screen and (max-device-width: 480px) {
+    @include box-shadow(none);
+  }
 
   .items {
+    position: relative;
     li {
       position: relative;
       background-color: #fff;
-      padding: 0px 15px;
+      padding: 0px 5%;
       font-size: 16px;
       margin: 1px 0px;
       font-weight: 300;
       @include transition(0.1s);
-      &:hover {
-        background-color: rgba(255,255,255,0.75);
+      &:hover, &.completed {
+        background-color: rgba(255,255,255,0.85);
       }
       .toggle {
         float: left;
         margin: 15px 0px;
         height: 14px;
         width: 14px;
+        @media only screen and (max-device-width: 480px) {
+          display: none;
+        }
       }
       .view {
         margin: 0px 20px 0px 24px;
+        @media only screen and (max-device-width: 480px) {
+          margin-left: 0px;
+        }
       }
       input[type=text] {
         border: none;
@@ -79,8 +91,8 @@ h2 {
       .destroy {
         display: none;
         position: absolute;
-        height: 40px;
-        line-height: 40px;
+        height: 44px;
+        line-height: 44px;
         cursor: pointer;
         width: 30px;
         overflow: hidden;
@@ -89,7 +101,7 @@ h2 {
         top: 0px;
         right: 0px;
         background-image: url(close.png);
-        background-position: center;
+        background-position: left center;
         opacity: .5;
         &:hover { opacity: 1; }
       }
@@ -103,10 +115,11 @@ h2 {
       &.completed {
         label {
           color: #bbb;
+          text-decoration: line-through;
         }
       }
 
-      &:hover, &.editing {
+      &.editing {
         .destroy { display: block; }
       }
     }
@@ -120,6 +133,7 @@ h2 {
           background-repeat: no-repeat;
           background-position: 95% center;
           border: 1px solid transparent;
+          font-style: italic;
         }
       }
     }
