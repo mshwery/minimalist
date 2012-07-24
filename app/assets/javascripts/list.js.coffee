@@ -12,8 +12,6 @@ isMobile = ->
 $ ->
 
   console.log 'ready...'
-  console.log isMobile()
-
   console.log "looking up list: " + window.location.pathname
 
   ## task model
@@ -82,18 +80,23 @@ $ ->
 
     checkDirection: (e) ->
       if (e.distX > e.distY && e.distX < -e.distY) or (e.distX < e.distY && e.distX > -e.distY)
-        console.log 'updown'
         e.preventDefault()
         return
 
     startMoveItem: (e) ->
       # Moves item with the finger
-      if e.distX > 0
+      if e.distX > 0 && e.distX < @widthPercentage(60)
         $(@el).css('left', e.distX)
+
+    widthPercentage: (num) ->
+      return $(@el).outerWidth() * (num / 100)
 
     stopMoveItem: (e) ->
       # stops moving item with the finger
-      $(@el).animate({'left': ''}, 300).trigger('swiperight')
+      if e.distX > @widthPercentage(40)
+        $(@el).animate({'left': ''}, 300).trigger('swiperight')
+      else
+        $(@el).animate({'left': ''}, 300)
 
     markIncompleted: ->
       @model.toggle() if @model.get("completed")

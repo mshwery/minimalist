@@ -4,6 +4,7 @@ $dark: #545862; //#3d434d;
 
 #lists-app {
   width: 480px;
+  overflow: hidden;
   position: relative;
   max-width: 100%;
   margin: 0px auto;
@@ -54,13 +55,12 @@ h2 {
       font-size: 16px;
       margin: 1px 0px;
       font-weight: 300;
-      @include transition(0.1s);
       &:hover, &.completed {
         background-color: rgba(255,255,255,0.85);
       }
       .toggle {
         float: left;
-        margin: 15px 0px;
+        margin: 18px 0px;
         height: 14px;
         width: 14px;
         @media only screen and (max-device-width: 480px) {
@@ -80,7 +80,7 @@ h2 {
       }
       label, input[type=text] {
         width: 100%;
-        padding: 12px 0px; 
+        padding: 15px 0px; 
         line-height: 20px;
         font-size: 16px; 
         font-weight: 300;
@@ -91,8 +91,8 @@ h2 {
       .destroy {
         display: none;
         position: absolute;
-        height: 44px;
-        line-height: 44px;
+        height: 50px;
+        line-height: 50px;
         cursor: pointer;
         width: 30px;
         overflow: hidden;
