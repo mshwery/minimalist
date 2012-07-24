@@ -128,6 +128,7 @@ $ ->
 
     events:
       "keypress #new-item"  : "createOnEnter"
+      "click #submit-new-item" : "createItem"
       "click #clear-completed": "clearCompleted"
 
     initialize: =>
@@ -156,7 +157,6 @@ $ ->
       _.each(Items.remaining(), (item)=>
         @addOne(item)
       )
-      #Items.each( @addOne )
 
     newAttributes: ->
       return {
@@ -164,10 +164,13 @@ $ ->
         done:    false
       }
 
-    createOnEnter: (e) ->
-      return if (e.keyCode != 13)
+    createItem: ->
       Items.create( @newAttributes() )
       @input.val('')
+
+    createOnEnter: (e) ->
+      return if (e.keyCode != 13)
+      @createItem()
 
     clearCompleted: ->
       _.each(Items.completed(), (item) ->
