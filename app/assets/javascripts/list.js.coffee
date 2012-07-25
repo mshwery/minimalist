@@ -54,10 +54,10 @@ $ ->
     template: _.template( $("#item-template").html() )
 
     events:
-      "movestart"       : "checkDirection"
+      #"movestart"       : "checkDirection"
       "move"            : "startMoveItem"
       "moveend"         : "stopMoveItem"
-      "swiperight"      : "markCompleted"
+      #"swiperight"      : "markCompleted"
       "swipeleft"       : "markIncompleted"
       "click .toggle"   : "togglecompleted"
       "click .view"     : "edit"
@@ -85,16 +85,21 @@ $ ->
 
     startMoveItem: (e) ->
       # Moves item with the finger
-      if e.distX > 0 && e.distX < @widthPercentage(60)
-        $(@el).css('left', e.distX)
+      dist = @includeDrag(e.distX)
+      if dist > 0 && dist < @widthPercentage(38)
+        $(@el).css('left', dist)
 
     widthPercentage: (num) ->
       return $(@el).outerWidth() * (num / 100)
 
+    includeDrag: (distance) ->
+      return drag = Math.round(distance / 2.25)
+
     stopMoveItem: (e) ->
       # stops moving item with the finger
-      if e.distX > @widthPercentage(40)
-        $(@el).animate({'left': ''}, 300).trigger('swiperight')
+      if @includeDrag(e.distX) > @widthPercentage(30)
+        $(@el).animate({'left': ''}, 300)#.trigger('swiperight')
+        @markCompleted()
       else
         $(@el).animate({'left': ''}, 300)
 
