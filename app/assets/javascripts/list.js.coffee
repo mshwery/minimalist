@@ -54,7 +54,7 @@ $ ->
     template: _.template( $("#item-template").html() )
 
     events:
-      #"movestart"       : "checkDirection"
+      "movestart"       : "checkDirection"
       "move"            : "startMoveItem"
       "moveend"         : "stopMoveItem"
       #"swiperight"      : "markCompleted"
@@ -209,7 +209,7 @@ $ ->
     afterRefresh: ->
       @clearCompleted()
       @spinner.toggle()
-      @$el.animate({'top': 0}, 200)  
+      @$el.animate({'top': 0}, 200) 
 
   Items = new ItemList
   App = new AppView()
