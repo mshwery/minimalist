@@ -54,7 +54,7 @@ $ ->
     template: _.template( $("#item-template").html() )
 
     events:
-      #"movestart"       : "checkDirection"
+      "movestart"       : "checkDirection"
       "move"            : "startMoveItem"
       "moveend"         : "stopMoveItem"
       #"swiperight"      : "markCompleted"
