@@ -29,8 +29,8 @@ $ ->
       @save({ completed: !@get("completed") })
 
     clear: ->
-      @destroy()
-      @view.remove()
+      #@destroy()
+      @view.remove()      
 
 
   ## collection of tasks
@@ -54,13 +54,13 @@ $ ->
     template: _.template( $("#item-template").html() )
 
     events:
-      "movestart"       : "checkDirection"
+      #"movestart"       : "checkDirection"
       "move"            : "startMoveItem"
       "moveend"         : "stopMoveItem"
       #"swiperight"      : "markCompleted"
       "swipeleft"       : "markIncompleted"
       "click .toggle"   : "togglecompleted"
-      "click .view"     : "edit"
+      "dblclick .view"  : "edit"
       "click a.destroy" : "clear"
       "keypress .edit"  : "updateOnEnter"
       "blur .edit"      : "close"
@@ -135,10 +135,13 @@ $ ->
       "keypress #new-item"  : "createOnEnter"
       "click #submit-new-item" : "createItem"
       "click #clear-completed": "clearCompleted"
+      "move" : "startMoveItem"
+      "moveend" : "stopMoveItem"
 
     initialize: =>
       console.log 'initializing AppView'
       @input = this.$("#new-item")
+      @spinner = this.$(".loading")
 
       Items.bind("add", @addOne)
       Items.bind("reset", @addAll)
@@ -170,7 +173,7 @@ $ ->
       }
 
     createItem: ->
-      Items.create( @newAttributes() )
+      Items.create( @newAttributes() ) if $.trim( @input.val() ).length
       @input.val('')
 
     createOnEnter: (e) ->
@@ -179,9 +182,34 @@ $ ->
 
     clearCompleted: ->
       _.each(Items.completed(), (item) ->
-        item.clear()
+        item.clear() if item.view
       )
       return false
+
+    startMoveItem: (e) ->
+      if (e.distX > e.distY && e.distX < -e.distY) or (e.distX < e.distY && e.distX > -e.distY)
+        e.preventDefault()
+        dist = @includeDrag(e.distY)
+        if dist > 0 && dist < 50
+          @$el.css('top', dist)
+        return
+
+    includeDrag: (distance) ->
+      return drag = Math.round(distance / 2.25)     
+
+    stopMoveItem: (e) =>
+      if @includeDrag(e.distY) > 40
+        @spinner.toggle()
+        Items.fetch
+          add: true
+          success: => @afterRefresh()
+      else
+        @$el.animate({'top': 0}, 200)
+
+    afterRefresh: ->
+      @clearCompleted()
+      @spinner.toggle()
+      @$el.animate({'top': 0}, 200)  
 
   Items = new ItemList
   App = new AppView()

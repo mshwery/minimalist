@@ -2,12 +2,35 @@ $blue: #2a7dbd; //#417cd6; // #1f7cbf;
 $yellow: #fffeca; //#fefaee;
 $dark: #545862; //#3d434d;
 
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
 #lists-app {
   width: 480px;
   overflow: hidden;
   position: relative;
-  max-width: 100%;
-  margin: 0px auto;
+  max-width: 98%;
+  margin: -50px auto 0px;
+  padding: 50px 1% 0px;
+  top: 0px;
+  @media only screen and (max-device-width: 480px) {
+    padding-left: 0px;
+    padding-right: 0px;
+    max-width: 100%;
+  }
+}
+
+.loading {
+  position: absolute;
+  top: 20px;
+  left: 0px;
+  width: 100%;
+  display: none;
 }
 
 i {
@@ -15,8 +38,8 @@ i {
   color: #aaa;
   font-style: normal;
   font-size: 12px;
-  line-height: inherit;
-  padding: 0 10px;
+  line-height: 20px;
+  padding: 12px 10px;
 }
 
 #my-lists {
@@ -32,7 +55,7 @@ i {
 h2 {
   font-size: 18px;
   padding: 12px 0px;
-  margin: 0px;
+  margin: 0px 40px;
   color: $dark;
   font-weight: 400;
   line-height: 20px;
@@ -55,8 +78,9 @@ h2 {
       font-size: 16px;
       margin: 1px 0px;
       font-weight: 300;
-      &:hover, &.completed {
-        background-color: rgba(255,255,255,0.85);
+      //&:hover, 
+      &.completed {
+        background-color: rgba(255,255,255,0.6);
       }
       .toggle {
         float: left;
