@@ -1,0 +1,12 @@
+<div class="loading">Loading...</div>
+
+<div id="stats">
+  <i><%= @remaining %></i>
+  <h2><%= @name %></h2>
+  <input class="edit" type="text" value="<%= @name %>" />
+</div>
+
+<div class="list">
+  <ul id="add-item" class="items"></ul>
+  <ul id="item-list" class="items"></ul>
+</div>

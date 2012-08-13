@@ -2,27 +2,30 @@ $blue: #2a7dbd; //#417cd6; // #1f7cbf;
 $yellow: #fffeca; //#fefaee;
 $dark: #545862; //#3d434d;
 
-html {
-  height: 100%;
+.lists {
+  #listapp {
+    max-width: 98%;
+    padding: 50px 1% 0px;  
+    margin-top: -50px;
+  }
 }
 
-body {
-  min-height: 100%;
-}
-
-#lists-app {
+#listapp {
   width: 480px;
   overflow: hidden;
   position: relative;
-  max-width: 98%;
-  margin: -50px auto 0px;
-  padding: 50px 1% 0px;
+  margin: 0px auto;
   top: 0px;
   @media only screen and (max-device-width: 480px) {
     padding-left: 0px;
     padding-right: 0px;
     max-width: 100%;
   }
+  input[type=text] {
+    border: none;
+    background: transparent;
+    @include box-shadow(none);
+  }  
 }
 
 .loading {
@@ -48,6 +51,10 @@ i {
     a {
       display: block;
       padding: 15px;
+      i {
+        line-height: inherit;
+        padding: 0px;
+      }
     }
   }
 }
@@ -61,6 +68,22 @@ h2 {
   line-height: 20px;
 }  
 
+#stats {
+  .edit {
+    display: none; 
+    line-height: 20px;
+    padding: 12px 0px;
+    margin: 0px 40px;
+    font-size: 18px;
+    text-align: center;
+  }
+  &.editing {
+    background-color: $yellow;
+    .edit { display: block; width: 84%; }
+    h2 { display: none; }
+  }
+}
+
 .list {
   @include box-shadow(0 1px 2px rgba(0, 0, 0, .2));
   text-align: left;
@@ -71,6 +94,7 @@ h2 {
 
   .items {
     position: relative;
+    overflow: hidden;
     li {
       position: relative;
       background-color: #fff;
@@ -78,9 +102,11 @@ h2 {
       font-size: 16px;
       margin: 1px 0px;
       font-weight: 300;
-      //&:hover, 
       &.completed {
         background-color: rgba(255,255,255,0.6);
+      }
+      &:first-child:last-child {
+        margin: 0px;
       }
       .toggle {
         float: left;
@@ -96,11 +122,6 @@ h2 {
         @media only screen and (max-device-width: 480px) {
           margin-left: 0px;
         }
-      }
-      input[type=text] {
-        border: none;
-        background: transparent;
-        @include box-shadow(none);
       }
       label, input[type=text] {
         width: 100%;

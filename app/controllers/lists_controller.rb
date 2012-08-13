@@ -20,14 +20,12 @@ class ListsController < ApplicationController
 
   def show
     @list = @stack.lists.find_by_slug(params[:id]) #find(params[:id])#
-    @task = @list.tasks.new
-
     respond_to do |format|
-      format.json { render :json => @list.tasks }
+      format.json { render :json => @list }
       format.html { render }
     end
   end
-
+  
   def edit
     @list = @stack.lists.find_by_slug(params[:id])
   end

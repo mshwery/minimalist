@@ -1,0 +1,4 @@
+<li>
+  <input id="new-item" placeholder="Add to your list..." type="text" />
+  <a id="submit-new-item" title="click this or press enter to submit"></a>
+</li>

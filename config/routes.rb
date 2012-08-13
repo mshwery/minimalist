@@ -1,7 +1,7 @@
 Lists::Application.routes.draw do
   
   #resources :stacks do
-  resources :s, :controller => :stacks, :as => :stacks do
+  resources :s, :controller => :stacks, :as => :stacks do#, :except => [:index] do
     resources :lists, :path => '', :except => [:index] do
       resources :tasks
     end
@@ -15,7 +15,7 @@ Lists::Application.routes.draw do
 
   #match '/:token', :to => 'stacks#show', :as => :stack
 
-  root :to => 'stacks#index'
+  root :to => 'pages#home'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
