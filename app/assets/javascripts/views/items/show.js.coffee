@@ -13,7 +13,7 @@ class listApp.Views.ItemsShow extends Backbone.View
     #"swiperight"      : "markCompleted"
     "swipeleft"       : "markIncompleted"
     "click .toggle"   : "togglecompleted"
-    "dblclick .view"  : "edit"
+    #"dblclick .view"  : "edit"
     "click a.destroy" : "clear"
     "keypress .edit"  : "updateOnEnter"
     "blur .edit"      : "close"
