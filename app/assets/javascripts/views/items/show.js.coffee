@@ -10,7 +10,6 @@ class listApp.Views.ItemsShow extends Backbone.View
     "moveend"         : "stopMoveItem"
     "touchstart"      : "longTap"
     "touchend"        : "stopTap"
-    "click .label"    : "preventClick"
     #"swiperight"      : "markCompleted"
     "swipeleft"       : "markIncompleted"
     "click .toggle"   : "togglecompleted"
@@ -30,21 +29,19 @@ class listApp.Views.ItemsShow extends Backbone.View
     @input = @$(".edit")
     return this
 
-  preventClick: (e) =>
-    e.preventDefault()
-
   togglecompleted: ->
     @model.toggle()
 
   checkDirection: (e) ->
+    @stopTap()
     if (e.distX > e.distY && e.distX < -e.distY) or (e.distX < e.distY && e.distX > -e.distY)
       e.preventDefault()
       return
     else
-      @stopTap(e)
       @moveItem(e)
 
-  moveItem: (e) =>
+  moveItem: (e) ->
+    e.preventDefault()
     # Moves item with the finger
     dist = @includeDrag(e.distX)#(e.distX)
     if dist > 0 && dist < @widthPercentage(38) && !$(@el).hasClass('editing')
@@ -56,20 +53,20 @@ class listApp.Views.ItemsShow extends Backbone.View
   includeDrag: (distance) ->
     return drag = Math.round(distance / 2.25)
 
-  longTap: =>
+  longTap: ->
     @timer = null
     @timer = setTimeout((=> @edit()), 1500)
 
-  stopTap: (e) =>
+  stopTap: ->
     clearTimeout(@timer) if @timer
 
   stopMoveItem: (e) ->
     # stops moving item with the finger
     if @includeDrag(e.distX) > @widthPercentage(30)
-      $(@el).animate({'left': ''}, 300)#.trigger('swiperight')
+      @$el.animate({'left': ''}, 300)#.trigger('swiperight')
       @markCompleted()
     else
-      $(@el).animate({'left': ''}, 300)
+      @$el.animate({'left': ''}, 300)
 
   markIncompleted: ->
     @model.toggle() if @model.get("completed")
@@ -78,14 +75,14 @@ class listApp.Views.ItemsShow extends Backbone.View
     @model.toggle() if !@model.get("completed")
 
   edit: =>
-    $(@el).addClass("editing")
+    @$el.addClass("editing")
     @input.focus().val(@input.val())
 
   close: =>
     value = @input.val()
     @clear()  unless value
     @model.save({ description: value })
-    $(@el).removeClass("editing")
+    @$el.removeClass("editing")
 
   updateOnEnter: (e) =>
     @close()  if e.keyCode is 13
