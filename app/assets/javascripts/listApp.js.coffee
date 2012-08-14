@@ -8,9 +8,8 @@ $.extend listApp,
   init: ->
     new listApp.Routers.List
     Backbone.history.start()
-
-isMobile = -> 
-  return Modernizr.touch
+  isMobile: -> 
+    return Modernizr.touch
 
 getParentPath = (path) ->
   return path.split("/").slice(0, -1).join("/")

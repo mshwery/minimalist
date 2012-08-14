@@ -5,11 +5,11 @@ class listApp.Views.ItemsShow extends Backbone.View
   template: JST['items/show']
 
   events:
-    "movestart"       : "checkDirection"
-    "move"            : "startMoveItem"
+    "movestart"       : "startMove"
+    "move"            : "checkDirection"
     "moveend"         : "stopMoveItem"
-    "mousedown"       : "longTap"
-    "mouseup"         : "stopTap"
+    "touchstart"      : "longTap"
+    "touchend"        : "stopTap"
     #"swiperight"      : "markCompleted"
     "swipeleft"       : "markIncompleted"
     "click .toggle"   : "togglecompleted"
@@ -19,6 +19,7 @@ class listApp.Views.ItemsShow extends Backbone.View
     "blur .edit"      : "close"
 
   initialize: ->
+    @startX = @startY = 0
     @model.bind('change', this.render)
     @model.view = this
 
@@ -31,16 +32,31 @@ class listApp.Views.ItemsShow extends Backbone.View
   togglecompleted: ->
     @model.toggle()
 
-  checkDirection: (e) ->
-    if (e.distX > e.distY && e.distX < -e.distY) or (e.distX < e.distY && e.distX > -e.distY)
+  startMove: (e) ->
+    if listApp.isMobile()
+      alert e.distX
+      @startX = e.targetTouches[0].pageX || e.changedTouches[0].pageX
+      @startY = e.targetTouches[0].pageY || e.changedTouches[0].pageY
+      listApp.log @startX
+    else
+      @startX = e.pageX
+      @startY = e.pageY
+
+  checkDirection: =>
+    if (@startX > @startY && @startX < -@startY) or (@startX < @startY && @startX > -@startY)
       e.preventDefault()
       return
     else
-      @stopTap()
+      @stopTap(e)
 
-  startMoveItem: (e) ->
+  moveItem: (e) =>
+    mouse = if listApp.isMobile() then e.targetTouches[0] else e
+    curX = mouse.pageX - @startX
+    listApp.log curX
+    #@curX = if e.originalEvent.touches then e.originalEvent.touches[0].pageX else e.distX # || e.originalEvent.changedTouches[0].pageX else e.distX
+
     # Moves item with the finger
-    dist = @includeDrag(e.distX)
+    dist = @includeDrag(5)#(e.distX)
     if dist > 0 && dist < @widthPercentage(38) && !$(@el).hasClass('editing')
       $(@el).css('left', dist)
 
@@ -52,9 +68,9 @@ class listApp.Views.ItemsShow extends Backbone.View
 
   longTap: =>
     @timer = null
-    @timer = setTimeout((=> @edit()), 2000)
+    @timer = setTimeout((=> @edit()), 1500)
 
-  stopTap: =>
+  stopTap: (e) =>
     clearTimeout(@timer) if @timer
 
   stopMoveItem: (e) ->
@@ -64,6 +80,9 @@ class listApp.Views.ItemsShow extends Backbone.View
       @markCompleted()
     else
       $(@el).animate({'left': ''}, 300)
+
+    @startY = 0
+    @startX = 0
 
   markIncompleted: ->
     @model.toggle() if @model.get("completed")
