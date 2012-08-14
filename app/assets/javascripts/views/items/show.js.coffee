@@ -7,6 +7,7 @@ class listApp.Views.ItemsShow extends Backbone.View
   events:
     #"movestart"       : "checkDirection"
     "move"            : "checkDirection"
+    "move label"      : "checkDirection"
     "moveend"         : "stopMoveItem"
     "touchstart"      : "longTap"
     #"touchend"        : "stopTap"
