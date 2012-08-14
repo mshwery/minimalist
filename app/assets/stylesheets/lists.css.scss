@@ -123,17 +123,15 @@ h2 {
           margin-left: 0px;
         }
       }
-      label, input[type=text] {
+      .label, label, input[type=text] {
         width: 100%;
         padding: 15px 0px; 
         line-height: 20px;
         font-size: 16px; 
         font-weight: 300;
       }
-      label {
-        @media only screen and (max-device-width: 480px) {
-          cursor: pointer;
-        }
+      .label, label {
+        cursor: pointer;
         color: $dark;//$blue;
       }
       .destroy {
@@ -157,11 +155,11 @@ h2 {
       &.editing {
         background-color: $yellow;
         .edit { display: inline-block; }
-        label { display: none; }
+        .label, label { display: none; }
       }
 
       &.completed {
-        label {
+        .label, label {
           color: #bbb;
           text-decoration: line-through;
         }
