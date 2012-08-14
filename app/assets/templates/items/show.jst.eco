@@ -1,6 +1,6 @@
 <input class="toggle" type="checkbox" <%- if @completed: %>checked="checked"<% end %> />
 <div class="view">
-  <label><%= @description %></label>
+  <label onclick=""><%= @description %></label>
   <input class="edit" type="text" value="<%= @description %>" />
 </div>
 <a class="destroy" title="delete">Delete</a>
