@@ -5,9 +5,8 @@ class listApp.Views.ItemsShow extends Backbone.View
   template: JST['items/show']
 
   events:
-    #"movestart"       : "startMove"
-    "movestart"       : "checkDirection"
-    "move"            : "moveItem"
+    #"movestart"       : "checkDirection"
+    "move"            : "checkDirection"
     "moveend"         : "stopMoveItem"
     "touchstart"      : "longTap"
     "touchend"        : "stopTap"
@@ -33,16 +32,8 @@ class listApp.Views.ItemsShow extends Backbone.View
   togglecompleted: ->
     @model.toggle()
 
-  startMove: (e) ->
-    if listApp.isMobile()
-      @startX = e.targetTouches[0].pageX || e.changedTouches[0].pageX
-      @startY = e.targetTouches[0].pageY || e.changedTouches[0].pageY
-    else
-      @startX = e.pageX
-      @startY = e.pageY
-
   checkDirection: (e) ->
-    if (@startX > @startY && @startX < -@startY) or (@startX < @startY && @startX > -@startY)
+    if (e.distX > e.distY && e.distX < -e.distY) or (e.distX < e.distY && e.distX > -e.distY)
       e.preventDefault()
       return
     else
@@ -50,9 +41,8 @@ class listApp.Views.ItemsShow extends Backbone.View
       @moveItem(e)
 
   moveItem: (e) =>
-    mouse = if listApp.isMobile() then e.targetTouches[0] else e
-    curX = mouse.pageX - @startX
-    #@curX = if e.originalEvent.touches then e.originalEvent.touches[0].pageX else e.distX # || e.originalEvent.changedTouches[0].pageX else e.distX
+    # mouse = if listApp.isMobile() then e.targetTouches[0] else e
+    # curX = mouse.pageX - @startX
 
     # Moves item with the finger
     dist = @includeDrag(e.distX)#(e.distX)
