@@ -10,6 +10,7 @@ class listApp.Views.ItemsShow extends Backbone.View
     "moveend"         : "stopMoveItem"
     "touchstart"      : "longTap"
     "touchend"        : "stopTap"
+    "click .label"    : "preventClick"
     #"swiperight"      : "markCompleted"
     "swipeleft"       : "markIncompleted"
     "click .toggle"   : "togglecompleted"
@@ -28,6 +29,9 @@ class listApp.Views.ItemsShow extends Backbone.View
     $(@el).toggleClass "completed", @model.get("completed")
     @input = @$(".edit")
     return this
+
+  preventClick: (e) =>
+    e.preventDefault()
 
   togglecompleted: ->
     @model.toggle()
