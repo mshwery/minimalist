@@ -131,6 +131,9 @@ h2 {
         font-weight: 300;
       }
       label {
+        @media only screen and (max-device-width: 480px) {
+          cursor: pointer;
+        }
         color: $dark;//$blue;
       }
       .destroy {

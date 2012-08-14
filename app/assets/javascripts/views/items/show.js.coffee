@@ -9,7 +9,7 @@ class listApp.Views.ItemsShow extends Backbone.View
     "move"            : "checkDirection"
     "moveend"         : "stopMoveItem"
     "touchstart"      : "longTap"
-    "touchend"        : "stopTap"
+    #"touchend"        : "stopTap"
     #"swiperight"      : "markCompleted"
     "swipeleft"       : "markIncompleted"
     "click .toggle"   : "togglecompleted"
@@ -41,14 +41,10 @@ class listApp.Views.ItemsShow extends Backbone.View
       @moveItem(e)
 
   moveItem: (e) =>
-    alert $(@el).attr('class')
-    # mouse = if listApp.isMobile() then e.targetTouches[0] else e
-    # curX = mouse.pageX - @startX
-
     # Moves item with the finger
     dist = @includeDrag(e.distX)#(e.distX)
     if dist > 0 && dist < @widthPercentage(38) && !$(@el).hasClass('editing')
-      $(@el).css('left', dist)
+      @$el.css('left', dist)
 
   widthPercentage: (num) ->
     return $(@el).outerWidth() * (num / 100)
@@ -64,14 +60,14 @@ class listApp.Views.ItemsShow extends Backbone.View
     clearTimeout(@timer) if @timer
 
   stopMoveItem: (e) ->
+    @stopTap()
+
     # stops moving item with the finger
     if @includeDrag(e.distX) > @widthPercentage(30)
       $(@el).animate({'left': ''}, 300)#.trigger('swiperight')
       @markCompleted()
     else
       $(@el).animate({'left': ''}, 300)
-
-    @startY = @startX = 0
 
   markIncompleted: ->
     @model.toggle() if @model.get("completed")
