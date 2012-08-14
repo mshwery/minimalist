@@ -123,14 +123,14 @@ h2 {
           margin-left: 0px;
         }
       }
-      label, input[type=text] {
+      p, label, input[type=text] {
         width: 100%;
         padding: 15px 0px; 
         line-height: 20px;
         font-size: 16px; 
         font-weight: 300;
       }
-      label {
+      p, label {
         @media only screen and (max-device-width: 480px) {
           cursor: pointer;
         }
@@ -157,11 +157,11 @@ h2 {
       &.editing {
         background-color: $yellow;
         .edit { display: inline-block; }
-        label { display: none; }
+        p, label { display: none; }
       }
 
       &.completed {
-        label {
+        p, label {
           color: #bbb;
           text-decoration: line-through;
         }

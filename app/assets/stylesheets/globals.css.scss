@@ -74,7 +74,7 @@ textarea {
   @include basicField;
 }
 
-label {
+p, label {
   @include inline-block;
   vertical-align: middle;
 }
