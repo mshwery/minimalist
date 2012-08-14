@@ -10,7 +10,7 @@ class listApp.Views.ItemsShow extends Backbone.View
     "move label"      : "checkDirection"
     "moveend"         : "stopMoveItem"
     "touchstart"      : "longTap"
-    #"touchend"        : "stopTap"
+    "touchend"        : "stopTap"
     #"swiperight"      : "markCompleted"
     "swipeleft"       : "markIncompleted"
     "click .toggle"   : "togglecompleted"
@@ -61,8 +61,6 @@ class listApp.Views.ItemsShow extends Backbone.View
     clearTimeout(@timer) if @timer
 
   stopMoveItem: (e) ->
-    @stopTap()
-
     # stops moving item with the finger
     if @includeDrag(e.distX) > @widthPercentage(30)
       $(@el).animate({'left': ''}, 300)#.trigger('swiperight')
