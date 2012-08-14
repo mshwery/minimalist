@@ -41,6 +41,7 @@ class listApp.Views.ItemsShow extends Backbone.View
       @moveItem(e)
 
   moveItem: (e) =>
+    alert $(@el).attr('class')
     # mouse = if listApp.isMobile() then e.targetTouches[0] else e
     # curX = mouse.pageX - @startX
 
