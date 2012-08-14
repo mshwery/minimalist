@@ -5,8 +5,9 @@ class listApp.Views.ItemsShow extends Backbone.View
   template: JST['items/show']
 
   events:
-    "movestart"       : "startMove"
-    "move"            : "checkDirection"
+    #"movestart"       : "startMove"
+    "movestart"       : "checkDirection"
+    "move"            : "moveItem"
     "moveend"         : "stopMoveItem"
     "touchstart"      : "longTap"
     "touchend"        : "stopTap"
@@ -34,29 +35,27 @@ class listApp.Views.ItemsShow extends Backbone.View
 
   startMove: (e) ->
     if listApp.isMobile()
-      alert e.distX
       @startX = e.targetTouches[0].pageX || e.changedTouches[0].pageX
       @startY = e.targetTouches[0].pageY || e.changedTouches[0].pageY
-      listApp.log @startX
     else
       @startX = e.pageX
       @startY = e.pageY
 
-  checkDirection: =>
+  checkDirection: (e) ->
     if (@startX > @startY && @startX < -@startY) or (@startX < @startY && @startX > -@startY)
       e.preventDefault()
       return
     else
       @stopTap(e)
+      @moveItem(e)
 
   moveItem: (e) =>
     mouse = if listApp.isMobile() then e.targetTouches[0] else e
     curX = mouse.pageX - @startX
-    listApp.log curX
     #@curX = if e.originalEvent.touches then e.originalEvent.touches[0].pageX else e.distX # || e.originalEvent.changedTouches[0].pageX else e.distX
 
     # Moves item with the finger
-    dist = @includeDrag(5)#(e.distX)
+    dist = @includeDrag(e.distX)#(e.distX)
     if dist > 0 && dist < @widthPercentage(38) && !$(@el).hasClass('editing')
       $(@el).css('left', dist)
 
@@ -81,8 +80,7 @@ class listApp.Views.ItemsShow extends Backbone.View
     else
       $(@el).animate({'left': ''}, 300)
 
-    @startY = 0
-    @startX = 0
+    @startY = @startX = 0
 
   markIncompleted: ->
     @model.toggle() if @model.get("completed")
