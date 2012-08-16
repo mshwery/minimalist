@@ -5,8 +5,8 @@ class listApp.Views.ItemsShow extends Backbone.View
   template: JST['items/show']
 
   events:
-    #"movestart"       : "checkDirection"
-    "move"            : "checkDirection"
+    "movestart"       : "checkDirection"
+    "move"            : "moveItem"
     "moveend"         : "stopMoveItem"
     "touchstart"      : "longTap"
     "touchend"        : "stopTap"
@@ -37,14 +37,16 @@ class listApp.Views.ItemsShow extends Backbone.View
     if (e.distX > e.distY && e.distX < -e.distY) or (e.distX < e.distY && e.distX > -e.distY)
       e.preventDefault()
       return
-    else
-      @moveItem(e)
+    #else
+      #@moveItem(e)
 
   moveItem: (e) ->
     e.preventDefault()
+    # alert e.targetTouches.length if e.targetTouches
+    
     # Moves item with the finger
     dist = @includeDrag(e.distX)#(e.distX)
-    if dist > 0 && dist < @widthPercentage(38) && !$(@el).hasClass('editing')
+    if dist > 0 && dist < @widthPercentage(28) && !$(@el).is('.editing, .completed')
       @$el.css('left', dist)
 
   widthPercentage: (num) ->
@@ -62,7 +64,7 @@ class listApp.Views.ItemsShow extends Backbone.View
 
   stopMoveItem: (e) ->
     # stops moving item with the finger
-    if @includeDrag(e.distX) > @widthPercentage(30)
+    if @includeDrag(e.distX) > @widthPercentage(22)
       @$el.animate({'left': ''}, 300)#.trigger('swiperight')
       @markCompleted()
     else

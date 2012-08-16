@@ -4,9 +4,11 @@ $dark: #545862; //#3d434d;
 
 .lists {
   #listapp {
-    max-width: 98%;
-    padding: 50px 1% 0px;  
+    max-width: 100%;
+    padding-top: 50px;  
     margin-top: -50px;
+    //background: #fff;
+    //background: #55B447;
   }
 }
 
@@ -17,8 +19,6 @@ $dark: #545862; //#3d434d;
   margin: 0px auto;
   top: 0px;
   @media only screen and (max-device-width: 480px) {
-    padding-left: 0px;
-    padding-right: 0px;
     max-width: 100%;
   }
   input[type=text] {
@@ -42,7 +42,7 @@ i {
   font-style: normal;
   font-size: 12px;
   line-height: 20px;
-  padding: 12px 10px;
+  padding: 15px 10px;
 }
 
 #my-lists {
@@ -59,23 +59,27 @@ i {
   }
 }
 
-h2 {
-  font-size: 18px;
-  padding: 12px 0px;
+@mixin h {
+  font-size: 15px;
+  text-transform: uppercase;
+  padding: 15px 0px;
+  line-height: 20px;
   margin: 0px 8%;
+}
+
+h2 {
   color: $dark;
   font-weight: 400;
-  line-height: 20px;
+  @include h;
 }  
 
 #stats {
+  background: #fff;
+  margin-bottom: 1px;
   .edit {
     display: none; 
-    line-height: 20px;
-    padding: 12px 0px;
-    margin: 0px 8%;
-    font-size: 18px;
     text-align: center;
+    @include h;
   }
   &.editing {
     background-color: $yellow;
@@ -95,6 +99,8 @@ h2 {
   .items {
     position: relative;
     overflow: hidden;
+    background: image_url('check.png') repeat-y;
+    background-position: 18% top;
     li {
       position: relative;
       background-color: #fff;
@@ -103,7 +109,7 @@ h2 {
       margin: 1px 0px;
       font-weight: 300;
       &.completed {
-        background-color: rgba(255,255,255,0.6);
+        background-color: #2d89c9;//rgba(255,255,255,0.25);
       }
       &:first-child:last-child {
         margin: 0px;
@@ -160,7 +166,7 @@ h2 {
 
       &.completed {
         .label, label {
-          color: #bbb;
+          color: #fff;//#bbb;
           text-decoration: line-through;
         }
       }
