@@ -46,7 +46,7 @@ class listApp.Views.ItemsShow extends Backbone.View
     
     # Moves item with the finger
     dist = @includeDrag(e.distX)#(e.distX)
-    if dist > 0 && dist < @widthPercentage(28) && !$(@el).is('.editing, .completed')
+    if dist > 0 && dist < @widthPercentage(32) && !$(@el).is('.editing, .completed')
       @$el.css('left', dist)
 
   widthPercentage: (num) ->

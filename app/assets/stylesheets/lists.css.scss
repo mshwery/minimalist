@@ -75,7 +75,8 @@ h2 {
 
 #stats {
   background: #fff;
-  margin-bottom: 1px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  //margin-bottom: 1px;
   .edit {
     display: none; 
     text-align: center;
@@ -106,7 +107,8 @@ h2 {
       background-color: #fff;
       padding: 0px 5%;
       font-size: 16px;
-      margin: 1px 0px;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      //margin: 1px 0px;
       font-weight: 300;
       &.completed {
         background-color: #2d89c9;//rgba(255,255,255,0.25);
