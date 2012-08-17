@@ -20,6 +20,7 @@ class listApp.Views.ListsShow extends Backbone.View
 
   render: =>
     $(@el).html(@template(
+      url: @model.urlRoot
       name: @model.get('name')
       remaining: @model.items.remaining().length
     ))

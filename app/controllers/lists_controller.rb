@@ -33,7 +33,7 @@ class ListsController < ApplicationController
   def update
     @list = @stack.lists.find_by_slug(params[:id])
     if @list.update_attributes(params[:list])
-      flash[:notice] = "List updated."
+      #flash[:notice] = "List updated."
       respond_with(@list, :location => stack_list_url(@stack, @list))
     else
       flash[:error] = "Could not update list"

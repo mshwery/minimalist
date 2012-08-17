@@ -48,11 +48,12 @@
   vertical-align: middle;
 }
 
-@mixin transition($ms) {
-  -webkit-transition: all $ms ease-out; 
-  -moz-transition: all $ms ease-out; 
-  -o-transition: all $ms ease-out; 
-  transition: all $ms ease-out;
+@mixin transition($params) {
+  -webkit-transition: $params; 
+  -moz-transition: $params; 
+  -o-transition: $params; 
+  -ms-transition: $params; 
+  transition: $params;  
 }
 
 body {
@@ -61,12 +62,8 @@ body {
   text-align: center;
 }
 
-html {
+html, body {
   height: 100%;
-}
-
-body {
-  min-height: 100%;
 }
 
 input[type=text],

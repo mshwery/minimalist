@@ -2,7 +2,8 @@
 
 <div id="stats">
   <i><%= @remaining %></i>
-  <h2><%= @name %></h2>
+  <a class="back" href="<%= @url %>"><img src="/assets/back.png"/></a>
+  <h2 title="<%= @name %>"><%= @name %></h2>
   <input class="edit" type="text" value="<%= @name %>" />
 </div>
 

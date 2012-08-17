@@ -7,8 +7,9 @@ $dark: #545862; //#3d434d;
     max-width: 100%;
     padding-top: 50px;  
     margin-top: -50px;
-    //background: #fff;
-    //background: #55B447;
+    @media only screen and (max-device-width: 480px) {
+      min-height: 100%;
+    }    
   }
 }
 
@@ -34,6 +35,7 @@ $dark: #545862; //#3d434d;
   left: 0px;
   width: 100%;
   display: none;
+  color: #fff;
 }
 
 i {
@@ -42,7 +44,10 @@ i {
   font-style: normal;
   font-size: 12px;
   line-height: 20px;
-  padding: 15px 10px;
+  padding: 15px 0px;
+  width: 46px;
+  border-left: 1px solid rgba(0,0,0,0.03);
+  text-align: center;
 }
 
 #my-lists {
@@ -50,7 +55,8 @@ i {
     padding: 0px;
     a {
       display: block;
-      padding: 15px;
+      padding-left: 15px;
+      line-height: 50px;
       i {
         line-height: inherit;
         padding: 0px;
@@ -64,7 +70,11 @@ i {
   text-transform: uppercase;
   padding: 15px 0px;
   line-height: 20px;
-  margin: 0px 8%;
+  margin: 0px 3%;
+  width: 92%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 h2 {
@@ -73,10 +83,44 @@ h2 {
   @include h;
 }  
 
+.back {
+  float: left;
+  cursor: pointer;
+  opacity: .4;
+  text-align: center;
+  width: 46px;
+  border-right: 1px solid rgba(0,0,0,0.05);
+  &:hover {
+    opacity: .7;
+    background: rgba(0,0,0,0.05);
+  }
+  &:active {
+    opacity: 1;
+  }
+  img {
+    max-height: 51px;
+    max-width: 25px;
+  }
+}
+
 #stats {
+  position: relative;
+  padding: 0px 47px;
+  height: 50px;
+  text-align: center;
   background: #fff;
   border-bottom: 1px solid rgba(0,0,0,0.05);
-  //margin-bottom: 1px;
+  i, .back {
+    float: none;
+    position: absolute;
+    top: 0px;
+  }
+  i {
+    right: 0px;
+  }
+  .back {
+    left: 0px;
+  }
   .edit {
     display: none; 
     text-align: center;
@@ -84,7 +128,10 @@ h2 {
   }
   &.editing {
     background-color: $yellow;
-    .edit { display: block; width: 84%; }
+    .edit {
+      display: block;
+      width: 92%;
+    }
     h2 { display: none; }
   }
 }
@@ -99,10 +146,17 @@ h2 {
 
   .items {
     position: relative;
-    overflow: hidden;
-    background: image_url('check.png') repeat-y;
-    background-position: 18% top;
+    overflow: visible;
     li {
+      img {
+        opacity: 0;
+        max-height: 51px;
+        max-width: 25px;
+        position: absolute;
+        left: -40px;
+        top: 0px;
+        @include transition(opacity 100ms linear);
+      }
       position: relative;
       background-color: #fff;
       padding: 0px 5%;
@@ -110,8 +164,11 @@ h2 {
       border-bottom: 1px solid rgba(0,0,0,0.05);
       //margin: 1px 0px;
       font-weight: 300;
+      @include transition(background-color 200ms linear);
       &.completed {
         background-color: #2d89c9;//rgba(255,255,255,0.25);
+        @include transition(background-color 200ms linear);
+        img { opacity: 1; }
       }
       &:first-child:last-child {
         margin: 0px;

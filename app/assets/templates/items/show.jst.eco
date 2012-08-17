@@ -1,3 +1,4 @@
+<img class="check" src="/assets/check-retina.png"/>
 <input class="toggle" type="checkbox" <%- if @completed: %>checked="checked"<% end %> />
 <div class="view">
   <label><%= @description %></label>

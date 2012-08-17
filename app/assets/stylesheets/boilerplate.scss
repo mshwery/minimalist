@@ -62,12 +62,13 @@ div.tipsy ::-webkit-scrollbar-track-piece {
 /* =============================================================================
    Links
    ========================================================================== */
+$link: darken(#2D89C9, 5%);
 
-a { color: #4571E2; text-decoration: none; }
+a { color: $link; text-decoration: none; }
 :focus { outline: 0; }
 
 /* Improve readability when focused and hovered in all browsers: people.opera.com/patrickl/experiments/keyboard/test */
-a:hover, a:active { color: #4571E2; outline: 0; }
+a:hover, a:active { color: $link; outline: 0; }
 a:hover { text-decoration: underline; }
 
 /* =============================================================================
