@@ -20,10 +20,11 @@ class listApp.Views.ItemsShow extends Backbone.View
 
   initialize: ->
     @startX = @startY = 0
-    @model.bind('change', this.render)
+    @model.bind('change:description', this.render)
     @model.view = this
 
   render: =>
+    listApp.log 'rendered ' + @model.id
     $(@el).html( @template(@model.toJSON()) )
     $(@el).toggleClass "completed", @model.get("completed")
     @input = @$(".edit")
@@ -31,6 +32,7 @@ class listApp.Views.ItemsShow extends Backbone.View
 
   togglecompleted: ->
     @model.toggle()
+    @$el.toggleClass('completed')
 
   checkDirection: (e) ->
     @stopTap()
@@ -68,9 +70,11 @@ class listApp.Views.ItemsShow extends Backbone.View
       @$el.animate({'left': ''}, 100)
 
   markIncompleted: ->
+    @$el.removeClass('completed')
     @model.toggle() if @model.get("completed")
 
   markCompleted: ->
+    @$el.addClass('completed')
     @model.toggle() if !@model.get("completed")
 
   edit: =>
