@@ -72,10 +72,12 @@ class listApp.Views.ItemsShow extends Backbone.View
   markIncompleted: ->
     @$el.removeClass('completed')
     @model.toggle() if @model.get("completed")
+    @$('.toggle').attr('checked', false)
 
   markCompleted: ->
     @$el.addClass('completed')
     @model.toggle() if !@model.get("completed")
+    @$('.toggle').attr('checked', true)
 
   edit: =>
     @$el.addClass("editing")

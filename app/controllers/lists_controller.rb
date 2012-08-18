@@ -1,7 +1,7 @@
 class ListsController < ApplicationController
 
-  respond_to :html, :xml, :json
   before_filter :find_stack
+  respond_to :html, :xml, :json
 
   def new
   	@list = @stack.lists.new
@@ -20,10 +20,7 @@ class ListsController < ApplicationController
 
   def show
     @list = @stack.lists.find_by_slug(params[:id]) #find(params[:id])#
-    respond_to do |format|
-      format.json { render :json => @list }
-      format.html { render }
-    end
+    respond_with @list
   end
   
   def edit

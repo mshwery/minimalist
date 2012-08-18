@@ -13,6 +13,26 @@ $dark: #545862; //#3d434d;
   }
 }
 
+.show {
+  opacity: 1;
+  @include transition(opacity 200ms linear);
+  @include delay(1s);
+}
+.hide {
+  opacity: 0;
+  @include transition(opacity 200ms linear);
+  @include delay(1s);
+}
+
+#load-screen {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: url('bg.png') center center no-repeat;
+}
+
 #listapp {
   width: 480px;
   overflow: hidden;

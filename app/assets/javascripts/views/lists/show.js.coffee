@@ -15,7 +15,7 @@ class listApp.Views.ListsShow extends Backbone.View
     @model.on('change:name', @updateName)
 
     @model.fetch
-      success: =>
+      success: (response) =>
         @render()
 
   render: =>

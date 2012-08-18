@@ -56,6 +56,13 @@
   transition: $params;  
 }
 
+@mixin delay($params) {
+  transition-delay: $params;
+  -moz-transition-delay: $params; /* Firefox 4 */
+  -webkit-transition-delay: $params; /* Safari and Chrome */
+  -o-transition-delay: $params; /* Opera */
+}
+
 body {
   font-family: 'Open Sans', 'Lucida Grande', tahoma, verdana, arial, sans-serif;
   background: #2d89c9;//#e6eaf0;

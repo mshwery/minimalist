@@ -7,7 +7,7 @@ $.extend listApp,
   Routers: {}
   init: ->
     new listApp.Routers.List
-    Backbone.history.start()
+    Backbone.history.start({pushState: true, root: "/s/"})
   isMobile: -> 
     return Modernizr.touch
 
@@ -15,5 +15,4 @@ getParentPath = (path) ->
   return path.split("/").slice(0, -1).join("/")
 
 $(document).ready ->
-  if $('body').hasClass('lists-show')
-    listApp.init()
+  listApp.init()
