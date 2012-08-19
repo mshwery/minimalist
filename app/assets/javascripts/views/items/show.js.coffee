@@ -19,7 +19,6 @@ class listApp.Views.ItemsShow extends Backbone.View
     "blur .edit"      : "close"
 
   initialize: ->
-    @startX = @startY = 0
     @model.bind('change:description', this.render)
     @model.view = this
 

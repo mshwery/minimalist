@@ -1,3 +1,6 @@
+$primary: #3392d6;
+$orange: #f55910;
+
 @mixin box-shadow ($params...) {
   box-shadow: $params;
   -webkit-box-shadow: $params;
@@ -65,12 +68,53 @@
 
 body {
   font-family: 'Open Sans', 'Lucida Grande', tahoma, verdana, arial, sans-serif;
-  background: #2d89c9;//#e6eaf0;
+  background: $primary;//#2d89c9;//#e6eaf0;
   text-align: center;
 }
 
 html, body {
   height: 100%;
+}
+
+.white {
+  background-color: #fff;
+}
+
+
+#listapp {
+  overflow: hidden;
+  position: relative;
+  margin: 0px auto;
+  top: 0px;
+  @media only screen and (max-device-width: 480px) {
+    max-width: 100%;
+  }
+  input[type=text] {
+    border: none;
+    background: transparent;
+    @include box-shadow(none);
+  }  
+}
+
+.wrap {
+  width: 960px;
+  @media only screen and (max-device-width: 480px) {
+    max-width: 100%;
+  }  
+}
+
+.btn {
+  padding: 15px 30px;
+  text-align: center;
+  font-size: 16px;
+  text-transform: uppercase;
+  @include inline-block;
+  @include border-radius(8px);
+}
+
+.orange {
+  background-color: $orange;
+  color: #fff;
 }
 
 input[type=text],

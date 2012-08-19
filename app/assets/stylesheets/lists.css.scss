@@ -1,9 +1,11 @@
 $blue: #2a7dbd; //#417cd6; // #1f7cbf;
 $yellow: #fffeca; //#fefaee;
 $dark: #545862; //#3d434d;
+$border-style: 1px solid rgba(0,0,0,0.08);
 
-.lists {
+.lists, .stacks-show {
   #listapp {
+    width: 480px;
     max-width: 100%;
     padding-top: 50px;  
     margin-top: -50px;
@@ -33,22 +35,6 @@ $dark: #545862; //#3d434d;
   background: url('bg.png') center center no-repeat;
 }
 
-#listapp {
-  width: 480px;
-  overflow: hidden;
-  position: relative;
-  margin: 0px auto;
-  top: 0px;
-  @media only screen and (max-device-width: 480px) {
-    max-width: 100%;
-  }
-  input[type=text] {
-    border: none;
-    background: transparent;
-    @include box-shadow(none);
-  }  
-}
-
 .loading {
   position: absolute;
   top: 20px;
@@ -66,7 +52,7 @@ i {
   line-height: 20px;
   padding: 15px 0px;
   width: 46px;
-  border-left: 1px solid rgba(0,0,0,0.03);
+  border-left: $border-style;
   text-align: center;
 }
 
@@ -77,6 +63,7 @@ i {
       display: block;
       padding-left: 15px;
       line-height: 50px;
+      font-weight: 400;
       i {
         line-height: inherit;
         padding: 0px;
@@ -106,18 +93,18 @@ h2 {
 .back {
   float: left;
   cursor: pointer;
-  opacity: .4;
   text-align: center;
   width: 46px;
-  border-right: 1px solid rgba(0,0,0,0.05);
+  border-right: $border-style;
   &:hover {
-    opacity: .7;
     background: rgba(0,0,0,0.05);
+    img { opacity: .7; }
   }
   &:active {
-    opacity: 1;
+    img { opacity: 1; }
   }
   img {
+    opacity: .4;
     max-height: 51px;
     max-width: 25px;
   }
@@ -129,7 +116,7 @@ h2 {
   height: 50px;
   text-align: center;
   background: #fff;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-bottom: $border-style;
   i, .back {
     float: none;
     position: absolute;
@@ -181,13 +168,19 @@ h2 {
       background-color: #fff;
       padding: 0px 5%;
       font-size: 16px;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-      //margin: 1px 0px;
+      border-bottom: $border-style;
       font-weight: 300;
       @include transition(background-color 200ms linear);
+      // test for ios flicker...
+      -webkit-transform: translate3d(0,0,0);
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility:    hidden;
+      -ms-backface-visibility:     hidden;
+      -webkit-perspective: 1000;
+      // end test
       &.completed {
-        background-color: #2d89c9;//rgba(255,255,255,0.25);
-        @include transition(background-color 200ms linear);
+        background-color: $primary;
+        //@include transition(background-color 200ms linear);
         img { opacity: 1; }
       }
       &:first-child:last-child {
