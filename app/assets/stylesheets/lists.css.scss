@@ -171,20 +171,20 @@ h2 {
       border-bottom: $border-style;
       font-weight: 300;
       @include transition(background-color 200ms linear);
-      // test for ios flicker...
+      // reduces flicker on ios...
       -webkit-transform: translate3d(0,0,0);
       -webkit-backface-visibility: hidden;
       -moz-backface-visibility:    hidden;
       -ms-backface-visibility:     hidden;
       -webkit-perspective: 1000;
-      // end test
+      // end
       &.completed {
         background-color: $primary;
-        //@include transition(background-color 200ms linear);
         img { opacity: 1; }
-      }
-      &:first-child:last-child {
-        margin: 0px;
+        .label, label {
+          color: #fff;
+          text-decoration: line-through;
+        }
       }
       .toggle {
         float: left;
@@ -234,16 +234,6 @@ h2 {
         background-color: $yellow;
         .edit { display: inline-block; }
         .label, label { display: none; }
-      }
-
-      &.completed {
-        .label, label {
-          color: #fff;//#bbb;
-          text-decoration: line-through;
-        }
-      }
-
-      &.editing {
         .destroy { display: block; }
       }
     }

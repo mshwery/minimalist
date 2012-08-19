@@ -10,10 +10,9 @@ class TasksController < ApplicationController
   def create
     @task = @list.tasks.new(params[:task])
     if @task.save
-      flash[:notice] = "Task created"
       render :json => @task
     else
-      flash[:error] = "Could not add task at this time."
+      flash[:error] = "Could not add task."
     end
   end
 
