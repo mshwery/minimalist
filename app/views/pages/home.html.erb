@@ -1,6 +1,46 @@
-<div class="wrap">
-  <section class="white">
-    <div id="demo"></div>
-    <div id="intro"></div>
+<div class="white">
+  <section class="wrap">
+    <header>
+      <h1><%= image_tag('logo.png') %>minimalist</h1>
+    </header>
+  </section>
+  <section class="wrap cf">
+    <div id="demo">
+      <div id="app"></div>
+    </div>
+    <div id="intro">
+      <h2>
+        A simple list app </br>
+        <span>that's everywhere you are.</span>
+      </h2>
+      <div class="actions">
+        <%= link_to "Make a list", new_list_url, :class => 'btn orange' %>
+      </div>
+    </div>
   </section>
 </div>
+<div id="features" class="wrap">
+  <ul class="cf">
+    <li>
+      <h3>With you everywhere –</h3>
+      <p>After this they sat down beside the Lion until he should awaken; and the Scarecrow brought Dorothy some fruit from a tree near by, which she ate for her dinner.</p>
+    </li>
+    <li>
+      <h3>No need to log-in –</h3>
+      <p>"The wild calots, possibly, or worse," he replied.  "Unless I should chance to have the opportunity I have so long waited of battling with Tal Hajus."</p>
+    </li>
+    <li>
+      <h3>Satisfyingly tactile –</h3>
+      <p>The purchases made, they returned to the hotel, where they dined at a sumptuously served table-d'hote; after which Aouda  retired to her room for rest.</p>
+    </li>
+    <li>
+      <h3>Simple, Shareable –</h3>
+      <p>It will readily be seen that in this case the alleged right of the Duke to the whale was a delegated one from the Sovereign.</p>
+    </li>
+  </ul>
+</div>
+<footer>
+  <div class="wrap">
+    © 2012. Made by <%= link_to '@mshwery', 'http://twitter.com/mshwery' %>
+  </div>
+</footer>

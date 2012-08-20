@@ -84,32 +84,6 @@ i {
   white-space: nowrap;
 }
 
-h2 {
-  color: $dark;
-  font-weight: 400;
-  @include h;
-}  
-
-.back {
-  float: left;
-  cursor: pointer;
-  text-align: center;
-  width: 46px;
-  border-right: $border-style;
-  &:hover {
-    background: rgba(0,0,0,0.05);
-    img { opacity: .7; }
-  }
-  &:active {
-    img { opacity: 1; }
-  }
-  img {
-    opacity: .4;
-    max-height: 51px;
-    max-width: 25px;
-  }
-}
-
 #stats {
   position: relative;
   padding: 0px 47px;
@@ -117,6 +91,33 @@ h2 {
   text-align: center;
   background: #fff;
   border-bottom: $border-style;
+  
+  h2 {
+    color: $dark;
+    font-weight: 400;
+    @include h;
+  }  
+
+  .back {
+    float: left;
+    cursor: pointer;
+    text-align: center;
+    width: 46px;
+    border-right: $border-style;
+    &:hover {
+      background: rgba(0,0,0,0.05);
+      img { opacity: .7; }
+    }
+    &:active {
+      img { opacity: 1; }
+    }
+    img {
+      opacity: .4;
+      max-height: 51px;
+      max-width: 25px;
+    }
+  }
+
   i, .back {
     float: none;
     position: absolute;
@@ -180,6 +181,8 @@ h2 {
       // end
       &.completed {
         background-color: $primary;
+        border-color: transparent;
+
         img { opacity: 1; }
         .label, label {
           color: #fff;
