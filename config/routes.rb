@@ -11,6 +11,8 @@ Lists::Application.routes.draw do
 
   resources :lists, :only => [:new, :create] 
 
+  match "demo" => 'demo#index'
+  match "demo/tasks" => 'demo#tasks'
   #match "s/:stack_id/:id", :to => "lists#show"
 
   #match '/:token', :to => 'stacks#show', :as => :stack
