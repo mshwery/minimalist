@@ -7,7 +7,7 @@ $.extend listApp,
   Routers: {}
   init: ->
     new listApp.Routers.List
-    Backbone.history.start({pushState: true, root: "/s/"})
+    Backbone.history.start({pushState: true, root: "/"})
   isMobile: -> 
     return Modernizr.touch
 

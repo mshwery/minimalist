@@ -17,7 +17,7 @@ class listApp.Models.Item extends Backbone.Model
 
 class listApp.Collections.Items extends Backbone.Collection
   model: listApp.Models.Item
-  url: -> listApp.apiUrl "#{listApp.Slug}/tasks"
+  url: -> listApp.apiUrl "#{@list_id}/tasks"
 
   completed: ->
     return @filter (task) ->
