@@ -36,11 +36,13 @@
 
   .actions {
     padding: 30px 0;
-    .btn {
-      width: 100%;
-      padding-left: 0px;
-      padding-right: 0px;
-    }
+    @media only screen and (max-device-width: 480px) {
+      .btn {
+        width: 100%;
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+    } 
   }
 
   #demo, #intro {
