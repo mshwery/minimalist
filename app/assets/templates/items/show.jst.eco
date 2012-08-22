@@ -4,4 +4,4 @@
   <label><%= @description %></label>
   <input class="edit" type="text" value="<%= @description %>" />
 </div>
-<a class="destroy" title="delete">Delete</a>
+<a class="destroy" title="delete"><img src="/assets/close.png"/></a>

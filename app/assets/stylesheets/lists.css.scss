@@ -163,7 +163,7 @@ i {
     position: relative;
     overflow: visible;
     li {
-      img {
+      img.check {
         opacity: 0;
         max-height: 51px;
         max-width: 25px;
@@ -230,12 +230,12 @@ i {
         cursor: pointer;
         width: 30px;
         overflow: hidden;
-        background-repeat: no-repeat;
-        text-indent: -999px;
         top: 0px;
         right: 0px;
-        background-image: url(close.png);
-        background-position: left center;
+        img {
+          max-width: 15px;
+          max-height: 17px;
+        }
         opacity: .5;
         &:hover { opacity: 1; }
       }
