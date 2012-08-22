@@ -16,6 +16,6 @@ class Stack < ActiveRecord::Base
   protected
 
     def generate_token
-      self.token = rand(36**8).to_s(36) if self.new_record? and self.token.nil?
+      self.token = rand(36**10).to_s(36) if self.new_record? and self.token.nil?
     end
 end

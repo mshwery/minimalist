@@ -1,3 +1,11 @@
-// Place all the styles related to the stacks controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.stacks-show {
+  h1 { 
+    background: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 10px 0;
+    font-weight: 400;
+    font-size: 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+}

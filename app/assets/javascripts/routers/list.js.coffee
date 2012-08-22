@@ -1,6 +1,7 @@
 class listApp.Routers.List extends Backbone.Router
   routes:
     ''                : 'root'
+    'lists/new'       : 'show'
     's/:token'        : 'index'
     's/:token/'       : 'index'
     's/:token/:slug'  : 'show'
@@ -14,6 +15,10 @@ class listApp.Routers.List extends Backbone.Router
 
   index: (token) ->
     listApp.log token
+    @toggleLoadScreen()
+
+  new: ->
+    listApp.log 'new'
     @toggleLoadScreen()
 
   show: (token, listSlug) ->

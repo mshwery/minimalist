@@ -7,3 +7,8 @@ class listApp.Models.List extends Backbone.Model
     @items ||= new listApp.Collections.Items()
     @items.list_id = @id
     @items.fetch()
+
+    @on 'change:slug', @updateParams
+
+  updateParams: =>
+    @items.list_id = @id

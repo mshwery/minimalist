@@ -5,15 +5,19 @@ class ListsController < ApplicationController
 
   def new
   	@list = @stack.lists.new
+
+    if @list.save
+      redirect_to stack_list_url(@stack, @list)
+    else
+      redirect_to new_stack_list_url(@stack)
+    end
   end
 
   def create
     @list = @stack.lists.new(params[:list])
     if @list.save
-      flash[:notice] = "saved!"
       respond_with(@list, :location => stack_list_url(@stack, @list))
     else
-      flash[:error] = "Couldn't create."
       redirect_to new_stack_list_url(@stack)
     end
   end
@@ -30,8 +34,10 @@ class ListsController < ApplicationController
   def update
     @list = @stack.lists.find_by_slug(params[:id])
     if @list.update_attributes(params[:list])
-      #flash[:notice] = "List updated."
-      respond_with(@list, :location => stack_list_url(@stack, @list))
+      #override the default respond_with behavoir to always send back the model with update
+      respond_with(@list) do |format|
+        format.json { render :json => @list, :status => :created, :location => stack_list_path(@stack, @list) }
+      end
     else
       flash[:error] = "Could not update list"
       redirect_to edit_stack_list_path(@stack, @list)

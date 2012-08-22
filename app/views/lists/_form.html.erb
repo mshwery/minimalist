@@ -1,7 +1,6 @@
 <%= form_for [@stack, @list] do |f| %>
   <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :placeholder => 'Name' %>
   </div>
   <div>
     <%= f.submit %>

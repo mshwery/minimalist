@@ -1,4 +1,5 @@
 <div class="list">
+  <h1>My lists</h1>
   <ul id="my-lists" class="items">
     <% @lists.each do |list| %>
       <li>
@@ -6,7 +7,6 @@
           <%= list.name %> 
           <%= content_tag(:i, list.remaining.length) %>
         <% end %>
-        <%#= link_to "Edit", edit_stack_list_url(@stack, list), :class => 'edit-list' %>
         <%#= link_to "Delete", stack_list_url(@stack, list), :method => :delete %>
       </li>
     <% end %>

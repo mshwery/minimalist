@@ -43,9 +43,14 @@ class listApp.Views.ListsShow extends Backbone.View
 
   close: =>
     value = @input.val()
-    if value
-      @model.save({ name: value })
-      @$('#stats').removeClass("editing")
+    if value && value != @model.get('name')
+      @model.save({name: value, slug: @model.get('slug')}, {success: @setUrl})
+    @$('#stats').removeClass("editing")
+
+  setUrl: =>
+    path = window.location.pathname.split("/").slice(0, -1).join("/")
+    newPath = [path, @model.get('slug')].join("/")
+    listApp.router.navigate(newPath)
 
   updateOnEnter: (e) =>
     @close()  if e.keyCode is 13
