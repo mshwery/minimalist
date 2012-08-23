@@ -5,6 +5,7 @@
 //
 //= require lib/underscore-min
 //= require lib/backbone-min
+//= require lib/backbone.localstorage-min
 //
 //= require lib/jquery.event.move
 //= require lib/jquery.event.swipe

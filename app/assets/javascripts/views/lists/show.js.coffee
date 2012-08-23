@@ -44,7 +44,10 @@ class listApp.Views.ListsShow extends Backbone.View
   close: =>
     value = @input.val()
     if value && value != @model.get('name')
-      @model.save({name: value, slug: @model.get('slug')}, {success: @setUrl})
+      if @model.get('demo')
+        @model.set({name: value})
+      else
+        @model.save({name: value, slug: @model.get('slug')}, {success: @setUrl})
     @$('#stats').removeClass("editing")
 
   setUrl: =>

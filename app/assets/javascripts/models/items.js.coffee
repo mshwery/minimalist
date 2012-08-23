@@ -25,3 +25,16 @@ class listApp.Collections.Items extends Backbone.Collection
 
   remaining: ->
     return @without.apply( this, @completed() )
+
+
+
+class listApp.Collections.DemoItems extends Backbone.Collection
+  model: listApp.Models.Item
+  localStorage: new Backbone.LocalStorage("DemoItems")
+
+  completed: ->
+    return @filter (task) ->
+      task.get "completed"
+
+  remaining: ->
+    return @without.apply( this, @completed() )

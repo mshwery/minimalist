@@ -1,15 +1,21 @@
+window.demo = {
+  "name": "Groceries",
+  "id": 1,
+  "slug": "demo",
+  "demo": true
+}
+
 class listApp.Routers.List extends Backbone.Router
   routes:
     ''                : 'root'
-    'lists/new'       : 'show'
     's/:token'        : 'index'
     's/:token/'       : 'index'
     's/:token/:slug'  : 'show'
 
   root: ->
     listApp.log 'root'
-    listApp.list = new listApp.Models.List(slug: 'demo') 
-    listApp.view = new listApp.Views.ListsShow({ model: listApp.list, el: '#app' })
+    listApp.demo = new listApp.Models.DemoList(window.demo) 
+    listApp.view = new listApp.Views.ListsShow({ model: listApp.demo, el: '#app' })
 
     @toggleLoadScreen()
 
