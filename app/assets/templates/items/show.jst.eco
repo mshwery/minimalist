@@ -2,6 +2,6 @@
 <input class="toggle" type="checkbox" <%- if @completed: %>checked="checked"<% end %> />
 <div class="view">
   <label><%= @description %></label>
-  <input class="edit" type="text" value="<%= @description %>" />
+  <textarea class="edit" maxlength="255"><%= @description %></textarea>
 </div>
 <a class="destroy" title="delete"><img src="/assets/close.png"/></a>

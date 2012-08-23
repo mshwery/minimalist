@@ -90,10 +90,12 @@ html, body {
   @media only screen and (max-device-width: 480px) {
     max-width: 100%;
   }
-  input[type=text] {
+  input[type=text], textarea {
     border: none;
     background: transparent;
     @include box-shadow(none);
+    overflow: hidden;
+    resize: none;
   }  
 }
 

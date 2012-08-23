@@ -11,7 +11,8 @@ class listApp.Models.Item extends Backbone.Model
     @save({ completed: !@get("completed") })
 
   clear: ->
-    @view.remove()      
+    @view.remove()  
+    @destroy()    
 
 
 

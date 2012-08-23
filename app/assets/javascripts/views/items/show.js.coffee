@@ -16,6 +16,7 @@ class listApp.Views.ItemsShow extends Backbone.View
     "dblclick .view"  : "edit"
     "click a.destroy" : "clear"
     "keypress .edit"  : "updateOnEnter"
+    "keyup .edit"     : "limitChars"
     "blur .edit"      : "close"
 
   initialize: ->
@@ -26,6 +27,7 @@ class listApp.Views.ItemsShow extends Backbone.View
     $(@el).html( @template(@model.toJSON()) )
     $(@el).toggleClass "completed", @model.get("completed")
     @input = @$(".edit")
+    @input.autogrow({expandTolerance:0})
     return this
 
   togglecompleted: ->
@@ -43,7 +45,7 @@ class listApp.Views.ItemsShow extends Backbone.View
     
     # Moves item with the finger
     dist = @includeDrag(e.distX)
-    if dist > 0 && dist < @widthPercentage(30) && !$(@el).is('.editing, .completed')
+    if dist > 0 && dist < @widthPercentage(30) && $(@el).not('.editing, .completed')
       @$el.css('left', dist)
 
   widthPercentage: (num) ->
@@ -54,12 +56,13 @@ class listApp.Views.ItemsShow extends Backbone.View
 
   longTap: ->
     @timer = null
-    @timer = setTimeout((=> @edit()), 1500)
+    @timer = setTimeout((=> @edit()), 1000)
 
   stopTap: ->
     clearTimeout(@timer) if @timer
 
   stopMoveItem: (e) ->
+    @direction = null
     # stops moving item with the finger
     if @includeDrag(e.distX) > @widthPercentage(28)
       @$el.animate({'left': ''}, 300)
@@ -83,9 +86,15 @@ class listApp.Views.ItemsShow extends Backbone.View
 
   close: =>
     value = @input.val()
-    @clear()  unless value
-    @model.save({ description: value })
-    @$el.removeClass("editing")
+    if value
+      @model.save({ description: value })
+      @$el.removeClass("editing")
+    else 
+      @clear()
+
+  limitChars: (e) =>
+    unless @input.val().length < $(e.target).attr('maxlength')
+      e.preventDefault()
 
   updateOnEnter: (e) =>
     @close()  if e.keyCode is 13
