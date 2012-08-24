@@ -1,11 +1,12 @@
 .stacks-show {
-  h1 { 
-    background: #fff;
-    text-align: center;
-    margin: 0;
-    padding: 10px 0;
+  h2 { 
+    color: $dark;
     font-weight: 400;
-    font-size: 20px;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    @include h;
+    background: #fff;
+    margin: 0px;
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,0.10); 
   }
 }
