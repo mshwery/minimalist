@@ -68,6 +68,16 @@
       @include border-radius(3px);
       margin: 0 -3px -3px;
       @include transition(margin 300ms ease-in-out);
+      position: relative;
+
+      #container {
+        position: relative;
+
+        .loading {
+          top: -20px;
+          display: block;
+        }
+      }
     }
     &:hover {
       padding-top: 0px;

@@ -15,7 +15,7 @@ class listApp.Routers.List extends Backbone.Router
   root: ->
     listApp.log 'root'
     listApp.demo = new listApp.Models.DemoList(window.demo) 
-    listApp.view = new listApp.Views.ListsShow({ model: listApp.demo, el: '#app' })
+    listApp.view = new listApp.Views.ListsShow({ model: listApp.demo, el: '#container' })
 
     @setupDemo(listApp.view.$el)
     @toggleLoadScreen()

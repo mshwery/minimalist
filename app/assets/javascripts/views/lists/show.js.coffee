@@ -84,14 +84,16 @@ class listApp.Views.ListsShow extends Backbone.View
 
   stopMoveItem: (e) =>
     if @includeDrag(e.distY) > 40
-      @spinner.toggle()
+      @spinner.text('Loading...')
       @model.items.fetch
         add: true
+        wait: true
         success: => @afterRefresh()
     else
       @$el.animate({'top': 0}, 200)
 
   afterRefresh: ->
     @clearCompleted()
-    @spinner.toggle()
-    @$el.animate({'top': 0}, 200) 
+    @$el.delay(300).animate({'top': 0}, 200, =>
+      @spinner.text('Pull to refresh...')
+    ) 

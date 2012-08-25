@@ -1,4 +1,4 @@
-<div class="loading">Loading...</div>
+<div class="loading">Pull to refresh</div>
 
 <div id="stats">
   <i><%= @remaining %></i>
