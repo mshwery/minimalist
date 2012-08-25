@@ -22,7 +22,7 @@ class listApp.Collections.Items extends Backbone.Collection
 
   comparator: (item) ->
     date = new Date(item.get('created_at'))
-    return parseInt(date.getTime() / -1000)
+    return parseInt(date.getTime() / 1000)
 
   completed: ->
     return @filter (task) ->
@@ -39,7 +39,7 @@ class listApp.Collections.DemoItems extends Backbone.Collection
 
   comparator: (item) ->
     date = new Date(item.get('created_at'))
-    return parseInt(date.getTime() / -1000)
+    return parseInt(date.getTime() / 1000)
 
   completed: ->
     return @filter (task) ->
