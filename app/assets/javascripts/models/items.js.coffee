@@ -20,6 +20,10 @@ class listApp.Collections.Items extends Backbone.Collection
   model: listApp.Models.Item
   url: -> listApp.apiUrl "#{@list_id}/tasks"
 
+  comparator: (item) ->
+    date = new Date(item.get('created_at'))
+    return parseInt(date.getTime() / -1000)
+
   completed: ->
     return @filter (task) ->
       task.get "completed"
@@ -32,6 +36,10 @@ class listApp.Collections.Items extends Backbone.Collection
 class listApp.Collections.DemoItems extends Backbone.Collection
   model: listApp.Models.Item
   localStorage: new Backbone.LocalStorage("DemoItems")
+
+  comparator: (item) ->
+    date = new Date(item.get('created_at'))
+    return parseInt(date.getTime() / -1000)
 
   completed: ->
     return @filter (task) ->

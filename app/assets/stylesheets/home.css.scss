@@ -53,17 +53,37 @@
 
   #demo {
     width: 49.6%;
-    padding: 0 40px;
-    max-height: 309px;
+    padding: 20px 48px;
+    max-height: 250px;
     overflow: hidden;
+    cursor: pointer;
+    @include transition((padding 300ms ease-in-out, max-height 500ms ease-in-out));
+    -webkit-transform: translate3d(0,0,0);
+    -webkit-perspective: 1000;
     @media only screen and (max-device-width: 480px) {
       display: none;
     } 
     #app {
-      min-height: 300px;
       border: 3px solid #ccc;
       @include border-radius(3px);
-      margin: 0 -3px;
+      margin: 0 -3px -3px;
+      @include transition(margin 300ms ease-in-out);
+    }
+    &:hover {
+      padding-top: 0px;
+      padding-bottom: 40px;
+    }
+    &.active {
+      cursor: auto;
+      max-height: 1000px;
+      padding: 0 48px;
+      #app {
+        margin: 0 -3px 50px;
+      }
+      &.complete {
+        @include transition(max-height 0s);
+        max-height: none;
+      }
     }
   }
   #intro {
