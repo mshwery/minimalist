@@ -18,7 +18,7 @@ class listApp.Models.List extends Backbone.Model
 window.demoItems = [
   {
     "completed":false,
-    "created_at":"2012-07-20T05:07:54Z",
+    "created_at":"2012-07-24T05:07:54Z",
     "description":"Enter items & check them off",
     "id":1,
     "sort_order":null,
@@ -26,7 +26,7 @@ window.demoItems = [
   },
   {
     "completed":false,
-    "created_at":"2012-07-21T05:07:53Z",
+    "created_at":"2012-07-23T05:07:53Z",
     "description":"Swipe right to check off on mobile (left to undo)",
     "id":2,
     "sort_order":null,
@@ -42,7 +42,7 @@ window.demoItems = [
   },
   {
     "completed":false,
-    "created_at":"2012-07-23T02:47:14Z",
+    "created_at":"2012-07-21T02:47:14Z",
     "description":"Click the trashcan or clear items to delete them",
     "id":4,
     "sort_order":null,
