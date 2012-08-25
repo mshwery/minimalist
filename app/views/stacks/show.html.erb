@@ -1,5 +1,8 @@
 <div class="list">
-  <h2>My lists</h2>
+  <header>
+    <h2>My lists</h2>
+    <%= link_to "+", new_stack_list_url(@stack), :class => "add-list", :title => 'Make a new list' %>
+  </header>
   <ul id="my-lists" class="items">
     <% @lists.each do |list| %>
       <li>
@@ -12,5 +15,3 @@
     <% end %>
   </ul>
 </div>
-
-<%= link_to "Make a list", new_stack_list_url(@stack) %>

@@ -10,6 +10,7 @@
 //= require lib/jquery.event.move
 //= require lib/jquery.event.swipe
 //= require lib/autogrow
+//= require lib/doubletap
 //
 //= require listApp
 //

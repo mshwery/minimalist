@@ -8,12 +8,13 @@ class listApp.Views.ItemsShow extends Backbone.View
     "movestart"       : "checkDirection"
     "move"            : "moveItem"
     "moveend"         : "stopMoveItem"
-    "touchstart"      : "longTap"
-    "touchend"        : "stopTap"
+    #"touchstart"      : "longTap"
+    #"touchend"        : "stopTap"
     "swiperight"      : "markCompleted"
     "swipeleft"       : "markIncompleted"
     "click .toggle"   : "togglecompleted"
     "dblclick .view"  : "edit"
+    "doubletap .view" : "edit"
     "click a.destroy" : "clear"
     "keypress .edit"  : "updateOnEnter"
     "keyup .edit"     : "limitChars"
@@ -35,7 +36,7 @@ class listApp.Views.ItemsShow extends Backbone.View
     @$el.toggleClass('completed')
 
   checkDirection: (e) ->
-    @stopTap()
+    #@stopTap()
     if (e.distX > e.distY && e.distX < -e.distY) or (e.distX < e.distY && e.distX > -e.distY)
       e.preventDefault()
       return
@@ -54,12 +55,12 @@ class listApp.Views.ItemsShow extends Backbone.View
   includeDrag: (distance) ->
     return drag = Math.round(distance / 2.25)
 
-  longTap: ->
-    @timer = null
-    @timer = setTimeout((=> @edit()), 1000)
+  # longTap: ->
+  #   @timer = null
+  #   @timer = setTimeout((=> @edit()), 1000)
 
-  stopTap: ->
-    clearTimeout(@timer) if @timer
+  # stopTap: ->
+  #   clearTimeout(@timer) if @timer
 
   stopMoveItem: (e) ->
     @direction = null

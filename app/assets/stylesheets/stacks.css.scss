@@ -1,4 +1,23 @@
 .stacks-show {
+  header {
+    position: relative;
+    .add-list {
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      height: 50px;
+      line-height: 50px;
+      font-size: 19px;
+      font-weight: 400;
+      text-align: center;
+      width: 46px;
+      border-left: 1px solid rgba(0,0,0,0.1);
+      &:hover {
+        background: rgba(0,0,0,0.05);
+        text-decoration: none;
+      }
+    }
+  }
   h2 { 
     color: $dark;
     font-weight: 400;
@@ -8,5 +27,8 @@
     text-align: center;
     width: 100%;
     border-bottom: 1px solid rgba(0,0,0,0.10); 
+  }
+  i {
+    border-left: 0px;
   }
 }

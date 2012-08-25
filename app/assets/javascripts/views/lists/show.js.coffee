@@ -3,11 +3,12 @@ class listApp.Views.ListsShow extends Backbone.View
   template: JST['lists/show']
 
   events:
-    "move" : "startMoveItem"
-    "moveend" : "stopMoveItem" 
-    "click #stats h2": "edit"   
-    "keypress .edit"  : "updateOnEnter"
-    "blur .edit"      : "close"
+    "move"                : "startMoveItem"
+    "moveend"             : "stopMoveItem" 
+    "dblclick #stats h2"  : "edit"
+    "doubletap #stats h2" : "edit"   
+    "keypress .edit"      : "updateOnEnter"
+    "blur .edit"          : "close"
 
   initialize: ->
     @model.items.on("change", @updateCount)

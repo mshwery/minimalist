@@ -53,7 +53,7 @@
 
   #demo {
     width: 49.6%;
-    padding: 0 5.2%;
+    padding: 0 40px;
     max-height: 309px;
     overflow: hidden;
     @media only screen and (max-device-width: 480px) {
@@ -63,6 +63,7 @@
       min-height: 300px;
       border: 3px solid #ccc;
       @include border-radius(3px);
+      margin: 0 -3px;
     }
   }
   #intro {
