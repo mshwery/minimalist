@@ -3,7 +3,8 @@ class StacksController < ApplicationController
   respond_to :html, :xml, :json
 
   def index
-    @stacks = Stack.all
+    #@stacks = Stack.all
+    redirect_to :root
   end
 
   def new

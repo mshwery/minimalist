@@ -28,6 +28,14 @@
       } 
     }
   }
+  .try-me {
+    opacity: .5;
+    margin-left: -20px;
+    @include transition(opacity 1ms linear);
+    @media only screen and (max-device-width: 480px) {
+      display: none;
+    }     
+  }
 
   section {
     padding: 60px 0px 0px;
