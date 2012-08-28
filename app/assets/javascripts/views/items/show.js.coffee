@@ -25,7 +25,7 @@ class listApp.Views.ItemsShow extends Backbone.View
     @model.view = this
 
   render: =>
-    $(@el).html( @template(@model.toJSON()) )
+    $(@el).html( @template(@model.toJSON()) ).linkify()
     $(@el).toggleClass "completed", @model.get("completed")
     @input = @$(".edit")
     @input.autogrow({expandTolerance:0})
