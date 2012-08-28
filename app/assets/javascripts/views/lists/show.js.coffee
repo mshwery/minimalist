@@ -2,13 +2,12 @@ class listApp.Views.ListsShow extends Backbone.View
   el: '#listapp'
   template: JST['lists/show']
 
-  events:
-    "move"                : "startMoveItem"
-    "moveend"             : "stopMoveItem" 
+  events: 
     "dblclick #stats h2"  : "edit"
     "doubletap #stats h2" : "edit"   
     "keypress .edit"      : "updateOnEnter"
     "blur .edit"          : "close"
+    "click .refresh"      : "refresh"
 
   initialize: ->
     @model.items.on("change", @updateCount)
@@ -25,7 +24,6 @@ class listApp.Views.ListsShow extends Backbone.View
       name: @model.get('name')
       remaining: @model.items.remaining().length
     ))
-    @spinner = @$(".loading")
     @input = @$("#stats .edit")
 
     @initItems()
@@ -71,29 +69,13 @@ class listApp.Views.ListsShow extends Backbone.View
     )
     return false
 
-  startMoveItem: (e) ->
-    if (e.distX > e.distY && e.distX < -e.distY) or (e.distX < e.distY && e.distX > -e.distY)
-      e.preventDefault()
-      dist = @includeDrag(e.distY)
-      if dist > 0 && dist < 50
-        @$el.css('top', dist)
-      return
-
-  includeDrag: (distance) ->
-    return drag = Math.round(distance / 2.25)     
-
-  stopMoveItem: (e) =>
-    if @includeDrag(e.distY) > 40
-      @spinner.text('Loading...')
-      @model.items.fetch
-        add: true
-        wait: true
-        success: => @afterRefresh()
-    else
-      @$el.animate({'top': 0}, 200)
+  refresh: ->
+    @$el.addClass('loading')
+    @model.items.fetch
+      add: true
+      wait: true
+      success: => @afterRefresh()
 
   afterRefresh: ->
     @clearCompleted()
-    @$el.delay(300).animate({'top': 0}, 200, =>
-      @spinner.text('Pull to refresh...')
-    ) 
+    setTimeout((=> @$el.removeClass('loading')), 300)

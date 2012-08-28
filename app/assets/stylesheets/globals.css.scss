@@ -85,6 +85,28 @@ html, body {
   background-color: #fff;
 }
 
+.show {
+  opacity: 1;
+  @include transition(opacity 200ms linear);
+  @include delay(1s);
+}
+.hide {
+  opacity: 0;
+  @include transition(opacity 200ms linear);
+  @include delay(1s);
+}
+
+i {
+  float: right;
+  color: #aaa;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 20px;
+  padding: 15px 0px;
+  width: 46px;
+  //border-left: $border-style;
+  text-align: center;
+}
 
 #listapp {
   overflow: hidden;

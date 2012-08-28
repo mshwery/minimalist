@@ -11,7 +11,10 @@ class listApp.Models.Item extends Backbone.Model
     @save({ completed: !@get("completed") })
 
   clear: ->
-    @view.remove()  
+    @view.$el.fadeOut(300, =>
+      @view.remove()
+    )
+    #@view.remove()  
     @destroy()    
 
 

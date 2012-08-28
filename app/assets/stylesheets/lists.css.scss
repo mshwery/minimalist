@@ -22,17 +22,6 @@ $border-style: 1px solid rgba(0,0,0,0.08);
   }
 }
 
-.show {
-  opacity: 1;
-  @include transition(opacity 200ms linear);
-  @include delay(1s);
-}
-.hide {
-  opacity: 0;
-  @include transition(opacity 200ms linear);
-  @include delay(1s);
-}
-
 #load-screen {
   position: absolute;
   top: 0px;
@@ -42,24 +31,21 @@ $border-style: 1px solid rgba(0,0,0,0.08);
   background: url('bg.png') center center no-repeat;
 }
 
-.loading {
-  position: absolute;
-  top: 20px;
-  left: 0px;
-  width: 100%;
-  color: #fff;
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to { 
+    -webkit-transform: rotate(360deg);
+  }
 }
 
-i {
-  float: right;
-  color: #aaa;
-  font-style: normal;
-  font-size: 12px;
-  line-height: 20px;
-  padding: 15px 0px;
-  width: 46px;
-  border-left: $border-style;
-  text-align: center;
+.loading .refresh img {
+  -webkit-animation-name:             rotate; 
+  -webkit-animation-duration:         0.5s; 
+  -webkit-animation-iteration-count:  infinite;
+  -webkit-transition-timing-function: linear;
 }
 
 #my-lists {
@@ -104,14 +90,11 @@ i {
     @include h;
   }  
 
-  .back {
-    float: left;
+  .back, .refresh {
     cursor: pointer;
     text-align: center;
     width: 46px;
-    border-right: $border-style;
     &:hover {
-      background: rgba(0,0,0,0.05);
       img { opacity: .7; }
     }
     &:active {
@@ -119,17 +102,17 @@ i {
     }
     img {
       opacity: .4;
-      max-height: 51px;
-      max-width: 25px;
+      max-height: 50px;
+      max-width: 24px;
     }
   }
 
-  i, .back {
+  i, .back, .refresh {
     float: none;
     position: absolute;
     top: 0px;
   }
-  i {
+  i, .refresh {
     right: 0px;
   }
   .back {
@@ -151,12 +134,8 @@ i {
 }
 
 .list {
-  //@include box-shadow(0 1px 2px rgba(0, 0, 0, .2));
   text-align: left;
   position: relative;
-  @media only screen and (max-device-width: 480px) {
-    //@include box-shadow(none);
-  }
 
   .items {
     position: relative;
@@ -164,8 +143,8 @@ i {
     li {
       img.check {
         opacity: 0;
-        max-height: 51px;
-        max-width: 25px;
+        max-height: 50px;
+        max-width: 24px;
         position: absolute;
         left: -40px;
         top: 0px;

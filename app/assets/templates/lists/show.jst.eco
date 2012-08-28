@@ -1,10 +1,8 @@
-<div class="loading">Pull to refresh</div>
-
 <div id="stats">
-  <i><%= @remaining %></i>
   <a class="back" href="<%= @url %>"><img src="/assets/back.png"/></a>
   <h2 title="<%= @name %>"><%= @name %></h2>
   <input class="edit" type="text" value="<%= @name %>" />
+  <a class="refresh"><img src="/assets/refresh.png"/></a>
 </div>
 
 <div class="list">
