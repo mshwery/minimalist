@@ -43,9 +43,9 @@ $border-style: 1px solid rgba(0,0,0,0.08);
 
 .loading .refresh img {
   -webkit-animation-name:             rotate; 
-  -webkit-animation-duration:         0.5s; 
+  -webkit-animation-duration:         0.3s; 
   -webkit-animation-iteration-count:  infinite;
-  -webkit-transition-timing-function: linear;
+  -webkit-animation-timing-function:  linear;
 }
 
 #my-lists {
