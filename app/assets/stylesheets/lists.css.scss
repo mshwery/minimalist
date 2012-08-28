@@ -3,34 +3,25 @@ $yellow: #fffeca; //#fefaee;
 $dark: #545862; //#3d434d;
 $border-style: 1px solid rgba(0,0,0,0.08);
 
-
-.lists-new {
-  #listapp {
-    background: #fff;
+// this is for the desktop styles
+.lists, .stacks-show {
+  #listapp.desktop {
+    margin-top: 50px;
+    border: 3px solid #ccc;
+    @include border-radius(3px);
+    @include box-shadow(0px 2px 5px rgba(0,0,0,0.2));
   }
-  
 }
+
 .lists, .stacks-show {
   #listapp {
     width: 480px;
     max-width: 100%;
-    padding-top: 50px;  
-    margin-top: -50px;
     @media only screen and (max-device-width: 480px) {
-      min-height: 100%;
+      min-height: 100%;      
     }    
   }
 }
-
-#load-screen {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  background: url('bg.png') center center no-repeat;
-}
-
 
 @-webkit-keyframes rotate {
   from {
@@ -43,25 +34,9 @@ $border-style: 1px solid rgba(0,0,0,0.08);
 
 .loading .refresh img {
   -webkit-animation-name:             rotate; 
-  -webkit-animation-duration:         0.3s; 
+  -webkit-animation-duration:         0.35s; 
   -webkit-animation-iteration-count:  infinite;
   -webkit-animation-timing-function:  linear;
-}
-
-#my-lists {
-  li {
-    padding: 0px;
-    a {
-      display: block;
-      padding-left: 15px;
-      line-height: 50px;
-      font-weight: 400;
-      i {
-        line-height: inherit;
-        padding: 0px;
-      }
-    }
-  }
 }
 
 @mixin h {
@@ -133,121 +108,3 @@ $border-style: 1px solid rgba(0,0,0,0.08);
   }
 }
 
-.list {
-  text-align: left;
-  position: relative;
-
-  .items {
-    position: relative;
-    overflow: visible;
-    li {
-      img.check {
-        opacity: 0;
-        max-height: 50px;
-        max-width: 24px;
-        position: absolute;
-        left: -40px;
-        top: 0px;
-        @include transition(opacity 100ms linear);
-      }
-      position: relative;
-      background-color: #fff;
-      padding: 0px 5%;
-      font-size: 16px;
-      border-bottom: $border-style;
-      font-weight: 300;
-      @include transition(background-color 200ms linear);
-      // reduces flicker on ios...
-      -webkit-transform: translate3d(0,0,0);
-      -webkit-backface-visibility: hidden;
-      -moz-backface-visibility:    hidden;
-      -ms-backface-visibility:     hidden;
-      -webkit-perspective: 1000;
-      // end
-      &.completed {
-        background-color: $primary;
-        border-color: transparent;
-
-        img { opacity: 1; }
-        .label, label {
-          color: #fff;
-          text-decoration: line-through;
-        }
-      }
-      .toggle {
-        float: left;
-        margin: 18px 0px;
-        height: 14px;
-        width: 14px;
-        @media only screen and (max-device-width: 480px) {
-          display: none;
-        }
-      }
-      .view {
-        margin: 0px 20px 0px 24px;
-        @media only screen and (max-device-width: 480px) {
-          margin-left: 0px;
-        }
-      }
-      .label, label, input[type=text], textarea {
-        width: 100%;
-        padding: 15px 0px; 
-        line-height: 20px;
-        font-size: 16px; 
-        font-weight: 300;
-        word-wrap: break-word;
-      }
-      .label, label {
-        cursor: pointer;
-        color: $dark;//$blue;
-      }
-      .destroy {
-        display: none;
-        position: absolute;
-        height: 50px;
-        line-height: 46px;
-        cursor: pointer;
-        width: 30px;
-        overflow: hidden;
-        top: 0px;
-        right: 0px;
-        img {
-          max-width: 15px;
-          max-height: 17px;
-        }
-        opacity: .5;
-        &:hover { opacity: 1; }
-      }
-      .edit { display: none; }
-      &.editing {
-        background-color: $yellow;
-        .edit { display: inline-block; }
-        .label, label { display: none; }
-        .destroy { display: block; }
-      }
-    }
-    &#add-item {
-      li {
-        padding: 0px;
-        input[type=text] {
-          width: 90%;
-          padding: 14px 5%;
-          border: 1px solid transparent;
-          font-style: italic;
-        }
-        #submit-new-item {
-          position: absolute;
-          right: 0px;
-          top: 0px;
-          z-index: 100;
-          background-image: url(enter.png);
-          background-repeat: no-repeat;
-          background-position: center;
-          width: 40px;
-          height: 50px;
-          cursor: pointer;
-        }
-      }
-    }
-  }
-}

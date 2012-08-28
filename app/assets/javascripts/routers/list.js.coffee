@@ -1,5 +1,5 @@
 window.demo = {
-  "name": "Groceries",
+  "name": "Demo",
   "id": 1,
   "slug": "demo",
   "demo": true
@@ -38,6 +38,9 @@ class listApp.Routers.List extends Backbone.Router
   toggleLoadScreen: ->
     $("#listapp").toggleClass('show hide')
     $("#listapp").siblings('#load-screen').toggleClass('show hide')
+
+    unless listApp.isMobile()
+      $("#listapp").addClass("desktop")
 
   setupDemo: ($view) ->
     $view.on('click', @addActiveClassToDemo)

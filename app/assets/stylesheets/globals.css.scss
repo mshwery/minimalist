@@ -163,3 +163,13 @@ textarea {
   @include inline-block;
   vertical-align: middle;
 }
+
+#load-screen {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: url('bg.png') center center no-repeat;
+}
+

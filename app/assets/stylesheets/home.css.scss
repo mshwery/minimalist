@@ -28,10 +28,11 @@
       } 
     }
   }
+
   .try-me {
-    opacity: .5;
+    opacity: .2;
+    margin-top: 20px;
     margin-left: -20px;
-    @include transition(opacity 1ms linear);
     @media only screen and (max-device-width: 480px) {
       display: none;
     }     
