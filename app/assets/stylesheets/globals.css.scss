@@ -68,7 +68,8 @@ $orange: #f55910;
 
 body {
   font-family: 'Open Sans', 'Lucida Grande', tahoma, verdana, arial, sans-serif;
-  background: $primary;//#2d89c9;//#e6eaf0;
+  //background: $primary;
+  background: #e6edf2;
   text-align: center;
   font-weight: 300;
 }
@@ -96,19 +97,21 @@ html, body {
   @include delay(1s);
 }
 
+.desktop-only {
+  @media only screen and (max-device-width: 480px) {
+    display: none;
+  }
+}
+
 i {
-  float: right;
   color: #aaa;
   font-style: normal;
   font-size: 12px;
   line-height: 20px;
   padding: 15px 0px;
-  width: 46px;
-  //border-left: $border-style;
-  text-align: center;
 }
 
-#listapp {
+#list {
   overflow: hidden;
   position: relative;
   margin: 0px auto;

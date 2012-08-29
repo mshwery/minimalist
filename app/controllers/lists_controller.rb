@@ -22,6 +22,10 @@ class ListsController < ApplicationController
     end
   end
 
+  def index
+    respond_with @stack.lists
+  end
+
   def show
     @list = @stack.lists.find_by_slug(params[:id]) #find(params[:id])#
     respond_with @list
