@@ -56,10 +56,10 @@
         border: 1px solid #eee;
         cursor: pointer;
         float: left;
-        max-height: 20px;
-        max-width: 20px;
+        max-height: 16px;
+        max-width: 16px;
         @include border-radius(3px);
-        margin: 14px 0px;
+        margin: 16px 0px;
         margin-left: -10px;
         &:hover {
           border-color: #ccc;
