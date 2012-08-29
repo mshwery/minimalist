@@ -1,8 +1,10 @@
 .pages-home {
   background: $primary;
-  #app.desktop {
-    margin-left: 0px;
-    padding: 0px;
+  #app {
+    @media only screen and (min-device-width: 480px) {
+      margin-left: 0px;
+      padding: 0px;
+    }
   }
   h1, h2 {
     margin: 0px;

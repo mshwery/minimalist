@@ -37,26 +37,33 @@
   }
 }
 
-#app.desktop {
-  #sidebar {
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    bottom: 0px;
-    width: 240px;
-    background: #fff;
-    footer {
-      position: absolute;
-      bottom: 0px;
+#app {
+  @media only screen and (min-device-width: 480px) {
+    #sidebar {
+      position: fixed;
       left: 0px;
-      right: 0px;
-      text-align: center;
-      background: none;
-      padding: 10px 0;
-      display: block;
-      border-top: 1px solid rgba(0,0,0,0.05);
-    }
+      top: 0px;
+      bottom: 0px;
+      width: 240px;
+      background: #fff;
+      footer {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        text-align: center;
+        background: none;
+        padding: 10px 0;
+        display: block;
+        border-top: 1px solid rgba(0,0,0,0.05);
+      }
+    } 
   }
+  @media only screen and (max-device-width: 480px) {
+    #sidebar {
+      display: none;
+    }
+  } 
 
   #my-lists {
     padding: 20px 10px;
