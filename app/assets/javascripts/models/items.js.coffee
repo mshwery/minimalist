@@ -21,7 +21,7 @@ class listApp.Models.Item extends Backbone.Model
 
 class listApp.Collections.Items extends Backbone.Collection
   model: listApp.Models.Item
-  url: -> listApp.apiUrl "#{@list_id}/tasks"
+  url: -> listApp.apiPrefix "lists/#{@list_id}/tasks"
 
   comparator: (item) ->
     date = new Date(item.get('created_at'))

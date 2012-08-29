@@ -1,11 +1,13 @@
-<div id="stats">
-  <a class="back" href="<%= @url %>"><img src="/assets/back.png"/></a>
-  <h2 title="<%= @name %>"><%= @name %></h2>
-  <input class="edit" type="text" value="<%= @name %>" />
-  <a class="refresh"><img src="/assets/refresh.png"/></a>
-</div>
+<div id="list">
+  <div id="stats">
+    <a class="back" href="<%= @url %>"><img src="/assets/back.png"/></a>
+    <h2 title="<%= @name %>"><%= @name %></h2>
+    <input class="edit" type="text" value="<%= @name %>" />
+    <a class="refresh"><img src="/assets/refresh.png"/></a>
+  </div>
 
-<div class="list">
-  <ul id="add-item" class="items"></ul>
-  <ul id="item-list" class="items"></ul>
+  <div class="list">
+    <ul id="add-item" class="items"></ul>
+    <ul id="item-list" class="items"></ul>
+  </div>
 </div>

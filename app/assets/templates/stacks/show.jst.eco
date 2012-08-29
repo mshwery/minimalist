@@ -1,0 +1,15 @@
+<div id="sidebar" class="stack list">
+  <h1>
+    <a href="/"><img src='/assets/logo.png'/>minimaList</a>
+  </h1>
+  <div id="my-lists">
+    <h2>
+      My lists
+      <a href="<%= @urlRoot %>/new" class="add-list" title='Make a new list'>+</a>
+    </h2>
+    <ul class="items"></ul>
+  </div>
+  <footer>
+    © 2012. Made by <a href='http://twitter.com/mshwery'>@mshwery</a>
+  </footer>
+</div>

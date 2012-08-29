@@ -1,3 +1,8 @@
+#list {
+  .items {
+    background-color: $primary;
+  }
+}
 
 .list {
   text-align: left;
@@ -33,6 +38,13 @@
       &.completed {
         background-color: $primary;
         border-color: transparent;
+        .toggle {
+          border-color: transparent;
+          &:hover {
+            border-color: transparent;
+            @include gradient(0);
+          }
+        }
 
         img { opacity: 1; }
         .label, label {
@@ -41,10 +53,18 @@
         }
       }
       .toggle {
+        border: 1px solid #eee;
+        cursor: pointer;
         float: left;
-        margin: 18px 0px;
-        height: 14px;
-        width: 14px;
+        max-height: 20px;
+        max-width: 20px;
+        @include border-radius(3px);
+        margin: 14px 0px;
+        margin-left: -10px;
+        &:hover {
+          border-color: #ccc;
+          @include gradient(0.03);        
+        }
         @media only screen and (max-device-width: 480px) {
           display: none;
         }

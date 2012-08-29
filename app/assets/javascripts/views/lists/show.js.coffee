@@ -1,5 +1,5 @@
 class listApp.Views.ListsShow extends Backbone.View
-  el: '#listapp'
+  el: '#app'
   template: JST['lists/show']
 
   events: 
@@ -8,6 +8,7 @@ class listApp.Views.ListsShow extends Backbone.View
     "keypress .edit"      : "updateOnEnter"
     "blur .edit"          : "close"
     "click .refresh"      : "refresh"
+    "click .back"         : "nav"
 
   initialize: ->
     @model.items.on("change", @updateCount)
@@ -19,16 +20,24 @@ class listApp.Views.ListsShow extends Backbone.View
         @render()
 
   render: =>
-    $(@el).html(@template(
+    $(@el).append(@template(
       url: @model.urlRoot
       name: @model.get('name')
       remaining: @model.items.remaining().length
     ))
     @input = @$("#stats .edit")
 
+    $('.current').removeClass('current')
+    $('#'+@model.get('slug')).addClass('current')
+
     @initItems()
     @updateCount()
     @renderNewItemForm()
+
+  nav: (e) ->
+    e.preventDefault()
+    path = listApp.apiPrefix 'lists'
+    listApp.router.navigate(path, {trigger: true}) if path
 
   updateCount: =>
     @$('#stats i').text(@model.items.remaining().length)

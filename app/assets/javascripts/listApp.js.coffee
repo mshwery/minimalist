@@ -1,6 +1,6 @@
 $.extend listApp, 
   log: (msg) -> if console? then console.log(msg) else msg
-  apiUrl: (path) -> "#{getParentPath(window.location.pathname)}/#{path}"
+  apiPrefix: (path) -> "#{getStackPath(window.location.pathname)}/#{path}"
   Models: {}
   Views: {}
   Collections: {}
@@ -11,8 +11,8 @@ $.extend listApp,
   isMobile: -> 
     return Modernizr.touch
 
-getParentPath = (path) ->
-  return path.split("/").slice(0, -1).join("/")
+getStackPath = (path) ->
+  return path.split("/").slice(0, 3).join("/")
 
 $(document).ready ->
   listApp.init()
