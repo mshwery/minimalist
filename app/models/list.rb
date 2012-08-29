@@ -30,22 +30,20 @@ class List < ActiveRecord::Base
   end
 
   def generate_slug
-    #if self.slug.blank?
-      slug = self.name.mb_chars.downcase.normalize(:kd).to_s.gsub(/-/, " ").squeeze(" ")
-      slug = slug.gsub(/\s/, "-").gsub(/[^a-z\-0-9]/, "")
+    slug = self.name.mb_chars.downcase.normalize(:kd).to_s.gsub(/-/, " ").squeeze(" ")
+    slug = slug.gsub(/\s/, "-").gsub(/[^a-z\-0-9]/, "")
 
-      current = 1
-      self.slug = slug
-      while true
-        conflicts = List.where("slug = ?", self.slug).count
-        if conflicts != 0
-          self.slug = "#{slug}-#{current}"
-          current += 1
-        else
-          break
-        end
+    current = 1
+    self.slug = slug
+    while true
+      conflicts = List.where("slug = ?", self.slug).count
+      if conflicts != 0 || self.slug == 'new'
+        self.slug = "#{slug}-#{current}"
+        current += 1
+      else
+        break
       end
-    #end
+    end
   end
 
 end

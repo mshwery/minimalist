@@ -2,7 +2,8 @@ Lists::Application.routes.draw do
   
   #resources :stacks do
   resources :s, :controller => :stacks, :as => :stacks do#, :except => [:index] do
-    resources :lists, :path => '', :except => [:index] do
+    #resources :lists, :path => '', :except => [:index] do
+    resources :lists do
       resources :tasks
     end
     #resources :lists

@@ -1,5 +1,5 @@
 <img class="check" src="/assets/check-retina.png"/>
-<input class="toggle" type="checkbox" <%- if @completed: %>checked="checked"<% end %> />
+<img class="toggle" src="/assets/check.png"/>
 <div class="view">
   <label><%= @description %></label>
   <textarea class="edit" maxlength="255"><%= @description %></textarea>

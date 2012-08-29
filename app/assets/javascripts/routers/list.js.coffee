@@ -8,45 +8,64 @@ window.demo = {
 class listApp.Routers.List extends Backbone.Router
   routes:
     ''                : 'root'
-    's/:token'        : 'index'
-    's/:token/'       : 'index'
-    's/:token/:slug'  : 'show'
+    's/:token'        : 'stack'
+    's/:token/'       : 'stack'
+    's/:token/lists'  : 'lists'
+    's/:token/lists/new'    : 'new'
+    's/:token/lists/:slug'  : 'list'
+
+  initialize: ->
+    @toggleLoadScreen()
+    unless $('body').hasClass('pages-home')
+      @setupSidebar()
 
   root: ->
-    listApp.log 'root'
     listApp.demo = new listApp.Models.DemoList(window.demo) 
-    listApp.view = new listApp.Views.ListsShow({ model: listApp.demo, el: '#container' })
+    listApp.view = new listApp.Views.ListsShow({ model: listApp.demo, el: '#demo' })
 
     @setupDemo(listApp.view.$el)
-    @toggleLoadScreen()
 
-  index: (token) ->
-    listApp.log token
-    @toggleLoadScreen()
+  stack: (token) ->
+    @navigate('s/'+token+'/lists')
+
+  lists: (token) ->
+    $("#list").remove()
+    $("#sidebar").removeClass('desktop-only')
 
   new: ->
     listApp.log 'new'
-    @toggleLoadScreen()
 
-  show: (token, listSlug) ->
-    listApp.log token + "/" + listSlug
-    listApp.list = new listApp.Models.List(slug: listSlug)
-    listApp.view = new listApp.Views.ListsShow(model: listApp.list)
+  list: (token, listSlug) ->
+    if listApp.listView
+      listApp.listView.unbind() 
+      $("#list").remove()
+
+    if listApp.stack.get(listSlug)
+     listApp.listView = new listApp.Views.ListsShow(model: listApp.stack.get(listSlug))
+    else
+      listApp.stack.on "reset", (collection, response) =>
+        list = collection.get(listSlug)
+        listApp.listView = new listApp.Views.ListsShow(model: list)
+
+    if listApp.isMobile()
+      $('#sidebar').addClass('desktop-only')
     
-    @toggleLoadScreen()
-
   toggleLoadScreen: ->
-    $("#listapp").toggleClass('show hide')
-    $("#listapp").siblings('#load-screen').toggleClass('show hide')
+    $("#app").toggleClass('show hide')
+    $("#app").siblings('#load-screen').toggleClass('show hide')
 
     unless listApp.isMobile()
-      $("#listapp").addClass("desktop")
+      $("#app").addClass("desktop")
+
+  setupSidebar: ->
+    listApp.stack ||= new listApp.Collections.Lists()
+    listApp.stackView = new listApp.Views.StacksShow(collection: listApp.stack)
 
   setupDemo: ($view) ->
     $view.on('click', @addActiveClassToDemo)
 
   addActiveClassToDemo: (e) =>
-    h = $(e.target).closest('#app').outerHeight()
+    h = $(e.target).closest('#demo').outerHeight()
     $(e.target).closest('#demo').addClass('active')
     @timer = setTimeout((=> @setMaxHeight()), 1000)
 

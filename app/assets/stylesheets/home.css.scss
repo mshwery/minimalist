@@ -1,4 +1,9 @@
 .pages-home {
+  background: $primary;
+  #app.desktop {
+    margin-left: 0px;
+    padding: 0px;
+  }
   h1, h2 {
     margin: 0px;
     text-transform: none;
@@ -72,16 +77,10 @@
     @media only screen and (max-device-width: 480px) {
       display: none;
     } 
-    #app {
-      border: 3px solid #ccc;
-      @include border-radius(3px);
+    #list {
       margin: 0 -3px -3px;
       @include transition(margin 300ms ease-in-out);
       position: relative;
-
-      #container {
-        position: relative;
-      }
     }
     &:hover {
       padding-top: 0px;
@@ -91,7 +90,7 @@
       cursor: auto;
       max-height: 1000px;
       padding: 0 48px;
-      #app {
+      #list {
         margin: 0 -3px 50px;
       }
       &.complete {
