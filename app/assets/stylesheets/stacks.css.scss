@@ -45,6 +45,17 @@
     bottom: 0px;
     width: 240px;
     background: #fff;
+    footer {
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+      text-align: center;
+      background: none;
+      padding: 10px 0;
+      display: block;
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
   }
 
   #my-lists {
@@ -57,17 +68,6 @@
       text-align: left;
       border-bottom: none;
     }
-  }
-  footer {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    text-align: center;
-    background: none;
-    padding: 10px 0;
-    display: block;
-    border-top: 1px solid rgba(0,0,0,0.05);
   }
 }
 
