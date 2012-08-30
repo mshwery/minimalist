@@ -1,5 +1,4 @@
 class listApp.Models.List extends Backbone.Model
-  urlRoot: listApp.apiPrefix 'lists'
   idAttribute: 'slug'
 
   initialize: ->
@@ -12,6 +11,10 @@ class listApp.Models.List extends Backbone.Model
 
   updateParams: =>
     @items.list_id = @id
+
+  clear: ->
+    @view.remove()
+    @destroy()
 
 
 

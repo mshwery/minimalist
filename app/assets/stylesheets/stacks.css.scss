@@ -108,14 +108,30 @@
 
 #my-lists {
   li {
-    padding: 0px 8px;
+    padding: 0 8px;
     font-size: 14px;
     border-bottom: none;
     @include border-radius(3px);
     &:hover {
       background: #e6edf2;
+      .delete {
+        display: block;
+      }
     }
-    a {
+    .delete {
+      display: none;
+      float: right;
+      color: #aaa;
+      font-weight: bold;
+      font-size: 19px;
+      cursor: pointer;
+      line-height: 18px;
+      &:hover {
+        color: red;
+        text-decoration: none;
+      }
+    }
+    .route {
       display: block;
       line-height: 22px;
       font-weight: 400;
@@ -135,7 +151,7 @@
     @media only screen and (max-device-width: 480px) {
       padding: 0 20px;
       border-bottom: 1px solid rgba(0,0,0,0.05);
-      a {
+      .route {
         line-height: 50px;
         i {
           float: right;

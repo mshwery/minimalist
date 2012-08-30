@@ -51,8 +51,7 @@ class ListsController < ApplicationController
   def destroy
     @list = @stack.lists.find_by_slug(params[:id])
     if @list.destroy
-      flash[:notice] = "List deleted"
-      redirect_to stack_url(@stack)
+      respond_with @list
     else
       flash[:error] = "Could not delete list. Have you done everything?"
       redirect_to stack_url(@stack)

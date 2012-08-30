@@ -5,7 +5,6 @@ class List < ActiveRecord::Base
   belongs_to :stack
   
   accepts_nested_attributes_for :tasks, :allow_destroy => true
-  accepts_nested_attributes_for :stack
   attr_accessible :name, :slug
 
   validates_format_of :slug, :with => /\A[a-z\-0-9]*\Z/
