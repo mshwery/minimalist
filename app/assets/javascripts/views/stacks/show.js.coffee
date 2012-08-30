@@ -2,6 +2,9 @@ class listApp.Views.StacksShow extends Backbone.View
   el: '#app'
   template: JST['stacks/show']
 
+  events:
+    "click .remove-lists" : "removeLists"
+
   initialize: ->
     listApp.log 'init stackView'
     @collection.on("add", @addOne)
@@ -24,6 +27,9 @@ class listApp.Views.StacksShow extends Backbone.View
     @collection.each((item) =>
       @addOne(item)
     )
+
+  removeLists: ->
+    $(@el).find("#my-lists").toggleClass('editing')
 
 
 

@@ -58,22 +58,16 @@
         border-top: 1px solid rgba(0,0,0,0.05);
       }
     } 
-  }
-  @media only screen and (max-device-width: 480px) {
-    #sidebar {
-      display: none;
-    }
-  } 
-
-  #my-lists {
-    padding: 20px 10px;
-    h2 {
-      color: #aaa;
-      font-size: 12px;
-      line-height: 24px;
-      padding: 0 0 0 8px;
-      text-align: left;
-      border-bottom: none;
+    #my-lists {
+      padding: 20px 10px;
+      h2 {
+        color: #aaa;
+        font-size: 12px;
+        line-height: 24px;
+        padding: 0 0 0 8px;
+        text-align: left;
+        border-bottom: none;
+      }
     }
   }
 }
@@ -107,6 +101,20 @@
 }
 
 #my-lists {
+  .remove-lists {
+    display: none;
+    @media only screen and (max-device-width: 480px) {
+      display: block;
+      position: absolute;
+      left: 20px;
+    } 
+  } 
+  &.editing {
+    .delete {
+      display: block;
+      float: left;
+    }
+  } 
   li {
     padding: 0 8px;
     font-size: 14px;
@@ -118,6 +126,7 @@
         display: block;
       }
     }
+
     .delete {
       display: none;
       float: right;
