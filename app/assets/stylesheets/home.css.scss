@@ -144,6 +144,7 @@
 footer {
   text-align: left;
   font-size: 14px;
+  line-height: 25px;
   color: #525b62;
   background: #eaf4fb;
   padding: 20px 0;
@@ -152,7 +153,14 @@ footer {
     padding: 0 30px;
     @media only screen and (max-device-width: 480px) {
       width: auto;
+      text-align: center;
     }     
+  }
+  .right {
+    @media only screen and (max-device-width: 480px) {
+      float: none;
+      display: block;
+    }
   }
   a, a:hover {
     color: #525b62;

@@ -11,4 +11,8 @@ module ApplicationHelper
   def stack_total
     Stack.all.count
   end
+
+  def task_total
+    Task.all.count
+  end
 end
