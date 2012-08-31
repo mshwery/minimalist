@@ -84,6 +84,10 @@ html, body {
 
 .white {
   background-color: #fff;
+  min-width: 960px;
+  @media only screen and (max-device-width: 480px) {
+    min-width: 0px;
+  }  
 }
 
 .show {
@@ -169,6 +173,7 @@ textarea {
 
 #load-screen {
   position: absolute;
+  z-index: 0;
   top: 0px;
   left: 0px;
   right: 0px;

@@ -9,7 +9,7 @@ class listApp.Views.ItemsIndex extends Backbone.View
 
   addOne: (item) =>
     view = new listApp.Views.ItemsShow( model: item )
-    $(@el).prepend( $(view.render().el).hide().fadeIn(150) )
+    $(@el).prepend( view.render().el )
 
   addAll: =>
     _.each(@collection.remaining(), (item) =>

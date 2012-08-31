@@ -4,28 +4,42 @@ $dark: #545862; //#3d434d;
 $border-style: 1px solid rgba(0,0,0,0.08);
 
 // this is for the desktop styles
-#app {
-  @media only screen and (min-device-width: 480px) {
-    position: relative;
-    margin-left: 240px;
-    padding: 50px 0px;
-    #list {
-      min-width: 400px;
-      border: 3px solid #ccc;
-      @include border-radius(3px);
-      @include box-shadow(0px 2px 5px rgba(0,0,0,0.1));
-    }
-  } 
-}
-
 .lists, .stacks-show {
+  #app {
+    @media only screen and (max-width: 768px) {
+      padding: 0px;
+      #list {
+        width: auto;
+        margin-left: 241px;
+      }
+      @media only screen and (max-width: 768px) {
+        #list {
+          margin-left: 0px;
+        }
+      }
+    }
+  }
   #list {
-    width: 480px;
+    width: 500px;
     max-width: 100%;
     @media only screen and (max-device-width: 480px) {
       min-height: 100%;      
     }    
   }
+}
+
+#app {
+  @media only screen and (min-width: 768px) {
+    position: relative;
+    margin-left: 240px;
+    padding: 30px 0px;
+    #list {
+      min-width: 500px;
+      border: 3px solid #ccc;
+      @include border-radius(3px);
+      @include box-shadow(0px 2px 5px rgba(0,0,0,0.1));
+    }
+  } 
 }
 
 @-webkit-keyframes rotate {

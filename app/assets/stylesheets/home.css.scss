@@ -1,6 +1,8 @@
 .pages-home {
   background: $primary;
   #app {
+    position: relative;
+    z-index: 1;
     @media only screen and (min-device-width: 480px) {
       margin-left: 0px;
       padding: 0px;
@@ -83,6 +85,10 @@
       margin: 0 -3px -3px;
       @include transition(margin 300ms ease-in-out);
       position: relative;
+      min-width: 0px;
+      border: 3px solid #ccc;
+      @include border-radius(3px);
+      @include box-shadow(0px 2px 5px rgba(0,0,0,0.1));
     }
     &:hover {
       padding-top: 0px;
@@ -148,6 +154,10 @@ footer {
   color: #525b62;
   background: #eaf4fb;
   padding: 20px 0;
+  min-width: 960px;
+  @media only screen and (max-device-width: 480px) {
+    min-width: 0px;
+  }
   .wrap {
     width: 900px;
     padding: 0 30px;
