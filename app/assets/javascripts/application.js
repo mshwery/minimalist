@@ -1,4 +1,5 @@
 //= require jquery
+//= require lib/jquery-ui.min
 //= require jquery_ujs
 //= require lib/json2
 //= require lib/modernizr
@@ -11,6 +12,7 @@
 //= require lib/jquery.event.swipe
 //= require lib/autogrow
 //= require lib/doubletap
+//= require lib/jquery.ui.touch-punch.min
 //= require lib/jquery.linkify-min
 //
 //= require listApp

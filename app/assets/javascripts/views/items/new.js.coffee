@@ -16,8 +16,9 @@ class listApp.Views.ItemsNew extends Backbone.View
 
   newAttributes: ->
     return {
-      description: @input.val()
-      done:    false
+      description:  @input.val()
+      sort_order:   @collection.nextOrder()
+      completed:    false
     }
 
   createItem: ->

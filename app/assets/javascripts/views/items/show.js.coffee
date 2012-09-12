@@ -6,9 +6,9 @@ class listApp.Views.ItemsShow extends Backbone.View
 
   events:
     "movestart"       : "checkDirection"
-    "move"            : "moveItem"
-    "moveend"         : "stopMoveItem"
-    #"swiperight"      : "markCompleted"
+    #"move"            : "moveItem"
+    #"moveend"         : "stopMoveItem"
+    "swiperight"      : "markCompleted"
     "swipeleft"       : "markIncompleted"
     "click .toggle"   : "togglecompleted"
     "dblclick .view"  : "edit"

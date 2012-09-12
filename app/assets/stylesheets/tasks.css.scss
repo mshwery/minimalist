@@ -23,7 +23,7 @@
       }
       position: relative;
       background-color: #fff;
-      padding: 0px 5%;
+      padding: 0px 25px;
       font-size: 16px;
       border-bottom: $border-style;
       font-weight: 300;
@@ -59,7 +59,7 @@
         }
       }
       .toggle {
-        border: 1px solid #eee;
+        border: 1px solid #e5e5e5;
         cursor: pointer;
         float: left;
         max-height: 16px;
@@ -68,17 +68,17 @@
         margin: 16px 0px;
         margin-left: -10px;
         &:hover {
-          border-color: #ccc;
+          border-color: #bbb;
           @include gradient(0.03);        
         }
         @media only screen and (max-device-width: 480px) {
-          display: none;
+          //display: none;
         }
       }
       .view {
         margin: 0px 20px 0px 24px;
         @media only screen and (max-device-width: 480px) {
-          margin-left: 0px;
+          //margin-left: 0px;
         }
       }
       .label, label, input[type=text], textarea {

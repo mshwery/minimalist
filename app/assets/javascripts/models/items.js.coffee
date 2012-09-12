@@ -10,6 +10,10 @@ class listApp.Models.Item extends Backbone.Model
   toggle: ->
     @save({ completed: !@get("completed") })
 
+  reorder: (index) ->
+    console.log @get('sort_order') + " -> " + index 
+    @save({ sort_order: index })
+
   clear: ->
     @view.$el.fadeOut(150, =>
       @view.remove()
@@ -23,8 +27,7 @@ class listApp.Collections.Items extends Backbone.Collection
   url: -> listApp.apiPrefix "lists/#{@list_id}/tasks"
 
   comparator: (item) ->
-    date = new Date(item.get('created_at'))
-    return parseInt(date.getTime() / 1000)
+    return -item.get("sort_order")
 
   completed: ->
     return @filter (task) ->
@@ -32,6 +35,9 @@ class listApp.Collections.Items extends Backbone.Collection
 
   remaining: ->
     return @without.apply( this, @completed() )
+
+  nextOrder: ->
+    @length + 1
 
 
 

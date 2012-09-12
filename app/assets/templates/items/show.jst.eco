@@ -1,4 +1,3 @@
-<img class="check" src="/assets/check-retina.png"/>
 <img class="toggle" src="/assets/check.png"/>
 <div class="view">
   <label><%= @description %></label>

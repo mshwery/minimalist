@@ -24,6 +24,10 @@ class ListsController < ApplicationController
 
   def index
     respond_with @stack.lists
+    # respond_to do |format|
+    #   format.html { respond_with @stack.lists }
+    #   format.json { render :json => @stack.lists.to_json, :callback => params[:callback] }
+    # end
   end
 
   def show
