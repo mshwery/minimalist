@@ -46,8 +46,11 @@ class listApp.Collections.DemoItems extends Backbone.Collection
   localStorage: new Backbone.LocalStorage("DemoItems")
 
   comparator: (item) ->
-    date = new Date(item.get('created_at'))
-    return parseInt(date.getTime() / 1000)
+    return -item.get("sort_order")
+    
+  # comparator: (item) ->
+  #   date = new Date(item.get('created_at'))
+  #   return parseInt(date.getTime() / 1000)
 
   completed: ->
     return @filter (task) ->

@@ -147,24 +147,24 @@
     font-size: 14px;
     border-bottom: none;
     @include border-radius(3px);      
-    &:hover {
-      background: #e6edf2;
-      .delete {
-        display: block;
-        @media only screen and (max-device-width: 480px) {
-          display: none;
+    @media only screen and (min-device-width: 768px) {    
+      &:hover {
+        background: #e6edf2;
+        .delete {
+          display: block;
         }
       }
     }
-
     .delete {
       display: none;
       float: right;
       cursor: pointer;
       line-height: 17px;
-      &:hover {
-        img {
-          opacity: .9;
+      @media only screen and (min-device-width: 768px) {
+        &:hover {
+          img {
+            opacity: .9;
+          }
         }
       }
       &:active {

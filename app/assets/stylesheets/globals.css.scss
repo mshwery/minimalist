@@ -154,7 +154,14 @@ i {
 .orange {
   background-color: $orange;
   color: #fff;
-  &:hover {
+  @media only screen and (min-device-width: 768px) {
+    &:hover {
+      background-color: saturate(darken($orange, 5%), 5%);
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+  &:active {
     background-color: saturate(darken($orange, 5%), 5%);
     color: #fff;
     text-decoration: none;
@@ -179,5 +186,18 @@ textarea {
   right: 0px;
   bottom: 0px;
   background: $primary url('bg.png') center center no-repeat;
+}
+
+.twitter {
+  margin: 0 5px;
+  img { 
+    max-width: 25px;
+    opacity: 0.5;
+    @media only screen and (min-device-width: 768px) {
+      &:hover {
+        opacity: .75;
+      }
+    }
+  }
 }
 

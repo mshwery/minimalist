@@ -88,8 +88,10 @@ $border-style: 1px solid rgba(0,0,0,0.08);
     cursor: pointer;
     text-align: center;
     width: 46px;
-    &:hover {
-      img { opacity: .7; }
+    @media only screen and (min-device-width: 768px) {
+      &:hover {
+        img { opacity: .7; }
+      }
     }
     &:active {
       img { opacity: 1; }
