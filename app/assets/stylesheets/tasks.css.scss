@@ -49,14 +49,7 @@
             @include gradient(0);
           }
         }
-
-        img.check {
-          opacity: 1;
-          @media only screen and (min-device-width: 480px) {
-            display: none;
-          }
-        }
-        .label, label {
+        label {
           color: #fff;
           text-decoration: line-through;
           a { color: #fff; }
@@ -71,21 +64,21 @@
         @include border-radius(3px);
         margin: 16px 0px;
         margin-left: -10px;
-        &:hover {
-          border-color: #bbb;
-          @include gradient(0.03);        
+        @media only screen and (min-device-width: 768px) {
+          &:hover {
+            border-color: #bbb;
+            @include gradient(0.03);        
+          }
         }
-        @media only screen and (max-device-width: 480px) {
-          //display: none;
+        &:active {
+          border-color: #bbb;
+          @include gradient(0.03);                  
         }
       }
       .view {
         margin: 0px 20px 0px 24px;
-        @media only screen and (max-device-width: 480px) {
-          //margin-left: 0px;
-        }
       }
-      .label, label, input[type=text], textarea {
+      label, input[type=text], textarea {
         width: 100%;
         padding: 15px 0px; 
         line-height: 20px;
@@ -93,7 +86,7 @@
         font-weight: 300;
         word-wrap: break-word;
       }
-      .label, label {
+      label {
         cursor: pointer;
         color: $dark;//$blue;
       }
@@ -112,7 +105,10 @@
           max-height: 17px;
         }
         opacity: .5;
-        &:hover { opacity: 1; }
+        @media only screen and (min-device-width: 768px) {
+          &:hover { opacity: 1; }
+        }
+        &:active { opacity: 1; }
       }
       .edit { display: none; }
       &.editing {

@@ -198,6 +198,9 @@ textarea {
         opacity: .75;
       }
     }
+    &:active {
+      opacity: 1;
+    }
   }
 }
 

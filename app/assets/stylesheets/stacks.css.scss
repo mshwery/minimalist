@@ -155,6 +155,9 @@
         }
       }
     }
+    &:active {
+      background: #e6edf2;
+    }
     .delete {
       display: none;
       float: right;
