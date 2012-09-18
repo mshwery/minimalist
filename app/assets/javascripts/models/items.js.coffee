@@ -58,3 +58,6 @@ class listApp.Collections.DemoItems extends Backbone.Collection
 
   remaining: ->
     return @without.apply( this, @completed() )
+    
+  nextOrder: ->
+    @length + 1
