@@ -128,6 +128,9 @@
           font-style: italic;
         }
         #submit-new-item {
+          -webkit-appearance: none;
+          border: none;
+          background-color: transparent;
           position: absolute;
           right: 0px;
           top: 0px;

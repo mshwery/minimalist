@@ -21,10 +21,11 @@ class listApp.Views.ItemsNew extends Backbone.View
       completed:    false
     }
 
-  createItem: ->
+  createItem: (e) ->
+    e.preventDefault()
     @collection.create( @newAttributes() ) if $.trim( @input.val() ).length
     @input.val('')
 
   createOnEnter: (e) ->
     return if (e.keyCode != 13)
-    @createItem()
+    $("#submit-new-item").click() #@createItem()
