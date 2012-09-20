@@ -15,4 +15,8 @@ module ApplicationHelper
   def task_total
     Task.all.count
   end
+
+  def css_design_awards_nominee_tag
+    link_to image_tag("css-design-awards-nominee-right-black.png"), "http://www.cssdesignawards.com/css-web-design-award-nominees.php", :target => "_blank", :class => "desktop-only", :style => 'position: fixed; right: 0px; top: 50px;'
+  end
 end
