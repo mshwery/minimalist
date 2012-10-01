@@ -1,5 +1,4 @@
 class listApp.Views.ListsShow extends Backbone.View
-  el: '#app'
   template: JST['lists/show']
 
   events: 
@@ -20,7 +19,8 @@ class listApp.Views.ListsShow extends Backbone.View
         @render()
 
   render: =>
-    $(@el).append(@template(
+    listApp.log 'render view'
+    $("#app").append(@template(
       url: @model.urlRoot
       name: @model.get('name')
       remaining: @model.items.remaining().length
@@ -33,6 +33,7 @@ class listApp.Views.ListsShow extends Backbone.View
     @initItems()
     @updateCount()
     @renderNewItemForm()
+    return this
 
   nav: (e) ->
     e.preventDefault()
@@ -51,7 +52,9 @@ class listApp.Views.ListsShow extends Backbone.View
 
   close: =>
     value = @input.val()
+    listApp.log value + " : " + @model.get('slug')
     if value && value != @model.get('name')
+      listApp.log 'saved!'
       if @model.get('demo')
         @model.set({name: value})
       else
@@ -61,6 +64,7 @@ class listApp.Views.ListsShow extends Backbone.View
   setUrl: =>
     path = window.location.pathname.split("/").slice(0, -1).join("/")
     newPath = [path, @model.get('slug')].join("/")
+    listApp.log 'seturl -> ' + newPath
     listApp.router.navigate(newPath)
 
   updateOnEnter: (e) =>

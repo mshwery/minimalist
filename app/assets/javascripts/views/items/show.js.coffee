@@ -16,13 +16,16 @@ class listApp.Views.ItemsShow extends Backbone.View
     "click a.destroy" : "clear"
     "keypress .edit"  : "updateOnEnter"
     "keyup .edit"     : "limitChars"
-    "blur .edit"      : "close"
+    "change .edit"    : "close"
+    "submit form"     : "submit"
+    "blur .edit"      : "blur"
 
   initialize: ->
     @model.bind('change:description', this.render)
     @model.view = this
 
   render: =>
+    listApp.log 'render'
     $(@el).html( @template(@model.toJSON()) ).linkify()
     $(@el).toggleClass "completed", @model.get("completed")
     @input = @$(".edit")
@@ -70,23 +73,36 @@ class listApp.Views.ItemsShow extends Backbone.View
     @model.toggle() if !@model.get("completed")
 
   edit: =>
+    listApp.log 'edit'
     @$el.addClass("editing")
     @input.focus().val(@input.val())
 
-  close: =>
+  blur: (e) =>
+    listApp.log 'blur'
+    @$el.removeClass("editing")
+
+  close: (e) =>
+    listApp.log 'close'
+    e.preventDefault()
     value = @input.val()
     if value
       @model.save({ description: value })
-      @$el.removeClass("editing")
     else 
       @clear()
+
+  submit: (e) =>
+    e.preventDefault()
+    listApp.log 'submit'
 
   limitChars: (e) =>
     unless @input.val().length < $(e.target).attr('maxlength')
       e.preventDefault()
 
   updateOnEnter: (e) =>
-    @close()  if e.keyCode is 13
+    if e.keyCode is 13
+      e.preventDefault()
+      e.stopPropagation()
+      $(e.target).blur().next().focus()
 
   clear: () ->
     @model.clear()

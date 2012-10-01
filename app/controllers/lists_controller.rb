@@ -47,6 +47,7 @@ class ListsController < ApplicationController
         format.json { render :json => @list, :status => :created, :location => stack_list_path(@stack, @list) }
       end
     else
+      raise @list.inspect
       flash[:error] = "Could not update list"
       redirect_to edit_stack_list_path(@stack, @list)
     end

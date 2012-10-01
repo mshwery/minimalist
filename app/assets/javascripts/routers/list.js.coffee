@@ -37,8 +37,9 @@ class listApp.Routers.List extends Backbone.Router
 
   list: (token, listSlug) ->
     if listApp.listView
-      listApp.listView.unbind() 
-      $("#list").remove()
+      listApp.log 'remove view'
+      listApp.listView.remove()
+      listApp.listView.unbind()
 
     if listApp.stack.get(listSlug)
      listApp.listView = new listApp.Views.ListsShow(model: listApp.stack.get(listSlug))
