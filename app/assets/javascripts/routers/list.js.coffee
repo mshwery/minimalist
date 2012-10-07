@@ -30,6 +30,7 @@ class listApp.Routers.List extends Backbone.Router
 
   lists: (token) ->
     $("#list").remove()
+    listApp.listView.unbind() if listApp.listView
     $("#sidebar").removeClass('desktop-only')
 
   new: ->
@@ -38,7 +39,7 @@ class listApp.Routers.List extends Backbone.Router
   list: (token, listSlug) ->
     if listApp.listView
       listApp.log 'remove view'
-      listApp.listView.remove()
+      $("#list").remove()
       listApp.listView.unbind()
 
     if listApp.stack.get(listSlug)

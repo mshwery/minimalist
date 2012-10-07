@@ -30,7 +30,7 @@ class TasksController < ApplicationController
   def destroy
     @task = @list.tasks.find(params[:id])
     @task.destroy
-    render :json => @task
+    render :json => true
   end
   
   private

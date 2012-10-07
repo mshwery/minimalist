@@ -1,4 +1,5 @@
 class listApp.Views.ListsShow extends Backbone.View
+  el: "#app"
   template: JST['lists/show']
 
   events: 
@@ -19,8 +20,7 @@ class listApp.Views.ListsShow extends Backbone.View
         @render()
 
   render: =>
-    listApp.log 'render view'
-    $("#app").append(@template(
+    $(@el).append(@template(
       url: @model.urlRoot
       name: @model.get('name')
       remaining: @model.items.remaining().length
