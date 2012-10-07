@@ -5,8 +5,8 @@ class listApp.Views.ListsShow extends Backbone.View
   events: 
     "dblclick #stats h2"  : "edit"
     "doubletap #stats h2" : "edit"   
-    "keypress .edit"      : "updateOnEnter"
-    "blur .edit"          : "close"
+    "keypress #stats .edit"      : "updateOnEnter"
+    "blur #stats .edit"          : "close"
     "click .refresh"      : "refresh"
     "click .back"         : "nav"
 
@@ -62,13 +62,16 @@ class listApp.Views.ListsShow extends Backbone.View
     @$('#stats').removeClass("editing")
 
   setUrl: =>
+    listApp.log 'seturl'
     path = window.location.pathname.split("/").slice(0, -1).join("/")
     newPath = [path, @model.get('slug')].join("/")
     listApp.log 'seturl -> ' + newPath
     listApp.router.navigate(newPath)
 
   updateOnEnter: (e) =>
-    @close()  if e.keyCode is 13
+    if e.which is 13
+      e.preventDefault()
+      @close()
 
   initItems: =>
     @itemView ||= new listApp.Views.ItemsIndex( collection: @model.items )

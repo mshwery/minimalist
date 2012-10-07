@@ -28,7 +28,6 @@ class ListsController < ApplicationController
       #override the default respond_with behavoir to always send back the model with update
       render :json => @list, :status => :created
     else
-      raise @list.inspect
       flash[:error] = "Could not update list"
       redirect_to edit_stack_list_path(@stack, @list)
     end
