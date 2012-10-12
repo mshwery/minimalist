@@ -1,7 +1,5 @@
 <div id="notifications">
-
   <% flash.each do |type, value| %>
     <%= content_tag(:div, value, :class => type) %>
   <% end %>
-
 </div>

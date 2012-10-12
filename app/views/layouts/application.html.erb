@@ -2,6 +2,9 @@
 <html>
 <head>
   <title>minimaList</title>
+  <meta name="description" content="A simple, sharable list app that's everywhere you are. Easy to share, great on any device.">
+  <meta name="author" content="@mshwery">
+
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_tag 'window.listApp = {};' %>
   <%= javascript_include_tag "application" %>
@@ -12,7 +15,6 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="apple-touch-startup-image" href="/iphone.png" media="screen and (max-device-width: 320px)"/>
   <%= csrf_meta_tags %>
-  <%= render "layouts/google-analytics" %>
 </head>
 <body class="<%= body_class.join(" ") %>">
 
@@ -24,5 +26,6 @@
     <%= yield %>
   </div>
 
+  <%= render "layouts/google-analytics" %>
 </body>
 </html>
