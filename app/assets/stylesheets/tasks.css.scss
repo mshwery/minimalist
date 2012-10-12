@@ -49,7 +49,7 @@
             @include gradient(0);
           }
         }
-        label {
+        .label {
           color: #fff;
           text-decoration: line-through;
           a { color: #fff; }
@@ -78,7 +78,7 @@
       .view {
         margin: 0px 20px 0px 24px;
       }
-      label, input[type=text], textarea {
+      .label, input[type=text], textarea {
         width: 100%;
         padding: 15px 0px; 
         line-height: 20px;
@@ -86,7 +86,7 @@
         font-weight: 300;
         word-wrap: break-word;
       }
-      label {
+      .label {
         cursor: pointer;
         color: $dark;//$blue;
       }
@@ -114,7 +114,7 @@
       &.editing {
         background-color: $yellow;
         .edit { display: inline-block; }
-        .label, label { display: none; }
+        .label { display: none; }
         .destroy { display: block; }
       }
     }

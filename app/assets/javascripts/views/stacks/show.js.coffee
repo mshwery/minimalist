@@ -6,7 +6,6 @@ class listApp.Views.StacksShow extends Backbone.View
     "click .remove-lists" : "removeLists"
 
   initialize: ->
-    listApp.log 'init stackView'
     @collection.on("add", @addOne)
     @collection.on("reset", @addAll)
 
@@ -28,8 +27,11 @@ class listApp.Views.StacksShow extends Backbone.View
       @addOne(item)
     )
 
-  removeLists: ->
-    $(@el).find("#my-lists").toggleClass('editing')
+  removeLists: (e)->
+    $stack = $(@el).find("#my-lists")
+    $stack.toggleClass('editing')
+    txt = if $stack.hasClass('editing') then 'Cancel' else 'Edit'
+    $(e.target).text(txt)
 
 
 
@@ -43,8 +45,8 @@ class listApp.Views.ListItemShow extends Backbone.View
     "click .route" : "nav"
 
   initialize: ->
-    @model.on('change', @render)
     @model.items.on("all", @render)
+    @model.on("change", @render)
     @model.view = this
 
   render: =>
@@ -64,6 +66,7 @@ class listApp.Views.ListItemShow extends Backbone.View
     e.preventDefault()
     @model.clear()
     if listApp.listView.model.id == @model.id
-      listApp.listView.$("#list").remove()
+      listApp.listView.remove()
+      listApp.listView.unbind()
       listApp.router.navigate(listApp.apiPrefix('lists'), {trigger: true})
 

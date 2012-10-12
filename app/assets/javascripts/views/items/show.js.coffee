@@ -6,8 +6,6 @@ class listApp.Views.ItemsShow extends Backbone.View
 
   events:
     "movestart"       : "checkDirection"
-    #"move"            : "moveItem"
-    #"moveend"         : "stopMoveItem"
     "swiperight"      : "markCompleted"
     "swipeleft"       : "markIncompleted"
     "click .toggle"   : "togglecompleted"
@@ -38,29 +36,6 @@ class listApp.Views.ItemsShow extends Backbone.View
       e.preventDefault()
       return
 
-  moveItem: (e) ->
-    e.preventDefault()
-    
-    # Moves item with the finger
-    dist = @includeDrag(e.distX)
-    if dist > 0 && dist < @widthPercentage(30) && $(@el).not('.editing, .completed')
-      @$el.css('left', dist)
-
-  widthPercentage: (num) ->
-    return $(@el).outerWidth() * (num / 100)
-
-  includeDrag: (distance) ->
-    return drag = Math.round(distance / 2.25)
-
-  stopMoveItem: (e) ->
-    @direction = null
-    # stops moving item with the finger
-    if @includeDrag(e.distX) > @widthPercentage(28)
-      @$el.animate({'left': ''}, 300)
-      @markCompleted()
-    else
-      @$el.animate({'left': ''}, 100)
-
   markIncompleted: ->
     @$el.removeClass('completed')
     @model.toggle() if @model.get("completed")
@@ -75,9 +50,9 @@ class listApp.Views.ItemsShow extends Backbone.View
 
   close: =>
     value = @input.val()
+    @$el.removeClass("editing")
     if value
-      @model.save({ description: value })
-      @$el.removeClass("editing")
+      @model.save({ description: value }) if value != @model.get('description')
     else 
       @clear()
 
@@ -86,7 +61,10 @@ class listApp.Views.ItemsShow extends Backbone.View
       e.preventDefault()
 
   updateOnEnter: (e) =>
-    @close()  if e.keyCode is 13
+    if e.which is 13
+      e.preventDefault()
+      e.stopPropagation()
+      @close()
 
   clear: () ->
     @model.clear()
