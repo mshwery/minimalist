@@ -21,7 +21,6 @@ class listApp.Views.ItemsShow extends Backbone.View
     @model.view = this
 
   render: =>
-    listApp.log 'render'
     $(@el).html( @template(@model.toJSON()) ).linkify()
     $(@el).toggleClass "completed", @model.get("completed")
     @input = @$(".edit")
@@ -46,12 +45,10 @@ class listApp.Views.ItemsShow extends Backbone.View
     @model.toggle() if !@model.get("completed")
 
   edit: =>
-    listApp.log 'edit'
     @$el.addClass("editing")
     @input.focus().val(@input.val())
 
   close: =>
-    listApp.log 'close'
     value = @input.val()
     @$el.removeClass("editing")
     if value
@@ -64,7 +61,7 @@ class listApp.Views.ItemsShow extends Backbone.View
       e.preventDefault()
 
   updateOnEnter: (e) =>
-    if e.keyCode is 13
+    if e.which is 13
       e.preventDefault()
       e.stopPropagation()
       @close()

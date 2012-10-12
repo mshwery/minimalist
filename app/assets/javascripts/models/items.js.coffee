@@ -11,7 +11,6 @@ class listApp.Models.Item extends Backbone.Model
     @save({ completed: !@get("completed") })
 
   reorder: (index) ->
-    console.log @get('sort_order') + " -> " + index 
     @save({ sort_order: index })
 
   clear: ->
