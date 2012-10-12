@@ -29,8 +29,10 @@ class listApp.Routers.List extends Backbone.Router
     @navigate('s/'+token+'/lists')
 
   lists: (token) ->
-    $("#list").remove()
-    listApp.listView.unbind() if listApp.listView
+    if listApp.listView
+      listApp.listView.remove()
+      listApp.listView.unbind()
+      
     $("#sidebar").removeClass('desktop-only')
 
   new: ->
