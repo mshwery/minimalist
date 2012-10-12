@@ -21,7 +21,7 @@ class listApp.Routers.List extends Backbone.Router
 
   root: ->
     listApp.demo = new listApp.Models.DemoList(window.demo) 
-    listApp.view = new listApp.Views.ListsShow({ model: listApp.demo, el: '#demo' })
+    listApp.view = new listApp.Views.ListsShow({ model: listApp.demo })
 
     @setupDemo(listApp.view.$el)
 
@@ -29,7 +29,10 @@ class listApp.Routers.List extends Backbone.Router
     @navigate('s/'+token+'/lists')
 
   lists: (token) ->
-    $("#list").remove()
+    if listApp.listView
+      listApp.listView.remove()
+      listApp.listView.unbind()
+      
     $("#sidebar").removeClass('desktop-only')
 
   new: ->
@@ -37,11 +40,11 @@ class listApp.Routers.List extends Backbone.Router
 
   list: (token, listSlug) ->
     if listApp.listView
-      listApp.listView.unbind() 
-      $("#list").remove()
+      listApp.listView.remove()
+      listApp.listView.unbind()
 
     if listApp.stack.get(listSlug)
-     listApp.listView = new listApp.Views.ListsShow(model: listApp.stack.get(listSlug))
+      listApp.listView = new listApp.Views.ListsShow(model: listApp.stack.get(listSlug))
     else
       listApp.stack.on "reset", (collection, response) =>
         list = collection.get(listSlug)

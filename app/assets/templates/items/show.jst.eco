@@ -1,6 +1,9 @@
 <img class="toggle" src="/assets/check.png"/>
 <div class="view">
-  <label><%= @description %></label>
-  <textarea class="edit" maxlength="255"><%= @description %></textarea>
+  <form>
+    <label class="label"><%= @description %></label>
+    <textarea class="edit" maxlength="255"><%= @description %></textarea>
+    <input type="submit" style="text-indent: -9999px; position: absolute; top: 0px; left: 0px; width: 0px; height: 0px; background: none; border: none; -webkit-button-style:none;"/>
+  </form>
 </div>
 <a class="destroy" title="delete"><img src="/assets/close.png"/></a>

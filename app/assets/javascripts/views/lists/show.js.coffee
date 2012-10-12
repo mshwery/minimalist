@@ -1,18 +1,15 @@
 class listApp.Views.ListsShow extends Backbone.View
-  el: '#app'
   template: JST['lists/show']
 
   events: 
     "dblclick #stats h2"  : "edit"
     "doubletap #stats h2" : "edit"   
-    "keypress .edit"      : "updateOnEnter"
-    "blur .edit"          : "close"
+    "keypress #stats .edit"      : "updateOnEnter"
+    "blur #stats .edit"          : "close"
     "click .refresh"      : "refresh"
     "click .back"         : "nav"
 
   initialize: ->
-    @model.items.on("change", @updateCount)
-    @model.items.on("add", @updateCount)
     @model.on('change:name', @updateName)
 
     @model.fetch
@@ -20,27 +17,31 @@ class listApp.Views.ListsShow extends Backbone.View
         @render()
 
   render: =>
-    $(@el).append(@template(
+    $(@el).html(@template(
       url: @model.urlRoot
       name: @model.get('name')
       remaining: @model.items.remaining().length
     ))
-    @input = @$("#stats .edit")
 
+    @app = if @model.get('demo') then '#demo' else '#app'
+    $(@app).append $(@el)
+
+    @input = @$("#stats .edit")
     $('.current').removeClass('current')
     $('#'+@model.get('slug')).addClass('current')
 
     @initItems()
-    @updateCount()
     @renderNewItemForm()
+    return this
+
+  remove: () ->
+    @model.unbind('change', @updateName)
+    super()
 
   nav: (e) ->
     e.preventDefault()
     path = listApp.apiPrefix 'lists'
     listApp.router.navigate(path, {trigger: true}) if path
-
-  updateCount: =>
-    @$('#stats i').text(@model.items.remaining().length)
 
   updateName: =>
     @$('#stats h2').text(@model.get('name'))
@@ -55,7 +56,7 @@ class listApp.Views.ListsShow extends Backbone.View
       if @model.get('demo')
         @model.set({name: value})
       else
-        @model.save({name: value, slug: @model.get('slug')}, {success: @setUrl})
+        @model.save({name: value}, {success: @setUrl})
     @$('#stats').removeClass("editing")
 
   setUrl: =>
@@ -64,7 +65,10 @@ class listApp.Views.ListsShow extends Backbone.View
     listApp.router.navigate(newPath)
 
   updateOnEnter: (e) =>
-    @close()  if e.keyCode is 13
+    if e.which is 13
+      e.preventDefault()
+      e.stopPropagation()
+      @close()
 
   initItems: =>
     @itemView ||= new listApp.Views.ItemsIndex( collection: @model.items )

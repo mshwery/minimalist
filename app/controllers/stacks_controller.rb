@@ -3,23 +3,7 @@ class StacksController < ApplicationController
   respond_to :html, :xml, :json
 
   def index
-    #@stacks = Stack.all
     redirect_to :root
-  end
-
-  def new
-    @stack = Stack.new
-  end
-
-  def create
-    @stack = Stack.new(params[:stack])
-    if @stack.save
-      flash[:notice] = "saved!"
-      respond_with(@stack, :location => stack_url(@stack))
-    else
-      flash[:error] = "Couldn't create."
-      redirect_to new_stack_url
-    end
   end
 
   def show
@@ -31,6 +15,7 @@ class StacksController < ApplicationController
     end
   end
 
+  #TODO: Get rid of this. Users shouldn't be able to destroy records
   def destroy
     @stack = Stack.find_by_token(params[:id])
     if @stack.destroy

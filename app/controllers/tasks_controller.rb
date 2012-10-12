@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 
   before_filter :find_list
-  respond_to :html, :xml, :json
+  respond_to :json
   
   def index
     render :json => @list.tasks
@@ -12,7 +12,7 @@ class TasksController < ApplicationController
     if @task.save
       render :json => @task
     else
-      flash[:error] = "Could not add task."
+      render :json => { :errors => @task.errors.full_messages }, :status => 422
     end
   end
 
@@ -30,7 +30,7 @@ class TasksController < ApplicationController
   def destroy
     @task = @list.tasks.find(params[:id])
     @task.destroy
-    render :json => @task
+    render :json => true
   end
   
   private
