@@ -16,6 +16,7 @@ class StacksController < ApplicationController
   end
 
   #TODO: Get rid of this. Users shouldn't be able to destroy records
+  # deletion should simply mark a stack deleted_at = Time.now
   def destroy
     @stack = Stack.find_by_token(params[:id])
     if @stack.destroy
