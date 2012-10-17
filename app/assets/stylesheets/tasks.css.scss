@@ -1,6 +1,7 @@
 #list {
   .items {
-    background-color: $primary;
+    //background-color: $primary;
+    background-color: #eee;
   }
 }
 
@@ -14,7 +15,12 @@
     li {
       &.ui-sortable-helper {
         border-bottom: none;
-        @include box-shadow(0 1px 4px rgba(0,0,0,0.5));
+        @include opacity(85);
+        margin: -1px -1px 0px -1px;
+        border: 1px solid $primary;
+        @include border-radius(2px);
+        z-index: 100000;
+        @include box-shadow(0 1px 3px rgba(0,0,0,0.35));
       }
       img.check {
         opacity: 0;
