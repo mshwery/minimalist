@@ -15,18 +15,6 @@ class List < ActiveRecord::Base
     slug
   end
 
-  def remaining_tasks
-    tasks.where(:completed => false)
-  end
-
-  def deleted_tasks
-    tasks.deleted
-  end
-
-  def existing_tasks
-    tasks.existing
-  end
-
   def delete!
     self.deleted_at = Time.now
     self.save!
