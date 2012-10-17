@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120724031836) do
+ActiveRecord::Schema.define(:version => 20121013175503) do
 
   create_table "lists", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20120724031836) do
     t.datetime "updated_at", :null => false
     t.string   "slug"
     t.integer  "stack_id"
+    t.datetime "deleted_at"
   end
 
   create_table "stacks", :force => true do |t|
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20120724031836) do
     t.datetime "updated_at",                     :null => false
     t.integer  "list_id"
     t.integer  "sort_order"
+    t.datetime "deleted_at"
   end
 
 end
