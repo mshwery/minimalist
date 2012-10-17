@@ -4,20 +4,20 @@ class List < ActiveRecord::Base
   has_many :tasks
   belongs_to :stack
   
-  accepts_nested_attributes_for :tasks, :allow_destroy => true
-  attr_accessible :name, :slug
+  accepts_nested_attributes_for :tasks
+  attr_accessible :name, :slug # should we be including slug?
 
   validates_format_of :slug, :with => /\A[a-z\-0-9]*\Z/
   before_validation :generate_name, :on => :create 
   before_save :generate_slug
-  #before_validation :generate_slug, :on => :create   
 
   def to_param
     slug
   end
 
-  def remaining
-    return self.tasks.where(:completed => false)
+  def delete!
+    self.deleted_at = Time.now
+    self.save!
   end
 
   private
