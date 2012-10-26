@@ -21,7 +21,7 @@
   <%= render "layouts/notifications" %>
 
   <div id="load-screen" class="show"></div>
-
+  <div class="current-user"><%= current_user.name if current_user %></div>
   <div id="app" class="hide">
     <%= yield %>
   </div>
