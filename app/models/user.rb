@@ -15,5 +15,13 @@ class User < ActiveRecord::Base
       user.name = auth["info"]["name"]
     end
   end
+
+  def display_name
+    at_nickname || name
+  end
+
+  def at_nickname
+    "@#{nickname}" if nickname
+  end
   
 end
