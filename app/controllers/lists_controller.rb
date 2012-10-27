@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
 
-  before_filter :find_stack
+  before_filter :find_user_or_stack
   respond_to :html, :xml, :json
 
   def new
@@ -42,7 +42,15 @@ class ListsController < ApplicationController
     end
   end
 
-  def find_stack
-    @stack = Stack.find_or_create_by_token(params[:stack_id])
+  def find_user_or_stack
+    if params[:stack_id].nil?
+      if current_user
+        @stack = current_user
+      else
+        redirect_to :root
+      end
+    else
+      @stack = Stack.find_or_create_by_token(params[:stack_id])
+    end
   end
 end

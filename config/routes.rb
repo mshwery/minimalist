@@ -7,7 +7,7 @@ Lists::Application.routes.draw do
     end
   end
 
-  resources :lists, :only => [:new, :create] 
+  resources :lists #, :only => [:new, :create] 
 
   root to: 'pages#home'
 
