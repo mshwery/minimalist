@@ -7,7 +7,7 @@ $.extend listApp,
   Routers: {}
   init: ->
     listApp.router = new listApp.Routers.List
-    Backbone.history.start({pushState: true, root: "/"})
+    Backbone.history.start({pushState: true})
   isMobile: -> 
     return Modernizr.touch
 
@@ -16,3 +16,4 @@ getStackPath = (path) ->
 
 $(document).ready ->
   listApp.init()
+  $('#notifications').fadeIn().delay(3000).fadeOut()

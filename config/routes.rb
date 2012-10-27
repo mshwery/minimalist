@@ -10,9 +10,8 @@ Lists::Application.routes.draw do
 
   root to: 'pages#home'
 
-  match "/login", to: "sessions#new"
   match "/auth/:provider/callback", to: "sessions#create"
   match "/auth/failure", to: "sessions#failure"
   match "/logout", to: "sessions#destroy", :as => "logout"
-  resources :identities
+  #resources :identity
 end

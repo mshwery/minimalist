@@ -203,3 +203,30 @@ textarea {
   }
 }
 
+.account {
+  position: absolute;
+  z-index: 100;
+  right: 20px;
+  top: 20px;
+  .auth_provider {
+    font-size: 14px;
+    line-height: 16px;
+    padding: 10px 20px;
+    img {
+      max-height: 16px;
+      margin-right: 3px;
+    }
+    &:hover {
+      text-decoration: none;
+      background-color: #EAF4FB;
+    }
+  }
+}
+
+#notifications {
+  position: absolute;
+  z-index: 100;
+  top: 10px;
+  left: 0px;
+  right: 0px;
+}

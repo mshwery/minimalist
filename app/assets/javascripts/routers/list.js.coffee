@@ -20,6 +20,7 @@ class listApp.Routers.List extends Backbone.Router
       @setupSidebar()
 
   root: ->
+    listApp.log 'root'
     listApp.demo = new listApp.Models.DemoList(window.demo) 
     listApp.view = new listApp.Views.ListsShow({ model: listApp.demo })
 
@@ -39,6 +40,7 @@ class listApp.Routers.List extends Backbone.Router
     listApp.log 'new'
 
   list: (token, listSlug) ->
+    listApp.log 'list'
     if listApp.listView
       listApp.listView.remove()
       listApp.listView.unbind()
