@@ -8,6 +8,7 @@ window.demo = {
 class listApp.Routers.List extends Backbone.Router
   routes:
     ''                : 'root'
+    'lists/'          : 'dashboard'
     's/:token'        : 'stack'
     's/:token/'       : 'stack'
     's/:token/lists'  : 'lists'
@@ -25,6 +26,9 @@ class listApp.Routers.List extends Backbone.Router
     listApp.view = new listApp.Views.ListsShow({ model: listApp.demo })
 
     @setupDemo(listApp.view.$el)
+
+  dashboard: ->
+    listApp.log 'dashboard'
 
   stack: (token) ->
     @navigate('s/'+token+'/lists')

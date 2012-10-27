@@ -1,8 +1,10 @@
 class List < ActiveRecord::Base
 
   validates :name,  :presence => true
-  has_many :tasks
   belongs_to :stack
+  has_many :tasks
+  has_many :memberships
+  has_many :users, :through => :memberships
   
   accepts_nested_attributes_for :tasks
   attr_accessible :name, :slug # should we be including slug?
