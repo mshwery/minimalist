@@ -22,6 +22,12 @@ class List < ActiveRecord::Base
     self.save!
   end
 
+  def build_membership_for(u)
+    membership = self.memberships.new
+    membership.user = u
+    self.save
+  end
+
   private
 
   def generate_name
