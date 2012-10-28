@@ -19,7 +19,7 @@ class listApp.Models.List extends Backbone.Model
 
 class listApp.Collections.Lists extends Backbone.Collection
   model: listApp.Models.List
-  url: -> listApp.apiPrefix "lists"
+  url: -> listApp.apiPrefix()
 
 
 

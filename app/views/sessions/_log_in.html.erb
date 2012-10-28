@@ -1,7 +1,7 @@
 <div class="account">
   <% if current_user %>
     <div class="current-user">
-      <%= current_user.name if current_user %>
+      <%= current_user.display_name if current_user %>
       <%= link_to "Log out", logout_path %>
     </div>
   <% else %>
