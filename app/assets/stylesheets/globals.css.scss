@@ -1,5 +1,6 @@
 $primary: #3392d6;
 $orange: #f55910;
+$gray: #EAF4FB;
 
 @mixin box-shadow ($params...) {
   box-shadow: $params;
@@ -148,23 +149,47 @@ i {
   text-transform: uppercase;
   @include inline-block;
   @include border-radius(8px);
+
+  &.small {
+    padding: 8px 15px;
+    font-size: 13px;
+    line-height: 16px;
+  }
 }
 
-.orange {
-  background-color: $orange;
-  color: #fff;
+@mixin button-color($color) {
+  background-color: $color;
   @media only screen and (min-device-width: 768px) {
     &:hover {
-      background-color: saturate(darken($orange, 5%), 5%);
-      color: #fff;
+      background-color: saturate(darken($color, 5%), 5%);
       text-decoration: none;
     }
   }
   &:active {
-    background-color: saturate(darken($orange, 5%), 5%);
-    color: #fff;
+    background-color: saturate(darken($color, 5%), 5%);
     text-decoration: none;
+  } 
+}
+
+@mixin text-color($color) {
+  color: $color;
+  @media only screen and (min-device-width: 768px) {
+    &:hover {
+      color: $color;
+    }
   }
+  &:active {
+    color: $color;
+  }   
+}
+
+.gray {
+  @include button-color($gray);
+  @include text-color(#777);
+}
+.orange {
+  @include button-color($orange);
+  @include text-color(#fff);
 }
 
 input[type=text],
@@ -218,7 +243,7 @@ textarea {
     }
     &:hover {
       text-decoration: none;
-      background-color: #EAF4FB;
+      background-color: $gray;
     }
   }
 }

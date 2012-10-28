@@ -12,5 +12,8 @@
   <div class="list">
     <ul id="add-item" class="items"></ul>
     <ul id="item-list" class="items"></ul>
+    <% if window.currentUser: %>
+      <a href="<%= window.location.pathname %>/join" class="join-list">Join List</a>
+    <% end %>
   </div>
 </div>
