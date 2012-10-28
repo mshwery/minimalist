@@ -5,9 +5,9 @@
       <%= link_to "Log out", logout_path %>
     </div>
   <% else %>
-    <a href="/auth/twitter" class="auth_provider btn">
+    <a href="/auth/twitter" class="auth_provider small btn">
       <%= image_tag "twitter.png", alt: "Twitter" %>
-      Sign in
+      <span>Sign in</span>
     </a>
   <% end %>
 </div>

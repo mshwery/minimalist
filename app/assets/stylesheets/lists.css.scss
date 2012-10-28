@@ -102,12 +102,16 @@ $border-style: 1px solid rgba(0,0,0,0.08);
     }
   }
 
-  i, .back, .refresh {
+  .join-list {
+    margin: 9px;
+  }
+
+  i, .back, .refresh, .join-list {
     float: none;
     position: absolute;
     top: 0px;
   }
-  i, .refresh {
+  i, .refresh, .join-list {
     right: 0px;
   }
   .back {
@@ -128,20 +132,5 @@ $border-style: 1px solid rgba(0,0,0,0.08);
       width: 92%;
     }
     h2 { display: none; }
-  }
-}
-
-.join-list {
-  width: 100%;
-  line-height: 50px;
-  text-align: center;
-  display: block;
-  background: lighten($gray, 2%);
-  font-size: 13px;
-  text-transform: uppercase;
-  font-weight: 500;
-  &:hover {
-    text-decoration: none;
-    background: $gray;
   }
 }

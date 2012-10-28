@@ -6,14 +6,15 @@
       <input class="edit" type="text" value="<%= @name %>" />
       <input type="submit" style="display: none" />
     </form>
-    <a class="refresh"><img src="/assets/refresh.png"/></a>
+    <% if window.currentUser: %>
+      <a href="<%= window.location.pathname %>/join" class="small btn join-list">Join List</a>
+    <% else: %>
+      <a class="refresh"><img src="/assets/refresh.png"/></a> 
+    <% end %>
   </div>
 
   <div class="list">
     <ul id="add-item" class="items"></ul>
     <ul id="item-list" class="items"></ul>
-    <% if window.currentUser: %>
-      <a href="<%= window.location.pathname %>/join" class="join-list">Join List</a>
-    <% end %>
   </div>
 </div>

@@ -151,10 +151,37 @@ i {
   @include border-radius(8px);
 
   &.small {
-    padding: 8px 15px;
-    font-size: 13px;
-    line-height: 16px;
+    border: 1px solid darken(#E1E6E7, 5%);
+    background-color: #FCFCFC;
+    @include gradient(.01);
+    font-size: 12px;
+    line-height: 14px;
+    padding: 8px 12px;
+    color: #4B5C66;
+    font-weight: 500;
+    text-transform: none;
+    @include border-radius(5px);
+    @media only screen and (min-device-width: 768px) {
+      &:hover {
+        background-color: #fafafa;
+        border-color: darken(#E1E6E7, 20%);
+        @include box-shadow(0px 1px 3px rgba(0, 0, 0, 0.1));
+      }
+    }
+    &:active {
+      background-color: #fafafa;
+      border-color: darken(#E1E6E7, 20%);
+      @include box-shadow(inset 0px 1px 2px rgba(0, 0, 0, 0.15));
+    } 
   }
+  @media only screen and (min-device-width: 768px) {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  &:active {
+    text-decoration: none;
+  } 
 }
 
 @mixin button-color($color) {
@@ -162,12 +189,10 @@ i {
   @media only screen and (min-device-width: 768px) {
     &:hover {
       background-color: saturate(darken($color, 5%), 5%);
-      text-decoration: none;
     }
   }
   &:active {
     background-color: saturate(darken($color, 5%), 5%);
-    text-decoration: none;
   } 
 }
 
@@ -234,16 +259,12 @@ textarea {
   right: 20px;
   top: 20px;
   .auth_provider {
-    font-size: 14px;
-    line-height: 16px;
-    padding: 10px 20px;
     img {
-      max-height: 16px;
+      max-height: 14px;
       margin-right: 3px;
     }
-    &:hover {
-      text-decoration: none;
-      background-color: $gray;
+    img, span {
+      vertical-align: middle;
     }
   }
 }
