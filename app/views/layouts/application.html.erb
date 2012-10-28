@@ -2,11 +2,12 @@
 <html>
 <head>
   <title>minimaList</title>
-  <meta name="description" content="A simple, sharable list app that's everywhere you are. Easy to share, great on any device.">
+  <meta name="description" content="A simple, sharable list app that's everywhere you are. Easy to share. No account necessary. Use it on your desktop, tablet or mobile device.">
   <meta name="author" content="@mshwery">
 
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_tag 'window.listApp = {};' %>
+  <%= javascript_tag 'window.currentUser = true;' if current_user %>
   <%= javascript_include_tag "application" %>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
   <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />

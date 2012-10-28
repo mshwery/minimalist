@@ -15,16 +15,13 @@ class listApp.Routers.List extends Backbone.Router
 
   initialize: ->
     @toggleLoadScreen()
-    unless $('body').hasClass('pages-home') && !window.currentUser
+    unless $('body').hasClass('pages-home')
       @setupSidebar()
 
   root: ->
-    if window.currentUser
-      @navigate('lists', {trigger: true})
-    else
-      listApp.demo = new listApp.Models.DemoList(window.demo) 
-      listApp.view = new listApp.Views.ListsShow({ model: listApp.demo })
-      @setupDemo(listApp.view.$el)
+    listApp.demo = new listApp.Models.DemoList(window.demo) 
+    listApp.view = new listApp.Views.ListsShow({ model: listApp.demo })
+    @setupDemo(listApp.view.$el)
 
   lists: ->
     if listApp.listView
@@ -34,7 +31,6 @@ class listApp.Routers.List extends Backbone.Router
     $("#sidebar").removeClass('desktop-only')
 
   list: (token, listSlug) ->
-    listApp.log 'list'
     if listApp.listView
       listApp.listView.remove()
       listApp.listView.unbind()
@@ -57,7 +53,6 @@ class listApp.Routers.List extends Backbone.Router
       $("#app").addClass("desktop")
 
   setupSidebar: ->
-    listApp.log listApp.apiPrefix()
     listApp.stack ||= new listApp.Collections.Lists()
     listApp.stackView = new listApp.Views.StacksShow(collection: listApp.stack)
 

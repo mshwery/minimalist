@@ -3,7 +3,6 @@ Lists::Application.routes.draw do
   resources :s, controller: :stacks, as: :stacks do
     resources :lists do
       resources :tasks
-      resources :memberships
     end
   end
 
@@ -13,7 +12,7 @@ Lists::Application.routes.draw do
     end
   end
 
-  resources :lists, :only => [:new, :create] 
+  resources :lists, only: [:new] 
 
   root to: 'pages#home'
 
