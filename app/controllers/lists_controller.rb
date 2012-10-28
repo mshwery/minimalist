@@ -4,10 +4,20 @@ class ListsController < ApplicationController
   respond_to :html, :xml, :json
 
   def new
-  	@list = @stack.lists.new
+    if current_user && params[:stack_id].nil?
+      list = List.new
+      membership = list.memberships.build
+      membership.user = current_user
+    else
+    	list = @stack.lists.new
+    end
 
-    if @list.save
-      redirect_to stack_list_url(@stack, @list)
+    if list.save
+      if current_user
+        redirect_to user_list_path(current_user, list)
+      else
+        redirect_to stack_list_path(@stack, list)
+      end
     else
       redirect_to @stack
     end

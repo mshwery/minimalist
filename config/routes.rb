@@ -7,7 +7,13 @@ Lists::Application.routes.draw do
     end
   end
 
-  resources :lists #, :only => [:new, :create] 
+  resources :a, controller: :users, as: :users do
+    resources :lists do
+      resources :tasks
+    end
+  end
+
+  resources :lists, :only => [:new, :create] 
 
   root to: 'pages#home'
 

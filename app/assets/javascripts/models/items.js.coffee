@@ -23,7 +23,7 @@ class listApp.Models.Item extends Backbone.Model
 
 class listApp.Collections.Items extends Backbone.Collection
   model: listApp.Models.Item
-  url: -> listApp.apiPrefix "lists/#{@list_id}/tasks"
+  url: -> listApp.apiPrefix "#{@list_id}/tasks" # "lists/#{@list_id}/tasks"
 
   comparator: (item) ->
     return -item.get("sort_order")
