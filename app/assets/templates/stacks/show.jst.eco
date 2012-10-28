@@ -6,7 +6,7 @@
     <h2 class="cf">
       <a class="remove-lists" title='remove lists'>Edit</a>
       My lists
-      <a href="<%= @urlRoot %>/new" class="add-list" title='Make a new list'>+</a>
+      <a href="<%= @urlRoot %>new" class="add-list" title='Make a new list'>+</a>
     </h2>
     <ul class="items"></ul>
   </div>
