@@ -52,6 +52,16 @@ class ListsController < ApplicationController
     end
   end
 
+  def join
+    list = List.find_by_slug(params[:list_id])
+
+    if current_user# && !@stack.lists.include?(list)
+      list.build_membership_for(current_user)
+    end
+
+    redirect_to request.referer
+  end
+
   def find_user_or_stack
     if params[:stack_id].nil?
       if current_user
