@@ -1,6 +1,6 @@
 <div id="sidebar" class="stack list">
   <h1>
-    <a href="/"><img src='/assets/logo.png'/>minimaList</a>
+    <a href="/"><img src='/assets/logo.png'/><span>minimaList</span></a>
   </h1>
   <div id="my-lists">
     <h2 class="cf">
