@@ -12,8 +12,9 @@ class listApp.Models.List extends Backbone.Model
     @items.list_id = @id
 
   clear: ->
-    @view.remove()
-    @destroy()
+    @destroy
+      wait: true
+      success: (model, response) => @view.remove()
 
 
 

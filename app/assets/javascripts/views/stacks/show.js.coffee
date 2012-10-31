@@ -64,9 +64,10 @@ class listApp.Views.ListItemShow extends Backbone.View
   removeList: (e) ->
     e.stopPropagation()
     e.preventDefault()
-    @model.clear()
-    if listApp.listView.model.id == @model.id
-      listApp.listView.remove()
-      listApp.listView.unbind()
-      listApp.router.navigate(listApp.apiPrefix(), {trigger: true}) # 'lists'
+    if confirm("Delete #{@model.get('name')}?")
+      @model.clear()
+      if listApp.listView.model.id == @model.id
+        listApp.listView.remove()
+        listApp.listView.unbind()
+        listApp.router.navigate(listApp.apiPrefix(), {trigger: true}) # 'lists'
 

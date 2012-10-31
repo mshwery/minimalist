@@ -9,6 +9,8 @@ class List < ActiveRecord::Base
   accepts_nested_attributes_for :tasks
   attr_accessible :name, :slug # should we be including slug?
 
+  default_scope where(deleted_at: nil)
+
   validates_format_of :slug, :with => /\A[a-z\-0-9]*\Z/
   before_validation :generate_name, :on => :create 
   before_save :generate_slug
