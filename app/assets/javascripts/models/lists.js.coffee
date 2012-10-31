@@ -22,6 +22,9 @@ class listApp.Collections.Lists extends Backbone.Collection
   model: listApp.Models.List
   url: -> listApp.apiPrefix()
 
+  comparator: (list) ->
+    date = new Date(list.get('updated_at'))
+    return -parseInt(date.getTime() / 1000)
 
 
 

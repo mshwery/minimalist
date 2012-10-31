@@ -29,7 +29,6 @@ class ListsController < ApplicationController
 
   def show
     @list = @stack.lists.find_by_slug(params[:id])
-    respond_with @list
   end
   
   def update
