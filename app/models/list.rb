@@ -13,7 +13,7 @@ class List < ActiveRecord::Base
 
   validates_format_of :slug, :with => /\A[a-z\-0-9]*\Z/
   before_validation :generate_name, :on => :create 
-  before_save :generate_slug
+  before_save :generate_slug, :if => :name_has_changed?
 
   def to_param
     slug
@@ -28,6 +28,14 @@ class List < ActiveRecord::Base
     membership = self.memberships.new
     membership.user = u
     self.save
+  end
+
+  def can_join_list?(u)
+    u && !users.include?(u)
+  end
+
+  def name_has_changed?
+    self.name_changed?
   end
 
   private

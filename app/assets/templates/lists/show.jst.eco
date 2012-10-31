@@ -6,7 +6,7 @@
       <input class="edit" type="text" value="<%= @name %>" />
       <input type="submit" style="display: none" />
     </form>
-    <% if window.currentUser: %>
+    <% if @can_join_list: %>
       <a href="<%= window.location.pathname %>/join" class="small btn join-list">Join List</a>
     <% else: %>
       <a class="refresh"><img src="/assets/refresh.png"/></a> 
