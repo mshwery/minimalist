@@ -1,0 +1,13 @@
+<div class="account">
+  <% if current_user %>
+    <div class="current-user">
+      <%= current_user.display_name if current_user %>
+      <%= link_to image_tag("exit.png"), logout_path, title: "Log out" %>
+    </div>
+  <% else %>
+    <a href="/auth/twitter" class="auth_provider small btn">
+      <%= image_tag "twitter.png", alt: "Twitter" %>
+      <span>Sign in</span>
+    </a>
+  <% end %>
+</div>

@@ -9,22 +9,9 @@ class StacksController < ApplicationController
   def show
     @stack = Stack.find_by_token(params[:id])
     if @stack
-      respond_with @stack
+      redirect_to stack_lists_path(@stack)
     else
       redirect_to root_url
-    end
-  end
-
-  #TODO: Get rid of this. Users shouldn't be able to destroy records
-  # deletion should simply mark a stack deleted_at = Time.now
-  def destroy
-    @stack = Stack.find_by_token(params[:id])
-    if @stack.destroy
-      flash[:notice] = "Stack deleted"
-      redirect_to root_url
-    else
-      flash[:error] = "Could not delete stack."
-      redirect_to stack_url(@stack)
     end
   end
   

@@ -15,7 +15,7 @@ class listApp.Views.StacksShow extends Backbone.View
   render: =>
     $(@el).prepend(@template(
       stack: @collection.models
-      urlRoot: listApp.apiPrefix("lists")
+      urlRoot: listApp.apiPrefix() # "lists"
     ))
 
   addOne: (item) =>
@@ -52,7 +52,7 @@ class listApp.Views.ListItemShow extends Backbone.View
   render: =>
     $(@el).html(@template(
       list: @model
-      urlRoot: listApp.apiPrefix("lists")
+      urlRoot: listApp.apiPrefix() # "lists"
     ))
     return this
 
@@ -64,9 +64,10 @@ class listApp.Views.ListItemShow extends Backbone.View
   removeList: (e) ->
     e.stopPropagation()
     e.preventDefault()
-    @model.clear()
-    if listApp.listView.model.id == @model.id
-      listApp.listView.remove()
-      listApp.listView.unbind()
-      listApp.router.navigate(listApp.apiPrefix('lists'), {trigger: true})
+    if confirm("Delete #{@model.get('name')}?")
+      @model.clear()
+      if listApp.listView.model.id == @model.id
+        listApp.listView.remove()
+        listApp.listView.unbind()
+        listApp.router.navigate(listApp.apiPrefix(), {trigger: true}) # 'lists'
 

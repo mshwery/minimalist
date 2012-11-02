@@ -88,10 +88,12 @@
         text-decoration: none;
       }
     }
+    span { vertical-align: middle; }
     img {
       max-width: 36px;
       max-height: 36px;
       margin-right: 10px;
+      @include border-radius(4px);
     }
     @media only screen and (max-device-width: 480px) {
       display: none;

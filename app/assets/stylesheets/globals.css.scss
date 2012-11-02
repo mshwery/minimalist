@@ -1,5 +1,6 @@
 $primary: #3392d6;
 $orange: #f55910;
+$gray: #EAF4FB;
 
 @mixin box-shadow ($params...) {
   box-shadow: $params;
@@ -116,8 +117,7 @@ i {
 }
 
 #list {
-  overflow: hidden;
-  position: relative;
+//f  position: relative;
   margin: 0px auto;
   top: 0px;
   @media only screen and (max-device-width: 480px) {
@@ -149,23 +149,72 @@ i {
   text-transform: uppercase;
   @include inline-block;
   @include border-radius(8px);
-}
 
-.orange {
-  background-color: $orange;
-  color: #fff;
+  &.small {
+    border: 1px solid darken(#E1E6E7, 5%);
+    background-color: #FCFCFC;
+    @include gradient(.01);
+    font-size: 12px;
+    line-height: 12px;
+    padding: 8px 12px;
+    color: #4B5C66;
+    font-weight: 500;
+    text-transform: none;
+    @include border-radius(5px);
+    @media only screen and (min-device-width: 768px) {
+      &:hover {
+        background-color: #fafafa;
+        border-color: desaturate(darken(#E1E6E7, 20%), 20%);
+        @include box-shadow(0px 1px 3px rgba(0, 0, 0, 0.1));
+      }
+    }
+    &:active {
+      background-color: #fafafa;
+      border-color: desaturate(darken(#E1E6E7, 20%), 20%);
+      @include box-shadow(inset 0px 1px 2px rgba(0, 0, 0, 0.15));
+    } 
+  }
   @media only screen and (min-device-width: 768px) {
     &:hover {
-      background-color: saturate(darken($orange, 5%), 5%);
-      color: #fff;
       text-decoration: none;
     }
   }
   &:active {
-    background-color: saturate(darken($orange, 5%), 5%);
-    color: #fff;
     text-decoration: none;
+  } 
+}
+
+@mixin button-color($color) {
+  background-color: $color;
+  @media only screen and (min-device-width: 768px) {
+    &:hover {
+      background-color: saturate(darken($color, 5%), 5%);
+    }
   }
+  &:active {
+    background-color: saturate(darken($color, 5%), 5%);
+  } 
+}
+
+@mixin text-color($color) {
+  color: $color;
+  @media only screen and (min-device-width: 768px) {
+    &:hover {
+      color: $color;
+    }
+  }
+  &:active {
+    color: $color;
+  }   
+}
+
+.gray {
+  @include button-color($gray);
+  @include text-color(#777);
+}
+.orange {
+  @include button-color($orange);
+  @include text-color(#fff);
 }
 
 input[type=text],
@@ -204,3 +253,26 @@ textarea {
   }
 }
 
+.account {
+  position: absolute;
+  z-index: 100;
+  right: 20px;
+  top: 20px;
+  .auth_provider {
+    img {
+      max-height: 14px;
+      margin-right: 3px;
+    }
+    img, span {
+      vertical-align: middle;
+    }
+  }
+}
+
+#notifications {
+  position: absolute;
+  z-index: 100;
+  top: 10px;
+  left: 0px;
+  right: 0px;
+}

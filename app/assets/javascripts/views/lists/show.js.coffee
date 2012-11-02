@@ -17,11 +17,11 @@ class listApp.Views.ListsShow extends Backbone.View
         @render()
 
   render: =>
-    $(@el).html(@template(
+    $(@el).html(@template
       url: @model.urlRoot
+      can_join_list: @model.get('can_join_list')
       name: @model.get('name')
-      remaining: @model.items.remaining().length
-    ))
+    )
 
     @app = if @model.get('demo') then '#demo' else '#app'
     $(@app).append $(@el)
@@ -40,7 +40,7 @@ class listApp.Views.ListsShow extends Backbone.View
 
   nav: (e) ->
     e.preventDefault()
-    path = listApp.apiPrefix 'lists'
+    path = listApp.apiPrefix()
     listApp.router.navigate(path, {trigger: true}) if path
 
   updateName: =>

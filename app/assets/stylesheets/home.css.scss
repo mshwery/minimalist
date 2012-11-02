@@ -15,12 +15,14 @@
     color: #222;
   }
   h1 {
-    font-size: 36px;
+    font-size: 34px;
     font-weight: 400;
+    span, img { vertical-align: middle; }
     img {
       margin-right: 10px;
       max-width: 40px;
       max-height: 40px;
+      @include border-radius(5px);
     }
   }
   h2 {

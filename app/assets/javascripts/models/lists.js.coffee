@@ -12,15 +12,19 @@ class listApp.Models.List extends Backbone.Model
     @items.list_id = @id
 
   clear: ->
-    @view.remove()
-    @destroy()
+    @destroy
+      wait: true
+      success: (model, response) => @view.remove()
 
 
 
 class listApp.Collections.Lists extends Backbone.Collection
   model: listApp.Models.List
-  url: -> listApp.apiPrefix "lists"
+  url: -> listApp.apiPrefix()
 
+  comparator: (list) ->
+    date = new Date(list.get('updated_at'))
+    return -parseInt(date.getTime() / 1000)
 
 
 

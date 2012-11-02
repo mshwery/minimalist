@@ -7,12 +7,12 @@ window.demo = {
 
 class listApp.Routers.List extends Backbone.Router
   routes:
-    ''                : 'root'
-    's/:token'        : 'stack'
-    's/:token/'       : 'stack'
-    's/:token/lists'  : 'lists'
-    's/:token/lists/new'    : 'new'
+    ''                      : 'root'
+    's/:token/lists'        : 'lists'
+    's/:token/lists/'       : 'lists'
+    'a/:token/lists'        : 'lists'
     's/:token/lists/:slug'  : 'list'
+    'a/:token/lists/:slug'  : 'list'
 
   initialize: ->
     @toggleLoadScreen()
@@ -22,21 +22,14 @@ class listApp.Routers.List extends Backbone.Router
   root: ->
     listApp.demo = new listApp.Models.DemoList(window.demo) 
     listApp.view = new listApp.Views.ListsShow({ model: listApp.demo })
-
     @setupDemo(listApp.view.$el)
 
-  stack: (token) ->
-    @navigate('s/'+token+'/lists')
-
-  lists: (token) ->
+  lists: ->
     if listApp.listView
       listApp.listView.remove()
       listApp.listView.unbind()
       
     $("#sidebar").removeClass('desktop-only')
-
-  new: ->
-    listApp.log 'new'
 
   list: (token, listSlug) ->
     if listApp.listView

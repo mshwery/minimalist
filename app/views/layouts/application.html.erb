@@ -2,10 +2,10 @@
 <html>
 <head>
   <title>minimaList</title>
-  <meta name="description" content="A simple, sharable list app that's everywhere you are. Easy to share, great on any device.">
+  <meta name="description" content="A simple, sharable list app that's everywhere you are. Easy to share. No account necessary. Use it on your desktop, tablet or mobile device.">
   <meta name="author" content="@mshwery">
 
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_tag 'window.listApp = {};' %>
   <%= javascript_include_tag "application" %>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
@@ -23,6 +23,7 @@
   <div id="load-screen" class="show"></div>
 
   <div id="app" class="hide">
+    <%= render "sessions/log_in" %>
     <%= yield %>
   </div>
 

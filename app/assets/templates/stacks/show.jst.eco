@@ -1,12 +1,12 @@
 <div id="sidebar" class="stack list">
   <h1>
-    <a href="/"><img src='/assets/logo.png'/>minimaList</a>
+    <a href="/"><img src='/assets/logo.png'/><span>minimaList</span></a>
   </h1>
   <div id="my-lists">
     <h2 class="cf">
       <a class="remove-lists" title='remove lists'>Edit</a>
       My lists
-      <a href="<%= @urlRoot %>/new" class="add-list" title='Make a new list'>+</a>
+      <a href="<%= @urlRoot %>new" class="add-list" title='Make a new list'>+</a>
     </h2>
     <ul class="items"></ul>
   </div>

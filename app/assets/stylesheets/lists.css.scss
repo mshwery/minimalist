@@ -102,12 +102,16 @@ $border-style: 1px solid rgba(0,0,0,0.08);
     }
   }
 
-  i, .back, .refresh {
+  .join-list {
+    margin: 10px;
+  }
+
+  i, .back, .refresh, .join-list {
     float: none;
     position: absolute;
     top: 0px;
   }
-  i, .refresh {
+  i, .refresh, .join-list {
     right: 0px;
   }
   .back {
@@ -130,4 +134,3 @@ $border-style: 1px solid rgba(0,0,0,0.08);
     h2 { display: none; }
   }
 }
-
