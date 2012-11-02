@@ -9,6 +9,7 @@ class listApp.Routers.List extends Backbone.Router
   routes:
     ''                      : 'root'
     's/:token/lists'        : 'lists'
+    's/:token/lists/'       : 'lists'
     'a/:token/lists'        : 'lists'
     's/:token/lists/:slug'  : 'list'
     'a/:token/lists/:slug'  : 'list'

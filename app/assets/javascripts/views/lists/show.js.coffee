@@ -40,7 +40,7 @@ class listApp.Views.ListsShow extends Backbone.View
 
   nav: (e) ->
     e.preventDefault()
-    path = listApp.apiPrefix 'lists'
+    path = listApp.apiPrefix()
     listApp.router.navigate(path, {trigger: true}) if path
 
   updateName: =>
