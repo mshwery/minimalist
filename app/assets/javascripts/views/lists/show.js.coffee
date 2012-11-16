@@ -48,7 +48,7 @@ class listApp.Views.ListsShow extends Backbone.View
 
   edit: =>
     @$("#stats").addClass("editing")
-    @input.focus().val(@input.val())
+    @input.focus().val(@input.val()).select()
 
   close: =>
     value = @input.val()

@@ -1,5 +1,6 @@
 $primary: #3392d6;
 $orange: #f55910;
+$gray: #EAF4FB;
 
 @mixin box-shadow ($params...) {
   box-shadow: $params;
@@ -116,8 +117,8 @@ i {
 }
 
 #list {
-  overflow: hidden;
-  position: relative;
+  //overflow: hidden;
+  //position: relative;
   margin: 0px auto;
   top: 0px;
   @media only screen and (max-device-width: 480px) {
