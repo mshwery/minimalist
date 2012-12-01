@@ -86,7 +86,7 @@ html, body {
 .white {
   background-color: #fff;
   min-width: 960px;
-  @media only screen and (max-device-width: 480px) {
+  @media only screen and (max-device-width: 767px) {
     min-width: 0px;
   }  
 }
@@ -103,7 +103,7 @@ html, body {
 }
 
 .desktop-only {
-  @media only screen and (max-device-width: 480px) {
+  @media only screen and (max-width: 767px) {
     display: none;
   }
 }
@@ -121,7 +121,7 @@ i {
   //position: relative;
   margin: 0px auto;
   top: 0px;
-  @media only screen and (max-device-width: 480px) {
+  @media only screen and (max-device-width: 767px) {
     max-width: 100%;
   }
   input[type=text], textarea {
@@ -136,7 +136,7 @@ i {
 .wrap {
   width: 960px;
   margin: 0 auto;
-  @media only screen and (max-device-width: 480px) {
+  @media only screen and (max-device-width: 767px) {
     max-width: 100%;
   }  
 }
