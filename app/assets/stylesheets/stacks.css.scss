@@ -17,7 +17,7 @@
       &:active {
         color: $primary;
       }
-      @media only screen and (max-device-width: 767px) {
+      @media only screen and (max-device-width: 720px) {
         width: 40px;
       }
     }
@@ -32,16 +32,17 @@
     width: auto;
     border-bottom: 1px solid rgba(0,0,0,0.10); 
     text-transform: uppercase;
-    @media only screen and (max-device-width: 767px) {
+    @media only screen and (max-device-width: 720px) {
       padding-left: 40px;
     }
   }
 }
 
 #app {
-  @media only screen and (min-device-width: 767px) {
+  @media only screen and (min-width: 720px) {
     #sidebar {
       position: fixed;
+      display: block;
       left: 0px;
       top: 0px;
       bottom: 0px;
@@ -93,7 +94,7 @@
       max-height: 36px;
       margin-right: 10px;
     }
-    @media only screen and (max-device-width: 767px) {
+    @media only screen and (max-device-width: 720px) {
       display: none;
     }    
   }
@@ -105,7 +106,7 @@
 #my-lists {
   .remove-lists {
     display: none;
-    @media only screen and (max-device-width: 767px) {
+    @media only screen and (max-device-width: 720px) {
       display: block;
       position: absolute;
       left: 20px;
@@ -137,7 +138,7 @@
     &:hover {
       background: #fff;
       .delete {
-        @media only screen and (max-device-width: 767px) {
+        @media only screen and (max-device-width: 720px) {
           display: block;
         }
       }      
@@ -199,7 +200,7 @@
         font-size: .9em;
       }
     }
-    @media only screen and (max-device-width: 767px) {
+    @media only screen and (max-device-width: 720px) {
       padding: 0 20px;
       border-bottom: 1px solid rgba(0,0,0,0.05);
       background: #fff;

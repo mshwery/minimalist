@@ -27,13 +27,13 @@
     font-size: 32px;
     font-weight: 300; 
     line-height: 110%;
-    @media only screen and (max-device-width: 767px) {
+    @media only screen and (max-device-width: 720px) {
       font-size: 30px;
       text-align: center;
     } 
     span {
       font-size: 26px;
-      @media only screen and (max-device-width: 767px) {
+      @media only screen and (max-device-width: 720px) {
         font-size: 24px;
       } 
     }
@@ -43,21 +43,21 @@
     opacity: .2;
     margin-top: 20px;
     margin-left: -20px;
-    @media only screen and (max-device-width: 767px) {
+    @media only screen and (max-device-width: 720px) {
       display: none;
     }     
   }
 
   section {
     padding: 60px 0px 0px;
-    @media only screen and (max-device-width: 767px) {
+    @media only screen and (max-device-width: 720px) {
       padding-top: 40px;
     } 
   }
 
   .actions {
     padding: 30px 0;
-    @media only screen and (max-device-width: 767px) {
+    @media only screen and (max-device-width: 720px) {
       .btn {
         width: 100%;
         padding-left: 0px;
@@ -79,7 +79,7 @@
     @include transition((padding 300ms ease-in-out, max-height 500ms ease-in-out));
     -webkit-transform: translate3d(0,0,0);
     -webkit-perspective: 1000;
-    @media only screen and (max-device-width: 767px) {
+    @media only screen and (max-device-width: 720px) {
       display: none;
     } 
     #list {
@@ -112,7 +112,7 @@
     width: 34.8%;
     padding: 30px 5.2% 30px 0px;
     text-align: left;
-    @media only screen and (max-device-width: 767px) {
+    @media only screen and (max-device-width: 720px) {
       padding: 30px 5%;
       width: 90%;
     } 
@@ -124,7 +124,7 @@
     ul {
       padding-left: 33%;
       background: url('bg.png') 30px center no-repeat;
-      @media only screen and (max-device-width: 767px) {
+      @media only screen and (max-device-width: 720px) {
         padding-left: 0;
         background: none;
       } 
@@ -133,7 +133,7 @@
       float: left;
       width: 50%;
       padding: 25px 0;
-      @media only screen and (max-device-width: 767px) {
+      @media only screen and (max-device-width: 720px) {
         width: 100%;
       } 
       h3, p {
@@ -156,19 +156,19 @@ footer {
   background: #eaf4fb;
   padding: 20px 0;
   min-width: 960px;
-  @media only screen and (max-device-width: 767px) {
+  @media only screen and (max-device-width: 720px) {
     min-width: 0px;
   }
   .wrap {
     width: 900px;
     padding: 0 30px;
-    @media only screen and (max-device-width: 767px) {
+    @media only screen and (max-device-width: 720px) {
       width: auto;
       text-align: center;
     }     
   }
   .right {
-    @media only screen and (max-device-width: 767px) {
+    @media only screen and (max-device-width: 720px) {
       float: none;
       display: block;
     }
