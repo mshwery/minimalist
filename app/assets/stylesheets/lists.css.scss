@@ -12,7 +12,7 @@ $border-style: 1px solid rgba(0,0,0,0.08);
         width: auto;
         margin-left: 241px;
       }
-      @media only screen and (max-device-width: 480px) {
+      @media only screen and (max-device-width: 767px) {
         #list {
           margin-left: 0px;
         }
@@ -22,7 +22,7 @@ $border-style: 1px solid rgba(0,0,0,0.08);
   #list {
     width: 500px;
     max-width: 100%;
-    @media only screen and (max-device-width: 480px) {
+    @media only screen and (max-device-width: 767px) {
       min-height: 100%;      
     }    
   }
