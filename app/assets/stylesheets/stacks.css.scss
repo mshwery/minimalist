@@ -39,7 +39,7 @@
 }
 
 #app {
-  @media only screen and (min-width: 720px) {
+  @media only screen and (min-device-width: 720px) {
     #sidebar {
       position: fixed;
       display: block;
