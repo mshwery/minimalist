@@ -103,7 +103,7 @@ html, body {
 }
 
 .desktop-only {
-  @media only screen and (max-width: 720px) {
+  @media only screen and (max-device-width: 720px) {
     display: none;
   }
 }
