@@ -11,6 +11,8 @@ class List < ActiveRecord::Base
   before_validation :generate_name, :on => :create 
   before_save :generate_slug
 
+  default_scope where(deleted_at: nil)
+
   def to_param
     slug
   end
