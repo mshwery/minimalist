@@ -1,4 +1,4 @@
-//= require jquery
+//= require lib/jquery
 //= require lib/jquery-ui.min
 //= require jquery_ujs
 //= require lib/json2
