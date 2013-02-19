@@ -8,6 +8,8 @@ Lists::Application.routes.draw do
 
   resources :lists, :only => [:new, :create] 
 
+  match "/preview", :to => "pages#preview"
+
   root :to => 'pages#home'
 
 end

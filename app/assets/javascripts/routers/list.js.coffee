@@ -8,6 +8,7 @@ window.demo = {
 class listApp.Routers.List extends Backbone.Router
   routes:
     ''                : 'root'
+    'preview'         : 'preview'
     's/:token'        : 'stack'
     's/:token/'       : 'stack'
     's/:token/lists'  : 'lists'
@@ -16,8 +17,12 @@ class listApp.Routers.List extends Backbone.Router
 
   initialize: ->
     @toggleLoadScreen()
-    unless $('body').hasClass('pages-home')
+    unless $('body').hasClass('pages-home') || $('body').hasClass('pages-preview')
       @setupSidebar()
+
+  preview: ->
+    listApp.demo = new listApp.Models.DemoList(window.demo) 
+    listApp.view = new listApp.Views.ListsShow({ model: listApp.demo })  
 
   root: ->
     listApp.demo = new listApp.Models.DemoList(window.demo) 

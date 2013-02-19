@@ -1,4 +1,4 @@
-.pages-home {
+.pages-home, .pages-preview {
   background: $primary;
   #app {
     position: relative;
@@ -57,15 +57,92 @@
 
   .actions {
     padding: 30px 0;
+    @media only screen and (min-device-width: 720px) {
+      .preview { display: none; }
+    }
     @media only screen and (max-device-width: 720px) {
+      text-align: center;
       .btn {
-        width: 100%;
+        width: 46%;
+        margin: 0 2%;
         padding-left: 0px;
         padding-right: 0px;
       }
     } 
   }
 
+  #intro {
+    width: 34.8%;
+    padding: 30px 5.2% 30px 0px;
+    text-align: left;
+    @media only screen and (max-device-width: 720px) {
+      padding: 30px 5%;
+      width: 90%;
+    } 
+  }
+  #features {
+    padding: 35px 0px;
+    color: #fff;
+    text-align: left;
+    ul {
+      padding-left: 33%;
+      background: url('bg.png') 30px center no-repeat;
+      @media only screen and (max-device-width: 720px) {
+        padding-left: 0;
+        background: none;
+      } 
+    }   
+    li {
+      float: left;
+      width: 50%;
+      padding: 25px 0;
+      @media only screen and (max-device-width: 720px) {
+        width: 100%;
+      } 
+      h3, p {
+        padding: 0 30px;
+        margin: 0px;
+        line-height: 24px;
+        font-size: 16px;
+      }
+      h3 {
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+footer {
+  text-align: left;
+  font-size: 14px;
+  line-height: 25px;
+  color: #525b62;
+  background: #eaf4fb;
+  padding: 20px 0;
+  min-width: 960px;
+  @media only screen and (max-device-width: 720px) {
+    min-width: 0px;
+  }
+  .wrap {
+    width: 900px;
+    padding: 0 30px;
+    @media only screen and (max-device-width: 720px) {
+      width: auto;
+      text-align: center;
+    }     
+  }
+  .right {
+    @media only screen and (max-device-width: 720px) {
+      float: none;
+      display: block;
+    }
+  }
+  a, a:hover {
+    color: #525b62;
+  }
+}
+
+.pages-home {
   #demo, #intro {
     float: left;
   }
@@ -107,73 +184,35 @@
         max-height: none;
       }
     }
-  }
-  #intro {
-    width: 34.8%;
-    padding: 30px 5.2% 30px 0px;
-    text-align: left;
-    @media only screen and (max-device-width: 720px) {
-      padding: 30px 5%;
-      width: 90%;
-    } 
-  }
-  #features {
-    padding: 35px 0px;
-    color: #fff;
-    text-align: left;
-    ul {
-      padding-left: 33%;
-      background: url('bg.png') 30px center no-repeat;
-      @media only screen and (max-device-width: 720px) {
-        padding-left: 0;
-        background: none;
-      } 
-    }   
-    li {
-      float: left;
-      width: 50%;
-      padding: 25px 0;
-      @media only screen and (max-device-width: 720px) {
-        width: 100%;
-      } 
-      h3, p {
-        padding: 0 30px;
-        margin: 0px;
-        line-height: 24px;
-        font-size: 16px;
-      }
-      h3 {
-        font-weight: 600;
-      }
-    }
-  }
+  }  
 }
-footer {
-  text-align: left;
-  font-size: 14px;
-  line-height: 25px;
-  color: #525b62;
-  background: #eaf4fb;
-  padding: 20px 0;
-  min-width: 960px;
-  @media only screen and (max-device-width: 720px) {
-    min-width: 0px;
-  }
-  .wrap {
-    width: 900px;
-    padding: 0 30px;
-    @media only screen and (max-device-width: 720px) {
-      width: auto;
-      text-align: center;
-    }     
-  }
-  .right {
-    @media only screen and (max-device-width: 720px) {
-      float: none;
+
+.pages-preview {
+  background: #fff;
+
+  #demo {
+
+    .home {
       display: block;
+      float: left;
     }
+    
+    max-width: 500px;
+    margin: 50px auto;
+
+    @media only screen and (max-device-width: 720px) {
+      margin: 0 auto;
+    }    
   }
-  a, a:hover {
-    color: #525b62;
+
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    @media only screen and (max-device-width: 720px) {
+      position: relative;
+    }    
   }
 }

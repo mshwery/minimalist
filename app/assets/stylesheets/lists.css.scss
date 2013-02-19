@@ -5,6 +5,7 @@ $border-style: 1px solid rgba(0,0,0,0.08);
 
 // this is for the desktop styles
 .lists, .stacks-show {
+  .home { display: none; }
   #app {
     @media only screen and (max-width: 768px) {
       padding: 0px;
@@ -83,7 +84,12 @@ $border-style: 1px solid rgba(0,0,0,0.08);
     @include h;
   }  
 
-  .back, .refresh {
+  .home {
+    line-height: 50px;
+    text-align: center;
+  }
+
+  .back, .refresh, .home {
     cursor: pointer;
     text-align: center;
     width: 46px;
@@ -102,7 +108,7 @@ $border-style: 1px solid rgba(0,0,0,0.08);
     }
   }
 
-  i, .back, .refresh {
+  i, .back, .refresh, .home {
     float: none;
     position: absolute;
     top: 0px;
@@ -110,7 +116,7 @@ $border-style: 1px solid rgba(0,0,0,0.08);
   i, .refresh {
     right: 0px;
   }
-  .back {
+  .back, .home {
     left: 0px;
     @media only screen and (min-device-width: 768px) {
       display: none;

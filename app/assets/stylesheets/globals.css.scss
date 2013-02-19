@@ -141,6 +141,23 @@ i {
   }  
 }
 
+@mixin btn_color($color) {
+  background-color: $color;
+  color: #fff;
+  @media only screen and (min-device-width: 768px) {
+    &:hover {
+      background-color: saturate(darken($color, 5%), 5%);
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+  &:active {
+    background-color: saturate(darken($color, 5%), 5%);
+    color: #fff;
+    text-decoration: none;
+  }  
+}
+
 .btn {
   padding: 15px 30px;
   text-align: center;
@@ -150,23 +167,11 @@ i {
   text-transform: uppercase;
   @include inline-block;
   @include border-radius(8px);
+  @include btn_color(#ccc);
 }
 
 .orange {
-  background-color: $orange;
-  color: #fff;
-  @media only screen and (min-device-width: 768px) {
-    &:hover {
-      background-color: saturate(darken($orange, 5%), 5%);
-      color: #fff;
-      text-decoration: none;
-    }
-  }
-  &:active {
-    background-color: saturate(darken($orange, 5%), 5%);
-    color: #fff;
-    text-decoration: none;
-  }
+  @include btn_color($orange);
 }
 
 input[type=text],

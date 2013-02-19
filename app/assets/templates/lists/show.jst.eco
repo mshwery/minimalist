@@ -1,6 +1,7 @@
 <div id="list">
   <div id="stats">
     <a class="back" href="<%= @url %>"><img src="/assets/back.png"/></a>
+    <a class="home" href="/">Home</a>
     <h2 title="<%= @name %>"><%= @name %></h2>
     <form>
       <input class="edit" type="text" value="<%= @name %>" />

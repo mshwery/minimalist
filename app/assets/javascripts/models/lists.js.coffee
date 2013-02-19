@@ -44,7 +44,7 @@ window.demoItems = [
   {
     "completed":false,
     "created_at":"2012-07-22T05:07:53Z",
-    "description":"Double-click to edit items",
+    "description":"Double-tap to edit items",
     "id":3,
     "sort_order":3,
     "updated_at":"2012-07-26T02:55:40Z"
@@ -68,7 +68,7 @@ window.demoItems = [
   {
     "completed":false,
     "created_at":"2012-07-21T02:47:14Z",
-    "description":"Refresh your list to get rid of completed items (or to see any additions if you're sharing your list)",
+    "description":"Refresh your list to get rid of completed items",
     "id":6,
     "sort_order":6,
     "updated_at":"2012-07-26T02:55:38Z"
