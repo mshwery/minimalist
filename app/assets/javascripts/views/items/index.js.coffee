@@ -7,7 +7,7 @@ class listApp.Views.ItemsIndex extends Backbone.View
 
     @addAll()
 
-    handler = if listApp.isMobile() then '.toggle' else false
+    handler = if listApp.isMobile() then '.move' else false
     canceler = if listApp.isMobile() then '.view' else ':input,button'
     $(@el).sortable({ cursor: 'crosshair', axis: 'y', stop: @reorderCollection, handle: handler, cancel: canceler })
 

@@ -31,6 +31,22 @@
         top: 0px;
         @include transition(opacity 100ms linear);
       }
+      .move {
+        opacity: .2;
+        float: right;
+        padding: 16px 0;
+        margin-right: -20px;
+        padding-left: 10px;
+        height: 18px;
+        cursor: move;
+
+        &:hover {
+          opacity: .6;
+        }
+        &:active {
+          opacity: 1;
+        }
+      }
       position: relative;
       background-color: #fff;
       padding: 0px 25px;
@@ -120,7 +136,7 @@
       &.editing {
         background-color: $yellow;
         .edit { display: inline-block; }
-        .label { display: none; }
+        .label, .move { display: none; }
         .destroy { display: block; }
       }
     }
