@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   respond_to :json
   
   def index
-    render :json => @list.tasks.not_deleted
+    render :json => @list.tasks
   end
   
   def create
@@ -28,8 +28,8 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = @list.tasks.not_deleted.find(params[:id])
-    if @task.delete!
+    @task = @list.tasks.find(params[:id])
+    if @task.destroy
       render :json => true
     else
       render :json => 'Permission denied'

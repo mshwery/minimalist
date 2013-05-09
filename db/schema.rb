@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013175503) do
+ActiveRecord::Schema.define(:version => 20130509013805) do
+
+  create_table "articles", :force => true do |t|
+    t.string   "headline"
+    t.text     "body"
+    t.integer  "source_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "identities", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "lists", :force => true do |t|
     t.string   "name"
@@ -22,10 +38,32 @@ ActiveRecord::Schema.define(:version => 20121013175503) do
     t.datetime "deleted_at"
   end
 
+  create_table "memberships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "list_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "sources", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.string   "rss"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "stacks", :force => true do |t|
     t.string   "token"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "stats", :force => true do |t|
+    t.integer  "tasks_count"
+    t.integer  "lists_count"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "tasks", :force => true do |t|
@@ -36,6 +74,15 @@ ActiveRecord::Schema.define(:version => 20121013175503) do
     t.integer  "list_id"
     t.integer  "sort_order"
     t.datetime "deleted_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "nickname"
   end
 
 end

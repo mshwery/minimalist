@@ -5,15 +5,11 @@ module ApplicationHelper
   end
 
   def list_total
-    List.all.count
-  end
-
-  def stack_total
-    Stack.all.count
+    Stat.first().lists_count
   end
 
   def task_total
-    Task.all.count
+    Stat.first().tasks_count
   end
 
   def css_design_awards_nominee_tag

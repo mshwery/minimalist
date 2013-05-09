@@ -28,8 +28,9 @@ class listApp.Views.ItemsShow extends Backbone.View
     return this
 
   togglecompleted: ->
-    @model.toggle()
-    @$el.toggleClass('completed')
+    if !@$el.hasClass('editing')
+      @model.toggle()
+      @$el.toggleClass('completed')
 
   checkDirection: (e) ->
     if (e.distX > e.distY && e.distX < -e.distY) or (e.distX < e.distY && e.distX > -e.distY)

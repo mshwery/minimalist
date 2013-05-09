@@ -35,7 +35,7 @@ class ListsController < ApplicationController
   
   def destroy
     @list = @stack.lists.find_by_slug(params[:id])
-    if @list.delete!
+    if @list.destroy
       render :json => true
     else
       render :json => 'Permission denied'
