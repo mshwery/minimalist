@@ -6,7 +6,11 @@ class Stat < ActiveRecord::Base
     s = Stat.any? ? 
       Stat.first() :
       Stat.new({:lists_count => List.count, :tasks_count => Task.count })
-    s.increment(counter_name)
+
+    if !s.new_record?
+      s.increment(counter_name)
+    end
+
     s.save
   end
 end

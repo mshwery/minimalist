@@ -5,11 +5,11 @@ module ApplicationHelper
   end
 
   def list_total
-    Stat.first().lists_count
+    Stat.any? ? Stat.first().lists_count : 0
   end
 
   def task_total
-    Stat.first().tasks_count
+    Stat.any? ? Stat.first().tasks_count : 0
   end
 
   def css_design_awards_nominee_tag
