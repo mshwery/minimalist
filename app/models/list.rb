@@ -10,7 +10,7 @@ class List < ActiveRecord::Base
   validates_format_of :slug, :with => /\A[a-z\-0-9]*\Z/
   before_validation :generate_name, :on => :create 
   before_save :generate_slug
-  after_save :update_count
+  after_create :update_count
 
   def to_param
     slug

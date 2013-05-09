@@ -7,7 +7,7 @@ class Task < ActiveRecord::Base
   scope :deleted, where('tasks.deleted_at IS NOT NULL')
   scope :remaining, where(:completed => false)
 
-  after_save :update_count
+  after_create :update_count
 
   def to_json(options = {})
     super(options.merge(:only => [ :id, :list_id, :description, :completed, :sort_order ]))
