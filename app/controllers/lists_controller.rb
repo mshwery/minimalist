@@ -43,6 +43,6 @@ class ListsController < ApplicationController
   end
 
   def find_stack
-    @stack = Stack.find_or_create_by_token(params[:stack_id])
+    @stack = Stack.find_by_token(params[:stack_id])
   end
 end

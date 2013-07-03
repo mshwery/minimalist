@@ -6,6 +6,16 @@ class StacksController < ApplicationController
     redirect_to :root
   end
 
+  def new
+    @stack = Stack.new
+
+    if @stack.save
+      redirect_to new_stack_list_path(@stack)
+    else
+      redirect_to :root
+    end
+  end
+
   def show
     @stack = Stack.find_by_token(params[:id])
     if @stack
@@ -15,8 +25,6 @@ class StacksController < ApplicationController
     end
   end
 
-  #TODO: Get rid of this. Users shouldn't be able to destroy records
-  # deletion should simply mark a stack deleted_at = Time.now
   def destroy
     @stack = Stack.find_by_token(params[:id])
     if @stack.destroy
