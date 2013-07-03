@@ -143,10 +143,11 @@ i {
 
 @mixin btn_color($color) {
   background-color: $color;
+  border-color: darken($color, 15%);
   color: #fff;
   @media only screen and (min-device-width: 768px) {
     &:hover {
-      background-color: saturate(darken($color, 5%), 5%);
+      background-color: saturate(darken($color, 3%), 5%);
       color: #fff;
       text-decoration: none;
     }
@@ -159,15 +160,24 @@ i {
 }
 
 .btn {
-  padding: 15px 30px;
+  padding: 12px 30px;
   text-align: center;
   font-size: 16px;
   line-height: 100%;
   font-weight: 300;
   text-transform: uppercase;
+  border: 1px solid transparent;
   @include inline-block;
-  @include border-radius(8px);
+  @include border-radius(3px);
   @include btn_color(#ccc);
+  @include box-shadow(0 1px 2px rgba(0,0,0,0.1));
+
+  &:hover {
+    @include box-shadow(0 1px 2px rgba(0,0,0,0.33));
+  }
+  &:active {
+    @include box-shadow(inset 0 1px 2px rgba(0,0,0,0.33));
+  }
 }
 
 .orange {
