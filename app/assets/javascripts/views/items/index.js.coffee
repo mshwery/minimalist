@@ -16,7 +16,7 @@ class listApp.Views.ItemsIndex extends Backbone.View
     $(@el).prepend( view.render().el )
 
   addAll: =>
-    _.each(@collection.remaining(), (item) =>
+    _.each(@collection.models, (item) => # remaining(), (item) =>
       @addOne(item)
     )
 
