@@ -64,6 +64,7 @@
     #my-lists {
       padding: 20px 10px;
       h2 {
+        letter-spacing: 1px;
         color: #aaa;
         font-size: 12px;
         line-height: 24px;
@@ -88,11 +89,6 @@
       &:hover {
         text-decoration: none;
       }
-    }
-    img {
-      max-width: 36px;
-      max-height: 36px;
-      margin-right: 10px;
     }
     @media only screen and (max-device-width: 720px) {
       display: none;
@@ -153,7 +149,7 @@
       &:hover {
         background: #e6edf2;
         .delete {
-          display: block;
+          opacity: .5;
         }
       }
     }
@@ -161,33 +157,29 @@
       background: #e6edf2;
     }
     .delete {
-      display: none;
       float: right;
       cursor: pointer;
-      line-height: 17px;
+      line-height: 22px;
+      opacity: 0;
       @media only screen and (min-device-width: 768px) {
         &:hover {
-          img {
-            opacity: .9;
-          }
-        }
-      }
-      &:active {
-        img {
           opacity: 1;
         }
       }
-      img {
-        opacity: .5;
-        max-width: 15px;
-        max-height: 17px;
+      &:active {
+        opacity: 1;
       }
+      color: #333;
+      @include transition(all 200ms ease-in-out);
     }
     .route {
       display: block;
       line-height: 22px;
       font-weight: 400;
       color: #333;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       &.current {
         color: darken($primary, 10%);
       }

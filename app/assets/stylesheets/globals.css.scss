@@ -204,19 +204,18 @@ textarea {
   background: $primary url('bg.png') center center no-repeat;
 }
 
-.twitter {
+.icon-twitter {
   margin: 0 5px;
-  img { 
-    max-width: 25px;
-    opacity: 0.5;
-    @media only screen and (min-device-width: 768px) {
-      &:hover {
-        opacity: .75;
-      }
+  opacity: 0.5;
+  font-size: 16px;
+  vertical-align: middle;
+  @media only screen and (min-device-width: 768px) {
+    &:hover {
+      opacity: .75;
     }
-    &:active {
-      opacity: 1;
-    }
+  }
+  &:active {
+    opacity: 1;
   }
 }
 

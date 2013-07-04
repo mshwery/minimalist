@@ -1,5 +1,5 @@
-<img class="toggle" src="/assets/check.png" title="Check!" alt="Check!"/>
-<img class="move" src="/assets/move.png" title="Move Item" alt="Move Item"/>
+<span class="toggle icon-check" title="Check!" alt="Check!"></span>
+<span class="move icon-move" title="Move Item"></span>
 <div class="view">
   <form>
     <label class="label"><%= @description %></label>
@@ -7,4 +7,4 @@
     <input type="submit" style="text-indent: -9999px; position: absolute; top: 0px; left: 0px; width: 0px; height: 0px; background: none; border: none; -webkit-button-style:none;"/>
   </form>
 </div>
-<a class="destroy" title="delete"><img src="/assets/close.png" alt="delete"/></a>
+<a class="destroy icon-trash" title="delete"></a>

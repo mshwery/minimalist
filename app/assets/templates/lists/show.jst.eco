@@ -1,13 +1,13 @@
 <div id="list">
   <div id="stats">
-    <a class="back" href="<%= @url %>"><img src="/assets/back.png"/></a>
-    <a class="home" href="/">Home</a>
+    <a class="back icon-home" href="<%= @url %>"></a>
+    <a class="home icon-menu" href="/"></a>
     <h2 title="<%= @name %>"><%= @name %></h2>
     <form>
       <input class="edit" type="text" value="<%= @name %>" />
       <input type="submit" style="display: none" />
     </form>
-    <a class="refresh"><img src="/assets/refresh.png"/></a>
+    <a class="refresh icon-refresh"></a>
   </div>
 
   <div class="list">

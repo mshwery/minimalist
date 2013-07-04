@@ -1,6 +1,6 @@
 <li>
   <form>
     <input id="new-item" placeholder="Add to your list..." type="text" />
-    <input id="submit-new-item" type="submit" value="" title="click this or press enter to submit" />
+    <input id="submit-new-item" type="submit" value="" title="click this or press enter to submit" class="icon-twitter" />
   </form>
 </li>
