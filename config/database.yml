@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: utf8
-  database: db/development
+  database: minimalist/development
   username: postgres
   pool: 5
   timeout: 5000
@@ -9,7 +9,7 @@ development:
 test:
   adapter: postgresql
   encoding: utf8
-  database: db/test
+  database: minimalist/test
   username: postgres
   pool: 5
   timeout: 5000
