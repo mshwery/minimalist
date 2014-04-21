@@ -102,8 +102,8 @@ html, body {
   @include delay(1s);
 }
 
-.desktop-only {
-  @media only screen and (max-device-width: 720px) {
+.list-is-selected {
+  @media only screen and (max-width: 600px) {
     display: none;
   }
 }
@@ -121,7 +121,7 @@ i {
   //position: relative;
   margin: 0px auto;
   top: 0px;
-  @media only screen and (max-device-width: 720px) {
+  @media only screen and (max-width: 600px) {
     max-width: 100%;
   }
   input[type=text], textarea {

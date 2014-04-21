@@ -1,6 +1,6 @@
 class StacksController < ApplicationController
 
-  respond_to :html, :xml, :json
+  respond_to :html, :json
 
   def index
     redirect_to :root

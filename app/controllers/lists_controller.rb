@@ -1,7 +1,7 @@
 class ListsController < ApplicationController
 
   before_filter :find_stack
-  respond_to :html, :xml, :json
+  respond_to :html, :json
 
   def new
   	@list = @stack.lists.new

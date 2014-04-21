@@ -38,7 +38,7 @@ class listApp.Routers.List extends Backbone.Router
       listApp.listView.remove()
       listApp.listView.unbind()
       
-    $("#sidebar").removeClass('desktop-only')
+    $("#sidebar").removeClass('list-is-selected')
 
   new: ->
     listApp.log 'new'
@@ -55,8 +55,7 @@ class listApp.Routers.List extends Backbone.Router
         list = collection.get(listSlug)
         listApp.listView = new listApp.Views.ListsShow(model: list)
 
-    if listApp.isMobile()
-      $('#sidebar').addClass('desktop-only')
+    $('#sidebar').addClass('list-is-selected')
     
   toggleLoadScreen: ->
     $("#app").toggleClass('show hide')

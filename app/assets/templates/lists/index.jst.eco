@@ -1,4 +1,4 @@
-<a class="delete icon-trash" title="delete"></a>
+<a class="delete-list" title="delete list">&#215;</a>
 <a href="<%= @urlRoot %>/<%= @list.get('slug') %>" class="route" id="<%= @list.get('slug') %>">
   <%= @list.get('name') %>
   <i>(<%= @list.items.remaining().length %>)</i>

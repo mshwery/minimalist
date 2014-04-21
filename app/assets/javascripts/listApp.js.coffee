@@ -12,7 +12,10 @@ $.extend listApp,
     return Modernizr.touch
 
 getStackPath = (path) ->
+  # returns /s/<stackUrl> and drops everything after
   return path.split("/").slice(0, 3).join("/")
+
+$.ajaxSetup({ cache: false })
 
 $(document).ready ->
   listApp.init()

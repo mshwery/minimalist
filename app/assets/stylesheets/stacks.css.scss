@@ -17,7 +17,7 @@
       &:active {
         color: $primary;
       }
-      @media only screen and (max-device-width: 720px) {
+      @media only screen and (max-width: 600px) {
         width: 40px;
       }
     }
@@ -32,14 +32,15 @@
     width: auto;
     border-bottom: 1px solid rgba(0,0,0,0.10); 
     text-transform: uppercase;
-    @media only screen and (max-device-width: 720px) {
+
+    @media only screen and (max-width: 600px) {
       padding-left: 40px;
     }
   }
 }
 
 #app {
-  @media only screen and (min-device-width: 768px) {
+  @media only screen and (min-width: 600px) {
     #sidebar {
       position: fixed;
       display: block;
@@ -84,15 +85,18 @@
     padding: 20px 0px;
     margin: 0px;
     border-bottom: 1px solid rgba(0,0,0,0.05);
+
     a {
       color: inherit;
       &:hover {
         text-decoration: none;
       }
     }
-    @media only screen and (max-device-width: 720px) {
+
+    @media only screen and (max-width: 600px) {
       display: none;
-    }    
+    }
+
   }
   footer {
     display: none;
@@ -100,78 +104,38 @@
 }
 
 #my-lists {
-  .remove-lists {
-    display: none;
-    @media only screen and (max-device-width: 720px) {
-      display: block;
-      position: absolute;
-      left: 20px;
-      top: 0px;
-      margin: 12px 0;
-      padding: 5px;
-      font-size: 12px;
-      color: #aaa;
-      @include border-radius(3px);
-      &:hover {
-        text-decoration: none;
-      }
-      &:active {
-        color: #333;
-        background: #e6edf2;
-      }
-    } 
-  } 
   &.editing {
-    .delete {
-      display: block;
-      float: left;
-      line-height: 44px;
-      padding-right: 15px;
-    }
     &:active {
       background: #e6edf2;
     }
-    &:hover {
-      background: #fff;
-      .delete {
-        @media only screen and (max-device-width: 720px) {
+    @media screen and (max-width: 600px) {
+      &:hover {
+        background: #fff;
+        .delete-list {
           display: block;
         }
-      }      
+      }
     }
   } 
   li {
     padding: 0 8px;
     font-size: 14px;
     border-bottom: none;
-    @include border-radius(3px);      
+    @include border-radius(3px);  
+
     @media only screen and (min-device-width: 768px) {    
       &:hover {
         background: #e6edf2;
-        .delete {
+        .delete-list {
           opacity: .5;
         }
       }
     }
+
     &:active {
       background: #e6edf2;
     }
-    .delete {
-      float: right;
-      cursor: pointer;
-      line-height: 22px;
-      opacity: 0;
-      @media only screen and (min-device-width: 768px) {
-        &:hover {
-          opacity: 1;
-        }
-      }
-      &:active {
-        opacity: 1;
-      }
-      color: #333;
-      @include transition(all 200ms ease-in-out);
-    }
+
     .route {
       display: block;
       line-height: 22px;
@@ -192,7 +156,7 @@
         font-size: .9em;
       }
     }
-    @media only screen and (max-device-width: 720px) {
+    @media only screen and (max-width: 600px) {
       padding: 0 20px;
       border-bottom: 1px solid rgba(0,0,0,0.05);
       background: #fff;
@@ -204,4 +168,75 @@
       }
     }    
   }
+}
+
+.remove-lists {
+  display: none;
+
+  @media only screen and (max-width: 600px) {
+    display: block;
+    position: absolute;
+    left: 20px;
+    top: 0px;
+    margin: 12px 0;
+    padding: 5px 0;
+    font-size: 12px;
+    color: #aaa;
+    cursor: pointer;
+    @include border-radius(3px);
+    
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:active {
+      color: #333;
+      background: #e6edf2;
+    }
+  } 
+}
+
+.delete-list {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.5em;
+  float: right;
+  cursor: pointer;
+  line-height: 22px;
+  color: #333;
+  padding-left: 15px;
+  text-decoration: none;
+  @include transition(opacity 200ms ease-in-out);
+
+  &:active {
+    text-decoration: none;
+  }
+
+  @media screen and (max-width: 600px) {
+    display: none;
+    line-height: 50px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .editing .delete-list {
+    display: block;
+  }
+}
+
+.desktop .delete-list {
+
+  &:hover {
+    text-decoration: none;
+  }
+  
+  @media screen and (min-width: 601px) {
+    opacity: 0;
+  
+    &:hover,
+    &:active {
+      text-decoration: none;
+      opacity: 1;
+    }
+  }  
 }

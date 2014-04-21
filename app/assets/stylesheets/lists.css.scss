@@ -13,7 +13,7 @@ $border-style: 1px solid rgba(0,0,0,0.08);
         width: auto;
         margin-left: 241px;
       }
-      @media only screen and (max-device-width: 720px) {
+      @media only screen and (max-width: 600px) {
         #list {
           margin-left: 0px;
         }
@@ -23,7 +23,7 @@ $border-style: 1px solid rgba(0,0,0,0.08);
   #list {
     width: 500px;
     max-width: 100%;
-    @media only screen and (max-device-width: 720px) {
+    @media only screen and (max-width: 600px) {
       min-height: 100%;      
     }    
   }
@@ -98,11 +98,13 @@ $border-style: 1px solid rgba(0,0,0,0.08);
     font-size: 18px;
     opacity: 0.5;
     color: #333;
-    @media only screen and (min-device-width: 768px) {
+
+    @media only screen and (min-width: 768px) {
       &:hover {
         opacity: .7;
       }
     }
+    
     &:active {
       opacity: 1;
     }
@@ -118,7 +120,7 @@ $border-style: 1px solid rgba(0,0,0,0.08);
   }
   .back, .home {
     left: 0px;
-    @media only screen and (min-device-width: 768px) {
+    @media only screen and (min-width: 600px) {
       display: none;
     }    
   }
