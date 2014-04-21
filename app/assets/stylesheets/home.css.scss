@@ -155,7 +155,7 @@ footer {
     @media only screen and (max-device-width: 720px) {
       display: none;
     } 
-    #list {
+    .selected-list {
       margin: 0 -3px -3px;
       @include transition(margin 300ms ease-in-out);
       position: relative;
@@ -172,7 +172,7 @@ footer {
       cursor: auto;
       max-height: 1000px;
       padding: 0 48px;
-      #list {
+      .selected-list {
         margin: 0 -3px 50px;
       }
       &.complete {

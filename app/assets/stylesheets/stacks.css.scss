@@ -103,72 +103,76 @@
   }
 }
 
-.desktop .editing:active {
+.editing:active {
   background: #e6edf2;
+
+  @media screen and (max-width: 600px) {
+    &:hover {
+      background: #fff;
+
+      .delete-list {
+        display: block;
+      }
+    }
+  }
 }
 
-#my-lists {
-  &.editing {
-    @media screen and (max-width: 600px) {
-      &:hover {
-        background: #fff;
-        .delete-list {
-          display: block;
-        }
-      }
-    }
-  } 
-  li {
-    padding: 0 8px;
-    font-size: 14px;
-    border-bottom: none;
-    @include border-radius(3px);  
+.desktop .list-item {
+  &:active {
 
-    @media only screen and (min-device-width: 768px) {    
-      &:hover {
-        background: #e6edf2;
-        .delete-list {
-          opacity: .5;
-        }
-      }
-    }
-
-    &:active {
-      background: #e6edf2;
-    }
-
-    .route {
-      display: block;
-      line-height: 22px;
-      font-weight: 400;
-      color: #333;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      &.current {
-        color: darken($primary, 10%);
-      }
-      &:hover {
-        text-decoration: none;
-      }
-      i {
-        line-height: inherit;
-        padding: 0px;
-        font-size: .9em;
-      }
-    }
-    @media only screen and (max-width: 600px) {
-      padding: 0 20px;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-      background: #fff;
-      .route {
-        line-height: 50px;
-        i {
-          float: right;
-        }
-      }
-    }    
   }
+}
+
+.list-item {
+  padding: 0 8px;
+  font-size: 14px;
+  border-bottom: none;
+  @include border-radius(3px);  
+
+  @media only screen and (min-device-width: 768px) {    
+    &:hover {
+      background: #e6edf2;
+      .delete-list {
+        opacity: .5;
+      }
+    }
+  }
+
+  &:active {
+    background: #e6edf2;
+  }
+
+  .route {
+    display: block;
+    line-height: 22px;
+    font-weight: 400;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &.current {
+      color: darken($primary, 10%);
+    }
+    &:hover {
+      text-decoration: none;
+    }
+    i {
+      line-height: inherit;
+      padding: 0px;
+      font-size: .9em;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    padding: 0 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    background: #fff;
+    .route {
+      line-height: 50px;
+      i {
+        float: right;
+      }
+    }
+  }    
 }
 
 .remove-lists {

@@ -37,7 +37,7 @@ class listApp.Views.StacksShow extends Backbone.View
 
 class listApp.Views.ListItemShow extends Backbone.View
   tagName: "li"
-  className: "cf"
+  className: "cf list-item"
   template: JST['lists/index']
 
   events:

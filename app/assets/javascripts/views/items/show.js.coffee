@@ -1,6 +1,6 @@
 class listApp.Views.ItemsShow extends Backbone.View
   tagName: "li"
-  className: 'cf'
+  className: 'cf todo'
 
   template: JST['items/show']
 

@@ -1,4 +1,5 @@
 class listApp.Views.ListsShow extends Backbone.View
+  className: "selected-list"
   template: JST['lists/show']
 
   events: 

@@ -1,172 +1,188 @@
-#list {
-  .items {
-    //background-color: $primary;
-    background-color: #eee;
+.todos {
+  //background-color: $primary;
+  background-color: #eee;
+}
+
+.selected-list {
+  text-align: left;
+  position: relative;
+}
+
+.todo {
+  position: relative;
+  background-color: #fff;
+  padding: 0px 25px;
+  font-size: 16px;
+  border-bottom: $border-style;
+  font-weight: 300;
+  @include transition(background-color 200ms linear);
+  // reduces flicker on ios...
+  -webkit-transform: translate3d(0,0,0);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility:    hidden;
+  -ms-backface-visibility:     hidden;
+  -webkit-perspective: 1000;
+  // end
+
+  &.completed {
+    background-color: $primary;
+    border-color: transparent;
+    .toggle {
+      color: white;
+      border-color: transparent;
+      &:hover {
+        border-color: transparent;
+        @include gradient(0);
+      }
+    }
+    .label {
+      color: #fff;
+      text-decoration: line-through;
+      a { color: #fff; }
+    }
+  }
+
+  &.ui-sortable-helper {
+    border-bottom: none;
+    @include opacity(85);
+    margin: -1px -1px 0px -1px;
+    border: 1px solid $primary;
+    @include border-radius(2px);
+    z-index: 100000;
+    @include box-shadow(0 1px 3px rgba(0,0,0,0.35));
+  }
+
+  .check {
+    opacity: 0;
+    max-height: 50px;
+    max-width: 24px;
+    position: absolute;
+    left: -40px;
+    top: 0px;
+    @include transition(opacity 100ms linear);
+  }
+
+  .move {
+    opacity: .2;
+    float: right;
+    margin-right: -20px;
+    padding-left: 10px;
+    font-size: 22px;
+    height: 50px;
+    line-height: 50px;
+    cursor: move;
+
+    &:hover {
+      opacity: .6;
+    }
+    &:active {
+      opacity: 1;
+    }
+  }
+
+  .toggle {
+    border: 1px solid #e5e5e5;
+    cursor: pointer;
+    float: left;
+    color: transparent;
+    max-height: 16px;
+    max-width: 16px;
+    @include border-radius(3px);
+    margin: 16px 0px;
+    margin-left: -10px;
+    @media only screen and (min-device-width: 768px) {
+      &:hover {
+        border-color: #bbb;
+        @include gradient(0.03);        
+      }
+    }
+    &:active {
+      border-color: #bbb;
+      @include gradient(0.03);                  
+    }
+  }
+
+  .view {
+    margin: 0px 20px 0px 24px;
+  }
+  
+  .label, input[type=text], textarea {
+    width: 100%;
+    padding: 15px 0px; 
+    line-height: 20px;
+    font-size: 16px; 
+    font-weight: 300;
+    word-wrap: break-word;
+  }
+
+  .label {
+    cursor: pointer;
+    color: $dark;//$blue;
+  }
+  
+  .destroy {
+    opacity: 0.5;
+    display: none;
+    position: absolute;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 30px;
+    overflow: hidden;
+    top: 0px;
+    color: #333;
+    right: 0px;
+    @include transition(all 200ms ease-in-out);
+
+    @media only screen and (min-device-width: 768px) {
+      &:hover { opacity: 1; }
+    }
+    
+    &:active { opacity: 1; }
+  }
+
+  .edit { display: none; }
+  
+  &.editing {
+    background-color: $yellow;
+    .edit { display: inline-block; }
+    .label, .move { display: none; }
+    .destroy { display: block; }
   }
 }
 
-.list {
-  text-align: left;
+.items {
   position: relative;
+  overflow: visible;
+  text-align: left;
+}
 
-  .items {
-    position: relative;
-    overflow: visible;
-    li {
-      &.ui-sortable-helper {
-        border-bottom: none;
-        @include opacity(85);
-        margin: -1px -1px 0px -1px;
-        border: 1px solid $primary;
-        @include border-radius(2px);
-        z-index: 100000;
-        @include box-shadow(0 1px 3px rgba(0,0,0,0.35));
-      }
-      .check {
-        opacity: 0;
-        max-height: 50px;
-        max-width: 24px;
-        position: absolute;
-        left: -40px;
-        top: 0px;
-        @include transition(opacity 100ms linear);
-      }
-      .move {
-        opacity: .2;
-        float: right;
-        margin-right: -20px;
-        padding-left: 10px;
-        font-size: 22px;
-        height: 50px;
-        line-height: 50px;
-        cursor: move;
+#add-item li {
+  padding: 0px;
+  background: white;
+  border-bottom: $border-style;
 
-        &:hover {
-          opacity: .6;
-        }
-        &:active {
-          opacity: 1;
-        }
-      }
-      position: relative;
-      background-color: #fff;
-      padding: 0px 25px;
-      font-size: 16px;
-      border-bottom: $border-style;
-      font-weight: 300;
-      @include transition(background-color 200ms linear);
-      // reduces flicker on ios...
-      -webkit-transform: translate3d(0,0,0);
-      -webkit-backface-visibility: hidden;
-      -moz-backface-visibility:    hidden;
-      -ms-backface-visibility:     hidden;
-      -webkit-perspective: 1000;
-      // end
-      &.completed {
-        background-color: $primary;
-        border-color: transparent;
-        .toggle {
-          color: white;
-          border-color: transparent;
-          &:hover {
-            border-color: transparent;
-            @include gradient(0);
-          }
-        }
-        .label {
-          color: #fff;
-          text-decoration: line-through;
-          a { color: #fff; }
-        }
-      }
-      .toggle {
-        border: 1px solid #e5e5e5;
-        cursor: pointer;
-        float: left;
-        color: transparent;
-        max-height: 16px;
-        max-width: 16px;
-        @include border-radius(3px);
-        margin: 16px 0px;
-        margin-left: -10px;
-        @media only screen and (min-device-width: 768px) {
-          &:hover {
-            border-color: #bbb;
-            @include gradient(0.03);        
-          }
-        }
-        &:active {
-          border-color: #bbb;
-          @include gradient(0.03);                  
-        }
-      }
-      .view {
-        margin: 0px 20px 0px 24px;
-      }
-      .label, input[type=text], textarea {
-        width: 100%;
-        padding: 15px 0px; 
-        line-height: 20px;
-        font-size: 16px; 
-        font-weight: 300;
-        word-wrap: break-word;
-      }
-      .label {
-        cursor: pointer;
-        color: $dark;//$blue;
-      }
-      .destroy {
-        opacity: 0.5;
-        display: none;
-        position: absolute;
-        height: 50px;
-        line-height: 50px;
-        font-size: 18px;
-        cursor: pointer;
-        width: 30px;
-        overflow: hidden;
-        top: 0px;
-        color: #333;
-        right: 0px;
-        @include transition(all 200ms ease-in-out);
-        @media only screen and (min-device-width: 768px) {
-          &:hover { opacity: 1; }
-        }
-        &:active { opacity: 1; }
-      }
-      .edit { display: none; }
-      &.editing {
-        background-color: $yellow;
-        .edit { display: inline-block; }
-        .label, .move { display: none; }
-        .destroy { display: block; }
-      }
-    }
-    &#add-item {
-      li {
-        padding: 0px;
-        input[type=text] {
-          width: 90%;
-          padding: 14px 5%;
-          border: 1px solid transparent;
-          font-style: italic;
-        }
-        #submit-new-item {
-          -webkit-appearance: none;
-          border: none;
-          background-color: transparent;
-          position: absolute;
-          right: 0px;
-          top: 0px;
-          z-index: 100;
-          background-image: url(enter.png);
-          background-repeat: no-repeat;
-          background-position: center;
-          width: 40px;
-          height: 50px;
-          cursor: pointer;
-        }
-      }
-    }
+  input[type=text] {
+    width: 90%;
+    padding: 14px 5%;
+    border: 1px solid transparent;
+    font-style: italic;
+  }
+
+  #submit-new-item {
+    -webkit-appearance: none;
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 100;
+    background-image: url(enter.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 40px;
+    height: 50px;
+    cursor: pointer;
   }
 }
