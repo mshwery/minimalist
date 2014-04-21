@@ -15,6 +15,8 @@ getStackPath = (path) ->
   # returns /s/<stackUrl> and drops everything after
   return path.split("/").slice(0, 3).join("/")
 
+# this ensures that the browser back button doesn't render json accidentally
+# because some browsers will resuse cached ajax requests
 $.ajaxSetup({ cache: false })
 
 $(document).ready ->
