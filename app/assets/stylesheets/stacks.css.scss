@@ -103,11 +103,12 @@
   }
 }
 
+.desktop .editing:active {
+  background: #e6edf2;
+}
+
 #my-lists {
   &.editing {
-    &:active {
-      background: #e6edf2;
-    }
     @media screen and (max-width: 600px) {
       &:hover {
         background: #fff;
