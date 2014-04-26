@@ -41,7 +41,7 @@ class listApp.Views.ListItemShow extends Backbone.View
   template: JST['lists/index']
 
   events:
-    "click .delete" : "removeList"
+    "click .delete-list" : "deleteList"
     "click .route" : "nav"
 
   initialize: ->
@@ -61,7 +61,7 @@ class listApp.Views.ListItemShow extends Backbone.View
     path = $(e.target).attr('href')
     listApp.router.navigate(path, {trigger: true}) if path
 
-  removeList: (e) ->
+  deleteList: (e) ->
     e.stopPropagation()
     e.preventDefault()
     if confirm('Delete this list?')
