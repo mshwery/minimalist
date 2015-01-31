@@ -16,12 +16,12 @@ class listApp.Views.ItemsIndex extends Backbone.View
     $(@el).prepend( view.render().el )
 
   addAll: =>
-    _.each(@collection.models, (item) => # remaining(), (item) =>
+    _.each(@collection.models, (item) =>
       @addOne(item)
     )
 
   reorderCollection: (e, ui) =>
-    items = @collection.remaining() #({ description: $(ui.item).find('.view label').text() })
+    items = @collection.remaining()
     $.each items, (i, v) =>
       v.reorder( v.view.$el.index() )
 

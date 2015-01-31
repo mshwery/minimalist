@@ -5,7 +5,7 @@
 //= require lib/modernizr
 //
 //= require lib/underscore-min
-//= require lib/backbone-min
+//= require lib/backbone
 //= require lib/backbone.localstorage-min
 //
 //= require lib/jquery.event.move
