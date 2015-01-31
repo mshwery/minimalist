@@ -44,5 +44,8 @@ class ListsController < ApplicationController
 
   def find_stack
     @stack = Stack.find_by_token(params[:stack_id])
+    # what to do if there is no stack?
+    # respond with error for json?
+    # redirect to home page for html?
   end
 end
