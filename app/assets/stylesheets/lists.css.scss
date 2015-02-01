@@ -5,41 +5,31 @@ $border-style: 1px solid rgba(0,0,0,0.08);
 
 // this is for the desktop styles
 .lists, .stacks-show {
+  
   .home { display: none; }
-  #app {
-    @media only screen and (max-width: 768px) {
-      padding: 0px;
-      .selected-list {
-        width: auto;
-        margin-left: 241px;
-      }
-      @media only screen and (max-width: 600px) {
-        .selected-list {
-          margin-left: 0px;
-        }
-      }
-    }
-  }
+
   .selected-list {
-    width: 500px;
-    max-width: 100%;
+    @media only screen and (max-width: $list-gutter-breakpoint) {
+      @include box-shadow(none);
+      padding: 0;
+    }
     @media only screen and (max-width: 600px) {
       min-height: 100%;      
-    }    
+    } 
+  }
+
+  #app {
+    @media only screen and (max-width: $list-gutter-breakpoint) {
+      padding: 0;
+    }
   }
 }
 
 #app {
-  @media only screen and (min-width: 769px) {
+  @media only screen and (min-width: $show-sidebar-breakpoint + 1) {
     position: relative;
-    margin-left: 240px;
+    margin-left: $sidebar-width;
     padding: 30px 0px;
-    .selected-list {
-      min-width: 500px;
-      border: 3px solid #ccc;
-      @include border-radius(3px);
-      @include box-shadow(0px 2px 5px rgba(0,0,0,0.1));
-    }
   } 
 }
 
@@ -99,7 +89,7 @@ $border-style: 1px solid rgba(0,0,0,0.08);
     opacity: 0.5;
     color: #333;
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $medium-breakpoint + 1) {
       &:hover {
         opacity: .7;
       }
@@ -120,7 +110,7 @@ $border-style: 1px solid rgba(0,0,0,0.08);
   }
   .back, .home {
     left: 0px;
-    @media only screen and (min-width: 600px) {
+    @media only screen and (min-width: $show-sidebar-breakpoint + 1) {
       display: none;
     }    
   }
