@@ -1,3 +1,4 @@
-# Minimalist
+# minimalist
 
-Home of [getMinimalist.com](http://getminimalist.com)
+Home of [getminimalist.com](http://getminimalist.com), the simple, sharable  list app.
+
