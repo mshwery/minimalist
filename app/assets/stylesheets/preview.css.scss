@@ -1,0 +1,17 @@
+.pages-preview {
+  background: $bg-color;
+
+  #app {
+    padding-top: $preview-margin;
+
+    @media only screen and (max-width: $list-max-width + ($preview-margin * 2)) {
+      padding-top: $preview-margin / 2;
+    }
+    @media only screen and (max-width: $list-max-width + $preview-margin) {
+      padding-top: $preview-margin / 4;
+    }
+    @media only screen and (max-width: $list-max-width) {
+      padding-top: 0;
+    }
+  }
+}

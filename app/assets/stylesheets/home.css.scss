@@ -1,13 +1,16 @@
+.pages-home {
+  background: $primary;
+}
+
 .pages-home, .pages-preview {
-  background: $gray;
   #app {
     position: relative;
-    background: $primary;
     z-index: 1;
+    padding: 0;
+
     .back { display: none; }
-    @media only screen and (min-device-width: 480px) {
+    @media only screen and (min-width: 480px) {
       margin-left: 0px;
-      padding: 0px;
     }
   }
   h1, h2 {
@@ -20,60 +23,60 @@
     font-weight: 400;
   }
   h2 {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 300; 
-    line-height: 110%;
-    @media only screen and (max-device-width: 720px) {
-      font-size: 30px;
+    line-height: 1.2em;
+    @media only screen and (max-width: $medium-breakpoint) {
+      font-size: 26px;
       text-align: center;
     } 
-    span {
-      font-size: 26px;
-      @media only screen and (max-device-width: 720px) {
-        font-size: 24px;
-      } 
-    }
   }
 
   .try-me {
     opacity: .2;
     margin-top: 20px;
     margin-left: -20px;
-    @media only screen and (max-device-width: 720px) {
+    @media only screen and (max-width: $medium-breakpoint) {
       display: none;
     }     
   }
 
   section {
     padding: 60px 0px 0px;
-    @media only screen and (max-device-width: 720px) {
+    @media only screen and (max-width: $medium-breakpoint) {
       padding-top: 40px;
     } 
   }
 
   .actions {
     padding: 30px 0;
-    @media only screen and (min-device-width: 720px) {
+    @media only screen and (min-width: $medium-breakpoint) {
       .preview { display: none; }
     }
-    @media only screen and (max-device-width: 720px) {
+    @media only screen and (max-width: $medium-breakpoint) {
       text-align: center;
       .btn {
-        width: 46%;
-        margin: 0 2%;
+        width: 45%;
+        margin: 0 1%;
         padding-left: 0px;
         padding-right: 0px;
       }
-    } 
+    }
+    @media only screen and (max-width: $small-breakpoint) {
+      .btn {
+        width: 100%;
+        margin: 5px auto; 
+      }
+    }
   }
 
   #intro {
-    width: 34.8%;
-    padding: 30px 5.2% 30px 0px;
+    width: 40%;
+    padding: 30px 5% 0 0px;
     text-align: left;
-    @media only screen and (max-device-width: 720px) {
+    @media only screen and (max-width: $medium-breakpoint) {
       padding: 30px 5%;
-      width: 90%;
+      width: 100%;
     } 
   }
   #features {
@@ -83,7 +86,7 @@
     ul {
       padding-left: 33%;
       background: url('bg.png') 30px center no-repeat;
-      @media only screen and (max-device-width: 720px) {
+      @media only screen and (max-width: $medium-breakpoint) {
         padding-left: 0;
         background: none;
       } 
@@ -92,7 +95,7 @@
       float: left;
       width: 50%;
       padding: 25px 0;
-      @media only screen and (max-device-width: 720px) {
+      @media only screen and (max-width: $medium-breakpoint) {
         width: 100%;
       } 
       h3, p {
@@ -113,22 +116,19 @@ footer {
   font-size: 14px;
   line-height: 25px;
   color: #525b62;
-  background: $gray;
+  background: $bg-color;
   padding: 20px 0;
-  min-width: 960px;
-  @media only screen and (max-device-width: 720px) {
-    min-width: 0px;
-  }
+  width: 100%;
+
   .wrap {
-    width: 900px;
     padding: 0 30px;
-    @media only screen and (max-device-width: 720px) {
-      width: auto;
+
+    @media only screen and (max-width: $medium-breakpoint) {
       text-align: center;
     }     
   }
   .right {
-    @media only screen and (max-device-width: 720px) {
+    @media only screen and (max-width: $medium-breakpoint) {
       float: none;
       display: block;
     }
@@ -141,18 +141,19 @@ footer {
 .pages-home {
   #demo, #intro {
     float: left;
+    @include box-sizing(border-box);
   }
 
   #demo {
-    width: 49.6%;
-    padding: 20px 48px;
-    max-height: 250px;
+    width: 60%;
+    padding: 20px 5%;
+    max-height: 300px;
     overflow: hidden;
     cursor: pointer;
     @include transition((padding 300ms ease-in-out, max-height 500ms ease-in-out));
     -webkit-transform: translate3d(0,0,0);
     -webkit-perspective: 1000;
-    @media only screen and (max-device-width: 720px) {
+    @media only screen and (max-width: $medium-breakpoint) {
       display: none;
     } 
     .selected-list {
@@ -160,9 +161,6 @@ footer {
       @include transition(margin 300ms ease-in-out);
       position: relative;
       min-width: 0px;
-      border: 3px solid #ccc;
-      @include border-radius(3px);
-      @include box-shadow(0px 2px 5px rgba(0,0,0,0.1));
     }
     &:hover {
       padding-top: 0px;
@@ -171,7 +169,9 @@ footer {
     &.active {
       cursor: auto;
       max-height: 1000px;
-      padding: 0 48px;
+      padding-top: 0;
+      padding-bottom: 0;
+
       .selected-list {
         margin: 0 -3px 50px;
       }
@@ -192,13 +192,6 @@ footer {
       display: block;
       float: left;
     }
-    
-    max-width: 500px;
-    margin: 50px auto;
-
-    @media only screen and (max-device-width: 720px) {
-      margin: 0 auto;
-    }    
   }
 
   footer {
@@ -207,7 +200,7 @@ footer {
     left: 0;
     right: 0;
 
-    @media only screen and (max-device-width: 720px) {
+    @media only screen and (max-width: $medium-breakpoint) {
       position: relative;
     }    
   }

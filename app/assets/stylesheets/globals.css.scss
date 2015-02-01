@@ -1,76 +1,8 @@
-$primary: #3392d6;
-$orange: #f55910;
-$gray: #EAF4FB;
 
-@mixin box-shadow ($params...) {
-  box-shadow: $params;
-  -webkit-box-shadow: $params;
-  -moz-box-shadow: $params;
-}
-
-@mixin inline-block {
-  display: inline-block;
-  *display: inline;
-  zoom: 1;
-}
-
-@mixin border-radius ($radius...) {
-  -webkit-border-radius: $radius;
-  -moz-border-radius: $radius;
-  border-radius: $radius;
-}
-
-@mixin opacity ($op:100) {
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=$op);
-  filter:alpha(opacity=$op);
-  -moz-opacity:$op/100;
-  -khtml-opacity:$op/100;
-  opacity:$op/100;
-}
-
-/* https://gist.github.com/2170024 */
-@mixin gradient ($percent) {
-  background-image: -moz-linear-gradient(top, rgba(255,255,255,($percent)) 0%, rgba(0,0,0, $percent) 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,($percent))), color-stop(100%,rgba(0,0,0, $percent)));
-  background-image: -webkit-linear-gradient(top, rgba(255,255,255,($percent)) 0%,rgba(0,0,0, $percent) 100%);
-  background-image: -o-linear-gradient(top, rgba(255,255,255,($percent)) 0%,rgba(0,0,0, $percent) 100%);
-  background-image: -ms-linear-gradient(top, rgba(255,255,255,($percent)) 0%,rgba(0,0,0, $percent) 100%);
-  background-image: linear-gradient(top, rgba(255,255,255,($percent)) 0%,rgba(0,0,0, $percent) 100%);
-}
-
-@mixin basicField {
-  padding: 8px 5px;
-  border: 1px solid #ddd;
-  background: #fff;
-  -webkit-appearance: none;
-  font-size: 16px;
-  line-height: 20px;
-  height: 20px;
-  font-family: 'Open Sans', 'Lucida Grande', tahoma, verdana, arial, sans-serif;
-  font-weight: 400;
-  @include box-shadow(inset 0px 1px 2px rgba(0,0,0,0.12));
-  vertical-align: middle;
-}
-
-@mixin transition($params) {
-  -webkit-transition: $params; 
-  -moz-transition: $params; 
-  -o-transition: $params; 
-  -ms-transition: $params; 
-  transition: $params;  
-}
-
-@mixin delay($params) {
-  transition-delay: $params;
-  -moz-transition-delay: $params; /* Firefox 4 */
-  -webkit-transition-delay: $params; /* Safari and Chrome */
-  -o-transition-delay: $params; /* Opera */
-}
 
 body {
   font-family: 'Open Sans', 'Lucida Grande', tahoma, verdana, arial, sans-serif;
-  //background: $primary;
-  background: #e6edf2;
+  background: $bg-color;
   text-align: center;
   font-weight: 300;
 }
@@ -85,10 +17,6 @@ html, body {
 
 .white {
   background-color: #fff;
-  min-width: 960px;
-  @media only screen and (max-device-width: 720px) {
-    min-width: 0px;
-  }  
 }
 
 .show {
@@ -103,7 +31,7 @@ html, body {
 }
 
 .list-is-selected {
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: $show-sidebar-breakpoint) {
     display: none;
   }
 }
@@ -117,13 +45,25 @@ i {
 }
 
 .selected-list {
-  //overflow: hidden;
-  //position: relative;
+  @include box-sizing(border-box);
+  @include border-radius(3px);
+  @include box-shadow(0px 2px 5px rgba(0,0,0,0.1));
   margin: 0px auto;
+  padding: 3px;
   top: 0px;
-  @media only screen and (max-width: 600px) {
-    max-width: 100%;
+  max-width: $list-max-width;
+  width: 100%;
+  background: #ccc;
+
+  @media only screen and (max-width: $list-max-width) {
+    @include box-shadow(none);
+    padding: 0;
   }
+
+  @media only screen and (max-width: $show-sidebar-breakpoint) {
+    max-width: $show-sidebar-breakpoint;
+  }
+
   input[type=text], textarea {
     border: none;
     background: transparent;
@@ -134,50 +74,55 @@ i {
 }
 
 .wrap {
-  width: 960px;
+  width: 100%;
+  max-width: $page-max-width;
   margin: 0 auto;
-  @media only screen and (max-device-width: 720px) {
-    max-width: 100%;
-  }  
+  @include box-sizing(border-box);
 }
 
 @mixin btn_color($color) {
-  background-color: $color;
-  border-color: darken($color, 15%);
-  color: #fff;
-  @media only screen and (min-device-width: 768px) {
+  @include text-contrast($color);
+  border-color: darken($color, 6%);
+
+  &:hover,
+  &:active,
+  &:focus {
+    @include text-contrast($color);
+    text-decoration: none;
+  }
+
+  @media only screen and (min-width: $medium-breakpoint + 1) {
     &:hover {
       background-color: saturate(darken($color, 3%), 5%);
-      color: #fff;
-      text-decoration: none;
     }
   }
   &:active {
-    background-color: saturate(darken($color, 5%), 5%);
-    color: #fff;
-    text-decoration: none;
+    border-color: darken($color, 20%);
+    background-color: darken($color, 5%);
   }  
 }
 
 .btn {
-  padding: 12px 30px;
+  max-width: $button-max-width;
+  padding: 1em 1.5em;
   text-align: center;
-  font-size: 16px;
+  font-size: 1em;
   line-height: 100%;
-  font-weight: 300;
+  font-weight: 600;
   text-transform: uppercase;
-  border: 1px solid transparent;
   @include inline-block;
-  @include border-radius(3px);
-  @include btn_color(#ccc);
-  @include box-shadow(0 1px 2px rgba(0,0,0,0.1));
+  @include border-radius(2px);
+  // border: 1px solid transparent;
+  @include btn_color(#eee);
+  @include box-shadow(0 1px 0px rgba(0,0,0,0.25));
 
-  &:hover {
-    @include box-shadow(0 1px 2px rgba(0,0,0,0.33));
-  }
   &:active {
-    @include box-shadow(inset 0 1px 2px rgba(0,0,0,0.33));
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,0.2));
   }
+}
+
+.actions .btn {
+  margin-right: 5px;
 }
 
 .orange {
@@ -209,7 +154,7 @@ textarea {
   opacity: 0.5;
   font-size: 16px;
   vertical-align: middle;
-  @media only screen and (min-device-width: 768px) {
+  @media only screen and (min-width: $medium-breakpoint + 1) {
     &:hover {
       opacity: .75;
     }

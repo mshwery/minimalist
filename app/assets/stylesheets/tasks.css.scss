@@ -44,7 +44,7 @@
 
   &.ui-sortable-helper {
     border-bottom: none;
-    @include opacity(85);
+    @include opacity(95);
     margin: -1px -1px 0px -1px;
     border: 1px solid $primary;
     @include border-radius(2px);
@@ -90,7 +90,7 @@
     @include border-radius(3px);
     margin: 16px 0px;
     margin-left: -10px;
-    @media only screen and (min-device-width: 768px) {
+    @media only screen and (min-device-width: $medium-breakpoint) {
       &:hover {
         border-color: #bbb;
         @include gradient(0.03);        
@@ -135,7 +135,7 @@
     right: 0px;
     @include transition(all 200ms ease-in-out);
 
-    @media only screen and (min-device-width: 768px) {
+    @media only screen and (min-device-width: $medium-breakpoint) {
       &:hover { opacity: 1; }
     }
     

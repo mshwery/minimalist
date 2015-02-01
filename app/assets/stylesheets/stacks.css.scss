@@ -17,7 +17,7 @@
       &:active {
         color: $primary;
       }
-      @media only screen and (max-width: 600px) {
+      @media only screen and (max-width: $show-sidebar-breakpoint) {
         width: 40px;
       }
     }
@@ -33,47 +33,68 @@
     border-bottom: 1px solid rgba(0,0,0,0.10); 
     text-transform: uppercase;
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: $show-sidebar-breakpoint) {
       padding-left: 40px;
     }
   }
 }
 
-#app {
-  @media only screen and (min-width: 600px) {
-    #sidebar {
-      position: fixed;
-      display: block;
-      left: 0px;
-      top: 0px;
-      bottom: 0px;
-      width: 240px;
-      background: #fff;
-      footer {
-        position: absolute;
-        bottom: 0px;
-        left: 0px;
-        right: 0px;
-        text-align: center;
-        background: none;
-        padding: 10px 0;
-        display: block;
-        min-width: 0px;
-        border-top: 1px solid rgba(0,0,0,0.05);
-      }
-    } 
-    #my-lists {
-      padding: 20px 10px;
-      h2 {
-        letter-spacing: 1px;
-        color: #aaa;
-        font-size: 12px;
-        line-height: 24px;
-        padding: 0 0 0 8px;
-        text-align: left;
-        border-bottom: none;
-      }
+#sidebar {
+  background: #fff;
+  @include box-sizing(border-box);
+
+  @media only screen and (min-width: $show-sidebar-breakpoint + 1) {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: $sidebar-width;
+    border-right: 1px solid rgba(0,0,0,0.1);
+    z-index: 1;
+  }
+
+  @media only screen and (max-width: $show-sidebar-breakpoint) {
+    &.list-is-selected {
+      display: none;
     }
+
+    h1 {
+      display: none;
+    }
+  }
+
+  footer {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    text-align: center;
+    background: none;
+    padding: 10px 0;
+    display: block;
+    min-width: 0px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+} 
+
+#my-lists {
+
+  @media only screen and (min-width: $show-sidebar-breakpoint + 1) {
+    padding: 20px 10px;
+
+    h2 {
+      letter-spacing: 1px;
+      color: #aaa;
+      font-size: 12px;
+      line-height: 24px;
+      padding: 0 0 0 8px;
+      text-align: left;
+      border-bottom: none;
+    }
+  }
+
+  @media only screen and (max-width: $show-sidebar-breakpoint) {
+
   }
 }
 
@@ -93,7 +114,7 @@
       }
     }
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-device-width: 600px) {
       display: none;
     }
 
@@ -104,7 +125,7 @@
 }
 
 .editing:active {
-  background: #e6edf2;
+  background: $bg-color;
 
   @media screen and (max-width: 600px) {
     &:hover {
@@ -117,29 +138,21 @@
   }
 }
 
-.desktop .list-item {
-  &:active {
-
-  }
-}
-
 .list-item {
   padding: 0 8px;
   font-size: 14px;
   border-bottom: none;
   @include border-radius(3px);  
 
-  @media only screen and (min-device-width: 768px) {    
-    &:hover {
-      background: #e6edf2;
-      .delete-list {
-        opacity: .5;
-      }
+  &:hover {
+    background: $bg-color;
+    .delete-list {
+      opacity: .5;
     }
   }
 
   &:active {
-    background: #e6edf2;
+    background: $bg-color;
   }
 
   .route {
@@ -162,10 +175,11 @@
       font-size: .9em;
     }
   }
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: $show-sidebar-breakpoint) {
     padding: 0 20px;
     border-bottom: 1px solid rgba(0,0,0,0.05);
     background: #fff;
+
     .route {
       line-height: 50px;
       i {
@@ -178,7 +192,7 @@
 .remove-lists {
   display: none;
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: $show-sidebar-breakpoint) {
     display: block;
     position: absolute;
     left: 20px;
@@ -196,7 +210,7 @@
 
     &:active {
       color: #333;
-      background: #e6edf2;
+      background: $bg-color;
     }
   } 
 }

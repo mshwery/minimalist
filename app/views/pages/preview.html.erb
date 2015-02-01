@@ -1,7 +1,11 @@
 <div id="demo" class="active"></div>
+
+<div class="actions">
+  <%= link_to "Start your list", new_stack_url, :class => 'btn orange' %>
+</div>
+
 <footer>
   <div class="wrap cf">
-    <%= link_to "Make a list", new_stack_url, :class => 'btn orange' %>
     <div class="right">
       <%= list_total %> Lists. <%= task_total %> Todos.
     </div>
