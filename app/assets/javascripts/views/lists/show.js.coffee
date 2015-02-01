@@ -1,3 +1,4 @@
+# this is the actual selected list view
 class listApp.Views.ListsShow extends Backbone.View
   className: "selected-list"
   template: JST['lists/show']
@@ -12,10 +13,7 @@ class listApp.Views.ListsShow extends Backbone.View
 
   initialize: ->
     @model.on('change:name', @updateName)
-
-    @model.fetch
-      success: (response) =>
-        @render()
+    @render()
 
   render: =>
     $(@el).html(@template(
@@ -77,19 +75,26 @@ class listApp.Views.ListsShow extends Backbone.View
   renderNewItemForm: =>
     @newItemView ||= new listApp.Views.ItemsNew( collection: @model.items )
 
-  clearCompleted: ->
-    _.each(@model.items.completed(), (item) ->
-      item.clear() if item.view
-    )
-    return false
+  # clearCompleted: ->
+  #   _.each(@model.items.completed(), (item) ->
+  #     item.clear() if item.view
+  #   )
+  #   return false
 
   refresh: ->
     @$el.addClass('loading')
+
+    # clear completed items (deletes them too)
+    # @clearCompleted()
+
+    # then fetch/sync with the server, there could be remote changes
     @model.items.fetch
-      add: true
+      # add: true
+      # remove: true
+      # merge: true
+      reset: true
       wait: true
       success: => @afterRefresh()
 
   afterRefresh: ->
-    @clearCompleted()
     setTimeout((=> @$el.removeClass('loading')), 300)

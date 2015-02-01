@@ -7,11 +7,11 @@ window.demo = {
 
 class listApp.Routers.List extends Backbone.Router
   routes:
-    ''                : 'root'
-    'preview'         : 'preview'
-    's/:token'        : 'stack'
-    's/:token/'       : 'stack'
-    's/:token/lists'  : 'lists'
+    ''                      : 'root'
+    'preview'               : 'preview'
+    's/:token'              : 'stack'
+    's/:token/'             : 'stack'
+    's/:token/lists'        : 'lists'
     's/:token/lists/new'    : 'new'
     's/:token/lists/:slug'  : 'list'
 
@@ -20,33 +20,34 @@ class listApp.Routers.List extends Backbone.Router
     unless $('body').hasClass('pages-home') || $('body').hasClass('pages-preview')
       @setupSidebar()
 
-  preview: ->
+  getDemoList: ->
     listApp.demo = new listApp.Models.DemoList(window.demo) 
     listApp.view = new listApp.Views.ListsShow({ model: listApp.demo })  
 
-  root: ->
-    listApp.demo = new listApp.Models.DemoList(window.demo) 
-    listApp.view = new listApp.Views.ListsShow({ model: listApp.demo })
+  preview: ->
+    @getDemoList()
 
+  root: ->
+    @getDemoList()
     @setupDemo(listApp.view.$el)
+
+  cleanupLists: ->
+    if listApp.listView
+      listApp.listView.remove()
+      listApp.listView.unbind()
 
   stack: (token) ->
     @navigate('s/'+token+'/lists')
 
-  lists: (token) ->
-    if listApp.listView
-      listApp.listView.remove()
-      listApp.listView.unbind()
-      
+  lists: (token) ->      
+    @cleanupLists()
     $("#sidebar").removeClass('list-is-selected')
 
   new: ->
     listApp.log 'new'
 
   list: (token, listSlug) ->
-    if listApp.listView
-      listApp.listView.remove()
-      listApp.listView.unbind()
+    @cleanupLists()
 
     if listApp.stack.get(listSlug)
       listApp.listView = new listApp.Views.ListsShow(model: listApp.stack.get(listSlug))

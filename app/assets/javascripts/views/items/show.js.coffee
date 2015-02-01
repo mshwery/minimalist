@@ -17,20 +17,28 @@ class listApp.Views.ItemsShow extends Backbone.View
     "blur .edit"      : "close"
 
   initialize: ->
-    @model.bind('change:description', this.render)
+    @model.bind('change:description', @render)
+    @model.bind('change:completed', @renderCompleted)
+    @model.bind('remove', @removeEl)
     @model.view = this
 
   render: =>
     $(@el).html( @template(@model.toJSON()) ).linkify()
-    $(@el).toggleClass "completed", @model.get("completed")
+    @renderCompleted()
     @input = @$(".edit")
     @input.autogrow({expandTolerance:0})
     return this
 
+  removeEl: =>
+    @model.view.remove()
+
+  renderCompleted: =>
+    @$el.toggleClass('completed', @model.get('completed'))
+
   togglecompleted: ->
     if !@$el.hasClass('editing')
       @model.toggle()
-      @$el.toggleClass('completed')
+      @renderCompleted()
 
   checkDirection: (e) ->
     if (e.distX > e.distY && e.distX < -e.distY) or (e.distX < e.distY && e.distX > -e.distY)
@@ -38,12 +46,12 @@ class listApp.Views.ItemsShow extends Backbone.View
       return
 
   markIncompleted: ->
-    @$el.removeClass('completed')
     @model.toggle() if @model.get("completed")
+    @renderCompleted()
 
   markCompleted: ->
-    @$el.addClass('completed')
     @model.toggle() if !@model.get("completed")
+    @renderCompleted()
 
   edit: =>
     @$el.addClass("editing")
@@ -54,18 +62,15 @@ class listApp.Views.ItemsShow extends Backbone.View
     @$el.removeClass("editing")
     if value
       @model.save({ description: value }) if value != @model.get('description')
-    else 
-      @clear()
+    else
+      @model.clear()
 
   limitChars: (e) =>
     unless @input.val().length < $(e.target).attr('maxlength')
       e.preventDefault()
 
   updateOnEnter: (e) =>
-    if e.which is 13
+    if e.keyCode is 13
       e.preventDefault()
       e.stopPropagation()
       @close()
-
-  clear: () ->
-    @model.clear()

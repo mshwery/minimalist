@@ -14,10 +14,8 @@ class listApp.Models.Item extends Backbone.Model
     @save({ sort_order: index })
 
   clear: ->
-    @view.$el.fadeOut(150, =>
-      @view.remove()
-    )
-    @destroy()    
+    @view.remove()
+    @destroy()  
 
 
 
@@ -25,8 +23,7 @@ class listApp.Collections.Items extends Backbone.Collection
   model: listApp.Models.Item
   url: -> listApp.apiPrefix "lists/#{@list_id}/tasks"
 
-  comparator: (item) ->
-    return -item.get("sort_order")
+  comparator: "sort_order"
 
   completed: ->
     return @filter (task) ->
@@ -40,23 +37,5 @@ class listApp.Collections.Items extends Backbone.Collection
 
 
 
-class listApp.Collections.DemoItems extends Backbone.Collection
-  model: listApp.Models.Item
+class listApp.Collections.DemoItems extends listApp.Collections.Items
   localStorage: new Backbone.LocalStorage("DemoItems")
-
-  comparator: (item) ->
-    return -item.get("sort_order")
-    
-  # comparator: (item) ->
-  #   date = new Date(item.get('created_at'))
-  #   return parseInt(date.getTime() / 1000)
-
-  completed: ->
-    return @filter (task) ->
-      task.get "completed"
-
-  remaining: ->
-    return @without.apply( this, @completed() )
-    
-  nextOrder: ->
-    @length + 1

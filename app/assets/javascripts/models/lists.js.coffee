@@ -4,7 +4,7 @@ class listApp.Models.List extends Backbone.Model
   initialize: ->
     @items ||= new listApp.Collections.Items()
     @items.list_id = @id
-    @items.fetch()
+    @items.fetch({reset:true})
 
     @on 'change:slug', @updateParams
 
