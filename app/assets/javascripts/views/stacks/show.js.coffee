@@ -6,11 +6,16 @@ class listApp.Views.StacksShow extends Backbone.View
     "click .remove-lists" : "removeLists"
 
   initialize: ->
-    @collection.on("add", @addOne)
-    @collection.on("reset", @addAll)
+    @listenTo(@collection, 'add', @addOne)
+    @listenTo(@collection, 'reset', @addAll)
+    
+    # suppresses 'add' events with {reset: true} and prevents the stack view
+    # from being re-rendered for every model. only renders when the 'reset'
+    # event is triggered at the end of the fetch 
+    @collection.fetch({reset:true})
 
+    # manually render because we only ever want one sidebar
     @render()
-    @collection.fetch()
 
   render: =>
     $(@el).prepend(@template(
@@ -34,7 +39,7 @@ class listApp.Views.StacksShow extends Backbone.View
     $(e.target).text(txt)
 
 
-
+# this is each item in the sidebar's list of lists
 class listApp.Views.ListItemShow extends Backbone.View
   tagName: "li"
   className: "cf list-item"

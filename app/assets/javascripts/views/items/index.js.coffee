@@ -1,4 +1,5 @@
 class listApp.Views.ItemsIndex extends Backbone.View
+  
   el: '#item-list'
 
   initialize: ->
@@ -13,15 +14,19 @@ class listApp.Views.ItemsIndex extends Backbone.View
 
   addOne: (item) =>
     view = new listApp.Views.ItemsShow( model: item )
-    $(@el).prepend( view.render().el )
+    $(@el).append( view.render().el )
 
   addAll: =>
-    _.each(@collection.models, (item) => # remaining(), (item) =>
+    # ensure the list is empty before inserting the entire new list
+    $(@el).empty()
+
+    # only render remaining todos on reset
+    _.each(@collection.remaining(), (item) =>
       @addOne(item)
     )
 
   reorderCollection: (e, ui) =>
-    items = @collection.remaining() #({ description: $(ui.item).find('.view label').text() })
+    items = @collection.remaining()
     $.each items, (i, v) =>
       v.reorder( v.view.$el.index() )
 
