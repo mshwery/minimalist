@@ -75,6 +75,7 @@ class listApp.Views.ListsShow extends Backbone.View
   renderNewItemForm: =>
     @newItemView ||= new listApp.Views.ItemsNew( collection: @model.items )
 
+  # TODO evaluate this
   # clearCompleted: ->
   #   _.each(@model.items.completed(), (item) ->
   #     item.clear() if item.view
@@ -92,7 +93,7 @@ class listApp.Views.ListsShow extends Backbone.View
       # add: true
       # remove: true
       # merge: true
-      reset: true
+      # reset: true
       wait: true
       success: => @afterRefresh()
 

@@ -3,15 +3,6 @@ class listApp.Views.ItemsIndex extends Backbone.View
   el: '#item-list'
 
   initialize: ->
-    # @listenTo(@collection, 'add', @addOne)
-    # @listenTo(@collection, 'reset', @addAll)
-    # @listenTo(@collection, 'all', @render)
-    
-    # # suppresses 'add' events with {reset: true} and prevents the stack view
-    # # from being re-rendered for every model. only renders when the 'reset'
-    # # event is triggered at the end of the fetch 
-    # @collection.fetch({reset: true})
-
     @collection.on("add", @addOne)
     @collection.on("reset", @addAll)
 
@@ -26,7 +17,9 @@ class listApp.Views.ItemsIndex extends Backbone.View
     $(@el).append( view.render().el )
 
   addAll: =>
+    # clear the list, so we can insert according to the comparator order
     $(@el).empty()
+
     # only render remaining todos on reset
     _.each(@collection.remaining(), (item) =>
       @addOne(item)

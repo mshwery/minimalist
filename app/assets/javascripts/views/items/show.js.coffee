@@ -74,3 +74,6 @@ class listApp.Views.ItemsShow extends Backbone.View
       e.preventDefault()
       e.stopPropagation()
       @close()
+
+  clear: =>
+    @model.clear()
