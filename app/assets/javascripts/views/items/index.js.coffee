@@ -17,7 +17,7 @@ class listApp.Views.ItemsIndex extends Backbone.View
     $(@el).append( view.render().el )
 
   addAll: =>
-    # clear the list, so we can insert according to the comparator order
+    # ensure the list is empty before inserting the entire new list
     $(@el).empty()
 
     # only render remaining todos on reset

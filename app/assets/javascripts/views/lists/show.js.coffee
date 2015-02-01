@@ -89,11 +89,12 @@ class listApp.Views.ListsShow extends Backbone.View
     # @clearCompleted()
 
     # then fetch/sync with the server, there could be remote changes
+    # use `reset: true` so that new sort order is manifested
     @model.items.fetch
       # add: true
       # remove: true
       # merge: true
-      # reset: true
+      reset: true
       wait: true
       success: => @afterRefresh()
 
