@@ -18,6 +18,13 @@
 //= require listApp
 //
 //= require_tree ../templates
-//= require_tree ./models
+//
+//= require ./models/item
+//= require ./models/items
+//= require ./models/list
+//= require ./models/lists
+//= require ./models/demo-items
+//= require ./models/demo-list
+//
 //= require_tree ./views
 //= require_tree ./routers

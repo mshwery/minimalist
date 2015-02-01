@@ -71,7 +71,6 @@
     text-align: center;
     background: none;
     padding: 10px 0;
-    display: block;
     min-width: 0px;
     border-top: 1px solid rgba(0,0,0,0.05);
   }
@@ -114,13 +113,15 @@
       }
     }
 
-    @media only screen and (max-device-width: 600px) {
+    @media only screen and (max-width: $show-sidebar-breakpoint) {
       display: none;
     }
 
   }
-  footer {
-    display: none;
+  @media only screen and (max-width: $show-sidebar-breakpoint) {
+    footer {
+      display: none; 
+    }
   }
 }
 
