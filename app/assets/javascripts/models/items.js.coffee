@@ -12,4 +12,5 @@ class listApp.Collections.Items extends Backbone.Collection
     return @without.apply( this, @completed() )
 
   nextOrder: ->
-    @length + 1
+    # use the length instead of length + 1 because of zero-based indexes
+    @length
