@@ -21,12 +21,9 @@ class listApp.Views.ItemsIndex extends Backbone.View
     $(@el).empty()
 
     # only render remaining todos on reset
-    _.each(@collection.remaining(), (item) =>
+    _.each @collection.remaining(), (item) =>
       @addOne(item)
-    )
 
   reorderCollection: (e, ui) =>
-    items = @collection.remaining()
-    $.each items, (i, v) =>
-      v.reorder( v.view.$el.index() )
-
+    _.each @collection.remaining(), (item) =>
+      item.set({ sort_order: item.view.$el.index() })
