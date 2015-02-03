@@ -56,7 +56,10 @@ class listApp.Views.ListsShow extends Backbone.View
 
     # fetch the model, and recursively call this fn
     if @pollingEnabled
-      @model.items.fetch()
+      @model.items.fetch({
+        add: false
+        success: @notifyNewItems
+      })
       @longpoll = setTimeout(@longPoll, 30 * 1000)
 
   updateName: =>
@@ -117,3 +120,16 @@ class listApp.Views.ListsShow extends Backbone.View
 
   afterRefresh: ->
     setTimeout((=> @$el.removeClass('loading')), 300)
+
+  notifyNewItems: (collection, response) =>
+    newIds = _.difference(_.pluck(response, 'id'), _.pluck(collection.toJSON(), 'id'))
+    
+    # get the new models
+    newModels = _.filter(response, (item) ->
+      return newIds.indexOf(item.id) != -1;
+    )
+
+    if (newIds)
+      # do something to notify
+
+    console.log(newModels)
