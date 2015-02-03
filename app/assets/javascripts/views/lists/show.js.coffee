@@ -13,6 +13,7 @@ class listApp.Views.ListsShow extends Backbone.View
 
   initialize: ->
     @model.on('change:name', @updateName)
+    @longPoll(true)
     @render()
 
   render: =>
@@ -34,13 +35,29 @@ class listApp.Views.ListsShow extends Backbone.View
     return this
 
   remove: () ->
-    @model.unbind('change', @updateName)
+    # disable long polling
+    @longPoll(false)
+    @model.unbind('change:name', @updateName)
     super()
 
   nav: (e) ->
     e.preventDefault()
     path = listApp.apiPrefix 'lists'
     listApp.router.navigate(path, {trigger: true}) if path
+
+  longPoll: (longpoll) =>
+    # set @pollingEnabled if an argument was passed in
+    if typeof longpoll == 'boolean'
+      @pollingEnabled = longpoll
+
+    # clear the timeout (if there is one)
+    if @longpoll
+      clearTimeout(@longpoll)
+
+    # fetch the model, and recursively call this fn
+    if @pollingEnabled
+      @model.items.fetch()
+      @longpoll = setTimeout(@longPoll, 30 * 1000)
 
   updateName: =>
     @$('#stats h2').text(@model.get('name'))
