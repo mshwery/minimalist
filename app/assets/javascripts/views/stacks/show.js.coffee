@@ -63,7 +63,7 @@ class listApp.Views.ListItemShow extends Backbone.View
 
   nav: (e) ->
     e.preventDefault()
-    path = $(e.target).attr('href')
+    path = e.currentTarget.href
     listApp.router.navigate(path, {trigger: true}) if path
 
   deleteList: (e) ->
