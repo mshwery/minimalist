@@ -10,6 +10,7 @@ class listApp.Views.ListsShow extends Backbone.View
     "blur #stats .edit"          : "close"
     "click .refresh"      : "refresh"
     "click .back"         : "nav"
+    "click .new-items-notification" : "showNewItems"
 
   initialize: ->
     @model.on('change:name', @updateName)
@@ -25,6 +26,7 @@ class listApp.Views.ListsShow extends Backbone.View
 
     @app = if @model.get('demo') then '#demo' else '#app'
     $(@app).append $(@el)
+    $(@app).append '<div class="notifications"/>'
 
     @input = @$("#stats .edit")
     $('.current').removeClass('current')
@@ -58,7 +60,7 @@ class listApp.Views.ListsShow extends Backbone.View
     if @pollingEnabled
       @model.items.fetch({
         add: false
-        success: @notifyNewItems
+        success: @checkNewItems
       })
       @longpoll = setTimeout(@longPoll, 30 * 1000)
 
@@ -121,15 +123,24 @@ class listApp.Views.ListsShow extends Backbone.View
   afterRefresh: ->
     setTimeout((=> @$el.removeClass('loading')), 300)
 
-  notifyNewItems: (collection, response) =>
+  checkNewItems: (collection, response) =>
     newIds = _.difference(_.pluck(response, 'id'), _.pluck(collection.toJSON(), 'id'))
     
     # get the new models
-    newModels = _.filter(response, (item) ->
+    @newModels = _.filter(response, (item) ->
       return newIds.indexOf(item.id) != -1;
     )
 
-    if (newIds)
-      # do something to notify
+    if (newIds.length)
+      @notifyNewItems()
 
-    console.log(newModels)
+  notifyNewItems: ->
+    _this = this
+    $('.notifications').html('<span class="notification new-items-notification">Show New Items</span>')
+    setTimeout (->
+      $('.new-items-notification').addClass('show').on('click', _this.showNewItems.bind(_this))
+    ), 50
+
+  showNewItems: ->
+    $('.new-items-notification').remove()
+    @model.items.add(@newModels)
