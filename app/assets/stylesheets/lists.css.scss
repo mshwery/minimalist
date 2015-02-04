@@ -26,6 +26,9 @@ $border-style: 1px solid rgba(0,0,0,0.08);
 }
 
 #app {
+  height: 100%;
+  overflow: scroll;
+  
   @media only screen and (min-width: $show-sidebar-breakpoint + 1) {
     position: relative;
     margin-left: $sidebar-width;

@@ -136,10 +136,11 @@ class listApp.Views.ListsShow extends Backbone.View
 
   notifyNewItems: ->
     _this = this
-    $('.notifications').html('<span class="notification new-items-notification">Show New Items</span>')
-    setTimeout (->
-      $('.new-items-notification').addClass('show').on('click', _this.showNewItems.bind(_this))
-    ), 50
+    if !$('.notifications').find('.new-items-notification').length
+      $('.notifications').html('<span class="notification new-items-notification">Show New Items</span>')
+      setTimeout (->
+        $('.new-items-notification').addClass('show').on('click', _this.showNewItems.bind(_this))
+      ), 50
 
   showNewItems: ->
     $('.new-items-notification').remove()
