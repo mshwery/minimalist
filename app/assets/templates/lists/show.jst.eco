@@ -6,7 +6,10 @@
     <input class="edit" type="text" value="<%= @name %>" />
     <input type="submit" style="display: none" />
   </form>
-  <a class="refresh icon-refresh"></a>
+  <div class="refresh">
+    <a class="icon-refresh"></a>
+    <span class="changes-count"></span>
+  </div>
 </div>
 
 <div class="list">

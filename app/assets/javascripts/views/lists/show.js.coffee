@@ -10,7 +10,6 @@ class listApp.Views.ListsShow extends Backbone.View
     "blur #stats .edit"          : "close"
     "click .refresh"      : "refresh"
     "click .back"         : "nav"
-    "click .new-items-notification" : "showNewItems"
 
   initialize: ->
     @model.on('change:name', @updateName)
@@ -59,10 +58,12 @@ class listApp.Views.ListsShow extends Backbone.View
     # fetch the model, and recursively call this fn
     if @pollingEnabled
       @model.items.fetch({
-        add: false
-        success: @checkNewItems
+        add: false,
+        remove: false,
+        merge: false,
+        success: @getChanges
       })
-      @longpoll = setTimeout(@longPoll, 30 * 1000)
+      @longpoll = setTimeout(@longPoll, 3 * 1000)
 
   updateName: =>
     @$('#stats h2').text(@model.get('name'))
@@ -122,26 +123,42 @@ class listApp.Views.ListsShow extends Backbone.View
 
   afterRefresh: ->
     setTimeout((=> @$el.removeClass('loading')), 300)
+    @removeNotification()
 
-  checkNewItems: (collection, response) =>
-    newIds = _.difference(_.pluck(response, 'id'), _.pluck(collection.toJSON(), 'id'))
-    
+  getChanges: (collection, response) =>    
+    responseIds = _.pluck(response, 'id')
+    collectionIds = _.pluck(collection.toJSON(), 'id')
+
+    sameIds = _.intersection(responseIds, collectionIds)
+    addedIds = _.difference(responseIds, collectionIds)
+    removedIds = _.difference(collectionIds, responseIds)
+
     # get the new models
-    @newModels = _.filter(response, (item) ->
-      return newIds.indexOf(item.id) != -1;
+    @modelsToAdd = _.filter(response, (item) ->
+      return addedIds.indexOf(item.id) != -1
     )
 
-    if (newIds.length)
-      @notifyNewItems()
+    @modelsToRemove = _.filter(collection.toJSON(), (item) ->
+      return removedIds.indexOf(item.id) != -1
+    )
 
-  notifyNewItems: ->
-    _this = this
-    if !$('.notifications').find('.new-items-notification').length
-      $('.notifications').html('<span class="notification new-items-notification">Show New Items</span>')
-      setTimeout (->
-        $('.new-items-notification').addClass('show').on('click', _this.showNewItems.bind(_this))
-      ), 50
+    # get list of same objects that have some change
+    @modelsToMerge = _.filter(collection.toJSON(), (item) =>
+      a = @pickMainAttrs(item)
+      b = @pickMainAttrs(_.find(response, { id: item.id }))
+      return !_.isEqual(a, b)
+    )
 
-  showNewItems: ->
-    $('.new-items-notification').remove()
-    @model.items.add(@newModels)
+    changesCount = @modelsToAdd.concat(@modelsToRemove, @modelsToMerge).length
+
+    if (changesCount)
+      @notifyNewItems(changesCount)
+
+  pickMainAttrs: (model) ->
+    return _.pick(model, ['id', 'description', 'completed'])
+
+  notifyNewItems: (count) ->
+    @$el.find('.changes-count').text(count).addClass('show')
+
+  removeNotification: ->
+    @$el.find('.changes-count').removeClass('show')
