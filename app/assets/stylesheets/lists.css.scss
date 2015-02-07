@@ -15,9 +15,6 @@ $header-height: 50px;
       @include box-shadow(none);
       padding: 0;
     }
-    @media only screen and (max-width: $show-sidebar-breakpoint) {
-      min-height: 100%;      
-    } 
   }
 
   #app {

@@ -25,7 +25,6 @@ class listApp.Views.ListsShow extends Backbone.View
 
     @app = if @model.get('demo') then '#demo' else '#app'
     $(@app).append $(@el)
-    $(@app).append '<div class="notifications"/>'
 
     @input = @$("#stats .edit")
     $('.current').removeClass('current')
