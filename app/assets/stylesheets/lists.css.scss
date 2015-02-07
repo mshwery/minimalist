@@ -3,6 +3,8 @@ $yellow: #fffeca; //#fefaee;
 $dark: #545862; //#3d434d;
 $border-style: 1px solid rgba(0,0,0,0.08);
 
+$header-height: 50px;
+
 // this is for the desktop styles
 .lists, .stacks-show {
   
@@ -13,9 +15,6 @@ $border-style: 1px solid rgba(0,0,0,0.08);
       @include box-shadow(none);
       padding: 0;
     }
-    @media only screen and (max-width: $show-sidebar-breakpoint) {
-      min-height: 100%;      
-    } 
   }
 
   #app {
@@ -26,6 +25,9 @@ $border-style: 1px solid rgba(0,0,0,0.08);
 }
 
 #app {
+  height: 100%;
+  overflow: scroll;
+  
   @media only screen and (min-width: $show-sidebar-breakpoint + 1) {
     position: relative;
     margin-left: $sidebar-width;
@@ -42,7 +44,7 @@ $border-style: 1px solid rgba(0,0,0,0.08);
   }
 }
 
-.loading .refresh {
+.loading .icon-refresh {
   -webkit-animation-name:             rotate; 
   -webkit-animation-duration:         0.5s; 
   -webkit-animation-iteration-count:  infinite;
@@ -60,10 +62,38 @@ $border-style: 1px solid rgba(0,0,0,0.08);
   white-space: nowrap;
 }
 
+.changes-count {
+  cursor: pointer;
+  $notification-size: 14px;
+  position: absolute;
+  color: white;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  background: #F04848;
+  @include border-radius($notification-size/2);
+  line-height: $notification-size;
+  font-size: 9px;
+  top: ($header-height/2) - $notification-size;
+  right: 6px;
+  min-width: $notification-size;
+  padding: 0 3px;
+  font-weight: 600;
+  text-align: center;
+  @include box-sizing(border-box);
+  @include box-shadow(0 0 0 2px white);
+  opacity: 0;
+  @include transform(scale(0.5));
+  @include transition(all 200ms ease-in-out);
+
+  &.show {
+    opacity: 1;
+    @include transform(scale(1));
+  }
+}
+
 #stats {
   position: relative;
   padding: 0px 47px;
-  height: 50px;
+  height: $header-height;
   text-align: center;
   background: #fff;
   border-bottom: $border-style;
@@ -75,16 +105,25 @@ $border-style: 1px solid rgba(0,0,0,0.08);
   }  
 
   .home {
-    line-height: 50px;
+    line-height: $header-height;
     text-align: center;
   }
 
-  .back, .refresh, .home {
-    cursor: pointer;
-    text-align: center;
+  .back,
+  .refresh,
+  .home {
     width: 46px;
-    height: 50px;
-    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .icon-refresh {
+    display: inline-block;
+  }
+
+  .back, .icon-refresh, .home {
+    height: $header-height;
+    line-height: $header-height;
     font-size: 18px;
     opacity: 0.5;
     color: #333;

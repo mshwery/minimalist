@@ -40,7 +40,6 @@
 }
 
 #sidebar {
-  background: #fff;
   @include box-sizing(border-box);
 
   @media only screen and (min-width: $show-sidebar-breakpoint + 1) {
@@ -51,6 +50,7 @@
     width: $sidebar-width;
     border-right: 1px solid rgba(0,0,0,0.1);
     z-index: 1;
+    background: #fff;
   }
 
   @media only screen and (max-width: $show-sidebar-breakpoint) {
@@ -125,30 +125,18 @@
   }
 }
 
-.editing:active {
-  background: $bg-color;
-
-  @media screen and (max-width: 600px) {
-    &:hover {
-      background: #fff;
-
-      .delete-list {
-        display: block;
-      }
-    }
-  }
-}
-
 .list-item {
   padding: 0 8px;
   font-size: 14px;
   border-bottom: none;
-  @include border-radius(3px);  
+  @include border-radius(3px); 
 
-  &:hover {
-    background: $bg-color;
-    .delete-list {
-      opacity: .5;
+  @media only screen and (min-width: $show-sidebar-breakpoint + 1) {
+    &:hover {
+      background: $bg-color;
+      .delete-list {
+        opacity: .5;
+      }
     }
   }
 
@@ -176,10 +164,13 @@
       font-size: .9em;
     }
   }
+
+  // small screen styles
   @media only screen and (max-width: $show-sidebar-breakpoint) {
+    margin: 10px 10px 0;
     padding: 0 20px;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
     background: #fff;
+    @include box-shadow(0 1px 1px rgba(0,0,0,0.1));
 
     .route {
       line-height: 50px;
@@ -226,7 +217,7 @@
   color: #333;
   padding-left: 15px;
   text-decoration: none;
-  @include transition(opacity 200ms ease-in-out);
+  @include transition(opacity 150ms ease-in-out);
 
   &:active {
     text-decoration: none;

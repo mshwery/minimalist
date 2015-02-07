@@ -62,6 +62,14 @@
   transition: $params;  
 }
 
+@mixin transform($params) {
+  -webkit-transform: $params; 
+  -moz-transform: $params; 
+  -o-transform: $params; 
+  -ms-transform: $params; 
+  transform: $params;  
+}
+
 @mixin delay($params) {
   transition-delay: $params;
   -moz-transition-delay: $params; /* Firefox 4 */
