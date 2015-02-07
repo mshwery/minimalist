@@ -62,7 +62,7 @@ class listApp.Views.ListsShow extends Backbone.View
         merge: false,
         success: @getChanges
       })
-      @longpoll = setTimeout(@longPoll, 3 * 1000)
+      @longpoll = setTimeout(@longPoll, 15 * 1000)
 
   updateName: =>
     @$('#stats h2').text(@model.get('name'))
