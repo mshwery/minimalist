@@ -146,7 +146,7 @@ class listApp.Views.ListsShow extends Backbone.View
     @modelsToMerge = _.filter(collection.toJSON(), (item) =>
       a = @pickMainAttrs(item)
       b = @pickMainAttrs(_.find(response, { id: item.id }))
-      return !_.isEqual(a, b)
+      return !_.isEqual(a, b) && removedIds.indexOf(item.id) == -1
     )
 
     changesCount = @modelsToAdd.concat(@modelsToRemove, @modelsToMerge).length

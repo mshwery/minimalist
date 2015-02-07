@@ -66,6 +66,7 @@ $header-height: 50px;
 }
 
 .changes-count {
+  cursor: pointer;
   $notification-size: 14px;
   position: absolute;
   color: white;
@@ -111,11 +112,19 @@ $header-height: 50px;
     text-align: center;
   }
 
-  .back, .icon-refresh, .home {
-    cursor: pointer;
-    text-align: center;
-    display: inline-block;
+  .back,
+  .refresh,
+  .home {
     width: 46px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .icon-refresh {
+    display: inline-block;
+  }
+
+  .back, .icon-refresh, .home {
     height: $header-height;
     line-height: $header-height;
     font-size: 18px;
