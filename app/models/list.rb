@@ -29,14 +29,18 @@ class List < ActiveRecord::Base
   end
 
   def generate_slug
-    slug = self.name.mb_chars.downcase.normalize(:kd).to_s.gsub(/-/, " ").squeeze(" ")
-    slug = slug.gsub(/\s/, "-").gsub(/[^a-z\-0-9]/, "")
+    # only generate slugs for stacked lists
+    if !self.stack
+      return
+    end
+
+    slug = self.name.parameterize
 
     current = 1
     self.slug = slug
     while true
-      conflicts = List.where("slug = ?", self.slug).count
-      if conflicts != 0 || self.slug == 'new'
+      lists_with_slug = self.stack.lists.where(["slug = ? and id != ?", self.slug, self.id])
+      if lists_with_slug.count != 0 || self.slug == 'new'
         self.slug = "#{slug}-#{current}"
         current += 1
       else
