@@ -24,16 +24,5 @@ class StacksController < ApplicationController
       redirect_to root_url
     end
   end
-
-  def destroy
-    @stack = Stack.find_by_token(params[:id])
-    if @stack.destroy
-      flash[:notice] = "Stack deleted"
-      redirect_to root_url
-    else
-      flash[:error] = "Could not delete stack."
-      redirect_to stack_url(@stack)
-    end
-  end
   
 end
