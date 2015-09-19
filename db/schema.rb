@@ -13,22 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20130509013805) do
 
-  create_table "articles", :force => true do |t|
-    t.string   "headline"
-    t.text     "body"
-    t.integer  "source_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "identities", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
   create_table "lists", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -36,21 +20,6 @@ ActiveRecord::Schema.define(:version => 20130509013805) do
     t.string   "slug"
     t.integer  "stack_id"
     t.datetime "deleted_at"
-  end
-
-  create_table "memberships", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "list_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "sources", :force => true do |t|
-    t.string   "name"
-    t.string   "url"
-    t.string   "rss"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "stacks", :force => true do |t|
@@ -74,15 +43,6 @@ ActiveRecord::Schema.define(:version => 20130509013805) do
     t.integer  "list_id"
     t.integer  "sort_order"
     t.datetime "deleted_at"
-  end
-
-  create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "provider"
-    t.string   "uid"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "nickname"
   end
 
 end
