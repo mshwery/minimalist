@@ -6,6 +6,10 @@ Lists::Application.routes.draw do
     end
   end
 
+  resources :lists do
+    resources :tasks
+  end
+
   match "/preview", :to => "pages#preview"
 
   root :to => 'pages#home'
