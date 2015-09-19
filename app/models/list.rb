@@ -5,7 +5,7 @@ class List < ActiveRecord::Base
   belongs_to :stack
   
   accepts_nested_attributes_for :tasks, :allow_destroy => true
-  attr_accessible :name, :slug # should we be including slug?
+  attr_accessible :name
 
   validates_format_of :slug, :with => /\A[a-z\-0-9]*\Z/
   before_validation :generate_name, :on => :create 
