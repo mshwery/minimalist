@@ -46,15 +46,15 @@ class listApp.Routers.List extends Backbone.Router
   new: ->
     listApp.log 'new'
 
-  list: (token, listSlug) ->
+  list: (token, listIdOrSlug) ->
     @cleanupLists()
 
-    if listApp.stack.get(listSlug)
-      listApp.listView = new listApp.Views.ListsShow(model: listApp.stack.get(listSlug))
+    if listApp.stack.get(listIdOrSlug)
+      listApp.listView = new listApp.Views.ListsShow(model: listApp.stack.get(listIdOrSlug))
     else
       listApp.stack.on "reset", (collection, response) =>
-        list = collection.get(listSlug)
-        listApp.listView = new listApp.Views.ListsShow(model: list)
+        list = collection.get(listIdOrSlug) || collection.findWhere({ id: Number(listIdOrSlug) })
+        if list then listApp.listView = new listApp.Views.ListsShow(model: list)
 
     $('#sidebar').addClass('list-is-selected')
     

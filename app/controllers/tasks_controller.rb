@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
 
-  before_filter :find_list
+  before_filter :find_stack, :find_list
   respond_to :json
   
   def index
@@ -30,16 +30,27 @@ class TasksController < ApplicationController
   def destroy
     @task = @list.tasks.find(params[:id])
     if @task.destroy
-      render :json => true
+      render :json => {}, :status => 204
     else
       render :json => 'Permission denied'
     end
   end
   
   private
-  
+
   def find_list
-    @list = List.find_by_slug(params[:list_id])
+    if @stack
+      @list = @stack.lists.find_by_slug(params[:list_id].to_s)
+    else
+      # todo: change from id to uuid
+      @list = List.find(params[:list_id].to_i)
+    end
+  end
+
+  def find_stack
+    if params[:stack_id]
+      @stack = Stack.find_by_token(params[:stack_id].to_s)
+    end
   end
 
 end
