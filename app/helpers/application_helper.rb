@@ -4,6 +4,10 @@ module ApplicationHelper
     @body_classes
   end
 
+  def current_action?(_controller, _action)
+    _controller.to_s == controller_name && _action.to_s == action_name
+  end
+
   def list_total
     Stat.any? ? Stat.first().lists_count : 0
   end
