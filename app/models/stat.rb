@@ -1,6 +1,6 @@
 class Stat < ActiveRecord::Base
 
-  default_scope order('created_at ASC')
+  default_scope { order('created_at ASC') }
 
   def self.increment_count_of(counter_name)
     s = Stat.any? ? 
