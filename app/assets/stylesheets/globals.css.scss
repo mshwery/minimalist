@@ -146,7 +146,7 @@ textarea {
   left: 0px;
   right: 0px;
   bottom: 0px;
-  background: $primary url('bg.png') center center no-repeat;
+  background: $primary url(image-path("bg.png")) center center no-repeat;
 }
 
 .icon-twitter {

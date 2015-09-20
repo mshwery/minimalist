@@ -85,7 +85,7 @@
     text-align: left;
     ul {
       padding-left: 33%;
-      background: url('bg.png') 30px center no-repeat;
+      background: url(image-path("bg.png")) 30px center no-repeat;
       @media only screen and (max-width: $medium-breakpoint) {
         padding-left: 0;
         background: none;
