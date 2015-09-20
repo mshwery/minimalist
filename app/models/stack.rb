@@ -1,6 +1,6 @@
 class Stack < ActiveRecord::Base
 
-  has_many :lists, dependent: :destroy
+  has_many :lists, dependent: :destroy
   
   validates_presence_of :token
   validates_uniqueness_of :token

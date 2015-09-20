@@ -37,7 +37,12 @@ class List < ActiveRecord::Base
     current = 1
     self.slug = slug
     while true
-      lists_with_slug = self.stack.lists.where(["slug = ? and id != ?", self.slug, self.id])
+      lists_with_slug = self.stack.lists.where({slug: self.slug})
+
+      if !self.new_record?
+        lists_with_slug = lists_with_slug.where.not({id: self.id})
+      end
+
       if lists_with_slug.count != 0 || self.slug == 'new'
         self.slug = "#{slug}-#{current}"
         current += 1
