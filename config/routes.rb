@@ -1,6 +1,8 @@
 Lists::Application.routes.draw do
-  
-  resources :s, :controller => :stacks, :as => :stacks do
+  # The priority is based upon order of creation: first created -> highest priority.
+  # See how all your routes lay out with "rake routes".
+
+  resources :s, controller: :stacks, as: :stacks do
     resources :lists do
       resources :tasks
     end
@@ -10,8 +12,9 @@ Lists::Application.routes.draw do
     resources :tasks
   end
 
-  match "/preview", :to => "pages#preview"
+  get 'preview' => 'pages#preview'
 
-  root :to => 'pages#home'
+  # You can have the root of your site routed with "root"
+  root 'pages#home'
 
 end

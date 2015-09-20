@@ -1,14 +1,12 @@
 class List < ActiveRecord::Base
 
-  validates :name,  :presence => true
-  has_many :tasks, :dependent => :delete_all
+  validates :name, presence: true
+  has_many :tasks, dependent: :destroy
+
   belongs_to :stack
   
-  accepts_nested_attributes_for :tasks, :allow_destroy => true
-  attr_accessible :name
-
-  validates_format_of :slug, :with => /\A[a-z\-0-9]*\Z/
-  before_validation :generate_name, :on => :create 
+  validates_format_of :slug, with: /\A[a-z\-0-9]*\Z/
+  before_validation :generate_name, on: :create 
   before_save :generate_slug
   after_create :update_count
 
@@ -39,7 +37,12 @@ class List < ActiveRecord::Base
     current = 1
     self.slug = slug
     while true
-      lists_with_slug = self.stack.lists.where(["slug = ? and id != ?", self.slug, self.id])
+      lists_with_slug = self.stack.lists.where({slug: self.slug})
+
+      if !self.new_record?
+        lists_with_slug = lists_with_slug.where.not({id: self.id})
+      end
+
       if lists_with_slug.count != 0 || self.slug == 'new'
         self.slug = "#{slug}-#{current}"
         current += 1
