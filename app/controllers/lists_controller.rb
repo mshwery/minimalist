@@ -1,6 +1,4 @@
 class ListsController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
-
   before_filter :find_stack
   respond_to :json, :html
 
@@ -31,9 +29,9 @@ class ListsController < ApplicationController
     end
 
     if @list.save
-      render :json => @list, :status => :created
+      render json: @list, status: :created
     else
-      render :json => { :errors => @list.errors.full_messages }, :status => 422
+      render json: { errors: @list.errors.full_messages }, status: 422
     end
   end
   
@@ -41,19 +39,18 @@ class ListsController < ApplicationController
     @list = find_list
     if @list.update_attributes(list_params)
       #override the default respond_with behavoir to always send back the model with update
-      render :json => @list
+      render json: @list
     else
-      flash[:error] = "Could not update list"
-      redirect_to edit_stack_list_path(@stack, @list)
+      render json: { errors: @list.errors.full_messages }, status: 422
     end
   end
   
   def destroy
     @list = find_list
     if @list.destroy
-      render :json => {}, :status => 204
+      render json: {}, status: 204
     else
-      render :json => 'Permission denied'
+      render json: 'Permission denied', status: 422
     end
   end
 
@@ -79,7 +76,4 @@ class ListsController < ApplicationController
     end
   end
 
-  def record_not_found
-    render :json => {error: "record not found"}, :status => 404
-  end
 end

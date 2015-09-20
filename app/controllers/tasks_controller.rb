@@ -1,38 +1,41 @@
 class TasksController < ApplicationController
-
   before_filter :find_stack, :find_list
   respond_to :json
   
   def index
-    render :json => @list.tasks
+    render json: @list.tasks
   end
   
   def create
     @task = @list.tasks.new(task_params)
     if @task.save
-      render :json => @task
+      render json: @task, status: :created
     else
-      render :json => { :errors => @task.errors.full_messages }, :status => 422
+      render json: { :errors => @task.errors.full_messages }, status: 422
     end
   end
 
   def show
     @task = @list.tasks.find(params[:id])
-    render :json => @task
+    render json: @task
   end
-
+  
   def update
     @task = @list.tasks.find(params[:id])
-    @task.update_attributes! task_params
-    render :json => @task
+
+    if @task.update_attributes(task_params)
+      render json: @task
+    else
+      render json: { errors: @task.errors.full_messages }, status: 422
+    end
   end
 
   def destroy
     @task = @list.tasks.find(params[:id])
     if @task.destroy
-      render :json => {}, :status => 204
+      render json: {}, status: 204
     else
-      render :json => 'Permission denied'
+      render json: 'Permission denied'
     end
   end
   
