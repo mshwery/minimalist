@@ -60,8 +60,9 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:name)
-  end  
+    # dont `require(:list)` because we want to accept empty bodies on /create for now
+    params.permit(:name)
+  end
 
   def find_list
     if @stack
