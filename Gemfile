@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby "2.1.2"
 
-gem 'rails', '4.1.13'
+gem 'rails', '4.2.0'
 
 gem 'pg'
 gem 'rack-cors', :require => 'rack/cors'
@@ -35,4 +35,9 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'eco'
 
+# rails 4.2 removes support for respond_to/respond_with
+gem 'responders', '~> 2.0' 
+
 gem 'rails_12factor', group: :production
+
+gem 'web-console', '~> 2.0', group: :development
