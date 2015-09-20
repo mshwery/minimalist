@@ -34,3 +34,5 @@ gem 'jbuilder', '~> 1.2'
 # gem 'debugger', group: [:development, :test]
 
 gem 'eco'
+
+gem 'rails_12factor', group: :production
