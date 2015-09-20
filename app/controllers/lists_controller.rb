@@ -25,9 +25,9 @@ class ListsController < ApplicationController
 
   def create
     if @stack
-      @list = @stack.lists.new(params[:list])
+      @list = @stack.lists.new(list_params)
     else
-      @list = List.new(params[:list])
+      @list = List.new(list_params)
     end
 
     if @list.save
@@ -39,7 +39,7 @@ class ListsController < ApplicationController
   
   def update
     @list = find_list
-    if @list.update_attributes(params[:list])
+    if @list.update_attributes(list_params)
       #override the default respond_with behavoir to always send back the model with update
       render :json => @list
     else
@@ -58,6 +58,10 @@ class ListsController < ApplicationController
   end
 
   private
+
+  def list_params
+    params.require(:list).permit(:name)
+  end  
 
   def find_list
     if @stack

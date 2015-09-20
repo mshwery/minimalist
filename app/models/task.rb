@@ -1,11 +1,10 @@
 class Task < ActiveRecord::Base
   
   belongs_to :list
-  validates :description, :presence => true
-  attr_accessible :description, :completed, :sort_order
+  validates :description, presence: true
 
-  scope :deleted, where('tasks.deleted_at IS NOT NULL')
-  scope :remaining, where(:completed => false)
+  scope :deleted, -> { where.not(deleted_at: nil) }
+  scope :remaining, -> { where completed: false }
 
   after_create :update_count
 

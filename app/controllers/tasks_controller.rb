@@ -8,7 +8,7 @@ class TasksController < ApplicationController
   end
   
   def create
-    @task = @list.tasks.new(params[:task])
+    @task = @list.tasks.new(task_params)
     if @task.save
       render :json => @task
     else
@@ -23,7 +23,7 @@ class TasksController < ApplicationController
 
   def update
     @task = @list.tasks.find(params[:id])
-    @task.update_attributes! params[:task]
+    @task.update_attributes! task_params
     render :json => @task
   end
 
@@ -37,6 +37,10 @@ class TasksController < ApplicationController
   end
   
   private
+
+  def task_params
+    params.require(:task).permit(:description, :completed, :sort_order)
+  end  
 
   def find_list
     if @stack

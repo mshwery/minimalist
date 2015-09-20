@@ -1,13 +1,11 @@
 class Stack < ActiveRecord::Base
 
-  has_many :lists
+  has_many :lists, dependent: :destroy
   
-  accepts_nested_attributes_for :lists, :allow_destroy => true
-
   validates_presence_of :token
   validates_uniqueness_of :token
 
-  before_validation :generate_token, :on => :create 
+  before_validation :generate_token, on: :create 
   
   def to_param
     token
