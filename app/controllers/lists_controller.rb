@@ -13,12 +13,16 @@ class ListsController < ApplicationController
   end
 
   def index
-    respond_with @stack.lists
+    if @stack
+      render json: @stack.lists
+    else
+      raise ActiveRecord::RecordNotFound
+    end
   end
 
   def show
     @list = find_list
-    respond_with @list
+    render json: @list
   end
 
   def create
@@ -31,7 +35,7 @@ class ListsController < ApplicationController
     if @list.save
       render json: @list, status: :created
     else
-      render json: { errors: @list.errors.full_messages }, status: 422
+      render json: @list.errors, status: :unprocessable_entity
     end
   end
   
@@ -41,16 +45,16 @@ class ListsController < ApplicationController
       #override the default respond_with behavoir to always send back the model with update
       render json: @list
     else
-      render json: { errors: @list.errors.full_messages }, status: 422
+      render json: @list.errors, status: :unprocessable_entity
     end
   end
   
   def destroy
     @list = find_list
     if @list.destroy
-      render json: {}, status: 204
+      head :no_content
     else
-      render json: 'Permission denied', status: 422
+      render json: @list.errors, status: :unprocessable_entity
     end
   end
 
@@ -62,12 +66,7 @@ class ListsController < ApplicationController
   end
 
   def find_list
-    if @stack
-      @stack.lists.find_by_slug(params[:id].to_s)
-    else
-      # todo: change from id to uuid
-      List.find(params[:id].to_i)
-    end
+    (@stack ? @stack.lists : List).find_by_token(params[:id]) or raise ActiveRecord::RecordNotFound
   end
 
   def find_stack

@@ -11,7 +11,7 @@ class TasksController < ApplicationController
     if @task.save
       render json: @task, status: :created
     else
-      render json: { :errors => @task.errors.full_messages }, status: 422
+      render json: @task.errors, status: :unprocessable_entity
     end
   end
 
@@ -26,14 +26,14 @@ class TasksController < ApplicationController
     if @task.update_attributes(task_params)
       render json: @task
     else
-      render json: { errors: @task.errors.full_messages }, status: 422
+      render json: @task.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
     @task = @list.tasks.find(params[:id])
     if @task.destroy
-      render json: {}, status: 204
+      head :no_content
     else
       render json: 'Permission denied'
     end
@@ -46,17 +46,16 @@ class TasksController < ApplicationController
   end  
 
   def find_list
-    if @stack
-      @list = @stack.lists.find_by_slug(params[:list_id].to_s)
-    else
-      # todo: change from id to uuid
-      @list = List.find(params[:list_id].to_i)
+    @list = (@stack ? @stack.lists : List).find_by_token(params[:list_id])
+
+    if !@list
+      raise ActiveRecord::RecordNotFound
     end
   end
 
   def find_stack
     if params[:stack_id]
-      @stack = Stack.find_by_token(params[:stack_id].to_s)
+      @stack = Stack.find_by_token(params[:stack_id])
     end
   end
 

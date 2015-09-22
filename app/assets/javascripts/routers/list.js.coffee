@@ -1,19 +1,18 @@
 window.demo = {
   "name": "Demo",
   "id": 1,
-  "slug": "demo",
   "demo": true
 }
 
 class listApp.Routers.List extends Backbone.Router
   routes:
-    ''                      : 'root'
-    'preview'               : 'preview'
-    's/:token'              : 'stack'
-    's/:token/'             : 'stack'
-    's/:token/lists'        : 'lists'
-    's/:token/lists/new'    : 'new'
-    's/:token/lists/:slug'  : 'list'
+    ''                    : 'root'
+    'preview'             : 'preview'
+    's/:token'            : 'stack'
+    's/:token/'           : 'stack'
+    's/:token/lists'      : 'lists'
+    's/:token/lists/new'  : 'new'
+    's/:token/lists/:id'  : 'list'
 
   initialize: ->
     @toggleLoadScreen()
@@ -46,14 +45,14 @@ class listApp.Routers.List extends Backbone.Router
   new: ->
     listApp.log 'new'
 
-  list: (token, listIdOrSlug) ->
+  list: (token, id) ->
     @cleanupLists()
 
-    if listApp.stack.get(listIdOrSlug)
-      listApp.listView = new listApp.Views.ListsShow(model: listApp.stack.get(listIdOrSlug))
+    if listApp.stack.get(id)
+      listApp.listView = new listApp.Views.ListsShow(model: listApp.stack.get(id))
     else
       listApp.stack.on "reset", (collection, response) =>
-        list = collection.get(listIdOrSlug) || collection.findWhere({ id: Number(listIdOrSlug) })
+        list = collection.get(id)
         if list 
           listApp.listView = new listApp.Views.ListsShow(model: list)
         else

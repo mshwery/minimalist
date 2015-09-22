@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
 
+  def default_serializer_options
+    {root: false}
+  end
+  
   private
 
   def record_not_found

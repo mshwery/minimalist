@@ -22,7 +22,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+#gem 'jbuilder', '~> 1.2'
+gem 'active_model_serializers', '~> 0.8.3'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -34,6 +35,9 @@ gem 'jbuilder', '~> 1.2'
 # gem 'debugger', group: [:development, :test]
 
 gem 'eco'
+
+# Store ActiveRecord IDs non-obviously in URL using hashids.
+gem 'hashids'
 
 # rails 4.2 removes support for respond_to/respond_with
 gem 'responders', '~> 2.0' 

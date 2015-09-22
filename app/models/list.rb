@@ -1,4 +1,7 @@
 class List < ActiveRecord::Base
+  include ActiveModel::Serializers::JSON
+
+  HASHIDS_SALT = Rails.application.secrets.secret_key_base
 
   validates :name, presence: true
   has_many :tasks, dependent: :destroy
@@ -10,8 +13,12 @@ class List < ActiveRecord::Base
   before_save :generate_slug
   after_create :update_count
 
+  def self.find_by_token(token)
+    find(hashids.decode(token).first)
+  end
+
   def to_param
-    slug
+    List.hashids.encode(id)
   end
 
   def update_count
@@ -19,6 +26,10 @@ class List < ActiveRecord::Base
   end
 
   private
+
+  def self.hashids
+    @hashids ||= Hashids.new(HASHIDS_SALT, 10)
+  end
 
   def generate_name
     if self.name.blank?

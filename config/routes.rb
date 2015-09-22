@@ -3,13 +3,14 @@ Lists::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   resources :s, controller: :stacks, as: :stacks do
+    resources :lists, only: [:new, :show]
+    get '/lists/*', to: 'stack#show'
+  end
+
+  scope 'api', as: 'api' do
     resources :lists do
       resources :tasks
     end
-  end
-
-  resources :lists do
-    resources :tasks
   end
 
   get 'preview' => 'pages#preview'
