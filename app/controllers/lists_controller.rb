@@ -14,7 +14,10 @@ class ListsController < ApplicationController
 
   def index
     if @stack
-      render json: @stack.lists
+      respond_to do |format|
+        format.json { render json: @stack.lists }
+        format.html { render 'stacks/show' }
+      end
     else
       raise ActiveRecord::RecordNotFound
     end
@@ -22,7 +25,10 @@ class ListsController < ApplicationController
 
   def show
     @list = find_list
-    render json: @list
+    respond_to do |format|
+      format.json { render json: @list }
+      format.html { render 'stacks/show' }
+    end
   end
 
   def create
