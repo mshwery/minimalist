@@ -1,19 +1,16 @@
 class List < ActiveRecord::Base
-  include ActiveModel::Serializers::JSON
-
   HASHIDS_SALT = Rails.application.secrets.secret_key_base
 
   validates :name, presence: true
   has_many :tasks, dependent: :destroy
 
-  belongs_to :stack
+  belongs_to :stack, touch: true
   
   validates_format_of :slug, with: /\A[a-z\-0-9]*\Z/
   before_validation :generate_name, on: :create 
-  before_save :generate_slug
   after_create :update_count
 
-  def self.find_by_token(token)
+  def self.find_by_token(token) 
     find(hashids.decode(token).first)
   end
 
@@ -34,32 +31,6 @@ class List < ActiveRecord::Base
   def generate_name
     if self.name.blank?
       self.name = 'untitled'
-    end
-  end
-
-  def generate_slug
-    # only generate slugs for stacked lists
-    if !self.stack
-      return
-    end
-
-    slug = self.name.parameterize
-
-    current = 1
-    self.slug = slug
-    while true
-      lists_with_slug = self.stack.lists.where({slug: self.slug})
-
-      if !self.new_record?
-        lists_with_slug = lists_with_slug.where.not({id: self.id})
-      end
-
-      if lists_with_slug.count != 0 || self.slug == 'new'
-        self.slug = "#{slug}-#{current}"
-        current += 1
-      else
-        break
-      end
     end
   end
 

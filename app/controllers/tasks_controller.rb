@@ -1,13 +1,12 @@
 class TasksController < ApplicationController
-  before_filter :find_stack, :find_list
   respond_to :json
   
   def index
-    render json: @list.tasks
+    render json: list.tasks
   end
   
   def create
-    @task = @list.tasks.new(task_params)
+    @task = list.tasks.new(task_params)
     if @task.save
       render json: @task, status: :created
     else
@@ -16,12 +15,12 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = @list.tasks.find(params[:id])
+    @task = list.tasks.find(params[:id])
     render json: @task
   end
   
   def update
-    @task = @list.tasks.find(params[:id])
+    @task = list.tasks.find(params[:id])
 
     if @task.update_attributes(task_params)
       render json: @task
@@ -31,7 +30,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = @list.tasks.find(params[:id])
+    @task = list.tasks.find(params[:id])
     if @task.destroy
       head :no_content
     else
@@ -45,18 +44,18 @@ class TasksController < ApplicationController
     params.require(:task).permit(:description, :completed, :sort_order)
   end  
 
-  def find_list
-    @list = (@stack ? @stack.lists : List).find_by_token(params[:list_id])
-
-    if !@list
-      raise ActiveRecord::RecordNotFound
-    end
+  def list
+    @list ||= lists_scope.find_by_token(params[:list_id])
   end
 
-  def find_stack
-    if params[:stack_id]
-      @stack = Stack.find_by_token(params[:stack_id])
-    end
+  def lists_scope
+    @lists_scope ||= stack.try(:lists) || List.scope
   end
+
+  def stack
+    return @stack if defined?(@stack)
+    @stack = params[:stack_id] ? Stack.find_by_token(params[:stack_id]) : nil
+  end  
+
 
 end
