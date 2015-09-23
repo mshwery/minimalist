@@ -68,7 +68,7 @@ class ListsController < ApplicationController
   end
 
   def lists_scope
-    @lists_scope ||= stack.try(:lists) || List.scope
+    @lists_scope ||= stack.try(:lists) || List
   end
 
   def stack
