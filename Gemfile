@@ -40,6 +40,7 @@ gem 'eco'
 gem 'hashids'
 
 gem 'puma'
+gem 'newrelic_rpm'
 
 # rails 4.2 removes support for respond_to/respond_with
 gem 'responders', '~> 2.0' 
