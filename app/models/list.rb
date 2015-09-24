@@ -10,8 +10,17 @@ class List < ActiveRecord::Base
   before_validation :generate_name, on: :create 
   after_create :update_count
 
-  def self.find_by_token(token) 
-    find(hashids.decode(token).first)
+  def self.find_by_token(token)
+    slug = nil
+    id = nil
+
+    begin
+      id = hashids.decode(token).first
+    rescue
+      slug = token
+    end
+
+    find(id || slug)
   end
 
   def to_param
