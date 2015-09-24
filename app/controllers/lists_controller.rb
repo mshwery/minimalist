@@ -2,12 +2,12 @@ class ListsController < ApplicationController
   respond_to :json, :html
 
   def new
-    @list = stack.lists.new
+    list = stack.lists.new
 
-    if @list.save
-      redirect_to stack_list_path(@stack, @list)
+    if list.save
+      redirect_to stack_list_path(stack, list)
     else
-      redirect_to @stack
+      redirect_to stack
     end
   end
 
@@ -64,16 +64,15 @@ class ListsController < ApplicationController
   end
 
   def list
-    @list ||= lists_scope.find_by_token(params[:id])
+    lists_scope.find_by_token(params[:id])
   end
 
   def lists_scope
-    @lists_scope ||= stack.try(:lists) || List
+    stack.try(:lists) || List
   end
 
   def stack
-    return @stack if defined?(@stack)
-    @stack = params[:stack_id] ? Stack.find_by_token(params[:stack_id]) : nil
+    params[:stack_id] ? Stack.find_by_token(params[:stack_id]) : nil
   end  
 
 end
