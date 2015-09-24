@@ -39,6 +39,8 @@ gem 'eco'
 # Store ActiveRecord IDs non-obviously in URL using hashids.
 gem 'hashids'
 
+gem 'puma'
+
 # rails 4.2 removes support for respond_to/respond_with
 gem 'responders', '~> 2.0' 
 
