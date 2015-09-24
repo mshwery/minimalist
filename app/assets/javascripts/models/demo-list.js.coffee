@@ -44,7 +44,7 @@ window.demoItems = [
 
 class listApp.Models.DemoList extends Backbone.Model
   url: '/demo.json'
-  idAttribute: 'slug'
+  idAttribute: 'id'
 
   initialize: ->
     listApp.log 'init demo'

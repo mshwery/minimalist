@@ -28,7 +28,7 @@ class listApp.Views.ListsShow extends Backbone.View
 
     @input = @$("#stats .edit")
     $('.current').removeClass('current')
-    $('#'+@model.get('slug')).addClass('current')
+    $('#'+@model.get('id')).addClass('current')
 
     @initItems()
     @renderNewItemForm()
@@ -82,7 +82,7 @@ class listApp.Views.ListsShow extends Backbone.View
 
   setUrl: =>
     path = window.location.pathname.split("/").slice(0, -1).join("/")
-    newPath = [path, @model.get('slug')].join("/")
+    newPath = [path, @model.get('id')].join("/")
     listApp.router.navigate(newPath)
 
   updateOnEnter: (e) =>
@@ -97,25 +97,12 @@ class listApp.Views.ListsShow extends Backbone.View
   renderNewItemForm: =>
     @newItemView ||= new listApp.Views.ItemsNew( collection: @model.items )
 
-  # TODO evaluate this
-  # clearCompleted: ->
-  #   _.each(@model.items.completed(), (item) ->
-  #     item.clear() if item.view
-  #   )
-  #   return false
-
   refresh: ->
     @$el.addClass('loading')
-
-    # clear completed items (deletes them too)
-    # @clearCompleted()
 
     # then fetch/sync with the server, there could be remote changes
     # use `reset: true` so that new sort order is manifested
     @model.items.fetch
-      # add: true
-      # remove: true
-      # merge: true
       reset: true
       wait: true
       success: => @afterRefresh()

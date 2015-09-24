@@ -1,5 +1,5 @@
 <a class="delete-list" title="delete list">&#215;</a>
-<a href="<%= @urlRoot %>/<%= @list.get('slug') %>" class="route" id="<%= @list.get('slug') %>">
+<a href="<%= @urlRoot %>/<%= @list.get('id') %>" class="route" id="<%= @list.get('id') %>">
   <%= @list.get('name') %>
   <i>(<%= @list.items.remaining().length %>)</i>
 </a>

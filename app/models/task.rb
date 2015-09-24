@@ -1,6 +1,6 @@
 class Task < ActiveRecord::Base
   
-  belongs_to :list
+  belongs_to :list, touch: true
   validates :description, presence: true
 
   scope :deleted, -> { where.not(deleted_at: nil) }
