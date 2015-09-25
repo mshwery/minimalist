@@ -2,7 +2,8 @@ class TasksController < ApplicationController
   respond_to :json
   
   def index
-    render json: list.tasks
+    tasks = list.tasks
+    render json: tasks
   end
   
   def create
@@ -42,19 +43,19 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:description, :completed, :sort_order)
-  end  
+  end
 
   def list
-    lists_scope.find_by_token(params[:list_id])
+    @list ||= lists_scope.find_by_token(params[:list_id])
   end
 
   def lists_scope
-    stack.try(:lists) || List
+    @lists_scope ||= stack.try(:lists) || List.all
   end
 
   def stack
-    params[:stack_id] ? Stack.find_by_token(params[:stack_id]) : nil
-  end  
-
+    return @stack if defined?(@stack)
+    @stack = params[:stack_id] ? Stack.find_by(token: params[:stack_id]) : nil
+  end
 
 end
