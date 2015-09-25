@@ -64,15 +64,16 @@ class ListsController < ApplicationController
   end
 
   def list
-    lists_scope.find_by_token(params[:id])
+    @list ||= lists_scope.find_by_token(params[:id])
   end
 
   def lists_scope
-    stack.try(:lists) || List
+    @lists_scope ||= stack.try(:lists) || List.all
   end
 
   def stack
-    params[:stack_id] ? Stack.find_by_token(params[:stack_id]) : nil
-  end  
+    return @stack if defined?(@stack)
+    @stack = params[:stack_id] ? Stack.find_by(token: params[:stack_id]) : nil
+  end
 
 end

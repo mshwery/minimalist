@@ -17,7 +17,7 @@ class StacksController < ApplicationController
   end
 
   def show
-    @stack = Stack.find_by_token(params[:id])
+    @stack = Stack.find_by(token: params[:id])
     if @stack
       respond_with @stack
     else
