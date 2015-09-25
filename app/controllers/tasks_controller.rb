@@ -1,6 +1,5 @@
 class TasksController < ApplicationController
   respond_to :json
-  before_filter :stack
   
   def index
     tasks = list.tasks
