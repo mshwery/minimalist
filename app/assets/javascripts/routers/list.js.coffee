@@ -56,9 +56,10 @@ class listApp.Routers.List extends Backbone.Router
         if list 
           listApp.listView = new listApp.Views.ListsShow(model: list)
         else
-          return @navigate('s/'+token+'/lists')
+          @navigate('s/'+token+'/lists')
 
-    $('#sidebar').addClass('list-is-selected')
+    if listApp.listView
+      $('#sidebar').addClass('list-is-selected')
     
   toggleLoadScreen: ->
     $("#app").toggleClass('show hide')
