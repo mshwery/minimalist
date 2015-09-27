@@ -55,6 +55,7 @@ class listApp.Routers.List extends Backbone.Router
         list = collection.get(id)
         if list 
           listApp.listView = new listApp.Views.ListsShow(model: list)
+          $('#sidebar').addClass('list-is-selected')
         else
           @navigate('s/'+token+'/lists')
 
