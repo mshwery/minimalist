@@ -9,40 +9,53 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130509013805) do
+ActiveRecord::Schema.define(version: 20151206205624) do
 
-  create_table "lists", :force => true do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
+
+  create_table "lists", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "slug"
     t.integer  "stack_id"
     t.datetime "deleted_at"
   end
 
-  create_table "stacks", :force => true do |t|
+  create_table "stacks", force: :cascade do |t|
     t.string   "token"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "stats", :force => true do |t|
+  create_table "stats", force: :cascade do |t|
     t.integer  "tasks_count"
     t.integer  "lists_count"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  create_table "tasks", :force => true do |t|
+  create_table "tasks", force: :cascade do |t|
     t.string   "description"
-    t.boolean  "completed",   :default => false
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.boolean  "completed",   default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "list_id"
     t.integer  "sort_order"
     t.datetime "deleted_at"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "uid"
+    t.string   "provider"
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
