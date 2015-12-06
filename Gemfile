@@ -48,3 +48,9 @@ gem 'responders', '~> 2.0'
 gem 'rails_12factor', group: :production
 
 gem 'web-console', '~> 2.0', group: :development
+
+# add authentication
+gem 'devise'
+gem 'omniauth-google-oauth2'
+
+gem 'dotenv'
