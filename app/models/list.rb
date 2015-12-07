@@ -4,6 +4,8 @@ class List < ActiveRecord::Base
   validates :name, presence: true
   has_many :tasks, dependent: :destroy
 
+  has_and_belongs_to_many :users
+
   belongs_to :stack, touch: true
   
   validates_format_of :slug, with: /\A[a-z\-0-9]*\Z/

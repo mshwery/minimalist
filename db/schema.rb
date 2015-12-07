@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207005340) do
+ActiveRecord::Schema.define(version: 20151207051224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(version: 20151207005340) do
     t.integer  "stack_id"
     t.datetime "deleted_at"
   end
+
+  create_table "lists_users", id: false, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "list_id", null: false
+  end
+
+  add_index "lists_users", ["list_id", "user_id"], name: "index_lists_users_on_list_id_and_user_id", using: :btree
+  add_index "lists_users", ["user_id", "list_id"], name: "index_lists_users_on_user_id_and_list_id", using: :btree
 
   create_table "stacks", force: :cascade do |t|
     t.string   "token"
