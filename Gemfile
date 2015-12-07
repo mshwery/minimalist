@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby "2.1.2"
 
 gem 'rails', '4.2.4'
+gem 'dotenv-rails'
 
 gem 'pg'
 gem 'rack-cors', :require => 'rack/cors'
@@ -52,5 +53,3 @@ gem 'web-console', '~> 2.0', group: :development
 # add authentication
 gem 'devise'
 gem 'omniauth-google-oauth2'
-
-gem 'dotenv'

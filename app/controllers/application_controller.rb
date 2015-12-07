@@ -8,6 +8,12 @@ class ApplicationController < ActionController::Base
   def default_serializer_options
     {root: false}
   end
+
+  # Devise without :database_authenticatable
+  # @see https://github.com/plataformatec/devise/wiki/OmniAuth%3A-Overview#using-omniauth-without-other-authentications
+  def new_session_path(scope)
+    new_user_session_path
+  end
   
   private
 

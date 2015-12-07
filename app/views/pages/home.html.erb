@@ -1,6 +1,12 @@
-<%#= css_design_awards_nominee_tag %>
-
 <div class="white">
+
+  <% if user_signed_in? -%>
+    <%= current_user.name %>
+    <%= link_to 'Sign out', destroy_user_session_path %>
+  <% else -%>
+    <%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2) %>
+  <% end -%>
+
   <section class="wrap">
     <header>
       <h1><span class="logo-square icon-check"></span>minimaList</h1>
