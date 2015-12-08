@@ -12,20 +12,23 @@ Lists::Application.routes.draw do
     get 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
   end
 
+  # stack routes for the old part of the app (anonymous)
   resources :s, controller: :stacks, as: :stacks, only: [:index, :new, :show] do
     resources :lists, except: [:edit] do
       resources :tasks, except: [:new, :edit]
     end
-    # get '*wildcard', to: 'stack#show', as: :wildcard
   end
 
-  scope 'api', as: 'api' do
-    resources :lists, except: [:new, :index, :edit] do
-      resources :tasks, except: [:new, :edit]
+  # api routes
+  namespace :api do
+    resources :lists, only: [:index, :create, :show, :update, :destroy] do
+      resources :tasks, only: [:index, :create, :show, :update, :destroy]
     end
   end
 
   get 'preview' => 'pages#preview'
+  get 'dashboard' => 'pages#dashboard'
+  get 'dashboard/*all', to: 'pages#dashboard'
 
   # You can have the root of your site routed with "root"
   root 'pages#home'

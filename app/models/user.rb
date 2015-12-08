@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   devise :rememberable, :trackable, :omniauthable, omniauth_providers: [:google_oauth2]
 
+  before_create :generate_api_token
+
   # Grab a user by their identity or create a new one
   # @see http://sourcey.com/rails-4-omniauth-using-devise-with-twitter-facebook-and-linkedin/
   def self.from_omniauth(auth)
@@ -32,5 +34,16 @@ class User < ActiveRecord::Base
     # Return the user
     user
   end
+
+  private
+
+    def generate_api_token
+      return if api_token.present?
+      
+      loop do
+        self.api_token = SecureRandom.base64(64)
+        break unless User.find_by(api_token: api_token)
+      end
+    end
   
 end

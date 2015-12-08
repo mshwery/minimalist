@@ -1,6 +1,8 @@
 class ListsController < ApplicationController
   respond_to :json, :html
 
+  before_action :redirect_current_user, only: [:new]
+
   def new
     list = stack.lists.new
 

@@ -21,7 +21,7 @@
       <%= image_tag 'try-me.png', :class => 'try-me' %>
       <div class="actions">
         <%= link_to "Preview it", preview_url, :class => 'btn preview' %>
-        <%= link_to "Start your list", new_stack_url, :class => 'btn orange' %>
+        <%= link_to "Start your list", user_signed_in? ? new_dashboard_list_url : new_stack_url, :class => 'btn orange' %>
       </div>
     </div>
   </section>

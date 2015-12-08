@@ -14,6 +14,18 @@ class ApplicationController < ActionController::Base
   def new_session_path(scope)
     new_user_session_path
   end
+
+  # Devise sign in path
+  # @see https://github.com/plataformatec/devise/wiki/How-To%3A-Redirect-to-a-specific-page-on-successful-sign-in-and-sign-out
+  def after_sign_in_path_for(resource)
+    dashboard_path
+  end
+  
+  def redirect_current_user
+    if current_user
+      redirect_to dashboard_path
+    end
+  end
   
   private
 

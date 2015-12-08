@@ -8,6 +8,8 @@ class listApp.Routers.List extends Backbone.Router
   routes:
     ''                    : 'root'
     'preview'             : 'preview'
+    'dashboard'           : 'lists'
+    'dashboard/:id'       : 'dashboardList'
     's/:token'            : 'stack'
     's/:token/'           : 'stack'
     's/:token/lists'      : 'lists'
