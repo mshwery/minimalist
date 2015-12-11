@@ -53,3 +53,5 @@ gem 'web-console', '~> 2.0', group: :development
 # add authentication
 gem 'devise'
 gem 'omniauth-google-oauth2'
+gem 'pundit'
+
