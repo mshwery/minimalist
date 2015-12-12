@@ -23,19 +23,6 @@ class Api::BaseController < ActionController::Base
       render json: errors, status: status
     end
 
-    # def authenticate_user!
-    #   token, options = ActionController::HttpAuthentication::Token.token_and_options(request)
-
-    #   user_email = options.blank?? nil : options[:email]
-    #   user = user_email && User.find_by(email: user_email)
-
-    #   if user && ActiveSupport::SecurityUtils.secure_compare(user.authentication_token, token)
-    #     @current_user = user
-    #   else
-    #     return unauthenticated!
-    #   end
-    # end
-
     def unauthenticated!
       response.headers['WWW-Authenticate'] = "Token realm=Application"
       render json: { error: 'Bad credentials' }, status: 401
@@ -43,8 +30,9 @@ class Api::BaseController < ActionController::Base
 
     def authenticate!
       authenticate_or_request_with_http_token do |token, options|
-        puts "token #{token}"
-        user = User.find_by(api_token: token)
+        email = options.blank? ? nil : options[:email]
+        user = email && User.find_by(email: email)
+
         if user && ActiveSupport::SecurityUtils.secure_compare(user.api_token, token)
           @current_user = user
         else
