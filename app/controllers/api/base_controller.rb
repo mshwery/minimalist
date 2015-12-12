@@ -10,6 +10,7 @@ class Api::BaseController < ActionController::Base
 
   before_action :destroy_session
 
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from Pundit::NotAuthorizedError, with: :unauthorized!
 
   def default_serializer_options
@@ -52,6 +53,10 @@ class Api::BaseController < ActionController::Base
 
     def destroy_session
       request.session_options[:skip] = true
+    end
+
+    def record_not_found
+      render json: { error: 'record not found' }, status: 404
     end
   
 end

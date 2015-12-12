@@ -32,10 +32,10 @@ class ApplicationController < ActionController::Base
   
   protected
 
-  def record_not_found
-    respond_to do |format|
-      format.json { render json: { error: "record not found" }, status: 404 }
-      format.html { redirect_to :root }
+    def record_not_found
+      respond_to do |format|
+        format.json { render json: { error: "record not found" }, status: 404 }
+        format.html { redirect_to :root }
+      end
     end
-  end
 end

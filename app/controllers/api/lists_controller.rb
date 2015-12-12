@@ -51,18 +51,18 @@ class Api::ListsController < Api::BaseController
 
   private
 
-  def list_params
-    params.fetch(:list, {}).permit(:name)
-  end
+    def list_params
+      params.fetch(:list, {}).permit(:name)
+    end
 
-  def find_list
-    @list ||= List.find_by_token(params[:id])
-    # find list within user's list associations
-    # @list ||= policy_scope(List).find_by_token(params[:id])
-  end
+    def find_list
+      @list ||= List.find_by_token(params[:id])
+      # find list within user's list associations
+      # @list ||= policy_scope(List).find_by_token(params[:id])
+    end
 
-  def authorize_list
-    authorize @list
-  end
+    def authorize_list
+      authorize @list
+    end
 
 end
