@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  private
+  protected
 
   def record_not_found
     render json: { error: "record not found" }, status: 404

@@ -2,25 +2,22 @@ class ListsController < ApplicationController
   respond_to :json, :html
 
   before_action :redirect_current_user, only: [:new]
+  before_action :find_stack
 
   def new
-    list = stack.lists.new
+    list = @stack.lists.new
 
     if list.save
-      redirect_to stack_list_path(stack, list)
+      redirect_to stack_list_path(@stack, list)
     else
       redirect_to stack
     end
   end
 
   def index
-    if stack
-      respond_to do |format|
-        format.json { render json: stack.lists }
-        format.html { render 'stacks/show' }
-      end
-    else
-      raise ActiveRecord::RecordNotFound
+    respond_to do |format|
+      format.json { render json: @stack.lists }
+      format.html { render 'stacks/show' }
     end
   end
 
@@ -32,7 +29,7 @@ class ListsController < ApplicationController
   end
 
   def create
-    list = lists_scope.new(list_params)
+    list = @stack.lists.new(list_params)
 
     if list.save
       render json: list, status: :created
@@ -66,16 +63,17 @@ class ListsController < ApplicationController
   end
 
   def list
-    @list ||= lists_scope.find_by_token(params[:id])
+    @list ||= @stack.lists.find_by_token(params[:id])
   end
 
-  def lists_scope
-    @lists_scope ||= stack.try(:lists) || List.all
-  end
-
-  def stack
-    return @stack if defined?(@stack)
-    @stack = params[:stack_id] ? Stack.find_by(token: params[:stack_id]) : nil
+  def find_stack
+    @stack ||= Stack.find_by(token: params[:stack_id])
+    if !@stack
+      respond_to do |format|
+        format.json { record_not_found }
+        format.html { redirect_to :root }
+      end
+    end
   end
 
 end
