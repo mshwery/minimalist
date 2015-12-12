@@ -69,10 +69,7 @@ class ListsController < ApplicationController
   def find_stack
     @stack ||= Stack.find_by(token: params[:stack_id])
     if !@stack
-      respond_to do |format|
-        format.json { record_not_found }
-        format.html { redirect_to :root }
-      end
+      record_not_found
     end
   end
 
