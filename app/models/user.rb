@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_and_belongs_to_many :lists
+  has_and_belongs_to_many :lists, -> { uniq }
 
   # Include default devise modules. Others available are:
   devise :rememberable, :trackable, :omniauthable, omniauth_providers: [:google_oauth2]
@@ -33,6 +33,14 @@ class User < ActiveRecord::Base
 
     # Return the user
     user
+  end
+
+  def join(list)
+    self.lists << list unless !list || self.lists.include?(list)
+  end
+
+  def leave(list)
+    self.lists.delete(list)
   end
 
   private

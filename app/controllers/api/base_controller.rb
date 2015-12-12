@@ -1,11 +1,16 @@
 class Api::BaseController < ActionController::Base
   include Pundit
 
+  # @see https://github.com/rails-api/active_model_serializers/issues/624
+  serialization_scope :view_context
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session
 
   before_action :destroy_session
+
+  rescue_from Pundit::NotAuthorizedError, with: :unauthorized!
 
   def default_serializer_options
     {root: false}
@@ -21,6 +26,10 @@ class Api::BaseController < ActionController::Base
       head status: status and return if errors.empty?
 
       render json: errors, status: status
+    end
+
+    def unauthorized!
+      render json: { error: 'not authorized' }, status: 403
     end
 
     def unauthenticated!

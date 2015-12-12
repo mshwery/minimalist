@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session# with: :exception
 
+  # @see https://github.com/rails-api/active_model_serializers/issues/624
+  serialization_scope :view_context
+
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
 
   def default_serializer_options

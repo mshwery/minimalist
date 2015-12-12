@@ -1,7 +1,30 @@
 class ListPolicy < ApplicationPolicy
 
   def index?
-    return true
+    true
+  end
+
+  def create?
+    true
+  end
+
+  def show?
+    # *any* user can see *any* list?
+    true
+    # or only lists shared with them
+    # record.shared_with?(user)
+  end
+
+  def update?
+    record.owned_by?(user) || record.shared_with?(user)
+  end
+
+  def destroy?
+    record.owned_by?(user)
+  end
+
+  def leave?
+    record.shared_with?(user) && !record.owned_by?(user)
   end
 
   class Scope < ApplicationPolicy::Scope

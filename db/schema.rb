@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208035509) do
+ActiveRecord::Schema.define(version: 20151212185020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20151208035509) do
     t.string   "slug"
     t.integer  "stack_id"
     t.datetime "deleted_at"
+    t.integer  "owner_id"
   end
 
   create_table "lists_users", id: false, force: :cascade do |t|
@@ -41,7 +42,7 @@ ActiveRecord::Schema.define(version: 20151208035509) do
     t.integer "list_id", null: false
   end
 
-  add_index "lists_users", ["list_id", "user_id"], name: "index_lists_users_on_list_id_and_user_id", using: :btree
+  add_index "lists_users", ["list_id", "user_id"], name: "index_lists_users_on_list_id_and_user_id", unique: true, using: :btree
   add_index "lists_users", ["user_id", "list_id"], name: "index_lists_users_on_user_id_and_list_id", using: :btree
 
   create_table "stacks", force: :cascade do |t|
@@ -84,4 +85,5 @@ ActiveRecord::Schema.define(version: 20151208035509) do
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
 
   add_foreign_key "identities", "users"
+  add_foreign_key "lists", "users", column: "owner_id"
 end
