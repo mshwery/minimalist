@@ -42,7 +42,7 @@ class listApp.Views.ListsShow extends Backbone.View
 
   nav: (e) ->
     e.preventDefault()
-    path = listApp.apiPrefix 'lists'
+    path = listApp.appUrl 'lists'
     listApp.router.navigate(path, {trigger: true}) if path
 
   longPoll: (longpoll) =>
@@ -55,7 +55,7 @@ class listApp.Views.ListsShow extends Backbone.View
       clearTimeout(@longpoll)
 
     # fetch the model, and recursively call this fn
-    if @pollingEnabled
+    if @pollingEnabled && !@model.isNew()
       @model.items.fetch({
         add: false,
         remove: false,

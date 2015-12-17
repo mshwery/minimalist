@@ -17,12 +17,20 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="apple-touch-startup-image" href="/iphone.png" media="screen and (max-device-width: 360px)"/>
   <%= csrf_meta_tags %>
+
+  <script>
+    window.constants = {
+      token: '<%= user_signed_in? ? current_user.api_token : "" %>',
+      email: '<%= user_signed_in? ? current_user.email : "" %>'
+    };
+  </script>
 </head>
 <body class="<%= body_class.join(" ") %>">
 
+  <%#= render "layouts/notifications" %>
+
   <div id="load-screen" class="show"></div>
 
-  <%#= render "layouts/notifications" %>
 
   <div id="app" class="hide">
     <%= yield %>

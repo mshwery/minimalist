@@ -4,6 +4,7 @@ class listApp.Views.StacksShow extends Backbone.View
 
   events:
     "click .remove-lists" : "removeLists"
+    "click .add-list" : "newList"
 
   initialize: ->
     @listenTo(@collection, 'add', @addOne)
@@ -20,7 +21,7 @@ class listApp.Views.StacksShow extends Backbone.View
   render: =>
     $(@el).prepend(@template(
       stack: @collection.models
-      urlRoot: listApp.apiPrefix("lists")
+      urlRoot: listApp.appUrl("lists")
     ))
 
   addOne: (item) =>
@@ -31,6 +32,14 @@ class listApp.Views.StacksShow extends Backbone.View
     @collection.each((item) =>
       @addOne(item)
     )
+
+  newList: (e) ->
+    e.preventDefault()
+    list = @collection.create({ name: 'Untitled List' }, { wait: true, success: (model, data) ->
+      model.items.list_id = model.id
+      path = listApp.appUrl('lists/' + model.id)
+      listApp.router.navigate(path, {trigger: true})
+    })
 
   removeLists: (e)->
     $stack = $(@el).find("#my-lists")
@@ -57,7 +66,7 @@ class listApp.Views.ListItemShow extends Backbone.View
   render: =>
     $(@el).html(@template(
       list: @model
-      urlRoot: listApp.apiPrefix("lists")
+      urlRoot: listApp.appUrl("lists")
     ))
     return this
 
@@ -74,5 +83,5 @@ class listApp.Views.ListItemShow extends Backbone.View
       if listApp.listView.model.id == @model.id
         listApp.listView.remove()
         listApp.listView.unbind()
-        listApp.router.navigate(listApp.apiPrefix('lists'), {trigger: true})
+        listApp.router.navigate(listApp.appUrl('lists'), {trigger: true})
 

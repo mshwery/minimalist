@@ -9,11 +9,11 @@ class listApp.Routers.List extends Backbone.Router
     ''                    : 'root'
     'preview'             : 'preview'
     'dashboard'           : 'lists'
-    'dashboard/:id'       : 'dashboardList'
+    'dashboard/lists'     : 'lists'
+    'dashboard/lists/:id' : 'getList'
     's/:token'            : 'stack'
     's/:token/'           : 'stack'
     's/:token/lists'      : 'lists'
-    's/:token/lists/new'  : 'new'
     's/:token/lists/:id'  : 'list'
 
   initialize: ->
@@ -44,26 +44,26 @@ class listApp.Routers.List extends Backbone.Router
     @cleanupLists()
     $("#sidebar").removeClass('list-is-selected')
 
-  new: ->
-    listApp.log 'new'
-
-  list: (token, id) ->
+  list: (token, listId) ->
+    @getList(listId)
+  
+  getList: (listId) ->
     @cleanupLists()
 
-    if listApp.stack.get(id)
-      listApp.listView = new listApp.Views.ListsShow(model: listApp.stack.get(id))
+    if listApp.lists.get(listId)
+      listApp.listView = new listApp.Views.ListsShow(model: listApp.lists.get(listId))
     else
-      listApp.stack.on "reset", (collection, response) =>
-        list = collection.get(id)
+      listApp.lists.on "reset", (collection, response) =>
+        list = collection.get(listId)
         if list 
           listApp.listView = new listApp.Views.ListsShow(model: list)
           $('#sidebar').addClass('list-is-selected')
         else
-          @navigate('s/'+token+'/lists')
+          @navigate(listApp.urlRoot('lists'))
 
     if listApp.listView
       $('#sidebar').addClass('list-is-selected')
-    
+
   toggleLoadScreen: ->
     $("#app").toggleClass('show hide')
     $("#app").siblings('#load-screen').toggleClass('show hide')
@@ -72,8 +72,8 @@ class listApp.Routers.List extends Backbone.Router
       $("#app").addClass("desktop")
 
   setupSidebar: ->
-    listApp.stack ||= new listApp.Collections.Lists()
-    listApp.stackView = new listApp.Views.StacksShow(collection: listApp.stack)
+    listApp.lists ||= new listApp.Collections.Lists()
+    listApp.listsView = new listApp.Views.StacksShow(collection: listApp.lists)
 
   setupDemo: ($view) ->
     $view.on('click', @addActiveClassToDemo)
