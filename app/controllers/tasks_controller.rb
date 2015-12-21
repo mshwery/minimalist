@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
   respond_to :json
 
-  before_action :redirect_current_user
   before_action :find_stack
   before_action :find_list
   
