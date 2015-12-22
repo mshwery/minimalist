@@ -1,0 +1,48 @@
+.pages-home .user-menu {
+  background: transparent;
+  position: absolute;
+  right: 1em;
+  top: 0;
+}
+
+.user-menu {
+  background: #177EE6;
+  color: white;
+  position: relative;
+  padding: 1em;
+  text-align: left;
+
+  a {
+    color: rgba(255,255,255,0.75);
+  }
+}
+
+.person {
+  display: block;
+  margin-left: 44px;
+  padding-left: 1em;
+  line-height: 1;
+}
+
+.person-image {
+  @include border-radius(50%);
+  width: 44px;
+  height: 44px;
+  display: block;
+  position: absolute;
+}
+
+.person-name {
+  display: block;
+  font-size: 1em;
+  padding: .25em 0;
+  line-height: 1.2em;
+}
+
+.person-image + .person-name {
+  padding-left: 1em;
+}
+
+.person-signout-link {
+  font-size: .85em;
+}

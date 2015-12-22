@@ -4,7 +4,8 @@ class listApp.Views.StacksShow extends Backbone.View
 
   events:
     "click .remove-lists" : "removeLists"
-    "click .add-list" : "newList"
+    "click .add-list" : "newList",
+    "click .sidebar-backdrop": "hideSidebar"
 
   initialize: ->
     @listenTo(@collection, 'add', @addOne)
@@ -20,9 +21,13 @@ class listApp.Views.StacksShow extends Backbone.View
 
   render: =>
     $(@el).prepend(@template(
+      user: window.user
       stack: @collection.models
       urlRoot: listApp.appUrl("lists")
     ))
+
+  hideSidebar: =>
+    $('#sidebar').removeClass('shown') if $('body').hasClass('list-is-selected')
 
   addOne: (item) =>
     view = new listApp.Views.ListItemShow( model: item )
@@ -51,7 +56,7 @@ class listApp.Views.StacksShow extends Backbone.View
 # this is each item in the sidebar's list of lists
 class listApp.Views.ListItemShow extends Backbone.View
   tagName: "li"
-  className: "cf list-item"
+  className: "list-item"
   template: JST['lists/index']
 
   events:

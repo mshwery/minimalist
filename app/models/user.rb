@@ -21,7 +21,13 @@ class User < ActiveRecord::Base
       # Create the user if it's a new registration
       user = User.where(email: email).first_or_create do |user|
         user.name = auth.info.name
+        user.image_url = auth.info.image
         user.email = email
+      end
+    else
+      # update the users image when they log in and they have a new avatar image
+      if auth.info.image.present? && auth.info.image != user.image_url
+        user.update_attribute(:image_url, auth.info.image)
       end
     end
 

@@ -9,12 +9,13 @@ class listApp.Views.ListsShow extends Backbone.View
     "keypress #stats .edit"      : "updateOnEnter"
     "blur #stats .edit"          : "close"
     "click .refresh"      : "refresh"
-    "click .back"         : "nav"
+    "click .back"         : "showSidebar"
 
   initialize: ->
     @model.on('change:name', @updateName)
     @longPoll(true)
     @render()
+    @hideSidebar()
 
   render: =>
     $(@el).html(@template(
@@ -40,10 +41,13 @@ class listApp.Views.ListsShow extends Backbone.View
     @model.unbind('change:name', @updateName)
     super()
 
-  nav: (e) ->
-    e.preventDefault()
-    path = listApp.appUrl 'lists'
-    listApp.router.navigate(path, {trigger: true}) if path
+  showSidebar: (e) ->
+    e.preventDefault() unless !e
+    $('#sidebar').addClass('shown')
+
+  hideSidebar: (e) ->
+    e.preventDefault() unless !e
+    $('#sidebar').removeClass('shown')
 
   longPoll: (longpoll) =>
     # set @pollingEnabled if an argument was passed in

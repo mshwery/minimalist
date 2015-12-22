@@ -183,11 +183,14 @@ footer {
   }  
 }
 
+.home {
+  display: none;
+}
+
 .pages-preview {
   background: #fff;
 
   #demo {
-
     .home {
       display: block;
       float: left;

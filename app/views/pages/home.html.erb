@@ -1,18 +1,24 @@
 <div class="white">
 
-  <% if user_signed_in? -%>
-    <%= current_user.name %>
-    <%= link_to 'Sign out', destroy_user_session_path %>
-  <% else -%>
-    <%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2) %>
-  <% end -%>
+  <div class='user-menu'>
+    <% if user_signed_in? -%>
+      <%= image_tag current_user.image_url, class: 'person-image' %>
+      <span class='person-name'>
+        <%= current_user.name %>
+        <br>
+        <span class='person-signout-link'><%= link_to 'Sign out', destroy_user_session_path %><span>
+      </span>
+    <% else -%>
+      <%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2) %>
+    <% end -%>
+  </div>
 
   <section class="wrap">
     <header>
       <h1><span class="logo-square icon-check"></span>minimaList</h1>
     </header>
   </section>
-  <section class="wrap cf">
+  <section class="wrap clearfix">
     <div id="demo"></div>
     <div id="intro">
       <h2>
@@ -21,13 +27,13 @@
       <%= image_tag 'try-me.png', :class => 'try-me' %>
       <div class="actions">
         <%= link_to "Preview it", preview_url, :class => 'btn preview' %>
-        <%= link_to "Start your list", new_stack_url, :class => 'btn orange' %>
+        <%= link_to "Start a list", new_stack_url, :class => 'btn orange' %>
       </div>
     </div>
   </section>
 </div>
 <div id="features" class="wrap">
-  <ul class="cf">
+  <ul class="clearfix">
     <li>
       <h3>With you everywhere –</h3>
       <p>The internet makes your lists magically available anywhere. You can access them on your phone, tablet, or computer.</p>
@@ -47,7 +53,7 @@
   </ul>
 </div>
 <footer>
-  <div class="wrap cf">
+  <div class="wrap clearfix">
     <div class="right">
       <%= list_total %> Lists. <%= task_total %> Todos.
     </div>

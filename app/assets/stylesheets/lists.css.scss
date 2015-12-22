@@ -7,18 +7,16 @@ $header-height: 50px;
 
 // this is for the desktop styles
 .lists, .stacks-show {
-  
-  .home { display: none; }
 
   .selected-list {
-    @media only screen and (max-width: $list-gutter-breakpoint) {
+    @media only screen and (max-width: $show-sidebar-breakpoint) {
       @include box-shadow(none);
       padding: 0;
     }
   }
 
   #app {
-    @media only screen and (max-width: $list-gutter-breakpoint) {
+    @media only screen and (max-width: $show-sidebar-breakpoint) {
       padding: 0;
     }
   }
@@ -26,7 +24,6 @@ $header-height: 50px;
 
 #app {
   height: 100%;
-  overflow: scroll;
   
   @media only screen and (min-width: $show-sidebar-breakpoint + 1) {
     position: relative;
@@ -97,6 +94,10 @@ $header-height: 50px;
   text-align: center;
   background: #fff;
   border-bottom: $border-style;
+
+  input {
+    @include box-sizing(content-box);
+  }
  
   h2 {
     color: $dark;

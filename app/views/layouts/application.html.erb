@@ -19,9 +19,11 @@
   <%= csrf_meta_tags %>
 
   <script>
-    window.constants = {
-      token: '<%= user_signed_in? ? current_user.api_token : "" %>',
-      email: '<%= user_signed_in? ? current_user.email : "" %>'
+    window.user = {
+      token:  '<%= user_signed_in? ? current_user.api_token : "" %>',
+      email:  '<%= user_signed_in? ? current_user.email : "" %>',
+      name:   '<%= user_signed_in? ? current_user.name : "" %>',
+      image:  '<%= user_signed_in? ? current_user.image_url : "" %>'
     };
   </script>
 </head>

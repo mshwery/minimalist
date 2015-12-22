@@ -1,14 +1,26 @@
-
+*,
+*:before,
+*:after {
+  @include box-sizing(inherit);
+}
 
 body {
   font-family: 'Open Sans', 'Lucida Grande', tahoma, verdana, arial, sans-serif;
   background: $bg-color;
   text-align: center;
   font-weight: 300;
+  font-size: 15px;
+  @include box-sizing(border-box);
 }
 
 html, body {
   height: 100%;
+}
+
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .right {
@@ -24,16 +36,11 @@ html, body {
   @include transition(opacity 200ms linear);
   @include delay(1s);
 }
+
 .hide {
   opacity: 0;
   @include transition(opacity 200ms linear);
   @include delay(1s);
-}
-
-.list-is-selected {
-  @media only screen and (max-width: $show-sidebar-breakpoint) {
-    display: none;
-  }
 }
 
 i {
@@ -55,13 +62,10 @@ i {
   width: 100%;
   background: #ccc;
 
-  @media only screen and (max-width: $list-max-width) {
-    @include box-shadow(none);
-    padding: 0;
-  }
-
   @media only screen and (max-width: $show-sidebar-breakpoint) {
+    @include box-shadow(none);
     max-width: $show-sidebar-breakpoint;
+    padding: 0;
   }
 
   input[type=text], textarea {
@@ -71,6 +75,23 @@ i {
     overflow: hidden;
     resize: none;
   }  
+}
+
+input,
+textarea {
+  outline: none;
+}
+
+textarea {
+  @include box-sizing(content-box);
+}
+
+a {
+  text-decoration: none;
+}
+
+[class*="icon-"] {
+  text-decoration: none;
 }
 
 .wrap {
@@ -106,13 +127,13 @@ i {
   max-width: $button-max-width;
   padding: 1em 1.5em;
   text-align: center;
-  font-size: 1em;
-  line-height: 100%;
+  font-size: .85em;
+  line-height: 1;
   font-weight: 600;
   text-transform: uppercase;
+  text-decoration: none;
   @include inline-block;
   @include border-radius(2px);
-  // border: 1px solid transparent;
   @include btn_color(#eee);
   @include box-shadow(0 1px 0px rgba(0,0,0,0.25));
 
@@ -134,7 +155,8 @@ textarea {
   @include basicField;
 }
 
-.label, label {
+.label,
+label {
   @include inline-block;
   vertical-align: middle;
 }

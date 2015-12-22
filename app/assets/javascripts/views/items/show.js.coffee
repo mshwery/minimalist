@@ -1,6 +1,6 @@
 class listApp.Views.ItemsShow extends Backbone.View
   tagName: "li"
-  className: 'cf todo'
+  className: 'clearfix todo'
 
   template: JST['items/show']
 
@@ -8,9 +8,9 @@ class listApp.Views.ItemsShow extends Backbone.View
     "movestart"       : "checkDirection"
     "swiperight"      : "markCompleted"
     "swipeleft"       : "markIncompleted"
-    "click .toggle"   : "togglecompleted"
-    "dblclick .view"  : "edit"
-    "doubletap .view" : "edit"
+    "click .toggle"   : "toggleCompleted"
+    "click .view"     : "edit"
+    "tap .view"       : "edit"
     "click a.destroy" : "clear"
     "keypress .edit"  : "updateOnEnter"
     "keyup .edit"     : "limitChars"
@@ -35,8 +35,8 @@ class listApp.Views.ItemsShow extends Backbone.View
   renderCompleted: =>
     @$el.toggleClass('completed', @model.get('completed'))
 
-  togglecompleted: ->
-    if !@$el.hasClass('editing')
+  toggleCompleted: (complete) ->
+    if !@$el.hasClass('editing') && !@$el.hasClass('ui-sortable-helper') && (complete == undefined || complete != @model.get('completed')) 
       @model.toggle()
       @renderCompleted()
 
@@ -46,12 +46,10 @@ class listApp.Views.ItemsShow extends Backbone.View
       return
 
   markIncompleted: ->
-    @model.toggle() if @model.get("completed")
-    @renderCompleted()
+    @toggleCompleted(false)
 
   markCompleted: ->
-    @model.toggle() if !@model.get("completed")
-    @renderCompleted()
+    @toggleCompleted(true)
 
   edit: =>
     @$el.addClass("editing")

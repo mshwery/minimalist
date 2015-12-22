@@ -38,7 +38,7 @@ joinPaths = (pathA, pathB) ->
 $.ajaxSetup
   cache: false
   beforeSend: (xhr) ->
-    xhr.setRequestHeader("Authorization", "Token token=\"#{constants.token}\", email=\"#{constants.email}\"");
+    xhr.setRequestHeader("Authorization", "Token token=\"#{user.token}\", email=\"#{user.email}\"");
 
 $(document).ready ->
   listApp.init()

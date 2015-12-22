@@ -15,6 +15,8 @@
   font-size: 16px;
   border-bottom: $border-style;
   font-weight: 300;
+  // for sortable to size properly
+  @include box-sizing(content-box);
   @include transition(background-color 200ms linear);
   // reduces flicker on ios...
   -webkit-transform: translate3d(0,0,0);
@@ -44,8 +46,8 @@
 
   &.ui-sortable-helper {
     border-bottom: none;
+    @include transform(scale(.98));
     @include opacity(95);
-    margin: -1px -1px 0px -1px;
     border: 1px solid $primary;
     @include border-radius(2px);
     z-index: 100000;
@@ -116,8 +118,7 @@
   }
 
   .label {
-    cursor: pointer;
-    color: $dark;//$blue;
+    color: $dark;
   }
   
   .destroy {
@@ -136,26 +137,45 @@
     @include transition(all 200ms ease-in-out);
 
     @media only screen and (min-device-width: $medium-breakpoint) {
-      &:hover { opacity: 1; }
+      &:hover {
+        opacity: 1;
+      }
     }
     
-    &:active { opacity: 1; }
+    &:active {
+      opacity: 1;
+    }
   }
 
-  .edit { display: none; }
+  .edit {
+    display: none;
+  }
   
   &.editing {
     background-color: $yellow;
-    .edit { display: inline-block; }
-    .label, .move { display: none; }
-    .destroy { display: block; }
+
+    .edit { 
+      display: inline-block; 
+    }
+
+    .label,
+    .move { 
+      display: none; 
+    }
+
+    .destroy { 
+      display: block; 
+    }
   }
 }
 
 .items {
   position: relative;
-  overflow: visible;
   text-align: left;
+}
+
+#sidebar .items {
+  margin-bottom: 1.5em;
 }
 
 #add-item li {
@@ -164,20 +184,22 @@
   border-bottom: $border-style;
 
   input[type=text] {
-    width: 90%;
-    padding: 14px 5%;
+    width: 100%;
+    padding: 0 5%;
+    line-height: 50px;
+    height: 50px;
     border: 1px solid transparent;
     font-style: italic;
   }
 
   #submit-new-item {
-    -webkit-appearance: none;
+    @include appearance(none);
     border: none;
     background-color: transparent;
     position: absolute;
     right: 0px;
     top: 0px;
-    z-index: 100;
+    z-index: 1;
     background-image: url(image-path("enter.png"));
     background-repeat: no-repeat;
     background-position: center;

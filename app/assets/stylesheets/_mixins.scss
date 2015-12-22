@@ -16,6 +16,12 @@
   zoom: 1;
 }
 
+@mixin appearance($params) {
+  appearance: $params;
+  -moz-appearance: $params;
+  -webkit-appearance: $params;
+}
+
 @mixin border-radius ($radius...) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;

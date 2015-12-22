@@ -1,5 +1,5 @@
 <div id="stats">
-  <a class="back icon-menu" href="<%= @url %>"></a>
+  <span class="back icon-menu"></span>
   <a class="home icon-menu" href="/"></a>
   <h2 title="<%= @name %>"><%= @name %></h2>
   <form>
