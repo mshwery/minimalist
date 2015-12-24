@@ -1,15 +1,20 @@
 .pages-home .user-menu {
   background: transparent;
   position: absolute;
-  right: 1em;
+  right: 1.33rem;
   top: 0;
+  color: inherit;
+
+  a {
+    color: inherit;
+  }
 }
 
 .user-menu {
-  background: #177EE6;
+  background: $primary;
   color: white;
   position: relative;
-  padding: 1em;
+  padding: 1.33rem;
   text-align: left;
 
   a {
@@ -20,7 +25,7 @@
 .person {
   display: block;
   margin-left: 44px;
-  padding-left: 1em;
+  padding-left: .85em;
   line-height: 1;
 }
 
@@ -39,10 +44,8 @@
   line-height: 1.2em;
 }
 
-.person-image + .person-name {
-  padding-left: 1em;
-}
-
 .person-signout-link {
   font-size: .85em;
+  display: inline-block;
+  padding: .25em 0;
 }

@@ -4,12 +4,15 @@
   @include box-sizing(inherit);
 }
 
+html {
+  font-size: 15px;
+}
+
 body {
   font-family: 'Open Sans', 'Lucida Grande', tahoma, verdana, arial, sans-serif;
   background: $bg-color;
   text-align: center;
   font-weight: 300;
-  font-size: 15px;
   @include box-sizing(border-box);
 }
 
@@ -54,13 +57,11 @@ i {
 .selected-list {
   @include box-sizing(border-box);
   @include border-radius(3px);
-  @include box-shadow(0px 2px 5px rgba(0,0,0,0.1));
+  @include box-shadow(0px 2px 8px rgba(0, 0, 0, 0.15));
   margin: 0px auto;
-  padding: 3px;
   top: 0px;
   max-width: $list-max-width;
   width: 100%;
-  background: #ccc;
 
   @media only screen and (max-width: $show-sidebar-breakpoint) {
     @include box-shadow(none);
