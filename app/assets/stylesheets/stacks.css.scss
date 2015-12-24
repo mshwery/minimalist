@@ -43,7 +43,7 @@
   background: rgba(0,0,0,.5);
   z-index: 1;
   cursor: pointer;
-  @include transition((left 0ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, opacity 400ms cubic-bezier(0.23, 1, 0.32, 1) 0ms));
+  @include transition((left 0ms cubic-bezier(0.23, 1, 0.32, 1) 400ms, opacity 400ms cubic-bezier(0.23, 1, 0.32, 1) 0ms));
 }
 
 #sidebar {
@@ -55,11 +55,12 @@
   bottom: 0;
   background: #fff;
   position: fixed;
-  @include transition(margin 300ms cubic-bezier(0.23, 1, 0.32, 1) 0ms);
+  @include transition(margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms);
 
   &.shown + .sidebar-backdrop {
     opacity: 1;
     left: 0;
+    @include transition((left 0ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, opacity 400ms cubic-bezier(0.23, 1, 0.32, 1) 0ms));
   }
 
   @media only screen and (min-width: $show-sidebar-breakpoint + 1) {
@@ -67,11 +68,11 @@
   }
 
   @media only screen and (max-width: $show-sidebar-breakpoint) {
-    margin-left: -100%;
+    margin-left: -($sidebar-width);
 
     &.shown {
       box-shadow: 3px 0 10px rgba(0,0,0,0.25);
-      margin: 0;
+      margin-left: 0;
     }
   }
 
@@ -89,16 +90,27 @@
 } 
 
 #my-lists {
-  padding: 1.5em 1em;
+  $sidebar-gutter: 1em;
+  padding: 1.5em 0;
 
   h2 {
     position: relative;
     color: #aaa;
-    padding-top: 0;
-    padding-bottom: .5em;
+    padding: 0 0 .5em;
+    margin: 0 $sidebar-gutter;
     font-size: .7rem;
     line-height: 24px;
     border-bottom: none;
+  }
+
+  .route {
+    line-height: 2.75em;
+  }
+
+  .route,
+  .add-list {
+    padding-left: $sidebar-gutter;
+    padding-right: $sidebar-gutter;
   }
 }
 
@@ -144,8 +156,6 @@
   }
 
   .route {
-    padding: .5em;
-    margin: 0 -.5em;
     display: block;
     line-height: 22px;
     font-weight: 400;
@@ -205,7 +215,6 @@
   font-size: 1.5em;
   float: right;
   cursor: pointer;
-  line-height: 22px;
   color: #333;
   padding-left: 15px;
   text-decoration: none;

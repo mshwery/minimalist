@@ -155,12 +155,6 @@ textarea {
   @include basicField;
 }
 
-.label,
-label {
-  @include inline-block;
-  vertical-align: middle;
-}
-
 #load-screen {
   position: absolute;
   z-index: 0;

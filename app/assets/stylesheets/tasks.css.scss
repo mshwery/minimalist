@@ -11,7 +11,7 @@
 .todo {
   position: relative;
   background-color: #fff;
-  padding: 0px 25px;
+  padding: 0px 3em;
   font-size: 16px;
   border-bottom: $border-style;
   font-weight: 300;
@@ -67,7 +67,7 @@
   .move {
     opacity: .2;
     float: right;
-    margin-right: -20px;
+    margin-right: -2em;
     padding-left: 10px;
     font-size: 22px;
     height: 50px;
@@ -83,6 +83,10 @@
   }
 
   .toggle {
+    @include appearance(none);
+    background-color: inherit;
+    outline: none;
+    padding: 0;
     border: 1px solid #e5e5e5;
     cursor: pointer;
     float: left;
@@ -91,34 +95,25 @@
     max-width: 16px;
     @include border-radius(3px);
     margin: 16px 0px;
-    margin-left: -10px;
-    @media only screen and (min-device-width: $medium-breakpoint) {
-      &:hover {
-        border-color: #bbb;
-        @include gradient(0.03);        
-      }
-    }
-    &:active {
+    margin-left: -2em;
+
+    &:hover,
+    &:active,
+    &:focus {
       border-color: #bbb;
       @include gradient(0.03);                  
     }
   }
-
-  .view {
-    margin: 0px 20px 0px 24px;
-  }
   
-  .label, input[type=text], textarea {
+  .label,
+  input[type=text],
+  textarea {
     width: 100%;
     padding: 15px 0px; 
     line-height: 20px;
     font-size: 16px; 
     font-weight: 300;
     word-wrap: break-word;
-  }
-
-  .label {
-    color: $dark;
   }
   
   .destroy {
@@ -146,16 +141,12 @@
       opacity: 1;
     }
   }
-
-  .edit {
-    display: none;
-  }
   
   &.editing {
     background-color: $yellow;
 
-    .edit { 
-      display: inline-block; 
+    .edit {
+      display: block;
     }
 
     .label,
@@ -167,6 +158,15 @@
       display: block; 
     }
   }
+}
+
+.todo .edit {
+  display: none;
+}
+
+.todo .label {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .items {
