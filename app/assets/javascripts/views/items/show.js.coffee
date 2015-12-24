@@ -11,6 +11,7 @@ class listApp.Views.ItemsShow extends Backbone.View
     "click .toggle"   : "toggleCompleted"
     "click .view"     : "edit"
     "tap .view"       : "edit"
+    "focus .label"    : "edit"
     "click a.destroy" : "clear"
     "keypress .edit"  : "updateOnEnter"
     "keyup .edit"     : "limitChars"
@@ -53,7 +54,7 @@ class listApp.Views.ItemsShow extends Backbone.View
 
   edit: =>
     @$el.addClass("editing")
-    @input.focus().val(@input.val())
+    @input.focus()
 
   close: =>
     value = @input.val()
