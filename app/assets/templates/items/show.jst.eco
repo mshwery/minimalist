@@ -1,9 +1,7 @@
-<span class="toggle icon-check" title="Check!" alt="Check!"></span>
+<button class="toggle icon-check" title="Check!" alt="Check!" tabindex="0"></button>
 <span class="move icon-move" title="Move Item"></span>
 <div class="view">
-  <form>
-    <label class="label"><%= @description %></label>
+    <label contenteditable="true" class="label" tabindex="0"><%= @description %></label>
     <textarea class="edit" maxlength="255"><%= @description %></textarea>
-  </form>
 </div>
 <a class="destroy icon-trash" title="delete"></a>
