@@ -6,21 +6,20 @@ window.demo = {
 
 class listApp.Routers.List extends Backbone.Router
   routes:
-    ''                    : 'root'
-    'preview'             : 'preview'
-    'dashboard'           : 'lists'
-    'dashboard/lists'     : 'lists'
-    'dashboard/lists/:id' : 'getList'
-    's/:token'            : 'stack'
-    's/:token/'           : 'stack'
-    's/:token/lists'      : 'lists'
-    's/:token/lists/:id'  : 'list'
+    '(/)'                    : 'root'
+    'preview(/)'             : 'preview'
+    'dashboard(/)'           : 'lists'
+    'dashboard/lists(/)'     : 'lists'
+    'dashboard/lists/:id(/)' : 'getList'
+    's/:token(/)'            : 'stack'
+    's/:token/lists(/)'      : 'lists'
+    's/:token/lists/:id(/)'  : 'list'
 
   initialize: ->
     @toggleLoadScreen()
     unless $('body').hasClass('pages-home') || $('body').hasClass('pages-preview')
       @setupSidebar()
-
+      
   getDemoList: ->
     listApp.demo = new listApp.Models.DemoList(window.demo) 
     listApp.view = new listApp.Views.ListsShow({ model: listApp.demo })  
