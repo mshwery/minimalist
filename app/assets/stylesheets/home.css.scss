@@ -14,15 +14,11 @@
     }
   }
   h1, h2 {
-    margin: 0px;
     text-transform: none;
     color: #222;
   }
-  h1 {
-    font-size: 36px;
-    font-weight: 400;
-  }
   h2 {
+    margin: 0px;
     font-size: 28px;
     font-weight: 300; 
     line-height: 1.2em;
@@ -74,36 +70,34 @@
     width: 40%;
     padding: 30px 5% 0 0px;
     text-align: left;
+
     @media only screen and (max-width: $medium-breakpoint) {
       padding: 30px 5%;
       width: 100%;
     } 
   }
+  
   #features {
     padding: 35px 0px;
     color: #fff;
     text-align: left;
-    ul {
-      padding-left: 33%;
-      background: url(image-path("bg.png")) 30px center no-repeat;
-      @media only screen and (max-width: $medium-breakpoint) {
-        padding-left: 0;
-        background: none;
-      } 
-    }   
+
     li {
       float: left;
       width: 50%;
       padding: 25px 0;
+      
       @media only screen and (max-width: $medium-breakpoint) {
         width: 100%;
-      } 
+      }
+
       h3, p {
         padding: 0 30px;
         margin: 0px;
         line-height: 24px;
         font-size: 16px;
       }
+
       h3 {
         font-weight: 600;
       }
@@ -141,7 +135,7 @@ footer {
 .pages-home {
   #demo, #intro {
     float: left;
-    @include box-sizing(border-box);
+    box-sizing: border-box;
   }
 
   #demo {
@@ -150,22 +144,26 @@ footer {
     max-height: 300px;
     overflow: hidden;
     cursor: pointer;
-    @include transition((padding 300ms ease-in-out, max-height 500ms ease-in-out));
-    -webkit-transform: translate3d(0,0,0);
-    -webkit-perspective: 1000;
+    transition: padding 300ms ease-in-out, max-height 500ms ease-in-out;
+    transform: translate3d(0,0,0);
+    perspective: 1000;
+    
     @media only screen and (max-width: $medium-breakpoint) {
       display: none;
     } 
+    
     .selected-list {
       margin: 0 -3px -3px;
-      @include transition(margin 300ms ease-in-out);
+      transition: margin 300ms ease-in-out;
       position: relative;
       min-width: 0px;
     }
+
     &:hover {
       padding-top: 0px;
       padding-bottom: 40px;
     }
+    
     &.active {
       cursor: auto;
       max-height: 1000px;
@@ -175,19 +173,23 @@ footer {
       .selected-list {
         margin: 0 -3px 50px;
       }
+    
       &.complete {
-        @include transition(max-height 0s);
+        transition: max-height 0s;
         max-height: none;
       }
     }
   }  
 }
 
+.home {
+  display: none;
+}
+
 .pages-preview {
   background: #fff;
 
   #demo {
-
     .home {
       display: block;
       float: left;
@@ -207,16 +209,10 @@ footer {
 }
 
 .logo-square {
-  background: #3392d6;
-  @include border-radius(5px);
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  line-height: 40px;
-  vertical-align: middle;
-  @include inline-block;
+  background: $primary;
+  border-radius: 3px;
+  width: 3.75rem;
+  height: 3.75rem;
   color: #FFF;
-  font-size: 24px;
-  margin-right: 10px;
-
+  padding: 1rem;
 }

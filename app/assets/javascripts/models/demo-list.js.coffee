@@ -26,7 +26,7 @@ window.demoItems = [
   {
     "completed":false,
     "created_at":"2012-07-21T02:47:14Z",
-    "description":"Manage one-to-many lists at a time",
+    "description":"Manage all your lists in one place",
     "id":4,
     "sort_order":4,
     "updated_at":"2012-07-26T02:55:38Z"

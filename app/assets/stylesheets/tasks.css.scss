@@ -11,45 +11,53 @@
 .todo {
   position: relative;
   background-color: #fff;
-  padding: 0px 25px;
-  font-size: 16px;
+  padding: 0px 3em;
+  font-size: 1rem;
   border-bottom: $border-style;
   font-weight: 300;
-  @include transition(background-color 200ms linear);
+  transition: background-color 200ms linear;
+  
+  // for sortable to size properly
+  box-sizing: content-box;
+  
   // reduces flicker on ios...
-  -webkit-transform: translate3d(0,0,0);
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility:    hidden;
-  -ms-backface-visibility:     hidden;
-  -webkit-perspective: 1000;
-  // end
-
+  transform: translate3d(0,0,0);
+  backface-visibility: hidden;
+  perspective: 1000;
+  
   &.completed {
     background-color: $primary;
     border-color: transparent;
+
     .toggle {
       color: white;
       border-color: transparent;
-      &:hover {
+
+      &:hover,
+      &:active,
+      &:focus {
         border-color: transparent;
-        @include gradient(0);
       }
     }
+
     .label {
       color: #fff;
       text-decoration: line-through;
-      a { color: #fff; }
+
+      a {
+        color: #fff;
+      }
     }
   }
 
   &.ui-sortable-helper {
     border-bottom: none;
-    @include opacity(95);
-    margin: -1px -1px 0px -1px;
+    transform: scale(.98);
+    opacity: 95;
     border: 1px solid $primary;
-    @include border-radius(2px);
+    border-radius: 2px;
     z-index: 100000;
-    @include box-shadow(0 1px 3px rgba(0,0,0,0.35));
+    box-shadow: 0 1px 3px rgba(0,0,0,0.35);
   }
 
   .check {
@@ -59,17 +67,16 @@
     position: absolute;
     left: -40px;
     top: 0px;
-    @include transition(opacity 100ms linear);
+    transition: opacity 100ms linear;
   }
 
   .move {
     opacity: .2;
     float: right;
-    margin-right: -20px;
-    padding-left: 10px;
-    font-size: 22px;
+    margin-right: -3em;
+    padding: 0 .5rem;
     height: 50px;
-    line-height: 50px;
+    line-height: 0;
     cursor: move;
 
     &:hover {
@@ -81,80 +88,97 @@
   }
 
   .toggle {
-    border: 1px solid #e5e5e5;
+    appearance: none;
+    background-color: transparent;
+    outline: none;
+    padding: 0;
+    border: 2px solid #c1c1c3;
     cursor: pointer;
     float: left;
     color: transparent;
-    max-height: 16px;
-    max-width: 16px;
-    @include border-radius(3px);
-    margin: 16px 0px;
-    margin-left: -10px;
-    @media only screen and (min-device-width: $medium-breakpoint) {
-      &:hover {
-        border-color: #bbb;
-        @include gradient(0.03);        
-      }
-    }
-    &:active {
-      border-color: #bbb;
-      @include gradient(0.03);                  
-    }
-  }
+    height: 16px;
+    width: 16px;
+    border-radius: 2px;
+    margin: 17px 0px;
+    margin-left: -2em;
+    box-sizing: border-box;
 
-  .view {
-    margin: 0px 20px 0px 24px;
+    &:hover,
+    &:active,
+    &:focus {
+      border-color: #a1a1a3;
+    }
+
+    .icon-check {
+      margin: -2px;
+      box-sizing: content-box;
+      display: block;
+    }
   }
   
-  .label, input[type=text], textarea {
+  .label,
+  input[type=text],
+  textarea {
     width: 100%;
     padding: 15px 0px; 
     line-height: 20px;
-    font-size: 16px; 
-    font-weight: 300;
     word-wrap: break-word;
-  }
-
-  .label {
-    cursor: pointer;
-    color: $dark;//$blue;
   }
   
   .destroy {
     opacity: 0.5;
     display: none;
     position: absolute;
+    width: 1.4rem;
     height: 50px;
-    line-height: 50px;
-    font-size: 18px;
+    padding: 0 .25rem;
+    margin: 0 .5rem;
     cursor: pointer;
-    width: 30px;
     overflow: hidden;
     top: 0px;
     color: #333;
     right: 0px;
-    @include transition(all 200ms ease-in-out);
+    transition: all 200ms ease-in-out;
 
     @media only screen and (min-device-width: $medium-breakpoint) {
-      &:hover { opacity: 1; }
+      &:hover {
+        opacity: 1;
+      }
     }
     
-    &:active { opacity: 1; }
+    &:active {
+      opacity: 1;
+    }
   }
-
-  .edit { display: none; }
   
   &.editing {
     background-color: $yellow;
-    .edit { display: inline-block; }
-    .label, .move { display: none; }
-    .destroy { display: block; }
+
+    .edit {
+      display: block;
+    }
+
+    .label,
+    .move { 
+      display: none; 
+    }
+
+    .destroy { 
+      display: block; 
+    }
   }
+}
+
+.todo .edit {
+  display: none;
+}
+
+.todo .label {
+  display: block;
 }
 
 .items {
   position: relative;
-  overflow: visible;
   text-align: left;
 }
 
@@ -164,20 +188,22 @@
   border-bottom: $border-style;
 
   input[type=text] {
-    width: 90%;
-    padding: 14px 5%;
+    width: 100%;
+    padding: 0 40px 0 1rem;
+    line-height: 50px;
+    height: 50px;
     border: 1px solid transparent;
     font-style: italic;
   }
 
   #submit-new-item {
-    -webkit-appearance: none;
+    appearance: none;
     border: none;
     background-color: transparent;
     position: absolute;
     right: 0px;
     top: 0px;
-    z-index: 100;
+    z-index: 0;
     background-image: url(image-path("enter.png"));
     background-repeat: no-repeat;
     background-position: center;

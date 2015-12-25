@@ -1,0 +1,48 @@
+.user-menu {
+  color: white;
+  position: relative;
+  padding: 1.33rem;
+  text-align: left;
+
+  &.logged-in {
+    background: $primary;
+  }
+
+  &:not(.logged-in) {
+    border-bottom: 1px solid #eee;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+.person {
+  display: block;
+  margin-left: 44px;
+  padding-left: .85em;
+  line-height: 1;
+}
+
+.person-image {
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: block;
+  position: absolute;
+}
+
+.person-name {
+  display: block;
+  font-size: 1em;
+  padding: .25em 0;
+  line-height: 1.2em;
+  color: inherit;
+}
+
+.person-signout-link {
+  font-size: .85em;
+  display: inline-block;
+  padding: .25em 0;
+  color: rgba(255,255,255,0.75);
+}

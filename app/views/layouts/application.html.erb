@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>minimaList</title>
+  <title>minimalist</title>
   <meta name="description" content="A simple, sharable list app that's everywhere you are. Easy to share, great on any device.">
   <meta name="author" content="@mshwery">
   
@@ -12,17 +12,30 @@
   <%= javascript_include_tag "application" %>
   <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
   <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="shortcut icon" href="/favicon.png" />
   <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="apple-touch-startup-image" href="/iphone.png" media="screen and (max-device-width: 360px)"/>
   <%= csrf_meta_tags %>
+
+  <script>
+    window.user = {
+      token:  '<%= user_signed_in? ? current_user.api_token : "" %>',
+      email:  '<%= user_signed_in? ? current_user.email : "" %>',
+      name:   '<%= user_signed_in? ? current_user.name : "" %>',
+      image:  '<%= user_signed_in? ? current_user.image_url : "" %>'
+    };
+  </script>
 </head>
 <body class="<%= body_class.join(" ") %>">
 
-  <%# render "layouts/notifications" %>
+  <%#= render "layouts/notifications" %>
 
-  <div id="load-screen" class="show"></div>
+  <div id="load-screen" class="dots show">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
 
   <div id="app" class="hide">
     <%= yield %>

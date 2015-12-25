@@ -1,24 +1,20 @@
 .stack {
   #my-lists {
     position: relative;
+
     .add-list {
       cursor: pointer;
-      text-align: center;
-      width: 20px;
       color: #aaa;
-      font-size: 21px;
-      font-weight: 600;
-      float: right;
-      line-height: inherit;
+      font-weight: 500;
+      font-size: 14px;
+
       &:hover {
         text-decoration: none;
         color: #555;
       }
+
       &:active {
         color: $primary;
-      }
-      @media only screen and (max-width: $show-sidebar-breakpoint) {
-        width: 40px;
       }
     }
   }
@@ -28,38 +24,54 @@
     @include h;
     background: #fff;
     margin: 0px;
-    text-align: center;
     width: auto;
     border-bottom: 1px solid rgba(0,0,0,0.10); 
     text-transform: uppercase;
-
-    @media only screen and (max-width: $show-sidebar-breakpoint) {
-      padding-left: 40px;
-    }
   }
 }
 
+.sidebar-backdrop {
+  opacity: 0;
+  left: -100%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.5);
+  z-index: 1;
+  cursor: pointer;
+  transition: left 0ms cubic-bezier(0.23, 1, 0.32, 1) 400ms, opacity 400ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+}
+
 #sidebar {
-  @include box-sizing(border-box);
+  text-align: left;
+  width: $sidebar-width;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: #fff;
+  position: fixed;
+  transition: margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+
+  &.shown + .sidebar-backdrop {
+    opacity: 1;
+    left: 0;
+    transition: left 0ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, opacity 400ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  }
 
   @media only screen and (min-width: $show-sidebar-breakpoint + 1) {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: $sidebar-width;
-    border-right: 1px solid rgba(0,0,0,0.1);
-    z-index: 1;
-    background: #fff;
+    box-shadow: 1px 0 0px rgba(0, 0, 0, 0.1);
   }
 
   @media only screen and (max-width: $show-sidebar-breakpoint) {
-    &.list-is-selected {
-      display: none;
-    }
+    margin-left: -($sidebar-width);
 
-    h1 {
-      display: none;
+    &.shown {
+      box-shadow: 3px 0 10px rgba(0,0,0,0.25);
+      margin-left: 0;
     }
   }
 
@@ -77,28 +89,33 @@
 } 
 
 #my-lists {
+  $sidebar-gutter: 1.33rem;
+  padding: $sidebar-gutter 0;
 
-  @media only screen and (min-width: $show-sidebar-breakpoint + 1) {
-    padding: 20px 10px;
-
-    h2 {
-      letter-spacing: .05em;
-      color: #aaa;
-      font-size: .8rem;
-      line-height: 24px;
-      padding: 0 0 0 8px;
-      text-align: left;
-      border-bottom: none;
-    }
+  h2 {
+    position: relative;
+    color: #aaa;
+    padding: 0 0 .5em;
+    margin: 0 $sidebar-gutter;
+    font-size: .7rem;
+    line-height: 24px;
+    border-bottom: none;
   }
 
-  @media only screen and (max-width: $show-sidebar-breakpoint) {
+  .route,
+  .add-list {
+    line-height: 2.75em;
+    padding-left: $sidebar-gutter;
+    padding-right: $sidebar-gutter;
+  }
 
+  .add-list {
+    display: inline-block;
   }
 }
 
 .stack {
-  h1 {
+  .logo {
     text-align: center;
     font-size: 30px;
     font-weight: 400;
@@ -106,17 +123,9 @@
     margin: 0px;
     border-bottom: 1px solid rgba(0,0,0,0.05);
 
-    a {
-      color: inherit;
-      &:hover {
-        text-decoration: none;
-      }
-    }
-
     @media only screen and (max-width: $show-sidebar-breakpoint) {
       display: none;
     }
-
   }
   @media only screen and (max-width: $show-sidebar-breakpoint) {
     footer {
@@ -126,59 +135,46 @@
 }
 
 .list-item {
-  padding: 0 8px;
   font-size: 14px;
   border-bottom: none;
-  @include border-radius(3px); 
+  border-radius: 3px; 
 
   @media only screen and (min-width: $show-sidebar-breakpoint + 1) {
     &:hover {
-      background: $bg-color;
       .delete-list {
         opacity: .5;
       }
     }
   }
 
-  &:active {
-    background: $bg-color;
-  }
-
   .route {
     display: block;
-    line-height: 22px;
     font-weight: 400;
     color: #333;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
     &.current {
       color: darken($primary, 10%);
     }
+
+    &:active {
+      background: $bg-color;
+    }
+    
     &:hover {
+      background: $bg-color;
       text-decoration: none;
     }
+    
     i {
       line-height: inherit;
       padding: 0px;
-      font-size: .9em;
+      font-size: 1em;
+      margin-left: 2px;
     }
-  }
-
-  // small screen styles
-  @media only screen and (max-width: $show-sidebar-breakpoint) {
-    margin: 10px 10px 0;
-    padding: 0 20px;
-    background: #fff;
-    @include box-shadow(0 1px 1px rgba(0,0,0,0.1));
-
-    .route {
-      line-height: 50px;
-      i {
-        float: right;
-      }
-    }
-  }    
+  }   
 }
 
 .remove-lists {
@@ -187,14 +183,11 @@
   @media only screen and (max-width: $show-sidebar-breakpoint) {
     display: block;
     position: absolute;
-    left: 20px;
-    top: 0px;
-    margin: 12px 0;
-    padding: 5px 0;
-    font-size: 12px;
+    right: 0;
+    top: 0;
     color: #aaa;
     cursor: pointer;
-    @include border-radius(3px);
+    border-radius: 3px;
     
     &:hover {
       text-decoration: none;
@@ -209,27 +202,23 @@
 
 .delete-list {
   text-decoration: none;
-  font-weight: bold;
   font-size: 1.5em;
   float: right;
   cursor: pointer;
-  line-height: 22px;
   color: #333;
   padding-left: 15px;
   text-decoration: none;
-  @include transition(opacity 150ms ease-in-out);
 
   &:active {
     text-decoration: none;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: $show-sidebar-breakpoint) {
     display: none;
-    line-height: 50px;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: $show-sidebar-breakpoint) {
   .editing .delete-list {
     display: block;
   }
@@ -241,7 +230,7 @@
     text-decoration: none;
   }
   
-  @media screen and (min-width: 601px) {
+  @media screen and (min-width: $show-sidebar-breakpoint + 1) {
     opacity: 0;
   
     &:hover,

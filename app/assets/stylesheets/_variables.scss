@@ -1,16 +1,14 @@
 $list-max-width: 500px;
-$list-min-width: 360px;
 $page-max-width: 960px;
 $button-max-width: 280px;
 $preview-margin: 50px;
-$sidebar-width: 240px;
+$sidebar-width: 260px;
 
 $medium-breakpoint: 768px;
 $small-breakpoint: 400px;
-$show-sidebar-breakpoint: $list-min-width + $sidebar-width;
-$list-gutter-breakpoint: $list-max-width + $sidebar-width;
+$show-sidebar-breakpoint: $list-max-width + $sidebar-width;
 
-$primary: #3392d6;
+$primary: #2E8AE6;
 $orange: #f55910;
 $gray: #EAF4FB;
 $bg-color: #F1F2F5;

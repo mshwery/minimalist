@@ -4,6 +4,8 @@ class listApp.Views.StacksShow extends Backbone.View
 
   events:
     "click .remove-lists" : "removeLists"
+    "click .add-list" : "newList",
+    "click .sidebar-backdrop": "hideSidebar"
 
   initialize: ->
     @listenTo(@collection, 'add', @addOne)
@@ -19,9 +21,14 @@ class listApp.Views.StacksShow extends Backbone.View
 
   render: =>
     $(@el).prepend(@template(
+      user: window.user
+      isUsersLists: location.pathname.indexOf('/dashboard') == 0
       stack: @collection.models
-      urlRoot: listApp.apiPrefix("lists")
+      urlRoot: listApp.appUrl("lists")
     ))
+
+  hideSidebar: =>
+    $('#sidebar').removeClass('shown') if $('body').hasClass('list-is-selected')
 
   addOne: (item) =>
     view = new listApp.Views.ListItemShow( model: item )
@@ -31,6 +38,14 @@ class listApp.Views.StacksShow extends Backbone.View
     @collection.each((item) =>
       @addOne(item)
     )
+
+  newList: (e) ->
+    e.preventDefault()
+    list = @collection.create({ name: 'Untitled List' }, { wait: true, success: (model, data) ->
+      model.items.list_id = model.id
+      path = listApp.appUrl('lists/' + model.id)
+      listApp.router.navigate(path, {trigger: true})
+    })
 
   removeLists: (e)->
     $stack = $(@el).find("#my-lists")
@@ -42,7 +57,7 @@ class listApp.Views.StacksShow extends Backbone.View
 # this is each item in the sidebar's list of lists
 class listApp.Views.ListItemShow extends Backbone.View
   tagName: "li"
-  className: "cf list-item"
+  className: "list-item"
   template: JST['lists/index']
 
   events:
@@ -57,12 +72,13 @@ class listApp.Views.ListItemShow extends Backbone.View
   render: =>
     $(@el).html(@template(
       list: @model
-      urlRoot: listApp.apiPrefix("lists")
+      urlRoot: listApp.appUrl("lists")
     ))
     return this
 
   nav: (e) ->
     e.preventDefault()
+    $('#sidebar').removeClass('shown') if $('body').hasClass('list-is-selected')
     path = $(e.currentTarget).attr('href')
     listApp.router.navigate(path, {trigger: true}) if path
 
@@ -74,5 +90,5 @@ class listApp.Views.ListItemShow extends Backbone.View
       if listApp.listView.model.id == @model.id
         listApp.listView.remove()
         listApp.listView.unbind()
-        listApp.router.navigate(listApp.apiPrefix('lists'), {trigger: true})
+        listApp.router.navigate(listApp.appUrl('lists'), {trigger: true})
 

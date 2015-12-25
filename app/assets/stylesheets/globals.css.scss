@@ -1,39 +1,55 @@
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 
+html {
+  font-size: 15px;
+}
 
 body {
   font-family: 'Open Sans', 'Lucida Grande', tahoma, verdana, arial, sans-serif;
   background: $bg-color;
   text-align: center;
   font-weight: 300;
+  box-sizing: border-box;
 }
 
 html, body {
   height: 100%;
 }
 
+h1 {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 400;
+}
+
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .right {
   float: right;
 }
 
-.white {
-  background-color: #fff;
+.hero {
+  background-color: #f6f6f6;
 }
 
 .show {
   opacity: 1;
-  @include transition(opacity 200ms linear);
-  @include delay(1s);
-}
-.hide {
-  opacity: 0;
-  @include transition(opacity 200ms linear);
-  @include delay(1s);
+  transition: opacity 200ms linear;
+  transition-delay: 1s;
 }
 
-.list-is-selected {
-  @media only screen and (max-width: $show-sidebar-breakpoint) {
-    display: none;
-  }
+.hide {
+  opacity: 0;
+  transition: opacity 200ms linear;
+  transition-delay: 1s;
 }
 
 i {
@@ -45,39 +61,47 @@ i {
 }
 
 .selected-list {
-  @include box-sizing(border-box);
-  @include border-radius(3px);
-  @include box-shadow(0px 2px 5px rgba(0,0,0,0.1));
+  box-sizing: border-box;
+  border-radius: 3px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
   margin: 0px auto;
-  padding: 3px;
   top: 0px;
   max-width: $list-max-width;
   width: 100%;
-  background: #ccc;
-
-  @media only screen and (max-width: $list-max-width) {
-    @include box-shadow(none);
-    padding: 0;
-  }
 
   @media only screen and (max-width: $show-sidebar-breakpoint) {
+    box-shadow: none;
     max-width: $show-sidebar-breakpoint;
+    padding: 0;
   }
 
   input[type=text], textarea {
     border: none;
     background: transparent;
-    @include box-shadow(none);
+    box-shadow: none;
     overflow: hidden;
     resize: none;
   }  
+}
+
+input,
+textarea {
+  outline: none;
+}
+
+textarea {
+  box-sizing: content-box;
+}
+
+a {
+  text-decoration: none;
 }
 
 .wrap {
   width: 100%;
   max-width: $page-max-width;
   margin: 0 auto;
-  @include box-sizing(border-box);
+  box-sizing: border-box;
 }
 
 @mixin btn_color($color) {
@@ -104,39 +128,45 @@ i {
 
 .btn {
   max-width: $button-max-width;
-  padding: 1em 1.5em;
+  padding: 0 1rem;
   text-align: center;
-  font-size: 1em;
-  line-height: 100%;
-  font-weight: 600;
-  text-transform: uppercase;
-  @include inline-block;
-  @include border-radius(2px);
-  // border: 1px solid transparent;
-  @include btn_color(#eee);
-  @include box-shadow(0 1px 0px rgba(0,0,0,0.25));
+  font-size: .85em;
+  line-height: 2.75rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 2px;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.25);
+  @include btn_color(#d1d1d3);
 
   &:active {
-    @include box-shadow(inset 0 1px 1px rgba(0,0,0,0.2));
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.45);
+  }
+
+  & > * {
+    vertical-align: middle;
+  }
+
+  [class^="icon-"],
+  [class*=" icon-"] {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: .5rem;
   }
 }
 
-.actions .btn {
-  margin-right: 5px;
+.btn-primary {
+  @include btn_color($primary);
 }
 
-.orange {
-  @include btn_color($orange);
+.actions .btn {
+  margin-right: .5rem;
+  margin-bottom: .5rem;
 }
 
 input[type=text],
 textarea {
   @include basicField;
-}
-
-.label, label {
-  @include inline-block;
-  vertical-align: middle;
 }
 
 #load-screen {
@@ -146,7 +176,52 @@ textarea {
   left: 0px;
   right: 0px;
   bottom: 0px;
-  background: $primary url(image-path("bg.png")) center center no-repeat;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  text-align: center;
+  justify-content: center;
+}
+
+.pages-home,
+.pages-preview {
+  .dots .dot {
+    background: white;
+  }
+}
+
+.dots {
+  font-size: 10px;
+
+  .dot {
+    width: 1em;
+    height: 1em;
+    border-radius: 0.5em;
+    background: $primary;
+    margin: 0 .25em;
+    animation: fade 2s ease infinite;
+    opacity: 0;
+
+    &:nth-child(1) {
+      left: 0;
+    }
+    
+    &:nth-child(2) {
+      left: 1.5em;
+      animation-delay: 0.2s;
+    }
+    
+    &:nth-child(3) {
+      left: 3em;
+      animation-delay: 0.5s;
+    }
+  }
+}
+
+@keyframes fade {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 .icon-twitter {
@@ -154,11 +229,13 @@ textarea {
   opacity: 0.5;
   font-size: 16px;
   vertical-align: middle;
+
   @media only screen and (min-width: $medium-breakpoint + 1) {
     &:hover {
       opacity: .75;
     }
   }
+  
   &:active {
     opacity: 1;
   }

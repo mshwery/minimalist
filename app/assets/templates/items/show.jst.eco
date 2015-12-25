@@ -1,10 +1,9 @@
-<span class="toggle icon-check" title="Check!" alt="Check!"></span>
-<span class="move icon-move" title="Move Item"></span>
+<button class="toggle" title="Check!" alt="Check!" tabindex="0">
+  <svg class="icon-check"><use xlink:href="/assets/icons.svg#icon-check"></use></svg>
+</button>
+<svg class="move icon-more-vert"><use xlink:href="/assets/icons.svg#icon-more-vert"></use></svg>
 <div class="view">
-  <form>
-    <label class="label"><%= @description %></label>
+    <label contenteditable="true" class="label" tabindex="0"><%= @description %></label>
     <textarea class="edit" maxlength="255"><%= @description %></textarea>
-    <input type="submit" style="text-indent: -9999px; position: absolute; top: 0px; left: 0px; width: 0px; height: 0px; background: none; border: none; -webkit-button-style:none;"/>
-  </form>
 </div>
-<a class="destroy icon-trash" title="delete"></a>
+<svg class="destroy icon-trash-o"><use xlink:href="/assets/icons.svg#icon-trash-o"></use></svg>

@@ -12,14 +12,16 @@
  * require_tree .
 */
 
-@import 'boilerplate';
+@import 'normalize';
 @import '_variables';
 @import '_mixins';
+@import 'clearfix';
 @import 'globals';
-@import 'typography';
+@import 'icons';
 @import 'lists';
 @import 'home';
 @import 'demo';
 @import 'stacks';
 @import 'tasks';
 @import 'preview';
+@import 'people';

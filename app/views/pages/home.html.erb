@@ -1,12 +1,14 @@
-<%#= css_design_awards_nominee_tag %>
+<div class="hero">
 
-<div class="white">
   <section class="wrap">
     <header>
-      <h1><span class="logo-square icon-check"></span>minimaList</h1>
+      <div class='logo'>
+        <svg class="logo-square icon-check"><use xlink:href="/assets/icons.svg#icon-check"></use></svg>
+        <h1>minimalist</h1>      
+      </div>
     </header>
   </section>
-  <section class="wrap cf">
+  <section class="wrap clearfix">
     <div id="demo"></div>
     <div id="intro">
       <h2>
@@ -14,21 +16,24 @@
       </h2>
       <%= image_tag 'try-me.png', :class => 'try-me' %>
       <div class="actions">
-        <%= link_to "Preview it", preview_url, :class => 'btn preview' %>
-        <%= link_to "Start your list", new_stack_url, :class => 'btn orange' %>
+        <%= link_to "Start a list", new_stack_url, :class => 'btn' %>
+        <%= link_to user_omniauth_authorize_path(:google_oauth2), class: 'btn btn-primary' do %>
+          <svg class="icon-google-icon"><use xlink:href="/assets/icons.svg#icon-google-icon"></use></svg>
+          <span>Sign in with Google</span>
+        <% end %>
       </div>
     </div>
   </section>
 </div>
 <div id="features" class="wrap">
-  <ul class="cf">
+  <ul class="clearfix">
     <li>
       <h3>With you everywhere –</h3>
       <p>The internet makes your lists magically available anywhere. You can access them on your phone, tablet, or computer.</p>
     </li>
     <li>
       <h3>No need to log-in –</h3>
-      <p>You don't need an account to use minimaList. Your lists will live at a special url so just bookmark that and you're good to go!</p>
+      <p>You don't need an account to use minimalist. Your lists will live at a special url so just bookmark that and you're good to go!</p>
     </li>
     <li>
       <h3>Even better on mobile –</h3>
@@ -41,7 +46,7 @@
   </ul>
 </div>
 <footer>
-  <div class="wrap cf">
+  <div class="wrap clearfix">
     <div class="right">
       <%= list_total %> Lists. <%= task_total %> Todos.
     </div>

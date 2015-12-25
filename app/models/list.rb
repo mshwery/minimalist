@@ -4,6 +4,8 @@ class List < ActiveRecord::Base
   validates :name, presence: true
   has_many :tasks, dependent: :destroy
 
+  has_and_belongs_to_many :users, -> { uniq }
+  belongs_to :owner, class_name: "User"
   belongs_to :stack, touch: true
   
   validates_format_of :slug, with: /\A[a-z\-0-9]*\Z/
@@ -29,6 +31,28 @@ class List < ActiveRecord::Base
 
   def update_count
     Stat.increment_count_of(:lists_count)
+  end
+
+  def make_owner!(user)
+    self.add_user(user)
+    self.owner = user
+    self.save
+  end
+
+  def owned_by?(user)
+    self.owner && self.owner == user
+  end
+
+  def shared_with?(user)
+    self.users.include?(user)
+  end
+
+  def add_user(user)
+    self.users << user unless self.users.include?(user)
+  end
+
+  def remove_user(user)
+    self.users.delete(user)
   end
 
   private

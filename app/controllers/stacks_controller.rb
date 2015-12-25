@@ -1,6 +1,7 @@
 class StacksController < ApplicationController
-
   respond_to :html, :json
+
+  before_action :redirect_current_user, only: [:new, :index]
 
   def index
     redirect_to :root
