@@ -36,8 +36,8 @@ ul, ol {
   float: right;
 }
 
-.white {
-  background-color: #fff;
+.hero {
+  background-color: #f6f6f6;
 }
 
 .show {
@@ -137,7 +137,7 @@ a {
   display: inline-block;
   border-radius: 2px;
   box-shadow: 0 1px 1px rgba(0,0,0,0.25);
-  @include btn_color(#eee);
+  @include btn_color(#d1d1d3);
 
   &:active {
     box-shadow: inset 0 1px 1px rgba(0,0,0,0.45);
