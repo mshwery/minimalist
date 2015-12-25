@@ -10,9 +10,9 @@ class ListPolicy < ApplicationPolicy
 
   def show?
     # *any* user can see *any* list?
-    true
+    # true
     # or only lists shared with them
-    # record.shared_with?(user)
+    record.shared_with?(user)
   end
 
   def update?

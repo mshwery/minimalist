@@ -21,7 +21,6 @@ class Api::ListsController < Api::BaseController
   end
 
   def show
-    @current_user.join(@list)
     render json: @list
   end
 
