@@ -1,83 +1,12 @@
-@mixin box-shadow ($params...) {
-  box-shadow: $params;
-  -webkit-box-shadow: $params;
-  -moz-box-shadow: $params;
-}
-
-@mixin box-sizing ($params) {
-  box-sizing: $params;
-  -webkit-box-sizing: $params;
-  -moz-box-sizing: $params;
-}
-
-@mixin inline-block {
-  display: inline-block;
-  *display: inline;
-  zoom: 1;
-}
-
-@mixin appearance($params) {
-  appearance: $params;
-  -moz-appearance: $params;
-  -webkit-appearance: $params;
-}
-
-@mixin border-radius ($radius...) {
-  -webkit-border-radius: $radius;
-  -moz-border-radius: $radius;
-  border-radius: $radius;
-}
-
-@mixin opacity ($op:100) {
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=$op);
-  filter:alpha(opacity=$op);
-  -moz-opacity:$op/100;
-  -khtml-opacity:$op/100;
-  opacity:$op/100;
-}
-
-/* https://gist.github.com/2170024 */
-@mixin gradient ($percent) {
-  background-image: -moz-linear-gradient(top, rgba(255,255,255,($percent)) 0%, rgba(0,0,0, $percent) 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,($percent))), color-stop(100%,rgba(0,0,0, $percent)));
-  background-image: -webkit-linear-gradient(top, rgba(255,255,255,($percent)) 0%,rgba(0,0,0, $percent) 100%);
-  background-image: -o-linear-gradient(top, rgba(255,255,255,($percent)) 0%,rgba(0,0,0, $percent) 100%);
-  background-image: -ms-linear-gradient(top, rgba(255,255,255,($percent)) 0%,rgba(0,0,0, $percent) 100%);
-  background-image: linear-gradient(top, rgba(255,255,255,($percent)) 0%,rgba(0,0,0, $percent) 100%);
-}
-
 @mixin basicField {
   padding: 8px 5px;
   border: 1px solid #ddd;
   background: #fff;
   line-height: 20px;
   height: 20px;
-  @include appearance(none);
-  @include box-shadow(inset 0px 1px 2px rgba(0,0,0,0.12));
+  appearance: none;
+  box-shadow: inset 0px 1px 2px rgba(0,0,0,0.12);
   vertical-align: middle;
-}
-
-@mixin transition($params) {
-  -webkit-transition: $params; 
-  -moz-transition: $params; 
-  -o-transition: $params; 
-  -ms-transition: $params; 
-  transition: $params;  
-}
-
-@mixin transform($params) {
-  -webkit-transform: $params; 
-  -moz-transform: $params; 
-  -o-transform: $params; 
-  -ms-transform: $params; 
-  transform: $params;  
-}
-
-@mixin delay($params) {
-  transition-delay: $params;
-  -moz-transition-delay: $params; /* Firefox 4 */
-  -webkit-transition-delay: $params; /* Safari and Chrome */
-  -o-transition-delay: $params; /* Opera */
 }
 
 $contrasted-dark-default: #777;

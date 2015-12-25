@@ -55,3 +55,5 @@ gem 'devise'
 gem 'omniauth-google-oauth2'
 gem 'pundit'
 
+gem 'autoprefixer-rails'
+

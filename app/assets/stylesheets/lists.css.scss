@@ -6,11 +6,12 @@ $border-style: 1px solid rgba(0,0,0,0.08);
 $header-height: 50px;
 
 // this is for the desktop styles
-.lists, .stacks-show {
+.lists,
+.stacks-show {
 
   .selected-list {
     @media only screen and (max-width: $show-sidebar-breakpoint) {
-      @include box-shadow(none);
+      box-shadow: none;
       padding: 0;
     }
   }
@@ -32,20 +33,20 @@ $header-height: 50px;
   } 
 }
 
-@-webkit-keyframes rotate {
+@keyframes rotate {
   from {
-    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   to { 
-    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
   }
 }
 
 .loading .icon-arrows-ccw {
-  -webkit-animation-name:             rotate; 
-  -webkit-animation-duration:         0.5s; 
-  -webkit-animation-iteration-count:  infinite;
-  -webkit-animation-timing-function:  ease-in-out;
+  animation-name:             rotate; 
+  animation-duration:         0.5s; 
+  animation-iteration-count:  infinite;
+  animation-timing-function:  ease-in-out;
 }
 
 @mixin h {
@@ -66,7 +67,7 @@ $header-height: 50px;
   color: white;
   text-shadow: 0 1px 1px rgba(0,0,0,0.1);
   background: #F04848;
-  @include border-radius($notification-size/2);
+  border-radius: $notification-size/2;
   line-height: $notification-size;
   font-size: 9px;
   top: ($header-height/2) - $notification-size;
@@ -75,15 +76,15 @@ $header-height: 50px;
   padding: 0 3px;
   font-weight: 600;
   text-align: center;
-  @include box-sizing(border-box);
-  @include box-shadow(0 0 0 2px white);
+  box-sizing: border-box;
+  box-shadow: 0 0 0 2px white;
   opacity: 0;
-  @include transform(scale(0.5));
-  @include transition(all 200ms ease-in-out);
+  transform: scale(0.5);
+  transition: all 200ms ease-in-out;
 
   &.show {
     opacity: 1;
-    @include transform(scale(1));
+    transform: scale(1);
   }
 }
 
@@ -96,7 +97,7 @@ $header-height: 50px;
   border-bottom: $border-style;
 
   input {
-    @include box-sizing(content-box);
+    box-sizing: content-box;
   }
  
   h2 {
@@ -142,32 +143,46 @@ $header-height: 50px;
     }
   }
 
-  i, .back, .refresh, .home {
+  i,
+  .back,
+  .refresh,
+  .home {
     float: none;
     position: absolute;
     top: 0px;
   }
-  i, .refresh {
+  
+  i,
+  .refresh {
     right: 0px;
   }
-  .back, .home {
+  
+  .back,
+  .home {
     left: 0px;
+  
     @media only screen and (min-width: $show-sidebar-breakpoint + 1) {
       display: none;
     }    
   }
+
   .edit {
-    display: none; 
+    display: none;
     text-align: center;
     @include h;
   }
+
   &.editing {
     background-color: $yellow;
+
     .edit {
       display: block;
       width: 92%;
     }
-    h2 { display: none; }
+
+    h2 {
+      display: none;
+    }
   }
 }
 

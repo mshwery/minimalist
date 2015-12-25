@@ -135,7 +135,7 @@ footer {
 .pages-home {
   #demo, #intro {
     float: left;
-    @include box-sizing(border-box);
+    box-sizing: border-box;
   }
 
   #demo {
@@ -144,22 +144,26 @@ footer {
     max-height: 300px;
     overflow: hidden;
     cursor: pointer;
-    @include transition((padding 300ms ease-in-out, max-height 500ms ease-in-out));
-    -webkit-transform: translate3d(0,0,0);
-    -webkit-perspective: 1000;
+    transition: padding 300ms ease-in-out, max-height 500ms ease-in-out;
+    transform: translate3d(0,0,0);
+    perspective: 1000;
+    
     @media only screen and (max-width: $medium-breakpoint) {
       display: none;
     } 
+    
     .selected-list {
       margin: 0 -3px -3px;
-      @include transition(margin 300ms ease-in-out);
+      transition: margin 300ms ease-in-out;
       position: relative;
       min-width: 0px;
     }
+
     &:hover {
       padding-top: 0px;
       padding-bottom: 40px;
     }
+    
     &.active {
       cursor: auto;
       max-height: 1000px;
@@ -169,8 +173,9 @@ footer {
       .selected-list {
         margin: 0 -3px 50px;
       }
+    
       &.complete {
-        @include transition(max-height 0s);
+        transition: max-height 0s;
         max-height: none;
       }
     }
@@ -205,7 +210,7 @@ footer {
 
 .logo-square {
   background: $primary;
-  @include border-radius(3px);
+  border-radius: 3px;
   width: 3.75rem;
   height: 3.75rem;
   color: #FFF;
