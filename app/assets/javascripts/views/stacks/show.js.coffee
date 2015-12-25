@@ -22,6 +22,7 @@ class listApp.Views.StacksShow extends Backbone.View
   render: =>
     $(@el).prepend(@template(
       user: window.user
+      isUsersLists: location.pathname.indexOf('/dashboard') == 0
       stack: @collection.models
       urlRoot: listApp.appUrl("lists")
     ))

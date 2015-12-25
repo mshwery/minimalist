@@ -15,10 +15,6 @@
   .btn {
     width: 100%;
   }
-
-  a:not(.btn) {
-    color: rgba(255,255,255,0.75);
-  }
 }
 
 .person {
@@ -41,10 +37,12 @@
   font-size: 1em;
   padding: .25em 0;
   line-height: 1.2em;
+  color: inherit;
 }
 
 .person-signout-link {
   font-size: .85em;
   display: inline-block;
   padding: .25em 0;
+  color: rgba(255,255,255,0.75);
 }
