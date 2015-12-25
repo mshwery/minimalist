@@ -1,15 +1,18 @@
 <div id='sidebar' class='stack list'>
-  <% if @user.email: %>
-    <div class='user-menu'>
+  <div class='user-menu <% if @user.email: %>logged-in<% end %>'>
+    <% if @user.email: %>
       <img src='<%= @user.image %>' alt='<%= @user.name %>' class='person-image'>
       <div class='person'>
         <span class='person-name'><%= @user.name %></span>
         <a href='/sign_out' class='person-signout-link'>Sign out</a>
       </div>
-    </div>
-  <% else: %>
-    <h1><a href='/'><span class='logo-square icon-check'></span>minimalist</a></h1>
-  <% end %>
+    <% else: %>
+      <a href='/users/auth/google_oauth2' class='btn btn-primary'>
+        <svg class="icon-google-icon"><use xlink:href="/assets/icons.svg#icon-google-icon"></use></svg>
+        <span>Sign in with Google</span>
+      </a>
+    <% end %>
+  </div>
   <div id='my-lists'>
     <h2>
       Your Lists

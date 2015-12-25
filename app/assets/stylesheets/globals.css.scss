@@ -20,6 +20,12 @@ html, body {
   height: 100%;
 }
 
+h1 {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 400;
+}
+
 ul, ol {
   list-style: none;
   margin: 0;
@@ -91,10 +97,6 @@ a {
   text-decoration: none;
 }
 
-[class*="icon-"] {
-  text-decoration: none;
-}
-
 .wrap {
   width: 100%;
   max-width: $page-max-width;
@@ -126,29 +128,40 @@ a {
 
 .btn {
   max-width: $button-max-width;
-  padding: 1em 1.5em;
+  padding: 0 1rem;
   text-align: center;
   font-size: .85em;
-  line-height: 1;
-  font-weight: 600;
-  text-transform: uppercase;
+  line-height: 2.75rem;
+  font-weight: 500;
   text-decoration: none;
   @include inline-block;
   @include border-radius(2px);
   @include btn_color(#eee);
-  @include box-shadow(0 1px 0px rgba(0,0,0,0.25));
+  @include box-shadow(0 1px 1px rgba(0,0,0,0.25));
 
   &:active {
-    @include box-shadow(inset 0 1px 1px rgba(0,0,0,0.2));
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,0.45));
+  }
+
+  & > * {
+    vertical-align: middle;
+  }
+
+  [class^="icon-"],
+  [class*=" icon-"] {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: .5rem;
   }
 }
 
-.actions .btn {
-  margin-right: 5px;
+.btn-primary {
+  @include btn_color($primary);
 }
 
-.orange {
-  @include btn_color($orange);
+.actions .btn {
+  margin-right: .5rem;
+  margin-bottom: .5rem;
 }
 
 input[type=text],
@@ -163,7 +176,52 @@ textarea {
   left: 0px;
   right: 0px;
   bottom: 0px;
-  background: $primary url(image-path("bg.png")) center center no-repeat;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  text-align: center;
+  justify-content: center;
+}
+
+.pages-home,
+.pages-preview {
+  .dots .dot {
+    background: white;
+  }
+}
+
+.dots {
+  font-size: 10px;
+
+  .dot {
+    width: 1em;
+    height: 1em;
+    border-radius: 0.5em;
+    background: $primary;
+    margin: 0 .25em;
+    animation: fade 2s ease infinite;
+    opacity: 0;
+
+    &:nth-child(1) {
+      left: 0;
+    }
+    
+    &:nth-child(2) {
+      left: 1.5em;
+      animation-delay: 0.2s;
+    }
+    
+    &:nth-child(3) {
+      left: 3em;
+      animation-delay: 0.5s;
+    }
+  }
+}
+
+@keyframes fade {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 .icon-twitter {

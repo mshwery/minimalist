@@ -2,8 +2,8 @@ class Api::ListsController < Api::BaseController
   respond_to :json
 
   before_action :authenticate!
-  before_action :find_list, only: [:show, :update, :destroy, :leave]
-  before_action :authorize_list, only: [:show, :update, :destroy, :leave]
+  before_action :find_list, only: [:show, :update, :destroy, :leave, :share]
+  before_action :authorize_list, only: [:show, :update, :destroy, :leave, :share]
 
   def index
     lists = policy_scope(List)
@@ -41,8 +41,21 @@ class Api::ListsController < Api::BaseController
     end
   end
 
+  def share
+    if user_params.email
+      user = User.where(email: user_params.email).first_or_create
+      if user.join_list(@list)
+        head :no_content
+      else
+        api_error(status: :unprocessable_entity, errors: ['Failed to share list...'])
+      end
+    else
+      api_error(status: :unprocessable_entity, errors: ['Must pass an email address to share with.'])
+    end
+  end
+
   def leave
-    if @current_user.leave(@list)
+    if @current_user.leave_list(@list)
       head :no_content
     else
       api_error(status: :unprocessable_entity, errors: ['Failed to leave list'])
@@ -53,6 +66,10 @@ class Api::ListsController < Api::BaseController
 
     def list_params
       params.fetch(:list, {}).permit(:name)
+    end
+
+    def user_params
+      params.permit(:email)
     end
 
     def find_list

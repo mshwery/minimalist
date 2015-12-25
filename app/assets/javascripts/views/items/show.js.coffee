@@ -65,6 +65,8 @@ class listApp.Views.ItemsShow extends Backbone.View
       @model.clear()
 
   limitChars: (e) =>
+    if e.keyCode is 27
+      @close()
     unless @input.val().length < $(e.target).attr('maxlength')
       e.preventDefault()
 

@@ -23,6 +23,7 @@ Lists::Application.routes.draw do
   namespace :api do
     resources :lists, only: [:index, :create, :show, :update, :destroy] do
       member do
+        post 'share'
         delete 'leave'
       end
       resources :tasks, only: [:index, :create, :show, :update, :destroy]

@@ -77,6 +77,7 @@ class listApp.Views.ListItemShow extends Backbone.View
 
   nav: (e) ->
     e.preventDefault()
+    $('#sidebar').removeClass('shown') if $('body').hasClass('list-is-selected')
     path = $(e.currentTarget).attr('href')
     listApp.router.navigate(path, {trigger: true}) if path
 

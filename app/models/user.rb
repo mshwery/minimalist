@@ -41,11 +41,11 @@ class User < ActiveRecord::Base
     user
   end
 
-  def join(list)
+  def join_list(list)
     self.lists << list unless !list || self.lists.include?(list)
   end
 
-  def leave(list)
+  def leave_list(list)
     self.lists.delete(list)
   end
 

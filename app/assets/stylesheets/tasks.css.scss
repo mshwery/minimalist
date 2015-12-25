@@ -74,11 +74,10 @@
   .move {
     opacity: .2;
     float: right;
-    margin-right: -2em;
-    padding-left: 10px;
-    font-size: 22px;
+    margin-right: -3em;
+    padding: 0 .5rem;
     height: 50px;
-    line-height: 50px;
+    line-height: 0;
     cursor: move;
 
     &:hover {
@@ -101,7 +100,7 @@
     height: 16px;
     width: 16px;
     @include border-radius(2px);
-    margin: 16px 0px;
+    margin: 17px 0px;
     margin-left: -2em;
     @include box-sizing(border-box);
 
@@ -109,6 +108,12 @@
     &:active,
     &:focus {
       border-color: #a1a1a3;
+    }
+
+    .icon-check {
+      margin: -2px;
+      @include box-sizing(content-box);
+      display: block;
     }
   }
   
@@ -125,11 +130,11 @@
     opacity: 0.5;
     display: none;
     position: absolute;
+    width: 1.4rem;
     height: 50px;
-    line-height: 50px;
-    font-size: 18px;
+    padding: 0 .25rem;
+    margin: 0 .5rem;
     cursor: pointer;
-    width: 30px;
     overflow: hidden;
     top: 0px;
     color: #333;

@@ -14,15 +14,11 @@
     }
   }
   h1, h2 {
-    margin: 0px;
     text-transform: none;
     color: #222;
   }
-  h1 {
-    font-size: 36px;
-    font-weight: 400;
-  }
   h2 {
+    margin: 0px;
     font-size: 28px;
     font-weight: 300; 
     line-height: 1.2em;
@@ -74,36 +70,34 @@
     width: 40%;
     padding: 30px 5% 0 0px;
     text-align: left;
+
     @media only screen and (max-width: $medium-breakpoint) {
       padding: 30px 5%;
       width: 100%;
     } 
   }
+  
   #features {
     padding: 35px 0px;
     color: #fff;
     text-align: left;
-    ul {
-      padding-left: 33%;
-      background: url(image-path("bg.png")) 30px center no-repeat;
-      @media only screen and (max-width: $medium-breakpoint) {
-        padding-left: 0;
-        background: none;
-      } 
-    }   
+
     li {
       float: left;
       width: 50%;
       padding: 25px 0;
+      
       @media only screen and (max-width: $medium-breakpoint) {
         width: 100%;
-      } 
+      }
+
       h3, p {
         padding: 0 30px;
         margin: 0px;
         line-height: 24px;
         font-size: 16px;
       }
+
       h3 {
         font-weight: 600;
       }
@@ -211,15 +205,9 @@ footer {
 
 .logo-square {
   background: $primary;
-  @include border-radius(5px);
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  line-height: 40px;
-  vertical-align: baseline;
-  @include inline-block;
+  @include border-radius(3px);
+  width: 3.75rem;
+  height: 3.75rem;
   color: #FFF;
-  font-size: 24px;
-  margin-right: 10px;
-
+  padding: 1rem;
 }

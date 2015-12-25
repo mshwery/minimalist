@@ -115,7 +115,7 @@
 }
 
 .stack {
-  h1 {
+  .logo {
     text-align: center;
     font-size: 30px;
     font-weight: 400;
@@ -123,17 +123,9 @@
     margin: 0px;
     border-bottom: 1px solid rgba(0,0,0,0.05);
 
-    a {
-      color: inherit;
-      &:hover {
-        text-decoration: none;
-      }
-    }
-
     @media only screen and (max-width: $show-sidebar-breakpoint) {
       display: none;
     }
-
   }
   @media only screen and (max-width: $show-sidebar-breakpoint) {
     footer {
@@ -210,7 +202,6 @@
 
 .delete-list {
   text-decoration: none;
-  font-weight: bold;
   font-size: 1.5em;
   float: right;
   cursor: pointer;

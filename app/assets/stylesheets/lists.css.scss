@@ -37,11 +37,11 @@ $header-height: 50px;
     -webkit-transform: rotate(0deg);
   }
   to { 
-    -webkit-transform: rotate(360deg);
+    -webkit-transform: rotate(-360deg);
   }
 }
 
-.loading .icon-refresh {
+.loading .icon-arrows-ccw {
   -webkit-animation-name:             rotate; 
   -webkit-animation-duration:         0.5s; 
   -webkit-animation-iteration-count:  infinite;
@@ -118,11 +118,13 @@ $header-height: 50px;
     cursor: pointer;
   }
 
-  .icon-refresh {
+  .icon-arrows-ccw {
     display: inline-block;
   }
 
-  .back, .icon-refresh, .home {
+  .back,
+  .icon-arrows-ccw,
+  .home {
     height: $header-height;
     line-height: $header-height;
     font-size: 18px;

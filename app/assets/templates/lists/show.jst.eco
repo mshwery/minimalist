@@ -1,13 +1,17 @@
 <div id="stats">
-  <span class="back icon-menu"></span>
-  <a class="home icon-menu" href="/"></a>
+  <div class='back'>
+    <svg class="icon-menu"><use xlink:href="/assets/icons.svg#icon-menu"></use></svg>
+  </div>
+  <a class='back' href='/'>
+    <svg class="home icon-menu"><use xlink:href="/assets/icons.svg#icon-menu"></use></svg>
+  </a>
   <h2 title="<%= @name %>"><%= @name %></h2>
   <form>
     <input class="edit" type="text" value="<%= @name %>" />
     <input type="submit" style="display: none" />
   </form>
   <div class="refresh">
-    <a class="icon-refresh"></a>
+    <svg class="icon-arrows-ccw"><use xlink:href="/assets/icons.svg#icon-arrows-ccw"></use></svg>
     <span class="changes-count"></span>
   </div>
 </div>
