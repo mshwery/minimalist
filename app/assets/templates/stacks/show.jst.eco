@@ -1,5 +1,5 @@
 <div id='sidebar' class='stack list'>
-  <div class='user-menu <% if @user.email: %>logged-in<% end %>'>
+  <header class='user-menu <% if @user.email: %>logged-in<% end %>'>
     <% if @user.email: %>
       <img src='<%= @user.image %>' alt='<%= @user.name %>' class='person-image'>
       <div class='person'>
@@ -12,7 +12,7 @@
         <span>Sign in with Google</span>
       </a>
     <% end %>
-  </div>
+  </header>
   <div id='my-lists'>
     <h2>
       <% if @isUsersLists: %>Your<% end %> Lists
