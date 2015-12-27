@@ -26,6 +26,7 @@
 //= require lib/doubletap
 //= require lib/jquery.ui.touch-punch.min
 //= require lib/jquery.linkify-min
+//= require lib/fastclick
 //
 //= require listApp
 //

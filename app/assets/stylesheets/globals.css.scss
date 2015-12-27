@@ -32,6 +32,20 @@ ul, ol {
   padding: 0;
 }
 
+a[href],
+button,
+.btn,
+[class^="icon-"],
+[class*=" icon-"] {
+  // @see http://www.telerik.com/blogs/what-exactly-is.....-the-300ms-click-delay
+  -ms-touch-action: none; /* IE10 */
+  touch-action: none;     /* IE11 */
+
+  // @see https://css-tricks.com/snippets/css/remove-gray-highlight-when-tapping-links-in-mobile-safari/
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-touch-callout: none;
+}
+
 .right {
   float: right;
 }

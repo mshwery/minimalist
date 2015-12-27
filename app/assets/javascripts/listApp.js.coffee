@@ -41,4 +41,5 @@ $.ajaxSetup
     xhr.setRequestHeader("Authorization", "Token token=\"#{user.token}\", email=\"#{user.email}\"");
 
 $(document).ready ->
+  FastClick.attach(document.body)
   listApp.init()
