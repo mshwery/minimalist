@@ -1,5 +1,5 @@
 <a href="<%= @urlRoot %>/<%= @list.get('id') %>" class="route clearfix" id="<%= @list.get('id') %>">
+  <span class="delete-list" title="delete list">&#215;</span>
   <%= @list.get('name') %>
   <i>(<%= @list.items.remaining().length %>)</i>
-  <span class="delete-list" title="delete list">&#215;</span>
 </a>
