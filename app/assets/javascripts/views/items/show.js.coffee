@@ -52,9 +52,11 @@ class listApp.Views.ItemsShow extends Backbone.View
   markCompleted: ->
     @toggleCompleted(true)
 
-  edit: =>
-    @$el.addClass("editing")
-    @input.focus()
+  edit: (e) =>
+    # prevent clicks on anchor tags from going to edit mode...
+    if !$(e.target).is('a')
+      @$el.addClass("editing")
+      @input.focus()
 
   close: =>
     value = @input.val()
