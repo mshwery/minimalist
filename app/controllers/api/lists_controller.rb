@@ -41,15 +41,15 @@ class Api::ListsController < Api::BaseController
   end
 
   def share
-    if user_params.email
-      user = User.where(email: user_params.email).first_or_create
+    if user_params.has_key?(:email)
+      user = User.where(email: user_params[:email]).first_or_create
       if user.join_list(@list)
         head :no_content
       else
         api_error(status: :unprocessable_entity, errors: ['Failed to share list...'])
       end
     else
-      api_error(status: :unprocessable_entity, errors: ['Must pass an email address to share with.'])
+      api_error(status: :unprocessable_entity, errors: ['Must pass an email address to share this list.'])
     end
   end
 
