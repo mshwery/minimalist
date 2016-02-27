@@ -15,7 +15,7 @@
   </header>
   <div id='my-lists'>
     <h2>
-      <% if @isUsersLists: %>Your<% end %> Lists
+      <% if @isUsersLists: %>Your <% end %>Lists
       <a class='remove-lists' title='remove lists'>Edit</a>
     </h2>
     <ul class='items'></ul>
