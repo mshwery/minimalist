@@ -42,7 +42,12 @@ class User < ActiveRecord::Base
   end
 
   def join_list(list)
-    self.lists << list unless !list || self.lists.include?(list)
+    if !list
+      return false
+    end
+
+    self.lists << list unless self.lists.include?(list)
+    return list
   end
 
   def leave_list(list)
