@@ -28,8 +28,6 @@ class listApp.Views.ListsShow extends Backbone.View
     $(@app).append $(@el)
 
     @input = @$("#stats .edit")
-    $('.current').removeClass('current')
-    $('#'+@model.get('id')).addClass('current')
 
     @initItems()
     @renderNewItemForm()
