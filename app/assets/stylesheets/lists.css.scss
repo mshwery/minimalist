@@ -51,10 +51,10 @@ $header-height: 50px;
 
 @mixin h {
   font-size: 15px;
-  padding: 15px 0px;
+  padding: 15px 0;
   line-height: 20px;
-  margin: 0px 3%;
-  width: 92%;
+  margin: 0 auto;
+  width: 90%;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -90,11 +90,14 @@ $header-height: 50px;
 
 #stats {
   position: relative;
-  padding: 0px 47px;
+  padding: 0px 46px;
   height: $header-height;
-  text-align: center;
   background: #fff;
   border-bottom: $border-style;
+    
+  @media only screen and (min-width: $show-sidebar-breakpoint + 1) {
+    padding-left: 0;
+  }
 
   input {
     box-sizing: content-box;
@@ -117,6 +120,7 @@ $header-height: 50px;
     width: 46px;
     text-align: center;
     cursor: pointer;
+    vertical-align: top;
   }
 
   .icon-arrows-ccw {
@@ -168,7 +172,6 @@ $header-height: 50px;
 
   .edit {
     display: none;
-    text-align: center;
     @include h;
   }
 
@@ -177,7 +180,6 @@ $header-height: 50px;
 
     .edit {
       display: block;
-      width: 92%;
     }
 
     h2 {
