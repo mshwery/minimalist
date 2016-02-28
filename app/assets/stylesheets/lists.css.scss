@@ -51,6 +51,7 @@ $header-height: 50px;
 
 @mixin h {
   font-size: 15px;
+  font-weight: 400;
   padding: 15px 0;
   line-height: 20px;
   margin: 0 auto;
@@ -105,7 +106,6 @@ $header-height: 50px;
  
   h2 {
     color: $dark;
-    font-weight: 400;
     @include h;
   }  
 
@@ -116,20 +116,25 @@ $header-height: 50px;
 
   .back,
   .refresh,
-  .home {
+  .home,
+  .action-share {
     width: 46px;
     text-align: center;
     cursor: pointer;
     vertical-align: top;
   }
 
-  .icon-arrows-ccw {
+  .icon-arrows-ccw,
+  .icon-person-add {
     display: inline-block;
   }
 
   .back,
   .icon-arrows-ccw,
-  .home {
+  .home,
+  .icon-person-add {
+    display: block;
+    margin: auto;
     height: $header-height;
     line-height: $header-height;
     font-size: 18px;
@@ -150,10 +155,15 @@ $header-height: 50px;
   i,
   .back,
   .refresh,
-  .home {
+  .home,
+  .action-share {
     float: none;
     position: absolute;
     top: 0px;
+  }
+
+  .action-share {
+    right: 46px;
   }
   
   i,

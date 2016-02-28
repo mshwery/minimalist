@@ -20,7 +20,6 @@
   }
   h2 { 
     color: $dark;
-    font-weight: 400;
     @include h;
     background: #fff;
     margin: 0px;
@@ -164,9 +163,11 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    border-right: 3px solid transparent;
 
     &.current {
       color: darken($primary, 10%);
+      border-right-color: currentColor;
     }
 
     &:active {
