@@ -24,6 +24,7 @@ Lists::Application.routes.draw do
     resources :lists, only: [:index, :create, :show, :update, :destroy] do
       member do
         post 'share'
+        delete 'unshare'
         delete 'leave'
         get 'users'
       end

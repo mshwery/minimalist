@@ -2,8 +2,8 @@ class Api::ListsController < Api::BaseController
   respond_to :json
 
   before_action :authenticate!
-  before_action :find_list, only: [:show, :update, :destroy, :leave, :share, :users]
-  before_action :authorize_list, only: [:show, :update, :destroy, :leave, :share, :users]
+  before_action :find_list, only: [:show, :update, :destroy, :leave, :share, :unshare, :users]
+  before_action :authorize_list, only: [:show, :update, :destroy, :leave, :share, :unshare, :users]
 
   def index
     lists = policy_scope(List)
@@ -50,6 +50,19 @@ class Api::ListsController < Api::BaseController
       end
     else
       api_error(status: :unprocessable_entity, errors: ['Must pass an email address to share this list.'])
+    end
+  end
+
+  def unshare
+    if user_params.has_key?(:email)
+      user = @list.users.find_by(email: user_params[:email])
+      if user.leave_list(@list)
+        head :no_content
+      else
+        api_error(status: :unprocessable_entity, errors: ['Failed to revoke access for this user.'])
+      end
+    else
+      api_error(status: :unprocessable_entity, errors: ['Must pass an email address to revoke access to this list.'])
     end
   end
 
