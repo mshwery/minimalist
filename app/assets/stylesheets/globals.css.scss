@@ -84,14 +84,6 @@ i {
     max-width: $show-sidebar-breakpoint;
     padding: 0;
   }
-
-  input[type=text], textarea {
-    border: none;
-    background: transparent;
-    box-shadow: none;
-    overflow: hidden;
-    resize: none;
-  }  
 }
 
 input,
@@ -138,6 +130,7 @@ a {
 
 .btn {
   max-width: $button-max-width;
+  min-width: $button-min-width;
   padding: 0 1rem;
   text-align: center;
   font-size: .85em;
@@ -147,6 +140,8 @@ a {
   display: inline-block;
   border-radius: 2px;
   box-shadow: 0 1px 1px rgba(0,0,0,0.25);
+  appearance: none;
+  border: none;
   @include btn_color(#d1d1d3);
 
   &:active {
@@ -175,8 +170,13 @@ a {
 }
 
 input[type=text],
+input[type=email],
 textarea {
   @include basicField;
+}
+
+.dirty:invalid {
+  border-color: red;
 }
 
 #load-screen {
@@ -248,5 +248,44 @@ textarea {
   
   &:active {
     opacity: 1;
+  }
+}
+
+.hidden-submit {
+  display: none;
+}
+
+.chromeless-input {
+  border: none !important;
+  background: transparent;
+  box-shadow: none;
+  overflow: hidden;
+  resize: none;
+}
+
+.chromeless-input-group {
+  position: relative;
+  display: block;
+  min-height: 36px;
+
+  [class^="icon-"],
+  [class*=" icon-"] {
+    position: absolute;
+    left: .75rem;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 1.125rem;
+    color: #545862;
+  }
+
+  input[type=text],
+  input[type=email] {
+    width: 100%;
+    min-height: 40px;
+    padding-left: 2.5rem;
+    padding-right: .75rem;
+    border-radius: 2px;
+    box-shadow: none;
   }
 }

@@ -54,6 +54,10 @@ class User < ActiveRecord::Base
     self.lists.delete(list)
   end
 
+  def owns_list?(list)
+    list && list.owned_by?(self)
+  end
+
   private
 
     def generate_api_token

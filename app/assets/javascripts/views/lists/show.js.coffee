@@ -4,12 +4,13 @@ class listApp.Views.ListsShow extends Backbone.View
   template: JST['lists/show']
 
   events: 
-    "dblclick #stats h2"  : "edit"
-    "doubletap #stats h2" : "edit"   
-    "keypress #stats .edit"      : "updateOnEnter"
-    "blur #stats .edit"          : "close"
-    "click .refresh"      : "refresh"
-    "click .back"         : "showSidebar"
+    "dblclick #stats h2"      : "edit"
+    "doubletap #stats h2"     : "edit"   
+    "keypress #stats .edit"   : "updateOnEnter"
+    "blur #stats .edit"       : "close"
+    "click .refresh"          : "refresh"
+    "click .back"             : "showSidebar"
+    "click .action-share"     : "openModal"
 
   initialize: ->
     @model.on('change:name', @updateName)
@@ -17,9 +18,12 @@ class listApp.Views.ListsShow extends Backbone.View
     @render()
     @hideSidebar()
 
+    if window.user
+      @model.getUsers()
+
   render: =>
     $(@el).html(@template(
-      user: window.user
+      isOwner: window.user && @model.get('is_owner')
       url: @model.urlRoot
       name: @model.get('name')
       remaining: @model.items.remaining().length
@@ -34,7 +38,13 @@ class listApp.Views.ListsShow extends Backbone.View
     @renderNewItemForm()
     return this
 
+  openModal: =>
+    @modal = new listApp.Views.ListModal(collection: @model.users)
+
   remove: () ->
+    # tear down the modal
+    @modal.remove() if @modal
+
     # disable long polling
     @longPoll(false)
     @model.unbind('change:name', @updateName)

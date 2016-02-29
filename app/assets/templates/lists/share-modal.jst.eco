@@ -1,0 +1,26 @@
+<div class="modal-overlay"></div>
+<div class="modal">
+  <header class="modal-header">
+    <h1 class="modal-title">Share this list</h1>
+  </header>
+  <div class="modal-body">
+    <form>
+      <label for="email-address" class="chromeless-input-group">
+        <svg class="icon-person-add"><use xlink:href="/assets/icons.svg#icon-person-add"></use></svg>
+        <input id="email-address" type="email" placeholder="Enter an email address" required/>
+      </label>
+      <input type="submit" class="hidden-submit" />
+    </form>
+    <ul class="list-contributors">
+      <% for contributor, idx in @contributors: %>
+        <li class="list-contributor">
+          <img class="contributor-avatar" src="<%= contributor.get('image_url') %>"/>
+          <span><%= contributor.get("name") %></span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <footer class="modal-footer">
+    <button class="btn btn-primary modal-close">Done</button>  
+  </footer>
+</div>

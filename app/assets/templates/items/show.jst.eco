@@ -3,7 +3,7 @@
 </button>
 <svg class="move icon-more-vert"><use xlink:href="/assets/icons.svg#icon-more-vert"></use></svg>
 <div class="view">
-    <label class="label" tabindex="0"><%= @description %></label>
-    <textarea class="edit" maxlength="255"><%= @description %></textarea>
+  <label class="label" tabindex="0"><%= @description %></label>
+  <textarea class="edit chromeless-input" maxlength="255"><%= @description %></textarea>
 </div>
 <svg class="destroy icon-trash-o"><use xlink:href="/assets/icons.svg#icon-trash-o"></use></svg>

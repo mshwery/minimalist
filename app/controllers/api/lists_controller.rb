@@ -2,8 +2,8 @@ class Api::ListsController < Api::BaseController
   respond_to :json
 
   before_action :authenticate!
-  before_action :find_list, only: [:show, :update, :destroy, :leave, :share]
-  before_action :authorize_list, only: [:show, :update, :destroy, :leave, :share]
+  before_action :find_list, only: [:show, :update, :destroy, :leave, :share, :users]
+  before_action :authorize_list, only: [:show, :update, :destroy, :leave, :share, :users]
 
   def index
     lists = policy_scope(List)
@@ -59,6 +59,10 @@ class Api::ListsController < Api::BaseController
     else
       api_error(status: :unprocessable_entity, errors: ['Failed to leave list'])
     end
+  end
+
+  def users
+    render json: @list.users, list: @list
   end
 
   private
