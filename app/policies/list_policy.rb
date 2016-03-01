@@ -35,7 +35,7 @@ class ListPolicy < ApplicationPolicy
     record.shared_with?(user) && !record.owned_by?(user)
   end
 
-  def users?
+  def contributors?
     record.owned_by?(user) || record.shared_with?(user)
   end
 

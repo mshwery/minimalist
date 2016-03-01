@@ -28,5 +28,6 @@ class listApp.Views.ListModal extends Backbone.View
       e.preventDefault()
       e.stopPropagation()
 
-      @collection.push(e.target.value)
+      email = e.target.value.trim()
+      @collection.create(email: email) if email.length
       $(e.target).val('').removeClass('dirty')

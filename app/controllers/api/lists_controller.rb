@@ -2,8 +2,8 @@ class Api::ListsController < Api::BaseController
   respond_to :json
 
   before_action :authenticate!
-  before_action :find_list, only: [:show, :update, :destroy, :leave, :share, :unshare, :users]
-  before_action :authorize_list, only: [:show, :update, :destroy, :leave, :share, :unshare, :users]
+  before_action :find_list, only: [:show, :update, :destroy, :leave, :share, :unshare, :contributors]
+  before_action :authorize_list, only: [:show, :update, :destroy, :leave, :share, :unshare, :contributors]
 
   def index
     lists = policy_scope(List)
@@ -74,7 +74,7 @@ class Api::ListsController < Api::BaseController
     end
   end
 
-  def users
+  def contributors
     render json: @list.users, list: @list
   end
 

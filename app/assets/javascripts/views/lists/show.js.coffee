@@ -18,12 +18,14 @@ class listApp.Views.ListsShow extends Backbone.View
     @render()
     @hideSidebar()
 
-    if window.user
-      @model.getUsers()
+    @model.getUsers() if @isOwner()
+
+  isOwner: =>
+    window.user && @model.get('is_owner')
 
   render: =>
     $(@el).html(@template(
-      isOwner: window.user && @model.get('is_owner')
+      isOwner: @isOwner()
       url: @model.urlRoot
       name: @model.get('name')
       remaining: @model.items.remaining().length
@@ -39,7 +41,7 @@ class listApp.Views.ListsShow extends Backbone.View
     return this
 
   openModal: =>
-    @modal = new listApp.Views.ListModal(collection: @model.users)
+    @modal = new listApp.Views.ListModal(collection: @model.contributors)
 
   remove: () ->
     # tear down the modal

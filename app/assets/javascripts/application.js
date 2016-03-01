@@ -34,8 +34,8 @@
 //
 //= require ./models/item
 //= require ./models/items
-//= require ./models/user
-//= require ./models/users
+//= require ./models/contributor
+//= require ./models/contributors
 //= require ./models/list
 //= require ./models/lists
 //= require ./models/demo-items

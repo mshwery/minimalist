@@ -26,7 +26,7 @@ Lists::Application.routes.draw do
         post 'share'
         delete 'unshare'
         delete 'leave'
-        get 'users'
+        get 'contributors'
       end
       resources :tasks, only: [:index, :create, :show, :update, :destroy]
     end
