@@ -54,7 +54,7 @@ class Api::TasksController < Api::BaseController
     end
 
     def authorize_list
-      authorize @list
+      authorize @list, :update?
     end
 
 end
