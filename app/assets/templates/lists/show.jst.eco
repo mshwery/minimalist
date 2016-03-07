@@ -2,8 +2,8 @@
   <div class='back'>
     <svg class="icon-menu"><use xlink:href="/assets/icons.svg#icon-menu"></use></svg>
   </div>
-  <a class='back' href='/'>
-    <svg class="home icon-menu"><use xlink:href="/assets/icons.svg#icon-menu"></use></svg>
+  <a class='home' href='/'>
+    <svg class="icon-menu"><use xlink:href="/assets/icons.svg#icon-menu"></use></svg>
   </a>
   <h2 title="<%= @name %>"><%= @name %></h2>
   <form>

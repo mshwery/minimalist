@@ -112,6 +112,10 @@ $header-height: 50px;
   .home {
     line-height: $header-height;
     text-align: center;
+
+    .pages:not(.pages-preview) & {
+      display: none;
+    }
   }
 
   .back,
