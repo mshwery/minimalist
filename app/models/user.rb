@@ -29,6 +29,10 @@ class User < ActiveRecord::Base
       if auth.info.image.present? && auth.info.image != user.image_url
         user.update_attribute(:image_url, auth.info.image)
       end
+
+      if auth.info.name.present? && auth.info.name != user.name
+        user.update_attribute(:name, auth.info.name)
+      end
     end
 
     # Associate the identity with the user if needed

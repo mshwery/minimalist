@@ -52,7 +52,7 @@ class List < ActiveRecord::Base
   end
 
   def remove_user(user)
-    self.users.delete(user)
+    self.users.delete(user) unless self.owned_by?(user)
   end
 
   private

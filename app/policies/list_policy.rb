@@ -27,16 +27,8 @@ class ListPolicy < ApplicationPolicy
     record.owned_by?(user)
   end
 
-  def unshare?
-    record.owned_by?(user)
-  end
-
   def leave?
     record.shared_with?(user) && !record.owned_by?(user)
-  end
-
-  def contributors?
-    record.owned_by?(user) || record.shared_with?(user)
   end
 
   class Scope < ApplicationPolicy::Scope

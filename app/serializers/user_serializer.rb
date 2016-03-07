@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :name, :email, :image_url, :is_owner
+  attributes :id, :name, :email, :image_url, :is_owner
 
   def is_owner
     list = options[:list]

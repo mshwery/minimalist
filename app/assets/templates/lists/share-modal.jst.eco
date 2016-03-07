@@ -11,14 +11,7 @@
       </label>
       <input type="submit" class="hidden-submit" />
     </form>
-    <ul class="list-contributors">
-      <% for contributor, idx in @contributors: %>
-        <li class="list-contributor">
-          <img class="contributor-avatar" src="<%= contributor.get('image_url') %>"/>
-          <span><%= contributor.get("name") %></span>
-        </li>
-      <% end %>
-    </ul>
+    <ul class="list-contributors"></ul>
   </div>
   <footer class="modal-footer">
     <button class="btn btn-primary modal-close">Done</button>  
