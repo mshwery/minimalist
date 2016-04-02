@@ -3,9 +3,9 @@ class listApp.Views.ListModal extends Backbone.View
   template: JST['lists/share-modal']
 
   events:
-    "click .modal-close" : "remove"
     "click .modal-overlay" : "remove"
-    "keypress #email-address" : "addContributor"
+    "keyup #email-address" : "onInputChange"
+    "submit form" : "addContributors"
 
   initialize: ->
     @collection.on('add', @renderContributor)
@@ -18,6 +18,7 @@ class listApp.Views.ListModal extends Backbone.View
     @$contributors = $(@el).find('.list-contributors')
     @renderContributors()
     $('#app').append($(@el).addClass('modal-is-shown'))
+    @$submitButton = $(@el).find('button[type="submit"]')
 
   renderContributors: =>
     @$contributors.empty()
@@ -34,12 +35,35 @@ class listApp.Views.ListModal extends Backbone.View
       $el.one 'animationend webkitAnimationEnd oAnimationEnd', => 
         super()
 
-  addContributor: (e) =>
-    if e.which is 13
-      e.preventDefault()
-      e.stopPropagation()
+  getEmails: (inputText) =>
+    inputText.split(',').map((email) -> email.trim()).filter((email) -> email)
 
-      email = e.target.value.trim()
-      @collection.create({email: email}, {wait: true}) if email.length
-      $(e.target).val('').removeClass('dirty')
+  onInputChange: (e) =>
+    emails = @getEmails(e.target.value)
 
+    if emails.length
+      people = if emails.length > 1 then 'people' else 'person'
+      @$submitButton.text('Add ' + emails.length + ' ' + people)
+    else
+      @$submitButton.text('Done')
+
+  addContributors: (e) =>
+    # prevent page reload on submit
+    e.preventDefault()
+
+    # grab the email input
+    $emailInput = $(e.target).find('#email-address')
+
+    # get emails in an array (if any)
+    emails = @getEmails($emailInput.val())
+    $emailInput.val('')
+
+    # wait for all items to be created before closing the modal
+    if emails.length
+      closeModal = _.after(emails.length, @remove)
+
+      emails.forEach (email) =>
+        @collection.create({ email: email }, { wait: true, success: closeModal })
+    else
+      # close modal
+      @remove()

@@ -175,10 +175,6 @@ textarea {
   @include basicField;
 }
 
-.dirty:invalid {
-  border-color: red;
-}
-
 #load-screen {
   position: absolute;
   z-index: 0;
@@ -257,6 +253,7 @@ textarea {
 
 .chromeless-input {
   border: none !important;
+  outline: none;
   background: transparent;
   box-shadow: none;
   overflow: hidden;
@@ -287,5 +284,9 @@ textarea {
     padding-right: .75rem;
     border-radius: 2px;
     box-shadow: none;
+
+    &:focus {
+      border-color: $primary;
+    }
   }
 }

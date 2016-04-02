@@ -40,10 +40,6 @@ $.ajaxSetup
   beforeSend: (xhr) ->
     xhr.setRequestHeader("Authorization", "Token token=\"#{user.token}\", email=\"#{user.email}\"")
 
-# update all inputs to dirty when they are touched
-$(document).one 'blur keydown', 'input, textarea', ->
-  $(this).addClass('dirty')
-
 $(document).ready ->
   FastClick.attach(document.body)
   listApp.init()
