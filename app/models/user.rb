@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_and_belongs_to_many :lists, -> { uniq }
+  validates :email, format: /@/
 
   # Include default devise modules. Others available are:
   devise :rememberable, :trackable, :omniauthable, omniauth_providers: [:google_oauth2]

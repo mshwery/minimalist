@@ -290,3 +290,10 @@ textarea {
     }
   }
 }
+
+.error-message {
+  border: 1px solid currentColor;
+  color: lightcoral;
+  line-height: 2rem;
+  margin-bottom: 1rem;
+}

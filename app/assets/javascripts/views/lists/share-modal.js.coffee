@@ -28,7 +28,12 @@ class listApp.Views.ListModal extends Backbone.View
     view = new listApp.Views.Contributor(model: contributor)
     @$contributors.append(view.render().el)
 
+  renderError: (message) =>
+    messageBox = $(@el).find('.modal-body').prepend('<div class="error-message">' + message + '</div>')
+
   remove: =>
+    $(@el).find('#email-address').val('')
+
     $el = $(@el)
     if $el.length && $el.hasClass('modal-is-shown')
       $el.removeClass('modal-is-shown').addClass('modal-closing')
@@ -51,19 +56,27 @@ class listApp.Views.ListModal extends Backbone.View
     # prevent page reload on submit
     e.preventDefault()
 
-    # grab the email input
-    $emailInput = $(e.target).find('#email-address')
+    # hide previous error message
+    $(@el).find('.error-message').remove()
 
     # get emails in an array (if any)
-    emails = @getEmails($emailInput.val())
-    $emailInput.val('')
+    emails = @getEmails($(e.target).find('#email-address').val())
+
+    # validate emails
+    invalidEmails = emails.filter((email) -> !/\w+@\w+/.test(email))
 
     # wait for all items to be created before closing the modal
     if emails.length
       closeModal = _.after(emails.length, @remove)
 
-      emails.forEach (email) =>
-        @collection.create({ email: email }, { wait: true, success: closeModal })
+      if invalidEmails.length
+        @renderError('Oops! Please enter a valid email address.')
+      else
+        emails.forEach (email) =>
+          @collection.create({ email: email }, {
+            wait: true,
+            success: closeModal
+          })
     else
       # close modal
       @remove()

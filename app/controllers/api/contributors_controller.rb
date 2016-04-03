@@ -13,10 +13,10 @@ class Api::ContributorsController < Api::BaseController
     authorize @list, :share?
     if user_params.has_key?(:email)
       user = User.where(email: user_params[:email]).first_or_create
-      if user.join_list(@list)
+      if user.valid? && user.join_list(@list)
         render json: user, list: @list
       else
-        api_error(status: :unprocessable_entity, errors: ['Failed to share list...'])
+        api_error(status: :unprocessable_entity, errors: user.errors)
       end
     else
       api_error(status: :unprocessable_entity, errors: ['Must pass an email address to share this list.'])
