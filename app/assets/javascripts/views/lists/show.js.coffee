@@ -18,8 +18,6 @@ class listApp.Views.ListsShow extends Backbone.View
     @render()
     @hideSidebar()
 
-    @model.getUsers() if @isOwner()
-
   isOwner: =>
     window.user && @model.get('is_owner')
 

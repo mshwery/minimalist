@@ -1,18 +1,28 @@
 class listApp.Models.List extends Backbone.Model
   initialize: ->
     @items ||= new listApp.Collections.Items()
-    @items.list_id = @id
-
     @contributors ||= new listApp.Collections.Contributors()
-    @contributors.list_id = @id
+    @setListId()
+
+    # listen to sync event on model
+    @bind('sync', @setListId)
 
     if !@isNew()
       @items.fetch({reset:true})
+      @getUsers()
+
+  setListId: =>
+    @items.list_id = @id
+    @contributors.list_id = @id
 
   getUsers: =>
-    if listApp.apiPrefix().indexOf('/api') != -1
+    if @get('is_owner') && listApp.apiPrefix().indexOf('/api') != -1
       @contributors.fetch({reset:true})
 
-  clear: ->
-    @view.remove()
-    @destroy()
+  leave: =>
+    opts = {
+      url: @collection.url() + '/' + @get('id') + '/leave',
+      contentType: 'application/json'
+    }
+
+    Backbone.Model.prototype.destroy.call(this, opts)

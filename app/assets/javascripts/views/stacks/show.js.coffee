@@ -37,6 +37,7 @@ class listApp.Views.StacksShow extends Backbone.View
     $(@el).find('#my-lists .items').append( view.render().el )
 
   addAll: =>
+    $(@el).find('#my-lists .items').empty()
     @collection.each((item) =>
       @addOne(item)
     )
@@ -69,8 +70,8 @@ class listApp.Views.ListItemShow extends Backbone.View
   initialize: ->
     @model.items.on("all", @render)
     @model.on("change", @render)
+    @model.on('destroy', @unrender)
     @model.collection.on('selected', @render)
-    @model.view = this
 
   render: =>
     isSelected = @model.collection.selectedList == @model.get('id')
@@ -81,6 +82,10 @@ class listApp.Views.ListItemShow extends Backbone.View
     ))
     return this
 
+  unrender: =>
+    @model.collection.off('selected', @render)
+    @remove()
+
   nav: (e) ->
     e.preventDefault()
     $('#sidebar').removeClass('shown') if $('body').hasClass('list-is-selected')
@@ -90,10 +95,15 @@ class listApp.Views.ListItemShow extends Backbone.View
   deleteList: (e) ->
     e.stopPropagation()
     e.preventDefault()
-    if confirm('Delete this list?')
-      @model.clear()
-      if listApp.listView.model.id == @model.id
-        listApp.listView.remove()
-        listApp.listView.unbind()
-        listApp.router.navigate(listApp.appUrl('lists'), {trigger: true})
+
+    if @model.get('is_owner')
+      if confirm('Delete this list?')
+        @model.destroy()
+    else
+      @model.leave()
+
+    if listApp.listView && listApp.listView.model.id == @model.id
+      listApp.listView.remove()
+      listApp.listView.unbind()
+      listApp.router.navigate(listApp.appUrl('lists'), {trigger: true})
 

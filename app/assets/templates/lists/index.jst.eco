@@ -1,5 +1,5 @@
 <a href="<%= @urlRoot %>/<%= @list.get('id') %>" class="route clearfix<% if @isSelected: %> current<% end %>" id="<%= @list.get('id') %>">
-  <span class="delete-list" title="delete list">&#215;</span>
+  <span class="delete-list" title="<% if @list.get('is_owner'): %>delete<% else: %>leave<% end %> list">&#215;</span>
   <%= @list.get('name') %>
   <i>(<%= @list.items.remaining().length %>)</i>
 </a>
