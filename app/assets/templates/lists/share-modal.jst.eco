@@ -1,0 +1,16 @@
+<div class="modal-overlay"></div>
+<form class="modal">
+  <header class="modal-header">
+    <h1 class="modal-title">Share this list</h1>
+  </header>
+  <div class="modal-body">
+    <ul class="list-contributors"></ul>
+    <label for="email-address" class="chromeless-input-group">
+      <svg class="icon-person-add"><use xlink:href="/assets/icons.svg#icon-person-add"></use></svg>
+      <input id="email-address" type="text" placeholder="Enter email address" autocapitalize="off" autocorrect="off" spellcheck="false" />
+    </label>
+  </div>
+  <footer class="modal-footer">
+    <button type="submit" class="btn btn-primary">Done</button>  
+  </footer>
+</form>

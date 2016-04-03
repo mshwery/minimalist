@@ -11,8 +11,8 @@ class ListPolicy < ApplicationPolicy
   def show?
     # *any* user can see *any* list?
     # true
-    # or only lists shared with them
-    record.shared_with?(user)
+    
+    record.owned_by?(user) || record.shared_with?(user)
   end
 
   def update?
@@ -20,6 +20,10 @@ class ListPolicy < ApplicationPolicy
   end
 
   def destroy?
+    record.owned_by?(user)
+  end
+
+  def share?
     record.owned_by?(user)
   end
 

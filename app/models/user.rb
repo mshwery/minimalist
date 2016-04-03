@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_and_belongs_to_many :lists, -> { uniq }
+  validates :email, format: /@/
 
   # Include default devise modules. Others available are:
   devise :rememberable, :trackable, :omniauthable, omniauth_providers: [:google_oauth2]
@@ -29,6 +30,10 @@ class User < ActiveRecord::Base
       if auth.info.image.present? && auth.info.image != user.image_url
         user.update_attribute(:image_url, auth.info.image)
       end
+
+      if auth.info.name.present? && auth.info.name != user.name
+        user.update_attribute(:name, auth.info.name)
+      end
     end
 
     # Associate the identity with the user if needed
@@ -42,11 +47,20 @@ class User < ActiveRecord::Base
   end
 
   def join_list(list)
-    self.lists << list unless !list || self.lists.include?(list)
+    if !list
+      return false
+    end
+
+    self.lists << list unless self.lists.include?(list)
+    return list
   end
 
   def leave_list(list)
     self.lists.delete(list)
+  end
+
+  def owns_list?(list)
+    list && list.owned_by?(self)
   end
 
   private

@@ -16,6 +16,8 @@ class listApp.Views.StacksShow extends Backbone.View
     # event is triggered at the end of the fetch 
     @collection.fetch({reset:true})
 
+    @collection.on('selected', @collection.selectList)
+
     # manually render because we only ever want one sidebar
     @render()
 
@@ -67,11 +69,14 @@ class listApp.Views.ListItemShow extends Backbone.View
   initialize: ->
     @model.items.on("all", @render)
     @model.on("change", @render)
+    @model.collection.on('selected', @render)
     @model.view = this
 
   render: =>
+    isSelected = @model.collection.selectedList == @model.get('id')
     $(@el).html(@template(
-      list: @model
+      list: @model,
+      isSelected: isSelected,
       urlRoot: listApp.appUrl("lists")
     ))
     return this

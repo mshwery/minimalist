@@ -1,0 +1,11 @@
+<% if @image_url: %>
+  <img class="contributor-avatar" src="<%= @image_url %>"/>
+<% else: %>
+  <span class="contributor-avatar"><%= (@name || @email || '')[0] %></span>
+<% end %>
+<span class="contributor-name"><%= @name || @email %> <% if @is_owner: %>(Owner)<% end %></span>
+<% if !@is_owner: %>
+  <button class="chromeless-input remove-contributor" type="button">
+    <svg class="icon-close"><use xlink:href="/assets/icons.svg#icon-close"></use></svg>
+  </button>
+<% end %>

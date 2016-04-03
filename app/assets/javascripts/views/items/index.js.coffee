@@ -1,5 +1,4 @@
 class listApp.Views.ItemsIndex extends Backbone.View
-  
   el: '#item-list'
 
   initialize: ->

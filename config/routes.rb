@@ -3,7 +3,7 @@ Lists::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
   
   # authentication callback
-  devise_for :users, controllers: {omniauth_callbacks: "users/omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   # Using Omniauth without other authentications
   # @see https://github.com/plataformatec/devise/wiki/OmniAuth%3A-Overview#using-omniauth-without-other-authentications
@@ -23,9 +23,12 @@ Lists::Application.routes.draw do
   namespace :api do
     resources :lists, only: [:index, :create, :show, :update, :destroy] do
       member do
-        post 'share'
         delete 'leave'
       end
+
+      resources :contributors, only: [:index, :create]
+      delete 'contributors', to: 'contributors#destroy'
+
       resources :tasks, only: [:index, :create, :show, :update, :destroy]
     end
   end

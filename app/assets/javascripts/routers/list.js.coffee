@@ -50,17 +50,22 @@ class listApp.Routers.List extends Backbone.Router
   getList: (listId) ->
     @cleanupLists()
 
-    if listApp.lists.get(listId)
-      $('body').addClass('list-is-selected')
-      listApp.listView = new listApp.Views.ListsShow(model: listApp.lists.get(listId))
+    list = listApp.lists.get(listId)
+
+    if list
+      @selectList(list)
     else
       listApp.lists.on "reset", (collection, response) =>
         list = collection.get(listId)
         if list
-          $('body').addClass('list-is-selected')
-          listApp.listView = new listApp.Views.ListsShow(model: list)
+          @selectList(list)
         else
           @navigate(listApp.appUrl('lists'), {trigger: true})
+
+  selectList: (list) ->
+    list.trigger('selected', list)
+    $('body').addClass('list-is-selected')
+    listApp.listView = new listApp.Views.ListsShow(model: list)
 
   toggleLoadScreen: ->
     $("#app").toggleClass('show hide')

@@ -47,10 +47,12 @@ class listApp.Views.ItemsShow extends Backbone.View
       return
 
   markIncompleted: ->
-    @toggleCompleted(false)
+    if listApp.isMobile()
+      @toggleCompleted(false)
 
   markCompleted: ->
-    @toggleCompleted(true)
+    if listApp.isMobile()    
+      @toggleCompleted(true)
 
   edit: (e) =>
     # prevent clicks on anchor tags from going to edit mode...
