@@ -96,7 +96,8 @@ class listApp.Views.ListItemShow extends Backbone.View
     e.stopPropagation()
     e.preventDefault()
 
-    if @model.get('is_owner')
+    # is_owner will be null if you arent signed in
+    if @model.get('is_owner') || @model.get('is_owner') == null
       if confirm('Delete this list?')
         @model.destroy()
     else
