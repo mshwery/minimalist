@@ -1,10 +1,10 @@
 <div id="stats">
-  <div class='back'>
-    <svg class="icon-menu"><use xlink:href="/assets/icons.svg#icon-menu"></use></svg>
-  </div>
   <a class='home' href='/'>
     <svg class="icon-menu"><use xlink:href="/assets/icons.svg#icon-menu"></use></svg>
   </a>
+  <div class='back'>
+    <svg class="icon-menu"><use xlink:href="/assets/icons.svg#icon-menu"></use></svg>
+  </div>
   <h2 title="<%= @name %>"><%= @name %></h2>
   <form>
     <input class="edit chromeless-input" type="text" value="<%= @name %>" />
