@@ -5,9 +5,6 @@ class listApp.Views.ItemsShow extends Backbone.View
   template: JST['items/show']
 
   events:
-    "movestart"       : "checkDirection"
-    "swiperight"      : "markCompleted"
-    "swipeleft"       : "markIncompleted"
     "click .toggle"   : "toggleCompleted"
     "click .view"     : "edit"
     "tap .view"       : "edit"
@@ -40,19 +37,6 @@ class listApp.Views.ItemsShow extends Backbone.View
     if !@$el.hasClass('editing') && !@$el.hasClass('ui-sortable-helper') && (complete == undefined || complete != @model.get('completed')) 
       @model.toggle()
       @renderCompleted()
-
-  checkDirection: (e) ->
-    if (e.distX > e.distY && e.distX < -e.distY) or (e.distX < e.distY && e.distX > -e.distY)
-      e.preventDefault()
-      return
-
-  markIncompleted: ->
-    if listApp.isMobile()
-      @toggleCompleted(false)
-
-  markCompleted: ->
-    if listApp.isMobile()    
-      @toggleCompleted(true)
 
   edit: (e) =>
     # prevent clicks on anchor tags from going to edit mode...

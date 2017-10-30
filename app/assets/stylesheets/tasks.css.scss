@@ -1,11 +1,11 @@
 .todos {
-  //background-color: $primary;
   background-color: #eee;
 }
 
 .selected-list {
   text-align: left;
   position: relative;
+  padding-bottom: 1px;
 }
 
 .todo {
@@ -26,11 +26,8 @@
   perspective: 1000;
   
   &.completed {
-    background-color: $primary;
-    border-color: transparent;
-
     .toggle {
-      color: white;
+      color: $primary;
       border-color: transparent;
 
       &:hover,
@@ -41,12 +38,8 @@
     }
 
     .label {
-      color: #fff;
+      color: rgba(0, 0, 0, .45);
       text-decoration: line-through;
-
-      a {
-        color: #fff;
-      }
     }
   }
 

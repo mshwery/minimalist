@@ -11,6 +11,7 @@ class listApp.Views.ListsShow extends Backbone.View
     "click .refresh"          : "refresh"
     "click .back"             : "showSidebar"
     "click .action-share"     : "openModal"
+    "click .js-clear-completed" : "clearCompleted"
 
   initialize: ->
     @model.on('change:name', @updateName)
@@ -83,6 +84,9 @@ class listApp.Views.ListsShow extends Backbone.View
   edit: =>
     @$("#stats").addClass("editing")
     @input.focus().val(@input.val()).select()
+
+  clearCompleted: =>
+    @model.items.completed().map((item) -> item.clear())
 
   close: =>
     value = @input.val()

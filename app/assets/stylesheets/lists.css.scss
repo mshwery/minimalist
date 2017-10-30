@@ -5,6 +5,15 @@ $border-style: 1px solid rgba(0,0,0,0.08);
 
 $header-height: 50px;
 
+.clear-completed {
+  opacity: .5;
+  
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+}
+
 // this is for the desktop styles
 .lists,
 .stacks-show {

@@ -19,10 +19,9 @@ class listApp.Views.ItemsIndex extends Backbone.View
     # ensure the list is empty before inserting the entire new list
     $(@el).empty()
 
-    # only render remaining todos on reset
-    _.each @collection.remaining(), (item) =>
+    _.each @collection.models, (item) =>
       @addOne(item)
 
   reorderCollection: (e, ui) =>
-    _.each @collection.remaining(), (item) =>
+    _.each @collection.models, (item) =>
       item.set({ sort_order: item.view.$el.index() })

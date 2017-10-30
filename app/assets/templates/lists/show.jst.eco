@@ -25,3 +25,5 @@
   <ul id="add-item" class="items"></ul>
   <ul id="item-list" class="items"></ul>
 </div>
+
+<button type="button" class="link-button clear-completed js-clear-completed">Clear all completed</button>
