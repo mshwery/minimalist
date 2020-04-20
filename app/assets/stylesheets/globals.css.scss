@@ -17,7 +17,7 @@ body {
 }
 
 html, body {
-  height: 100%;
+  min-height: 100vh;
 }
 
 h1 {
@@ -44,10 +44,6 @@ button,
 
 .right {
   float: right;
-}
-
-.hero {
-  background-color: #f6f6f6;
 }
 
 .show {
@@ -205,8 +201,7 @@ textarea {
   justify-content: center;
 }
 
-.pages-home,
-.pages-preview {
+.pages-home {
   .dots .dot {
     background: white;
   }

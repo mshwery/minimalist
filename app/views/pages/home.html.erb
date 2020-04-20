@@ -1,5 +1,4 @@
 <div class="hero">
-
   <section class="wrap">
     <header>
       <div class='logo'>
@@ -16,7 +15,6 @@
       </h2>
       <%= image_tag 'try-me.png', :class => 'try-me' %>
       <div class="actions">
-        <%= link_to "Start a list", new_stack_url, :class => 'btn' %>
         <%= link_to user_omniauth_authorize_path(:google_oauth2), class: 'btn btn-primary' do %>
           <svg class="icon-google-icon"><use xlink:href="/assets/icons.svg#icon-google-icon"></use></svg>
           <span>Sign in with Google</span>
@@ -25,31 +23,8 @@
     </div>
   </section>
 </div>
-<div id="features" class="wrap">
-  <ul class="clearfix">
-    <li>
-      <h3>With you everywhere –</h3>
-      <p>The internet makes your lists magically available anywhere. You can access them on your phone, tablet, or computer.</p>
-    </li>
-    <li>
-      <h3>No need to log-in –</h3>
-      <p>You don't need an account to use minimalist. Your lists will live at a special url so just bookmark that and you're good to go!</p>
-    </li>
-    <li>
-      <h3>Even better on mobile –</h3>
-      <p>This was made mobile-first, so although it's not in the App Store it supports touch gestures like swiping, dragging and tapping.</p>
-    </li>
-    <li>
-      <h3>Simple, Shareable –</h3>
-      <p>Anyone you share your link with can access your lists the same as you. Because some lists are better shared (and some are not).</p>
-    </li>
-  </ul>
-</div>
 <footer>
   <div class="wrap clearfix">
-    <div class="right">
-      <%= list_total %> Lists. <%= task_total %> Todos.
-    </div>
-    © <%= Time.now.year %> Made by <a href='http://twitter.com/mshwery' target="_blank">@mshwery</a>. <a class="twitter icon-twitter" href='http://twitter.com/get_minimalist' title="@get_minimalist" target="_blank"></a>
+    © <%= Time.now.year %> Made by <a href='http://twitter.com/mshwery' target="_blank">@mshwery</a>.
   </div>
 </footer>

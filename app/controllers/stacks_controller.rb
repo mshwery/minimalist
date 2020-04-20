@@ -8,13 +8,8 @@ class StacksController < ApplicationController
   end
 
   def new
-    @stack = Stack.new
-
-    if @stack.save
-      redirect_to new_stack_list_path(@stack)
-    else
-      redirect_to :root
-    end
+    # no longer support list creation
+    redirect_to :root
   end
 
   def show

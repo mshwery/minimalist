@@ -7,7 +7,6 @@ window.demo = {
 class listApp.Routers.List extends Backbone.Router
   routes:
     '(/)'                    : 'root'
-    'preview(/)'             : 'preview'
     'dashboard(/)'           : 'lists'
     'dashboard/lists(/)'     : 'lists'
     'dashboard/lists/:id(/)' : 'getList'
@@ -17,19 +16,15 @@ class listApp.Routers.List extends Backbone.Router
 
   initialize: ->
     @toggleLoadScreen()
-    unless $('body').hasClass('pages-home') || $('body').hasClass('pages-preview')
+    unless $('body').hasClass('pages-home')
       @setupSidebar()
       
   getDemoList: ->
     listApp.demo = new listApp.Models.DemoList(window.demo) 
     listApp.view = new listApp.Views.ListsShow({ model: listApp.demo })  
 
-  preview: ->
-    @getDemoList()
-
   root: ->
     @getDemoList()
-    @setupDemo(listApp.view.$el)
 
   cleanupLists: ->
     if listApp.listView
@@ -77,14 +72,3 @@ class listApp.Routers.List extends Backbone.Router
   setupSidebar: ->
     listApp.lists ||= new listApp.Collections.Lists()
     listApp.listsView = new listApp.Views.StacksShow(collection: listApp.lists)
-
-  setupDemo: ($view) ->
-    $view.on('click', @addActiveClassToDemo)
-
-  addActiveClassToDemo: (e) =>
-    h = $(e.target).closest('#demo').outerHeight()
-    $(e.target).closest('#demo').addClass('active')
-    @timer = setTimeout((=> @setMaxHeight()), 1000)
-
-  setMaxHeight: ->
-    $("#demo").addClass('complete')

@@ -1,9 +1,24 @@
 .pages-home {
-  background: $primary;
+  background: #f3f3f4;
+  display: flex;
+  flex-direction: column;
 }
 
-.pages-home, .pages-preview {
+.hero {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+
+  footer {
+    margin-top: auto;
+  }
+}
+
+.pages-home {
   #app {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
     position: relative;
     z-index: 1;
     padding: 0;
@@ -76,33 +91,6 @@
       width: 100%;
     } 
   }
-  
-  #features {
-    padding: 35px 0px;
-    color: #fff;
-    text-align: left;
-
-    li {
-      float: left;
-      width: 50%;
-      padding: 25px 0;
-      
-      @media only screen and (max-width: $medium-breakpoint) {
-        width: 100%;
-      }
-
-      h3, p {
-        padding: 0 30px;
-        margin: 0px;
-        line-height: 24px;
-        font-size: 16px;
-      }
-
-      h3 {
-        font-weight: 600;
-      }
-    }
-  }
 }
 
 footer {
@@ -121,12 +109,6 @@ footer {
       text-align: center;
     }     
   }
-  .right {
-    @media only screen and (max-width: $medium-breakpoint) {
-      float: none;
-      display: block;
-    }
-  }
   a, a:hover {
     color: #525b62;
   }
@@ -141,71 +123,21 @@ footer {
   #demo {
     width: 60%;
     padding: 20px 5%;
-    max-height: 300px;
     overflow: hidden;
-    cursor: pointer;
-    transition: padding 300ms ease-in-out, max-height 500ms ease-in-out;
-    transform: translate3d(0,0,0);
-    perspective: 1000;
     
     @media only screen and (max-width: $medium-breakpoint) {
       display: none;
     } 
     
     .selected-list {
-      margin: 0 -3px -3px;
-      transition: margin 300ms ease-in-out;
       position: relative;
       min-width: 0px;
-    }
-
-    &:hover {
-      padding-top: 0px;
-      padding-bottom: 40px;
-    }
-    
-    &.active {
-      cursor: auto;
-      max-height: 1000px;
-      padding-top: 0;
-      padding-bottom: 0;
-
-      .selected-list {
-        margin: 0 -3px 50px;
-      }
-    
-      &.complete {
-        transition: max-height 0s;
-        max-height: none;
-      }
     }
   }  
 }
 
 .home {
   display: none;
-}
-
-.pages-preview {
-  background: #fff;
-
-  #demo {
-    .home {
-      display: block;
-      float: left;
-    }
-  }
-
-  footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    @media only screen and (max-width: $medium-breakpoint) {
-      position: relative;
-    }    
-  }
 }
 
 .logo-square {
