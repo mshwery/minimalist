@@ -38,7 +38,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    addressable (2.3.8)
+    addressable (2.8.0)
+      public_suffix (>= 2.0.2, < 5.0)
     arel (6.0.3)
     autoprefixer-rails (6.2.1)
       execjs
@@ -120,6 +121,7 @@ GEM
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
     pg (0.18.3)
+    public_suffix (3.1.1)
     puma (2.14.0)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
