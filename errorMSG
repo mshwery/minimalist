@@ -1,0 +1,8 @@
+Hey, sorry for the awkward way of letting you know, but I found an error on minimalist.
+
+Error: 
+Couldn't rename list: Invalid data. Check "errors" for more details.: {"response":{"errors":[{"message":"Invalid data. Check \"errors\" for more details.","extensions":{"validationErrors":[{"target":{"id":"64ff0e6f-7f67-4b68-8a4a-1a6aae9c9653","name":"VapeBot Delivery Information","createdAt":"2021-09-19T07:17:29.639Z","createdBy":"01dd0d67-641b-4701-af25-9931f5936c51","updatedAt":"2021-09-19T07:17:29.639Z","archivedAt":null,"users":[]},"value":"VapeBot Delivery Information","property":"name","children":[],"constraints":{"isLength":"name must be shorter than or equal to 21 characters"}}],"code":"BAD_USER_INPUT"}}],"data":null,"extensions":{"tracing":{"version":1,"startTime":"2021-09-19T07:18:18.745Z","endTime":"2021-09-19T07:18:18.781Z","duration":35870046,"execution":{"resolvers":[{"path":["renameList"],"parentType":"Mutation","fieldName":"renameList","returnType":"RenameListResponse!","startOffset":546663,"duration":34202315}]}}},"status":200},"request":{"query":"\n mutation RenameList($input: RenameListInput!) {\n renameList(input: $input) {\n list {\n id\n name\n }\n }\n }\n","variables":{"input":{"id":"64ff0e6f-7f67-4b68-8a4a-1a6aae9c9653","name":"VapeBot Delivery Information"}}}}
+
+This happens everytime I try to enter: "VapeBot Delivery Information", as seen above.
+
+Hope this makes it to you.
